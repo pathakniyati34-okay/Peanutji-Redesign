@@ -1,0 +1,5441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us — Peanutji · Pyar Jaisa Pure</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            /* ── LOGO-MATCHED PALETTE (same as home.css) ── */
+            --navy: #1B2E6B;
+            --navy-deep: #162460;
+            --navy-mid: #243685;
+            --navy-light: #2E448F;
+            --red: #8B1A1A;
+            --red-mid: #A93226;
+            --red-bright: #C0392B;
+            --gold: #C8960C;
+            --gold-light: #E0AE1A;
+            --gold-pale: #F5E6A0;
+            --gold-bright: #F0C030;
+            --cream: #F5F0E8;
+            --cream-deep: #EDE5D5;
+            --white: #FFFFFF;
+            --dark: #0D1A3A;
+            --green: #2E7D32;
+            --green-l: #4CAF50;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+
+        /* ══ NAV — identical to home.css ══ */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 52px;
+            height: 68px;
+            background: rgba(245, 240, 232, .97);
+            backdrop-filter: blur(18px);
+            border-bottom: 2px solid rgba(27, 46, 107, .12);
+            transition: all .3s
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 24px rgba(13, 26, 58, .12)
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue';
+            font-size: 1.9rem;
+            letter-spacing: 5px;
+            color: var(--navy);
+            text-decoration: none;
+            transition: letter-spacing .3s;
+            flex-shrink: 0
+        }
+
+        .nav-logo:hover {
+            letter-spacing: 6px
+        }
+
+        .nav-logo span {
+            color: var(--red-mid)
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+            margin: 0 auto;
+            padding: 0 20px
+        }
+
+        .nav-links>li {
+            position: relative
+        }
+
+        .nav-links>li>a,
+        .nav-ddt {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            text-decoration: none;
+            padding: 8px 13px;
+            border-radius: 6px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: 'DM Sans';
+            position: relative;
+            white-space: nowrap;
+            transition: color .25s, background .25s
+        }
+
+        .nav-links>li>a:hover,
+        .nav-ddt:hover {
+            color: var(--navy);
+            background: rgba(27, 46, 107, .07)
+        }
+
+        .nav-links>li>a::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 13px;
+            right: 13px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--navy), var(--gold));
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform .3s
+        }
+
+        .nav-links>li>a:hover::after,
+        .nav-links>li>a.active::after {
+            transform: scaleX(1)
+        }
+
+        .nav-links>li>a.active {
+            color: var(--navy)
+        }
+
+        .ch {
+            font-size: .6rem;
+            transition: transform .3s;
+            color: var(--red);
+            margin-top: 1px
+        }
+
+        .nav-links>li.ddo .ch {
+            transform: rotate(180deg)
+        }
+
+        .nav-drop {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-8px);
+            background: white;
+            border: 1px solid rgba(27, 46, 107, .12);
+            border-radius: 16px;
+            padding: 8px;
+            min-width: 220px;
+            box-shadow: 0 20px 50px rgba(13, 26, 58, .14), 0 4px 12px rgba(13, 26, 58, .06);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity .25s ease, transform .25s ease, visibility .25s;
+            z-index: 300
+        }
+
+        .nav-drop::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-left: 1px solid rgba(27, 46, 107, .12);
+            border-top: 1px solid rgba(27, 46, 107, .12);
+            transform: translateX(-50%) rotate(45deg)
+        }
+
+        .nav-links>li.ddo .nav-drop {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0)
+        }
+
+        .nav-drop a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: .82rem;
+            font-weight: 500;
+            color: var(--navy-light);
+            transition: all .2s;
+            white-space: nowrap
+        }
+
+        .nav-drop a:hover {
+            background: linear-gradient(90deg, rgba(27, 46, 107, .07), rgba(27, 46, 107, .02));
+            color: var(--navy);
+            transform: translateX(3px)
+        }
+
+        .nav-drop a .ddi {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            transition: transform .2s
+        }
+
+        .nav-drop a:hover .ddi {
+            transform: scale(1.1)
+        }
+
+        .nav-drop .ddn {
+            font-weight: 600;
+            color: var(--navy);
+            font-size: .82rem;
+            line-height: 1.2
+        }
+
+        .nav-drop .dds {
+            font-size: .68rem;
+            color: var(--navy-light);
+            margin-top: 1px
+        }
+
+        .dd-div {
+            height: 1px;
+            background: rgba(27, 46, 107, .1);
+            margin: 6px 8px
+        }
+
+        .nav-drop a.vd-link {
+            background: linear-gradient(90deg, rgba(200, 150, 12, .1), rgba(27, 46, 107, .05));
+            border: 1px solid rgba(200, 150, 12, .2)
+        }
+
+        .nav-drop a.vd-link .ddn {
+            color: var(--red)
+        }
+
+        .nav-drop a.vd-link:hover {
+            background: linear-gradient(90deg, rgba(200, 150, 12, .2), rgba(27, 46, 107, .1))
+        }
+
+        .nav-r {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-family: 'DM Sans';
+            font-size: .74rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all .3s;
+            white-space: nowrap;
+            box-shadow: 0 4px 14px rgba(27, 46, 107, .3)
+        }
+
+        .nav-cta:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(27, 46, 107, .4)
+        }
+
+        .nav-mob-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px
+        }
+
+        .nav-mob-btn span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--navy);
+            border-radius: 2px;
+            transition: all .3s
+        }
+
+        .mob-menu {
+            display: none;
+            position: fixed;
+            top: 68px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(245, 240, 232, .98);
+            backdrop-filter: blur(20px);
+            z-index: 150;
+            overflow-y: auto;
+            padding: 24px 24px 40px;
+            flex-direction: column;
+            gap: 6px;
+            transform: translateX(-100%);
+            transition: transform .35s cubic-bezier(.4, 0, .2, 1)
+        }
+
+        .mob-menu.open {
+            transform: translateX(0)
+        }
+
+        .mm-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: .9rem;
+            font-weight: 600;
+            color: var(--navy-light);
+            transition: all .2s
+        }
+
+        .mm-link:hover {
+            background: rgba(27, 46, 107, .07);
+            color: var(--navy)
+        }
+
+        .mm-ico {
+            font-size: 1.3rem;
+            width: 32px;
+            text-align: center
+        }
+
+        .mm-sec {
+            font-size: .6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red);
+            padding: 16px 16px 6px;
+            font-weight: 600
+        }
+
+        .mm-div {
+            height: 1px;
+            background: rgba(27, 46, 107, .12);
+            margin: 8px 0
+        }
+
+        .mm-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: .82rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all .3s;
+            box-shadow: 0 6px 18px rgba(27, 46, 107, .3)
+        }
+
+        .mm-cta:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy))
+        }
+
+        /* ══ PAGE HERO — matches home hero aesthetic ══ */
+        .page-hero {
+            margin-top: 68px;
+            min-height: 52vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #F5F0E8 0%, #EDE0C8 55%, #E0D0A0 100%)
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 30%, rgba(139, 26, 26, .08), transparent 55%),
+                radial-gradient(ellipse at 20% 80%, rgba(27, 46, 107, .1), transparent 50%);
+            pointer-events: none
+        }
+
+        .ph-blob {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(27, 46, 107, .1), transparent 70%);
+            animation: pulse 6s ease-in-out infinite;
+            pointer-events: none
+        }
+
+        .ph-blob:nth-child(2) {
+            width: 600px;
+            height: 600px;
+            top: -120px;
+            right: -80px;
+            background: radial-gradient(circle, rgba(139, 26, 26, .07), transparent 70%)
+        }
+
+        .ph-blob:nth-child(3) {
+            width: 320px;
+            height: 320px;
+            bottom: -60px;
+            left: -40px;
+            animation-delay: 3s
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: .6
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 1
+            }
+        }
+
+        .ph-floats {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none
+        }
+
+        .phf {
+            position: absolute;
+            opacity: .06;
+            animation: hfdrift 22s ease-in-out infinite
+        }
+
+        .phf:nth-child(1) {
+            top: 10%;
+            right: 6%;
+            font-size: 6rem;
+            animation-delay: 0s
+        }
+
+        .phf:nth-child(2) {
+            top: 50%;
+            right: 22%;
+            font-size: 3.5rem;
+            animation-delay: 6s
+        }
+
+        .phf:nth-child(3) {
+            bottom: 12%;
+            right: 40%;
+            font-size: 4rem;
+            animation-delay: 11s
+        }
+
+        .phf:nth-child(4) {
+            top: 18%;
+            left: 8%;
+            font-size: 3rem;
+            animation-delay: 16s
+        }
+
+        @keyframes hfdrift {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg)
+            }
+
+            33% {
+                transform: translateY(-20px) rotate(8deg)
+            }
+
+            66% {
+                transform: translateY(12px) rotate(-5deg)
+            }
+        }
+
+        .ph-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 80px 40px
+        }
+
+        .ph-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            font-weight: 600;
+            border: 2px solid var(--navy);
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 28px;
+            background: rgba(255, 255, 255, .4);
+            animation: fadeUp .8s ease both
+        }
+
+        .ph-eyebrow::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--red-mid);
+            border-radius: 50%;
+            animation: blink 2s infinite
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .3
+            }
+        }
+
+        .ph-title {
+            font-family: 'Playfair Display';
+            font-size: clamp(3.2rem, 7vw, 6rem);
+            font-weight: 900;
+            line-height: 1.04;
+            color: var(--navy);
+            letter-spacing: -.02em;
+            animation: fadeUp .8s .15s ease both
+        }
+
+        .ph-title em {
+            color: var(--red-mid);
+            font-style: italic;
+            display: block
+        }
+
+        .ph-subtitle {
+            font-size: 1rem;
+            color: var(--navy-light);
+            line-height: 1.75;
+            margin: 20px auto 0;
+            max-width: 520px;
+            animation: fadeUp .8s .3s ease both
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(28px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* ══ MARQUEE — identical to home ══ */
+        .marquee-band {
+            background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+            padding: 15px 0;
+            overflow: hidden;
+            display: flex;
+            border-top: 3px solid var(--red);
+            border-bottom: 3px solid var(--gold)
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 56px;
+            animation: marquee 28s linear infinite;
+            white-space: nowrap
+        }
+
+        .marquee-item {
+            font-family: 'Bebas Neue';
+            font-size: 1.05rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 18px
+        }
+
+        .marquee-item span {
+            color: rgba(255, 255, 255, .2)
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0)
+            }
+
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        /* ══ SECTION HEADER — shared pattern ══ */
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px
+        }
+
+        .section-tag {
+            font-size: .68rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--red);
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px
+        }
+
+        .section-tag::before,
+        .section-tag::after {
+            content: '';
+            flex: 1;
+            max-width: 36px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--red), transparent)
+        }
+
+        .section-tag::before {
+            background: linear-gradient(270deg, var(--red), transparent)
+        }
+
+        .section-title {
+            font-family: 'Playfair Display';
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            color: var(--navy);
+            line-height: 1.1
+        }
+
+        .section-title em {
+            color: var(--red-mid);
+            font-style: italic
+        }
+
+        /* ══ MAIN LAYOUT ══ */
+        .contact-wrap {
+            max-width: 1260px;
+            margin: 0 auto;
+            padding: 80px 60px 100px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 52px;
+            align-items: start
+        }
+
+        /* ══ FORM CARD ══ */
+        .form-card {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 22px;
+            overflow: hidden;
+            position: relative
+        }
+
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--navy), var(--red), var(--gold), var(--navy));
+            background-size: 200%;
+            animation: shimmerBar 4s linear infinite
+        }
+
+        @keyframes shimmerBar {
+            0% {
+                background-position: 200% 0
+            }
+
+            100% {
+                background-position: -200% 0
+            }
+        }
+
+        .fc-head {
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-mid) 100%);
+            padding: 32px 36px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .fc-head::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 80% 50%, rgba(200, 150, 12, .18), transparent 60%)
+        }
+
+        .fc-pretitle {
+            font-size: .6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            z-index: 1
+        }
+
+        .fc-pretitle::before {
+            content: '';
+            width: 20px;
+            height: 1px;
+            background: var(--gold);
+            opacity: .5
+        }
+
+        .fc-title {
+            font-family: 'Playfair Display';
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 1
+        }
+
+        .fc-title em {
+            color: var(--gold-light);
+            font-style: italic
+        }
+
+        .fc-sub {
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .5);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1
+        }
+
+        /* Inquiry tabs */
+        .inq-tabs {
+            display: flex;
+            gap: 0;
+            background: rgba(255, 255, 255, .08);
+            border: 1.5px solid rgba(255, 255, 255, .15);
+            border-radius: 12px;
+            padding: 4px;
+            margin-top: 22px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1
+        }
+
+        .inq-tab {
+            flex: 1;
+            padding: 9px 12px;
+            border-radius: 9px;
+            border: none;
+            background: none;
+            font-family: 'DM Sans';
+            font-size: .62rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
+            cursor: pointer;
+            transition: all .3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            white-space: nowrap
+        }
+
+        .inq-tab:hover {
+            color: rgba(255, 255, 255, .85)
+        }
+
+        .inq-tab.on {
+            background: rgba(255, 255, 255, .12);
+            border: 1.5px solid rgba(200, 150, 12, .3);
+            color: var(--gold-light);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .15)
+        }
+
+        .fc-form {
+            padding: 32px 36px 36px
+        }
+
+        .fg-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px
+        }
+
+        .fg-row.single {
+            grid-template-columns: 1fr
+        }
+
+        .fg {
+            display: flex;
+            flex-direction: column;
+            gap: 7px
+        }
+
+        .fg-label {
+            font-size: .58rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600
+        }
+
+        .fg-label .req {
+            color: var(--red)
+        }
+
+        .fg-input,
+        .fg-select,
+        .fg-textarea {
+            background: rgba(27, 46, 107, .03);
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 10px;
+            padding: 13px 16px;
+            font-family: 'DM Sans';
+            font-size: .84rem;
+            color: var(--navy);
+            outline: none;
+            transition: all .3s;
+            width: 100%
+        }
+
+        .fg-input::placeholder,
+        .fg-textarea::placeholder {
+            color: rgba(27, 46, 107, .28)
+        }
+
+        .fg-input:focus,
+        .fg-select:focus,
+        .fg-textarea:focus {
+            border-color: rgba(27, 46, 107, .45);
+            background: rgba(27, 46, 107, .05);
+            box-shadow: 0 0 0 3px rgba(27, 46, 107, .08)
+        }
+
+        .fg-input.valid {
+            border-color: rgba(46, 125, 50, .5);
+            background: rgba(46, 125, 50, .04)
+        }
+
+        .fg-input.err {
+            border-color: rgba(139, 26, 26, .4);
+            background: rgba(139, 26, 26, .03)
+        }
+
+        .fg-select {
+            appearance: none;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238B1A1A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-color: rgba(27, 46, 107, .03)
+        }
+
+        .fg-select option {
+            background: #F5F0E8;
+            color: var(--navy)
+        }
+
+        .fg-textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.65
+        }
+
+        .fg-err {
+            font-size: .62rem;
+            color: var(--red);
+            display: none;
+            margin-top: 2px
+        }
+
+        .fg.has-err .fg-err {
+            display: block
+        }
+
+        .char-counter {
+            font-size: .6rem;
+            color: var(--navy-light);
+            text-align: right;
+            margin-top: 4px;
+            transition: color .25s
+        }
+
+        .char-counter.warn {
+            color: var(--gold)
+        }
+
+        .char-counter.over {
+            color: var(--red)
+        }
+
+        .file-drop {
+            border: 1.5px dashed rgba(27, 46, 107, .2);
+            border-radius: 11px;
+            padding: 22px;
+            text-align: center;
+            cursor: pointer;
+            transition: all .3s;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 16px;
+            background: rgba(27, 46, 107, .02)
+        }
+
+        .file-drop:hover,
+        .file-drop.drag {
+            border-color: var(--navy);
+            background: rgba(27, 46, 107, .05)
+        }
+
+        .file-drop input[type=file] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer
+        }
+
+        .fd-icon {
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+            display: block
+        }
+
+        .fd-text {
+            font-size: .76rem;
+            color: var(--navy-light);
+            line-height: 1.5
+        }
+
+        .fd-text strong {
+            color: var(--navy);
+            font-weight: 600
+        }
+
+        .fd-accepted {
+            font-size: .6rem;
+            color: var(--navy-light);
+            margin-top: 4px;
+            opacity: .6
+        }
+
+        .fg-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            cursor: pointer;
+            margin-bottom: 22px
+        }
+
+        .fg-check input[type=checkbox] {
+            display: none
+        }
+
+        .checkmark {
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+            border: 1.5px solid rgba(27, 46, 107, .25);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .25s;
+            margin-top: 1px;
+            font-size: .7rem;
+            background: rgba(27, 46, 107, .03)
+        }
+
+        .fg-check input:checked~.checkmark {
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            border-color: transparent;
+            color: white
+        }
+
+        .check-lbl {
+            font-size: .76rem;
+            color: var(--navy-light);
+            line-height: 1.55
+        }
+
+        .check-lbl a {
+            color: var(--red-mid);
+            text-decoration: none
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'DM Sans';
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .35s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 22px rgba(27, 46, 107, .3)
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, .1), transparent);
+            transform: translateX(-100%);
+            transition: transform .55s
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(27, 46, 107, .4)
+        }
+
+        .submit-btn:hover::before {
+            transform: translateX(100%)
+        }
+
+        .submit-btn:disabled {
+            opacity: .4;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none
+        }
+
+        .btn-spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, .3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+            display: none
+        }
+
+        .submit-btn.loading .btn-spinner {
+            display: block
+        }
+
+        .submit-btn.loading .btn-text {
+            display: none
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        /* Form success */
+        .form-success {
+            display: none;
+            padding: 56px 36px;
+            text-align: center
+        }
+
+        .form-success.vis {
+            display: block
+        }
+
+        .fs-anim {
+            font-size: 5rem;
+            animation: popIn .6s cubic-bezier(.34, 1.56, .64, 1) both;
+            display: block;
+            margin-bottom: 20px
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0) rotate(-20deg);
+                opacity: 0
+            }
+
+            to {
+                transform: scale(1) rotate(0);
+                opacity: 1
+            }
+        }
+
+        .fs-title {
+            font-family: 'Playfair Display';
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--navy);
+            margin-bottom: 8px
+        }
+
+        .fs-title em {
+            font-style: italic;
+            color: var(--red-mid)
+        }
+
+        .fs-sub {
+            font-size: .84rem;
+            color: var(--navy-light);
+            line-height: 1.7;
+            margin-bottom: 24px
+        }
+
+        .fs-ref {
+            font-family: 'Bebas Neue';
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            color: var(--navy);
+            background: rgba(27, 46, 107, .07);
+            border: 1px solid rgba(27, 46, 107, .18);
+            border-radius: 100px;
+            padding: 7px 22px;
+            display: inline-block;
+            margin-bottom: 24px
+        }
+
+        .fs-reset {
+            background: none;
+            border: 1.5px solid rgba(27, 46, 107, .2);
+            border-radius: 9px;
+            padding: 10px 24px;
+            color: var(--navy-light);
+            font-family: 'DM Sans';
+            font-size: .7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s
+        }
+
+        .fs-reset:hover {
+            border-color: var(--navy);
+            color: var(--navy);
+            background: rgba(27, 46, 107, .05)
+        }
+
+        /* ══ SIDEBAR ══ */
+        .contact-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: sticky;
+            top: 88px
+        }
+
+        .info-card,
+        .hours-card,
+        .outlets-card,
+        .social-card {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 18px;
+            overflow: hidden
+        }
+
+        .ic-head {
+            padding: 18px 22px;
+            border-bottom: 1.5px solid rgba(27, 46, 107, .08);
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .ic-bar {
+            width: 3px;
+            height: 18px;
+            background: linear-gradient(to bottom, var(--navy), var(--red));
+            border-radius: 2px;
+            flex-shrink: 0
+        }
+
+        .ic-title {
+            font-family: 'Playfair Display';
+            font-size: .95rem;
+            font-weight: 700;
+            color: var(--navy)
+        }
+
+        .ic-body {
+            padding: 14px 20px
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            padding: 11px 0;
+            border-bottom: 1px solid rgba(27, 46, 107, .07);
+            cursor: pointer;
+            transition: all .25s;
+            border-radius: 8px
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0
+        }
+
+        .contact-item:hover {
+            margin: 0 -6px;
+            padding-left: 6px;
+            padding-right: 6px;
+            background: rgba(27, 46, 107, .04)
+        }
+
+        .ci-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            transition: transform .25s
+        }
+
+        .contact-item:hover .ci-icon {
+            transform: scale(1.1)
+        }
+
+        .ci-icon.nv {
+            background: rgba(27, 46, 107, .08)
+        }
+
+        .ci-icon.rd {
+            background: rgba(139, 26, 26, .08)
+        }
+
+        .ci-icon.gd {
+            background: rgba(200, 150, 12, .1)
+        }
+
+        .ci-icon.gr {
+            background: rgba(46, 125, 50, .08)
+        }
+
+        .ci-lbl {
+            font-size: .56rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            margin-bottom: 3px
+        }
+
+        .ci-val {
+            font-size: .82rem;
+            font-weight: 600;
+            color: var(--navy);
+            transition: color .2s
+        }
+
+        .contact-item:hover .ci-val {
+            color: var(--red-mid)
+        }
+
+        .ci-sub {
+            font-size: .63rem;
+            color: var(--navy-light);
+            margin-top: 1px
+        }
+
+        /* Hours */
+        .hours-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 22px;
+            border-bottom: 1px solid rgba(27, 46, 107, .07)
+        }
+
+        .hours-row:last-child {
+            border-bottom: none
+        }
+
+        .hr-day {
+            font-size: .75rem;
+            color: var(--navy-light)
+        }
+
+        .hr-time {
+            font-size: .75rem;
+            font-weight: 600;
+            color: var(--navy)
+        }
+
+        .hr-time.closed {
+            color: var(--navy-light);
+            opacity: .4
+        }
+
+        .hr-badge {
+            font-size: .55rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: rgba(46, 125, 50, .1);
+            color: var(--green);
+            border: 1px solid rgba(46, 125, 50, .2);
+            padding: 2px 8px;
+            border-radius: 100px
+        }
+
+        /* Outlet items */
+        .outlet-item {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 11px 22px;
+            border-bottom: 1px solid rgba(27, 46, 107, .07);
+            cursor: pointer;
+            transition: all .25s
+        }
+
+        .outlet-item:last-child {
+            border-bottom: none
+        }
+
+        .outlet-item:hover {
+            background: rgba(27, 46, 107, .04)
+        }
+
+        .oi-city {
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--navy);
+            flex: 1
+        }
+
+        .oi-phone {
+            font-size: .75rem;
+            color: var(--navy-light);
+            font-family: 'Bebas Neue';
+            letter-spacing: 1px;
+            transition: color .2s
+        }
+
+        .outlet-item:hover .oi-phone {
+            color: var(--red-mid)
+        }
+
+        .oi-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--green-l);
+            border-radius: 50%;
+            flex-shrink: 0;
+            animation: pdot 2.5s ease-in-out infinite
+        }
+
+        @keyframes pdot {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: .4;
+                transform: scale(.7)
+            }
+        }
+
+        /* Social */
+        .social-card {
+            padding: 20px 22px
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 14px
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 13px;
+            background: rgba(27, 46, 107, .04);
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 11px;
+            text-decoration: none;
+            transition: all .3s;
+            cursor: pointer
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(13, 26, 58, .1)
+        }
+
+        .social-btn.ig:hover {
+            border-color: rgba(225, 48, 108, .3);
+            background: rgba(225, 48, 108, .05)
+        }
+
+        .social-btn.fb:hover {
+            border-color: rgba(66, 103, 178, .3);
+            background: rgba(66, 103, 178, .05)
+        }
+
+        .social-btn.yt:hover {
+            border-color: rgba(255, 0, 0, .2);
+            background: rgba(255, 0, 0, .04)
+        }
+
+        .social-btn.li:hover {
+            border-color: rgba(10, 102, 194, .3);
+            background: rgba(10, 102, 194, .05)
+        }
+
+        .sbi {
+            font-size: 1.3rem;
+            flex-shrink: 0
+        }
+
+        .sbn {
+            font-size: .7rem;
+            font-weight: 600;
+            color: var(--navy);
+            letter-spacing: .3px
+        }
+
+        .sbh {
+            font-size: .6rem;
+            color: var(--navy-light)
+        }
+
+        /* ══ GPS SECTION ══ */
+        .gps-section {
+            max-width: 1260px;
+            margin: 0 auto;
+            padding: 0 60px 80px
+        }
+
+        .gps-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px
+        }
+
+        .gps-eyebrow {
+            font-size: .6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 8px;
+            font-weight: 600
+        }
+
+        .gps-title {
+            font-family: 'Playfair Display';
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 900;
+            color: var(--navy);
+            line-height: 1
+        }
+
+        .gps-title em {
+            font-style: italic;
+            color: var(--red-mid)
+        }
+
+        .gps-btn-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .gps-locate-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 13px 24px;
+            font-family: 'DM Sans';
+            font-size: .74rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .35s;
+            box-shadow: 0 6px 20px rgba(27, 46, 107, .28);
+            position: relative;
+            overflow: hidden
+        }
+
+        .gps-locate-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, .12), transparent);
+            transform: translateX(-100%);
+            transition: transform .5s
+        }
+
+        .gps-locate-btn:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(27, 46, 107, .38)
+        }
+
+        .gps-locate-btn:hover::before {
+            transform: translateX(100%)
+        }
+
+        .gps-locate-btn.loading {
+            pointer-events: none;
+            opacity: .8
+        }
+
+        .gps-locate-btn.done {
+            background: linear-gradient(135deg, var(--green), #1B5E20)
+        }
+
+        .gps-locate-btn .gps-ico {
+            font-size: 1.1rem;
+            transition: transform .3s
+        }
+
+        .gps-locate-btn:hover .gps-ico {
+            transform: scale(1.2)
+        }
+
+        .gps-locate-btn.loading .gps-ico {
+            animation: spin .8s linear infinite
+        }
+
+        .gps-status-text {
+            font-size: .72rem;
+            color: var(--navy-light);
+            letter-spacing: .5px
+        }
+
+        /* Radar */
+        .radar-wrap {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 22px;
+            padding: 32px;
+            margin-bottom: 28px;
+            display: none;
+            position: relative;
+            overflow: hidden
+        }
+
+        .radar-wrap.vis {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            flex-wrap: wrap
+        }
+
+        .radar-canvas-area {
+            position: relative;
+            flex-shrink: 0
+        }
+
+        .radar-svg {
+            width: 220px;
+            height: 220px
+        }
+
+        .radar-label-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px
+        }
+
+        .radar-label {
+            font-size: .6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--navy);
+            font-weight: 600
+        }
+
+        .radar-user-coords {
+            font-size: .65rem;
+            color: var(--navy-light);
+            font-family: 'DM Sans';
+            margin-bottom: 8px
+        }
+
+        .radar-info-col {
+            flex: 1;
+            min-width: 240px
+        }
+
+        .nearest-label {
+            font-size: .56rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 8px;
+            font-weight: 600
+        }
+
+        .nearest-card {
+            background: linear-gradient(135deg, rgba(27, 46, 107, .06), rgba(200, 150, 12, .04));
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 14px;
+            padding: 20px 22px;
+            margin-bottom: 14px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .nearest-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--navy), var(--gold))
+        }
+
+        .nc-verified {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(46, 125, 50, .08);
+            border: 1px solid rgba(46, 125, 50, .22);
+            color: var(--green);
+            font-size: .55rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 100px;
+            margin-bottom: 10px
+        }
+
+        .nc-city {
+            font-family: 'Bebas Neue';
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            color: var(--navy);
+            line-height: 1;
+            margin-bottom: 4px
+        }
+
+        .nc-store-name {
+            font-size: .85rem;
+            font-weight: 700;
+            color: var(--red-mid);
+            margin-bottom: 6px
+        }
+
+        .nc-dist {
+            font-size: .82rem;
+            color: var(--navy);
+            font-weight: 700;
+            margin-bottom: 3px
+        }
+
+        .nc-addr {
+            font-size: .74rem;
+            color: var(--navy-light);
+            margin-bottom: 10px;
+            line-height: 1.5
+        }
+
+        .nc-note {
+            font-size: .72rem;
+            color: var(--navy-light);
+            background: rgba(27, 46, 107, .05);
+            border-left: 2px solid rgba(27, 46, 107, .25);
+            padding: 7px 12px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 12px;
+            line-height: 1.55;
+            font-style: italic
+        }
+
+        .nc-products-label {
+            font-size: .52rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            margin-bottom: 7px;
+            font-weight: 600
+        }
+
+        .nc-product-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 12px
+        }
+
+        .nc-product-tag {
+            font-size: .62rem;
+            font-weight: 600;
+            padding: 4px 11px;
+            border-radius: 100px;
+            letter-spacing: .4px;
+            font-family: 'DM Sans'
+        }
+
+        .nc-phone {
+            font-family: 'Bebas Neue';
+            font-size: 1rem;
+            color: var(--navy);
+            letter-spacing: 1px;
+            margin-bottom: 12px
+        }
+
+        .nc-actions {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap
+        }
+
+        .nc-btn-dir {
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 9px 18px;
+            font-family: 'DM Sans';
+            font-size: .67rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+            box-shadow: 0 4px 12px rgba(27, 46, 107, .25)
+        }
+
+        .nc-btn-dir:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-1px)
+        }
+
+        .nc-btn-call {
+            background: transparent;
+            border: 1.5px solid rgba(27, 46, 107, .22);
+            color: var(--navy-light);
+            border-radius: 8px;
+            padding: 9px 18px;
+            font-family: 'DM Sans';
+            font-size: .67rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .3s
+        }
+
+        .nc-btn-call:hover {
+            border-color: var(--navy);
+            color: var(--navy)
+        }
+
+        .sorted-label {
+            font-size: .56rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            margin-bottom: 10px;
+            font-weight: 600
+        }
+
+        .all-outlets-sorted {
+            display: flex;
+            flex-direction: column;
+            gap: 0
+        }
+
+        .sorted-outlet {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all .25s;
+            border: 1px solid transparent;
+            margin-bottom: 6px
+        }
+
+        .sorted-outlet:hover {
+            background: rgba(27, 46, 107, .05);
+            border-color: rgba(27, 46, 107, .12)
+        }
+
+        .sorted-outlet.is-nearest {
+            background: rgba(27, 46, 107, .05);
+            border-color: rgba(27, 46, 107, .15)
+        }
+
+        .so-rank {
+            font-family: 'Bebas Neue';
+            font-size: 1.3rem;
+            color: rgba(27, 46, 107, .2);
+            width: 22px;
+            flex-shrink: 0;
+            line-height: 1
+        }
+
+        .so-rank.top {
+            color: var(--navy)
+        }
+
+        .so-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green-l);
+            flex-shrink: 0;
+            animation: pdot 2.5s ease-in-out infinite
+        }
+
+        .so-city {
+            font-weight: 600;
+            font-size: .82rem;
+            color: var(--navy);
+            flex: 1
+        }
+
+        .so-dist {
+            font-size: .72rem;
+            color: var(--red-mid);
+            font-weight: 700;
+            margin-right: 8px;
+            white-space: nowrap
+        }
+
+        .so-dist.far {
+            color: var(--navy-light)
+        }
+
+        .so-arrow {
+            font-size: .75rem;
+            color: var(--navy-light);
+            flex-shrink: 0;
+            transition: transform .25s, color .25s
+        }
+
+        .sorted-outlet:hover .so-arrow {
+            transform: translateX(4px);
+            color: var(--navy)
+        }
+
+        /* Outlet search + filter */
+        .outlet-search-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            align-items: center
+        }
+
+        .outlet-search {
+            background: rgba(27, 46, 107, .04);
+            border: 1.5px solid rgba(27, 46, 107, .15);
+            border-radius: 9px;
+            padding: 10px 16px;
+            font-family: 'DM Sans';
+            font-size: .8rem;
+            color: var(--navy);
+            outline: none;
+            transition: all .3s;
+            flex: 1;
+            min-width: 160px
+        }
+
+        .outlet-search:focus {
+            border-color: rgba(27, 46, 107, .35);
+            background: rgba(27, 46, 107, .06)
+        }
+
+        .outlet-search::placeholder {
+            color: rgba(27, 46, 107, .3)
+        }
+
+        .outlet-filter-chips {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap
+        }
+
+        .ofc {
+            padding: 6px 14px;
+            border: 1.5px solid rgba(27, 46, 107, .15);
+            border-radius: 100px;
+            font-size: .62rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            cursor: pointer;
+            transition: all .28s;
+            background: transparent;
+            font-family: 'DM Sans';
+            font-weight: 600
+        }
+
+        .ofc:hover {
+            border-color: var(--navy);
+            color: var(--navy)
+        }
+
+        .ofc.on {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: var(--gold-light)
+        }
+
+        /* Outlet card grid */
+        .outlet-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 8px
+        }
+
+        .outlet-card {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 18px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all .35s;
+            position: relative
+        }
+
+        .outlet-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 22px 56px rgba(13, 26, 58, .1), 0 0 0 2px rgba(27, 46, 107, .15)
+        }
+
+        .outlet-card.nearest-glow {
+            border-color: var(--navy);
+            box-shadow: 0 0 0 3px rgba(27, 46, 107, .1)
+        }
+
+        .oc-map {
+            height: 140px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(145deg, #EDE5D5, #D5C8A0)
+        }
+
+        .oc-grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(27, 46, 107, .08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(27, 46, 107, .08) 1px, transparent 1px);
+            background-size: 22px 22px
+        }
+
+        .oc-road-h {
+            position: absolute;
+            height: 2px;
+            background: rgba(27, 46, 107, .15);
+            left: 0;
+            right: 0
+        }
+
+        .oc-road-v {
+            position: absolute;
+            width: 2px;
+            background: rgba(27, 46, 107, .15);
+            top: 0;
+            bottom: 0
+        }
+
+        .oc-pin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+            font-size: 2rem;
+            filter: drop-shadow(0 4px 10px rgba(27, 46, 107, .35));
+            animation: pinBob 2.5s ease-in-out infinite
+        }
+
+        @keyframes pinBob {
+
+            0%,
+            100% {
+                transform: translate(-50%, -60%)
+            }
+
+            50% {
+                transform: translate(-50%, -74%)
+            }
+        }
+
+        .oc-pin-shadow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: 16px;
+            height: 6px;
+            background: rgba(27, 46, 107, .18);
+            border-radius: 50%;
+            margin-top: -2px
+        }
+
+        .oc-nearest-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            font-size: .52rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 100px;
+            display: none
+        }
+
+        .outlet-card.nearest-glow .oc-nearest-tag {
+            display: block
+        }
+
+        .oc-verified-badge {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(46, 125, 50, .88);
+            color: white;
+            font-size: .5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, .2)
+        }
+
+        .oc-dist-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, .92);
+            border: 1px solid rgba(27, 46, 107, .2);
+            color: var(--navy);
+            font-size: .6rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 100px;
+            display: none;
+            font-family: 'DM Sans';
+            backdrop-filter: blur(4px)
+        }
+
+        .oc-dist-tag.vis {
+            display: block
+        }
+
+        .oc-body {
+            padding: 16px 18px 18px
+        }
+
+        .oc-store-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 4px
+        }
+
+        .oc-store-icon {
+            font-size: 1.4rem;
+            line-height: 1;
+            flex-shrink: 0;
+            margin-top: 2px
+        }
+
+        .oc-store-name {
+            font-size: .82rem;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 2px
+        }
+
+        .oc-city {
+            font-family: 'Bebas Neue';
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+            color: var(--navy);
+            line-height: 1;
+            margin-bottom: 3px
+        }
+
+        .oc-type {
+            font-size: .58rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 8px;
+            font-weight: 600
+        }
+
+        .oc-addr {
+            font-size: .73rem;
+            color: var(--navy-light);
+            line-height: 1.55;
+            margin-bottom: 8px
+        }
+
+        .oc-store-note {
+            font-size: .68rem;
+            color: var(--navy-light);
+            background: rgba(27, 46, 107, .04);
+            border-left: 2px solid rgba(27, 46, 107, .2);
+            padding: 6px 10px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            font-style: italic
+        }
+
+        .oc-products-label {
+            font-size: .52rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            margin-bottom: 6px;
+            font-weight: 600
+        }
+
+        .oc-products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 10px
+        }
+
+        .oc-product-tag {
+            font-size: .6rem;
+            font-weight: 600;
+            padding: 3px 9px;
+            border-radius: 100px;
+            letter-spacing: .5px;
+            white-space: nowrap;
+            font-family: 'DM Sans'
+        }
+
+        .oc-phone {
+            font-size: .76rem;
+            color: var(--navy);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px
+        }
+
+        .oc-actions {
+            display: flex;
+            gap: 8px
+        }
+
+        .oc-dir {
+            flex: 1;
+            padding: 9px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'DM Sans';
+            font-size: .62rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+            box-shadow: 0 3px 10px rgba(27, 46, 107, .2)
+        }
+
+        .oc-dir:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-1px)
+        }
+
+        .oc-call {
+            padding: 9px 13px;
+            background: transparent;
+            border: 1.5px solid rgba(27, 46, 107, .2);
+            border-radius: 8px;
+            color: var(--navy-light);
+            font-family: 'DM Sans';
+            font-size: .62rem;
+            cursor: pointer;
+            transition: all .3s
+        }
+
+        .oc-call:hover {
+            border-color: var(--navy);
+            color: var(--navy)
+        }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 50px 20px;
+            grid-column: 1/-1
+        }
+
+        .no-results.vis {
+            display: block
+        }
+
+        .no-results-icon {
+            font-size: 3rem;
+            opacity: .25;
+            margin-bottom: 10px;
+            display: block
+        }
+
+        .no-results-text {
+            font-family: 'Playfair Display';
+            font-size: 1.2rem;
+            color: var(--navy-light);
+            font-weight: 700;
+            margin-bottom: 6px
+        }
+
+        .no-results-sub {
+            font-size: .78rem;
+            color: var(--navy-light);
+            opacity: .6
+        }
+
+        /* Live tracking badge */
+        .live-tracking-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .58rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--green);
+            background: rgba(46, 125, 50, .08);
+            border: 1px solid rgba(46, 125, 50, .2);
+            border-radius: 100px;
+            padding: 3px 10px;
+            margin-left: 10px
+        }
+
+        .live-tracking-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--green-l);
+            border-radius: 50%;
+            animation: pdot 1.8s ease-in-out infinite
+        }
+
+        /* ══ DISTRIBUTOR STRIP ══ */
+        .dist-strip {
+            max-width: 1260px;
+            margin: 0 auto;
+            padding: 0 60px 80px
+        }
+
+        .dist-card {
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-mid) 100%);
+            border-radius: 22px;
+            padding: 48px 56px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 36px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .dist-card::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(200, 150, 12, .2), transparent 65%);
+            pointer-events: none
+        }
+
+        .dist-card::after {
+            content: '✦';
+            position: absolute;
+            right: 56px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 8rem;
+            color: rgba(200, 150, 12, .08);
+            font-family: 'Bebas Neue';
+            pointer-events: none
+        }
+
+        .dc-eyebrow {
+            font-size: .58rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 10px
+        }
+
+        .dc-title {
+            font-family: 'Playfair Display';
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 8px;
+            line-height: 1.15
+        }
+
+        .dc-title em {
+            font-style: italic;
+            color: var(--gold-light)
+        }
+
+        .dc-sub {
+            font-size: .84rem;
+            color: rgba(255, 255, 255, .5);
+            line-height: 1.65;
+            max-width: 540px
+        }
+
+        .dc-cta {
+            background: linear-gradient(135deg, var(--gold), var(--red-mid));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 14px 32px;
+            font-family: 'DM Sans';
+            font-size: .76rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+            white-space: nowrap;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 6px 20px rgba(200, 150, 12, .28)
+        }
+
+        .dc-cta:hover {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: var(--navy-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(200, 150, 12, .35)
+        }
+
+        /* ══ FAQ ══ */
+        .faq-strip {
+            max-width: 1260px;
+            margin: 0 auto;
+            padding: 0 60px 80px
+        }
+
+        .faq-header {
+            margin-bottom: 28px
+        }
+
+        .faq-eyebrow {
+            font-size: .6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 8px;
+            font-weight: 600
+        }
+
+        .faq-title {
+            font-family: 'Playfair Display';
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 900;
+            color: var(--navy)
+        }
+
+        .faq-title em {
+            font-style: italic;
+            color: var(--red-mid)
+        }
+
+        .faq-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px
+        }
+
+        .faq-item {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: border-color .3s
+        }
+
+        .faq-item.open {
+            border-color: rgba(27, 46, 107, .25)
+        }
+
+        .faq-q {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: 'DM Sans';
+            font-size: .82rem;
+            font-weight: 600;
+            color: var(--navy-light);
+            cursor: pointer;
+            transition: color .25s;
+            text-align: left;
+            gap: 12px
+        }
+
+        .faq-q:hover {
+            color: var(--navy)
+        }
+
+        .faq-item.open .faq-q {
+            color: var(--navy)
+        }
+
+        .fq-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8rem;
+            flex-shrink: 0;
+            transition: all .3s;
+            color: var(--navy-light)
+        }
+
+        .faq-item.open .fq-icon {
+            background: rgba(27, 46, 107, .08);
+            border-color: rgba(27, 46, 107, .25);
+            color: var(--navy);
+            transform: rotate(45deg)
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease
+        }
+
+        .faq-a.open {
+            max-height: 200px
+        }
+
+        .faq-a-inner {
+            padding: 0 20px 18px;
+            font-size: .78rem;
+            color: var(--navy-light);
+            line-height: 1.78
+        }
+
+        /* ══ FOOTER ══ */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 72px 60px 36px;
+            position: relative
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--red), var(--gold), var(--navy))
+        }
+
+        .ft-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 56px;
+            margin-bottom: 52px
+        }
+
+        .ft-logo {
+            font-family: 'Bebas Neue';
+            font-size: 1.9rem;
+            letter-spacing: 4px;
+            color: white;
+            margin-bottom: 12px
+        }
+
+        .ft-logo span {
+            color: var(--red-mid)
+        }
+
+        .ft-desc {
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .38);
+            line-height: 1.78;
+            max-width: 265px;
+            margin-bottom: 22px
+        }
+
+        .ft-stores {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap
+        }
+
+        .ft-s {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 7px;
+            padding: 7px 13px;
+            font-size: .73rem;
+            color: rgba(255, 255, 255, .65);
+            text-decoration: none;
+            transition: all .3s
+        }
+
+        .ft-s:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--red));
+            color: white;
+            border-color: transparent
+        }
+
+        .ft-col h4 {
+            font-size: .6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px
+        }
+
+        .ft-col ul {
+            list-style: none
+        }
+
+        .ft-col li {
+            margin-bottom: 9px
+        }
+
+        .ft-col a {
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .38);
+            text-decoration: none;
+            transition: color .3s
+        }
+
+        .ft-col a:hover {
+            color: var(--gold-light)
+        }
+
+        .ft-outlets li {
+            font-size: .76rem;
+            color: rgba(255, 255, 255, .38);
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 7px
+        }
+
+        .ft-city {
+            color: rgba(255, 255, 255, .72);
+            font-weight: 500
+        }
+
+        .ft-bot {
+            border-top: 1px solid rgba(255, 255, 255, .07);
+            padding-top: 26px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .ft-copy {
+            font-size: .72rem;
+            color: rgba(255, 255, 255, .2)
+        }
+
+        .ft-tag {
+            font-family: 'Playfair Display';
+            font-style: italic;
+            color: var(--gold);
+            font-size: .95rem
+        }
+
+        /* ══ TOAST ══ */
+        .toast {
+            position: fixed;
+            bottom: 26px;
+            left: 50%;
+            transform: translateX(-50%) translateY(12px);
+            background: var(--dark);
+            border: 1.5px solid rgba(200, 150, 12, .3);
+            border-radius: 11px;
+            padding: 11px 22px;
+            font-size: .76rem;
+            color: var(--gold-light);
+            z-index: 9000;
+            opacity: 0;
+            transition: all .35s;
+            pointer-events: none;
+            backdrop-filter: blur(20px);
+            white-space: nowrap;
+            box-shadow: 0 20px 50px rgba(13, 26, 58, .4)
+        }
+
+        .toast.vis {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0)
+        }
+
+        .toast.arrived {
+            font-size: .9rem;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--green), #1B5E20);
+            border-color: rgba(76, 175, 80, .4)
+        }
+
+        /* ══ REVEAL ══ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .7s ease, transform .7s ease
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        /* ══ RESPONSIVE ══ */
+        @media(max-width:1100px) {
+            .contact-wrap {
+                grid-template-columns: 1fr;
+                padding: 60px 36px 80px
+            }
+
+            .contact-sidebar {
+                position: static
+            }
+
+            .gps-section,
+            .dist-strip,
+            .faq-strip {
+                padding-left: 36px;
+                padding-right: 36px
+            }
+
+            .outlet-cards-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .ft-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 36px
+            }
+
+            .dist-card {
+                grid-template-columns: 1fr
+            }
+
+            .faq-cols {
+                grid-template-columns: 1fr
+            }
+        }
+
+        @media(max-width:960px) {
+            nav {
+                padding: 0 28px
+            }
+
+            .nav-links {
+                display: none
+            }
+
+            .nav-mob-btn {
+                display: flex
+            }
+
+            .mob-menu {
+                display: flex
+            }
+        }
+
+        @media(max-width:768px) {
+
+            .fc-head,
+            .fc-form {
+                padding-left: 22px;
+                padding-right: 22px
+            }
+
+            .fg-row {
+                grid-template-columns: 1fr
+            }
+
+            .gps-section,
+            .dist-strip,
+            .faq-strip {
+                padding-left: 20px;
+                padding-right: 20px
+            }
+
+            .outlet-cards-grid {
+                grid-template-columns: 1fr
+            }
+
+            .dist-card {
+                padding: 32px 24px
+            }
+
+            .radar-wrap.vis {
+                flex-direction: column
+            }
+
+            .ft-grid {
+                grid-template-columns: 1fr;
+                gap: 30px
+            }
+
+            footer {
+                padding: 44px 22px 26px
+            }
+        }
+
+        @media(max-width:480px) {
+            .inq-tabs {
+                flex-wrap: wrap
+            }
+
+            .ft-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .gps-header {
+                flex-direction: column;
+                align-items: flex-start
+            }
+        }
+
+        /* ══ HIRING FLASH BADGE ══ */
+        @keyframes hiringFlash {
+
+            0%,
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 0 0 rgba(192, 57, 43, .5)
+            }
+
+            50% {
+                opacity: .7;
+                box-shadow: 0 0 0 8px rgba(192, 57, 43, 0)
+            }
+        }
+
+        @keyframes pulseDot {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1
+            }
+
+            50% {
+                transform: scale(1.6);
+                opacity: .5
+            }
+        }
+
+        /* ══ CAREERS SECTION ══ */
+        .careers-section {
+            max-width: 1260px;
+            margin: 0 auto;
+            padding: 0 60px 80px
+        }
+
+        .careers-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 36px;
+            gap: 32px;
+            flex-wrap: wrap
+        }
+
+        .careers-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .64rem;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--red);
+            font-weight: 700;
+            margin-bottom: 12px
+        }
+
+        .hiring-pulse {
+            width: 9px;
+            height: 9px;
+            background: var(--red-bright);
+            border-radius: 50%;
+            flex-shrink: 0;
+            animation: pulseDot 1.2s ease-in-out infinite
+        }
+
+        .hiring-badge {
+            background: linear-gradient(135deg, var(--red), var(--red-mid));
+            color: white;
+            font-size: .52rem;
+            letter-spacing: 2px;
+            padding: 3px 10px;
+            border-radius: 100px;
+            animation: hiringFlash 1.8s ease-in-out infinite;
+            font-weight: 700
+        }
+
+        .careers-title {
+            font-family: 'Playfair Display';
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 900;
+            color: var(--navy);
+            line-height: 1.05;
+            margin-bottom: 10px
+        }
+
+        .careers-title em {
+            font-style: italic;
+            color: var(--red-mid)
+        }
+
+        .careers-sub {
+            font-size: .84rem;
+            color: var(--navy-light);
+            line-height: 1.75;
+            max-width: 520px
+        }
+
+        .careers-stats {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 16px;
+            padding: 22px 28px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 20px rgba(13, 26, 58, .06);
+            align-self: center
+        }
+
+        .cs-stat {
+            text-align: center;
+            padding: 0 22px
+        }
+
+        .cs-num {
+            font-family: 'Bebas Neue';
+            font-size: 2rem;
+            letter-spacing: 2px;
+            color: var(--navy);
+            line-height: 1
+        }
+
+        .cs-lbl {
+            font-size: .6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            margin-top: 3px
+        }
+
+        .cs-div {
+            width: 1px;
+            height: 36px;
+            background: rgba(27, 46, 107, .12)
+        }
+
+        /* ══ JOB CARDS ══ */
+        .job-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 22px
+        }
+
+        .job-card {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 18px;
+            padding: 26px 24px;
+            cursor: pointer;
+            transition: all .35s;
+            position: relative;
+            overflow: hidden
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--navy), var(--red));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .4s ease
+        }
+
+        .job-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 22px 56px rgba(13, 26, 58, .1), 0 0 0 2px rgba(27, 46, 107, .12)
+        }
+
+        .job-card:hover::before {
+            transform: scaleX(1)
+        }
+
+        .job-card.featured {
+            border-color: rgba(200, 150, 12, .3);
+            background: linear-gradient(160deg, white 70%, rgba(200, 150, 12, .04))
+        }
+
+        .job-card.featured::before {
+            background: linear-gradient(90deg, var(--gold), var(--red-mid))
+        }
+
+        .jc-featured-ribbon {
+            position: absolute;
+            top: 16px;
+            right: -22px;
+            background: linear-gradient(135deg, var(--gold), var(--red-mid));
+            color: white;
+            font-size: .5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 32px;
+            transform: rotate(42deg);
+            box-shadow: 0 2px 10px rgba(200, 150, 12, .4)
+        }
+
+        .jc-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px
+        }
+
+        .jc-dept {
+            font-size: .56rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            font-weight: 600
+        }
+
+        .jc-hot {
+            font-size: .62rem;
+            font-weight: 700;
+            letter-spacing: .5px;
+            color: var(--red-bright)
+        }
+
+        .jc-new {
+            font-size: .62rem;
+            font-weight: 700;
+            color: var(--green)
+        }
+
+        .jc-role {
+            font-family: 'Playfair Display';
+            font-size: 1.22rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 6px;
+            line-height: 1.15
+        }
+
+        .jc-loc {
+            font-size: .73rem;
+            color: var(--navy-light);
+            margin-bottom: 12px
+        }
+
+        .jc-type-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px
+        }
+
+        .jc-badge {
+            font-size: .58rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-family: 'DM Sans'
+        }
+
+        .jc-badge.full {
+            background: rgba(27, 46, 107, .08);
+            color: var(--navy-mid)
+        }
+
+        .jc-badge.onsite {
+            background: rgba(139, 26, 26, .07);
+            color: var(--red)
+        }
+
+        .jc-badge.remote {
+            background: rgba(46, 125, 50, .08);
+            color: var(--green)
+        }
+
+        .jc-badge.exp {
+            background: rgba(200, 150, 12, .1);
+            color: #8B6500
+        }
+
+        .jc-desc {
+            font-size: .76rem;
+            color: var(--navy-light);
+            line-height: 1.7;
+            margin-bottom: 14px
+        }
+
+        .jc-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 18px
+        }
+
+        .jc-skills span {
+            background: rgba(27, 46, 107, .05);
+            border: 1px solid rgba(27, 46, 107, .1);
+            color: var(--navy-light);
+            font-size: .6rem;
+            padding: 3px 9px;
+            border-radius: 6px;
+            font-family: 'DM Sans';
+            font-weight: 500
+        }
+
+        .jc-apply-btn {
+            width: 100%;
+            padding: 11px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 9px;
+            font-family: 'DM Sans';
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+            box-shadow: 0 4px 14px rgba(27, 46, 107, .22)
+        }
+
+        .jc-apply-btn:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(27, 46, 107, .3)
+        }
+
+        .job-card.featured .jc-apply-btn {
+            background: linear-gradient(135deg, var(--gold), var(--red-mid))
+        }
+
+        .job-card.featured .jc-apply-btn:hover {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: var(--navy-deep)
+        }
+
+        .careers-general-cta {
+            text-align: center;
+            padding: 16px;
+            border: 1.5px dashed rgba(27, 46, 107, .18);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            background: rgba(27, 46, 107, .02)
+        }
+
+        .careers-general-cta span {
+            font-size: .8rem;
+            color: var(--navy-light)
+        }
+
+        .careers-general-cta button {
+            background: none;
+            border: none;
+            color: var(--red-mid);
+            font-family: 'DM Sans';
+            font-size: .8rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: .5px;
+            transition: color .25s;
+            text-decoration: underline;
+            text-underline-offset: 3px
+        }
+
+        .careers-general-cta button:hover {
+            color: var(--red)
+        }
+
+        /* ══ APPLY MODAL OVERLAY ══ */
+        .apply-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 8000;
+            background: rgba(13, 26, 58, .55);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .35s ease, visibility .35s
+        }
+
+        .apply-overlay.open {
+            opacity: 1;
+            visibility: visible
+        }
+
+        .apply-modal {
+            background: white;
+            border-radius: 22px;
+            width: 100%;
+            max-width: 620px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 32px 80px rgba(13, 26, 58, .22);
+            transform: translateY(28px) scale(.97);
+            transition: transform .4s cubic-bezier(.34, 1.56, .64, 1);
+            scrollbar-width: thin;
+            scrollbar-color: rgba(27, 46, 107, .2) transparent
+        }
+
+        .apply-overlay.open .apply-modal {
+            transform: translateY(0) scale(1)
+        }
+
+        /* Modal header */
+        .am-header {
+            background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+            padding: 28px 32px 22px;
+            position: relative;
+            border-radius: 22px 22px 0 0;
+        }
+
+        .am-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 22px 22px 0 0;
+            background: radial-gradient(ellipse at 80% 50%, rgba(200, 150, 12, .15), transparent 60%)
+        }
+
+        .am-pretitle {
+            font-size: .55rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1
+        }
+
+        .am-title {
+            font-family: 'Playfair Display';
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            line-height: 1;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1
+        }
+
+        .am-loc {
+            font-size: .75rem;
+            color: rgba(255, 255, 255, .5);
+            position: relative;
+            z-index: 1
+        }
+
+        .am-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2;
+            background: rgba(255, 255, 255, .12);
+            border: 1px solid rgba(255, 255, 255, .2);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8rem;
+            cursor: pointer;
+            transition: all .25s
+        }
+
+        .am-close:hover {
+            background: rgba(255, 255, 255, .22)
+        }
+
+        /* Modal form */
+        .am-form {
+            padding: 28px 32px 32px
+        }
+
+        .am-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 18px
+        }
+
+        .am-fg {
+            display: flex;
+            flex-direction: column;
+            gap: 6px
+        }
+
+        .am-fg.am-full {
+            grid-column: 1/-1
+        }
+
+        .am-label {
+            font-size: .55rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            font-weight: 600
+        }
+
+        .am-req {
+            color: var(--red)
+        }
+
+        .am-input,
+        .am-select,
+        .am-textarea {
+            background: rgba(27, 46, 107, .03);
+            border: 1.5px solid rgba(27, 46, 107, .15);
+            border-radius: 9px;
+            padding: 11px 14px;
+            font-family: 'DM Sans';
+            font-size: .82rem;
+            color: var(--navy);
+            outline: none;
+            transition: all .3s;
+            width: 100%
+        }
+
+        .am-input:focus,
+        .am-select:focus,
+        .am-textarea:focus {
+            border-color: rgba(27, 46, 107, .4);
+            background: rgba(27, 46, 107, .05);
+            box-shadow: 0 0 0 3px rgba(27, 46, 107, .07)
+        }
+
+        .am-input::placeholder,
+        .am-textarea::placeholder {
+            color: rgba(27, 46, 107, .28)
+        }
+
+        .am-select {
+            appearance: none;
+            cursor: pointer;
+            background-color: rgba(27, 46, 107, .03);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238B1A1A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center
+        }
+
+        .am-textarea {
+            min-height: 90px;
+            resize: vertical;
+            line-height: 1.65
+        }
+
+        .am-char {
+            font-size: .6rem;
+            color: var(--navy-light);
+            text-align: right;
+            margin-top: 2px
+        }
+
+        /* Resume drop zone */
+        .am-resume-drop {
+            border: 1.5px dashed rgba(27, 46, 107, .22);
+            border-radius: 12px;
+            padding: 22px;
+            text-align: center;
+            cursor: pointer;
+            transition: all .3s;
+            position: relative;
+            background: rgba(27, 46, 107, .02);
+            margin-bottom: 20px
+        }
+
+        .am-resume-drop:hover,
+        .am-resume-drop.drag {
+            border-color: var(--navy);
+            background: rgba(27, 46, 107, .05)
+        }
+
+        .am-resume-drop input[type=file] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 2
+        }
+
+        .am-resume-icon {
+            font-size: 2.2rem;
+            margin-bottom: 6px;
+            display: block
+        }
+
+        .am-resume-text {
+            font-size: .78rem;
+            color: var(--navy-light);
+            margin-bottom: 4px
+        }
+
+        .am-resume-text strong {
+            color: var(--navy);
+            font-weight: 700
+        }
+
+        .am-resume-text span {
+            margin-left: 4px
+        }
+
+        .am-resume-sub {
+            font-size: .6rem;
+            color: var(--navy-light);
+            opacity: .55
+        }
+
+        .am-resume-chosen {
+            margin-top: 10px;
+            font-size: .72rem;
+            color: var(--green);
+            font-weight: 600;
+            background: rgba(46, 125, 50, .07);
+            border: 1px solid rgba(46, 125, 50, .2);
+            padding: 6px 14px;
+            border-radius: 8px;
+            display: inline-block
+        }
+
+        /* Submit button */
+        .am-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'DM Sans';
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .35s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 6px 22px rgba(27, 46, 107, .3)
+        }
+
+        .am-submit:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(27, 46, 107, .4)
+        }
+
+        .am-submit:disabled {
+            opacity: .35;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none
+        }
+
+        .am-spinner {
+            width: 17px;
+            height: 17px;
+            border: 2px solid rgba(255, 255, 255, .3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+            display: none
+        }
+
+        .am-submit.loading .am-spinner {
+            display: block
+        }
+
+        .am-submit.loading .am-btn-text {
+            display: none
+        }
+
+        /* Success state */
+        .am-success {
+            padding: 52px 32px;
+            text-align: center
+        }
+
+        .am-success-icon {
+            font-size: 4.5rem;
+            display: block;
+            margin-bottom: 18px;
+            animation: popIn .6s cubic-bezier(.34, 1.56, .64, 1) both
+        }
+
+        .am-success-title {
+            font-family: 'Playfair Display';
+            font-size: 1.7rem;
+            font-weight: 900;
+            color: var(--navy);
+            margin-bottom: 10px
+        }
+
+        .am-success-title em {
+            color: var(--red-mid);
+            font-style: italic
+        }
+
+        .am-success-sub {
+            font-size: .82rem;
+            color: var(--navy-light);
+            line-height: 1.72;
+            margin-bottom: 22px
+        }
+
+        .am-success-ref {
+            font-family: 'Bebas Neue';
+            font-size: 1rem;
+            letter-spacing: 4px;
+            color: var(--navy);
+            background: rgba(27, 46, 107, .07);
+            border: 1px solid rgba(27, 46, 107, .18);
+            border-radius: 100px;
+            padding: 7px 22px;
+            display: inline-block;
+            margin-bottom: 22px
+        }
+
+        .am-success-close {
+            background: none;
+            border: 1.5px solid rgba(27, 46, 107, .2);
+            border-radius: 9px;
+            padding: 10px 24px;
+            color: var(--navy-light);
+            font-family: 'DM Sans';
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s
+        }
+
+        .am-success-close:hover {
+            border-color: var(--navy);
+            color: var(--navy);
+            background: rgba(27, 46, 107, .05)
+        }
+
+        /* ══ RESPONSIVE ══ */
+        @media(max-width:1100px) {
+            .careers-section {
+                padding-left: 36px;
+                padding-right: 36px
+            }
+
+            .job-cards-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(max-width:768px) {
+            .careers-section {
+                padding-left: 20px;
+                padding-right: 20px
+            }
+
+            .job-cards-grid {
+                grid-template-columns: 1fr
+            }
+
+            .careers-header {
+                flex-direction: column
+            }
+
+            .careers-stats {
+                width: 100%;
+                justify-content: center
+            }
+
+            .am-form-grid {
+                grid-template-columns: 1fr
+            }
+
+            .am-form {
+                padding: 22px 20px 24px
+            }
+
+            .careers-general-cta {
+                flex-direction: column;
+                gap: 8px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cur"></div>
+    <div id="cur2"></div>
+
+    <!-- ═══════════════════════════
+     MAIN NAVBAR
+  ═══════════════════════════ -->
+    <nav id="mainNav">
+        <a href="index.html" class="nav-logo">PEANUT<span>JI</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li id="ddLi">
+                <button class="nav-ddt" onclick="toggleDd()" aria-expanded="false">
+                    Our Products
+                    <svg class="ch" viewBox="0 0 10 6" fill="none" width="10" height="6">
+                        <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <div class="nav-drop" id="navDrop">
+                    <a href="#" class="vd-link">
+                        <div class="ddi"
+                            style="background:linear-gradient(135deg,rgba(255,194,0,.2),rgba(245,130,10,.1))">✨</div>
+                        <div>
+                            <div class="ddn">Vedic High Oleic Oil</div>
+                            <div class="dds">India's First · 77%+ MUFA</div>
+                        </div>
+                    </a>
+                    <div class="dd-div"></div>
+                    <a href="groundnutoil.html">
+                        <div class="ddi" style="background:linear-gradient(135deg,#FFF3CC,rgba(255,194,0,.3))">🫙</div>
+                        <div>
+                            <div class="ddn">Groundnut Oil</div>
+                            <div class="dds">1L to 15Kg · Double Filtered</div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="ddi" style="background:linear-gradient(135deg,#FFE8CC,rgba(245,130,10,.2))">🧈</div>
+                        <div>
+                            <div class="ddn">Peanut Butter</div>
+                            <div class="dds">Classic & Choco · Creamy & Crunchy</div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="ddi" style="background:linear-gradient(135deg,#FFF0D0,rgba(212,98,10,.15))">🥜</div>
+                        <div>
+                            <div class="ddn">Peanuts</div>
+                            <div class="dds">Gold · Platinum · Roasted</div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="dashboard.html">My Account</a></li>
+            <li><a href="contactus.html" class="active">Contact Us</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+        </ul>
+        <div class="nav-r">
+            <button class="nav-mob-btn" id="mobBtn"
+                onclick="toggleMobNav()"><span></span><span></span><span></span></button>
+            <a href="index.html#products" class="nav-cta">Shop Now →</a>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mob-menu" id="mobMenu">
+        <div class="mm-sec">Our Products</div>
+        <a href="#" class="mm-link"
+            style="background:rgba(245,130,10,.07);border:1px solid rgba(245,130,10,.15);border-radius:12px">
+            <span class="mm-ico">✨</span> Vedic High Oleic Oil
+        </a>
+        <a href="groundnutoil.html" class="mm-link"><span class="mm-ico">🫙</span> Groundnut Oil</a>
+        <a href="#" class="mm-link"><span class="mm-ico">🧈</span> Peanut Butter</a>
+        <a href="#" class="mm-link"><span class="mm-ico">🥜</span> Peanuts</a>
+        <div class="mm-div"></div>
+        <div class="mm-sec">More</div>
+        <a href="blogs.html" class="mm-link"><span class="mm-ico">📖</span> Blogs</a>
+        <a href="aboutus.html" class="mm-link"><span class="mm-ico">🏭</span> About Us</a>
+        <a href="dashboard.html" class="mm-link"><span class="mm-ico">👤</span> My Account</a>
+        <a href="contactus.html" class="mm-link" style="color:var(--orange)"><span class="mm-ico">✉️</span> Contact
+            Us</a>
+        <a href="index.html#products" class="mm-cta">🛒 Shop Now</a>
+    </div>
+
+    <!-- ═══════════════════════════
+     HERO
+  ═══════════════════════════ -->
+    <div class="page-hero">
+        <div class="ph-bg"></div>
+        <div class="ph-blob"></div>
+        <div class="ph-blob"></div>
+        <div class="ph-grid-bg"></div>
+        <div class="ph-floats">
+            <span class="phf" style="font-size:6rem">🥜</span>
+            <span class="phf" style="font-size:3.5rem">🫙</span>
+            <span class="phf" style="font-size:4rem">✉️</span>
+            <span class="phf" style="font-size:3rem">🌿</span>
+        </div>
+        <div class="ph-content">
+            <div class="ph-eyebrow" id="phEyebrow">Fishfa Agri World Pvt. Ltd.</div>
+            <h1 class="ph-title" id="phTitle">Let's <em>Talk</em></h1>
+            <p class="ph-subtitle" id="phSub">We'd love to hear from you — orders, exports, partnerships, or just a
+                hello.
+                Find your nearest outlet instantly with GPS.</p>
+        </div>
+    </div>
+
+    <!-- MARQUEE -->
+    <div class="marquee-band">
+        <div class="marquee-track">
+            <div class="marquee-item">✉️ Contact Us <span>—</span></div>
+            <div class="marquee-item">📍 5 Outlets Across India <span>—</span></div>
+            <div class="marquee-item">🌍 25+ Countries Served <span>—</span></div>
+            <div class="marquee-item">⚡ 24 Hour Response <span>—</span></div>
+            <div class="marquee-item">🤝 Distributor Enquiries Welcome <span>—</span></div>
+            <div class="marquee-item">📞 7777 966 944 <span>—</span></div>
+            <div class="marquee-item">✉️ Contact Us <span>—</span></div>
+            <div class="marquee-item">📍 5 Outlets Across India <span>—</span></div>
+            <div class="marquee-item">🌍 25+ Countries Served <span>—</span></div>
+            <div class="marquee-item">⚡ 24 Hour Response <span>—</span></div>
+            <div class="marquee-item">🤝 Distributor Enquiries Welcome <span>—</span></div>
+            <div class="marquee-item">📞 7777 966 944 <span>—</span></div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════
+     CONTACT LAYOUT
+  ═══════════════════════════ -->
+    <div class="contact-wrap">
+
+        <!-- FORM -->
+        <div>
+            <div class="form-card" id="formCard">
+                <div class="fc-head">
+                    <div class="fc-pretitle">Send us a message</div>
+                    <div class="fc-title">How can we help you?</div>
+                    <div class="fc-sub">Fill out the form below and our team will get back to you within 24 hours.</div>
+                    <div class="inq-tabs">
+                        <button class="inq-tab on" onclick="setInqType('general',this)">💬 General</button>
+                        <button class="inq-tab" onclick="setInqType('order',this)">📦 Order</button>
+                        <button class="inq-tab" onclick="setInqType('export',this)">🌍 Export</button>
+                        <button class="inq-tab" onclick="setInqType('distributor',this)">🤝 Distributor</button>
+                        <button class="inq-tab" onclick="setInqType('bulk',this)">🏭 Bulk / B2B</button>
+                    </div>
+                </div>
+                <div class="fc-form" id="contactForm">
+                    <div class="fg-row">
+                        <div class="fg" id="fg-name">
+                            <div class="fg-label">Full Name <span class="req">*</span></div>
+                            <input class="fg-input" id="f-name" placeholder="Rajesh Patel"
+                                oninput="validateF('f-name','name')">
+                            <div class="fg-err">Please enter your name</div>
+                        </div>
+                        <div class="fg" id="fg-email">
+                            <div class="fg-label">Email Address <span class="req">*</span></div>
+                            <input class="fg-input" id="f-email" type="email" placeholder="hello@example.com"
+                                oninput="validateF('f-email','email')">
+                            <div class="fg-err">Please enter a valid email</div>
+                        </div>
+                    </div>
+                    <div class="fg-row">
+                        <div class="fg">
+                            <div class="fg-label">Phone Number</div>
+                            <input class="fg-input" id="f-phone" placeholder="+91 98765 43210">
+                        </div>
+                        <div class="fg">
+                            <div class="fg-label">Company / Organisation</div>
+                            <input class="fg-input" id="f-company" placeholder="Optional">
+                        </div>
+                    </div>
+                    <div class="fg-row single">
+                        <div class="fg">
+                            <div class="fg-label">Subject <span class="req">*</span></div>
+                            <select class="fg-select" id="f-subject">
+                                <option value="">Select a topic…</option>
+                                <option>General Inquiry</option>
+                                <option>Product Information</option>
+                                <option>Order Status / Tracking</option>
+                                <option>Return / Refund</option>
+                                <option>Export &amp; International</option>
+                                <option>Distributor / Franchise</option>
+                                <option>Bulk / B2B Order</option>
+                                <option>Partnership Proposal</option>
+                                <option>Media / Press</option>
+                                <option>Careers</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="fg-row single" id="exportRow" style="display:none">
+                        <div class="fg">
+                            <div class="fg-label">Country of Import</div>
+                            <select class="fg-select" id="f-country">
+                                <option value="">Select country…</option>
+                                <option>United States</option>
+                                <option>United Kingdom</option>
+                                <option>Germany</option>
+                                <option>France</option>
+                                <option>Netherlands</option>
+                                <option>UAE</option>
+                                <option>Saudi Arabia</option>
+                                <option>Qatar</option>
+                                <option>Singapore</option>
+                                <option>Malaysia</option>
+                                <option>Australia</option>
+                                <option>Canada</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="fg-row single">
+                        <div class="fg" id="fg-msg">
+                            <div class="fg-label">Your Message <span class="req">*</span></div>
+                            <textarea class="fg-textarea" id="f-msg" placeholder="Tell us how we can help…"
+                                oninput="countChars(this)" maxlength="800"></textarea>
+                            <div class="char-counter" id="charCount">0 / 800</div>
+                            <div class="fg-err">Please write a message (min 10 characters)</div>
+                        </div>
+                    </div>
+                    <div class="file-drop" ondragover="event.preventDefault();this.classList.add('drag')"
+                        ondragleave="this.classList.remove('drag')" ondrop="handleDrop(event)">
+                        <input type="file" id="fileInput" multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.docx"
+                            onchange="handleFiles(this.files)">
+                        <span class="fd-icon">📎</span>
+                        <div class="fd-text"><strong>Attach files</strong> or drag & drop here</div>
+                        <div class="fd-accepted">JPG · PNG · PDF · DOC — max 5MB each</div>
+                    </div>
+                    <div id="fileList" style="margin-bottom:14px;display:flex;flex-direction:column;gap:6px"></div>
+                    <label class="fg-check">
+                        <input type="checkbox" id="f-terms" onchange="checkTerms()">
+                        <div class="checkmark">✓</div>
+                        <span class="check-lbl">I agree to the <a href="#">Privacy Policy</a> and consent to Peanutji
+                            processing my
+                            data to respond to my inquiry.</span>
+                    </label>
+                    <button class="submit-btn" id="submitBtn" onclick="submitForm()" disabled>
+                        <span class="btn-text">Send Message →</span>
+                        <div class="btn-spinner"></div>
+                    </button>
+                </div>
+                <div class="form-success" id="formSuccess">
+                    <span class="fs-anim">🎉</span>
+                    <div class="fs-title">Message <em>Sent!</em></div>
+                    <p class="fs-sub">Thank you for reaching out. Our team will review your message and get back to you
+                        within 24
+                        business hours.</p>
+                    <div class="fs-ref" id="ticketRef">REF #PJ0000</div>
+                    <button class="fs-reset" onclick="resetForm()">Send Another Message</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="contact-sidebar">
+            <div class="info-card reveal">
+                <div class="ic-head">
+                    <div class="ic-bar"></div>
+                    <div class="ic-title">Direct Contact</div>
+                </div>
+                <div class="ic-body">
+                    <div class="contact-item" onclick="copyToClip('info@fishfaagri.com','Email copied!')">
+                        <div class="ci-icon or">✉️</div>
+                        <div>
+                            <div class="ci-lbl">Email</div>
+                            <div class="ci-val">info@fishfaagri.com</div>
+                            <div class="ci-sub">Click to copy</div>
+                        </div>
+                    </div>
+                    <div class="contact-item" onclick="copyToClip('+91 7777 966 944','Number copied!')">
+                        <div class="ci-icon gn">📞</div>
+                        <div>
+                            <div class="ci-lbl">Customer Care</div>
+                            <div class="ci-val">+91 7777 966 944</div>
+                            <div class="ci-sub">9AM – 7PM · Mon–Sat</div>
+                        </div>
+                    </div>
+                    <div class="contact-item" onclick="showT('💬 Opening WhatsApp…')">
+                        <div class="ci-icon ea">💬</div>
+                        <div>
+                            <div class="ci-lbl">WhatsApp</div>
+                            <div class="ci-val">+91 7777 966 944</div>
+                            <div class="ci-sub">Quick replies on WhatsApp</div>
+                        </div>
+                    </div>
+                    <div class="contact-item" onclick="showT('📍 Rajkot, Gujarat')">
+                        <div class="ci-icon bl">📍</div>
+                        <div>
+                            <div class="ci-lbl">Head Office</div>
+                            <div class="ci-val">Rajkot, Gujarat</div>
+                            <div class="ci-sub">Fishfa Agri World Pvt. Ltd.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hours-card reveal">
+                <div class="ic-head" style="padding:17px 22px">
+                    <div class="ic-bar"></div>
+                    <div class="ic-title">Business Hours</div>
+                    <span class="hr-badge" style="margin-left:auto" id="openBadge">Open Now</span>
+                </div>
+                <div class="hours-row"><span class="hr-day">Monday – Friday</span><span class="hr-time">10:00 AM – 7:00
+                        PM</span></div>
+                <div class="hours-row"><span class="hr-day">Saturday</span><span class="hr-time">10:00 AM – 7:00
+                        PM</span></div>
+                <div class="hours-row"><span class="hr-day">Sunday</span><span class="hr-time closed">Closed</span>
+                </div>
+                <div class="hours-row" style="border:none;padding:11px 22px;background:rgba(245,130,10,.03)">
+                    <span style="font-size:.66rem;color:var(--brown-light)">🇮🇳 IST (UTC+5:30)</span>
+                    <span id="liveTime" style="font-size:.7rem;color:var(--brown-light)"></span>
+                </div>
+            </div>
+
+            <!-- Quick GPS Outlets Sidebar -->
+            <div class="outlets-card reveal">
+                <div class="ic-head" style="padding:17px 22px;justify-content:space-between">
+                    <div style="display:flex;align-items:center;gap:9px">
+                        <div class="ic-bar"></div>
+                        <div class="ic-title">Factory Outlets</div>
+                    </div>
+                    <button onclick="locateMe()" id="sidebarGpsBtn"
+                        style="background:linear-gradient(135deg,var(--orange),var(--sun-red));color:white;border:none;border-radius:7px;padding:5px 12px;font-family:'DM Sans';font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .3s;box-shadow:0 3px 10px rgba(245,130,10,.25)"
+                        title="Find nearest outlet">📡 Near Me</button>
+                </div>
+                <div id="sidebarOutlets">
+                    <div class="outlet-item" onclick="openMaps(OUTLETS.find(o=>o.id==='rajkot'))">
+                        <div class="oi-dot"></div><span class="oi-city">Rajkot</span><span class="oi-phone">8460 160
+                            126</span>
+                    </div>
+                    <div class="outlet-item" onclick="openMaps(OUTLETS.find(o=>o.id==='ahmedabad'))">
+                        <div class="oi-dot" style="animation-delay:.3s"></div><span
+                            class="oi-city">Ahmedabad</span><span class="oi-phone">8460 160 125</span>
+                    </div>
+                    <div class="outlet-item" onclick="openMaps(OUTLETS.find(o=>o.id==='surat'))">
+                        <div class="oi-dot" style="animation-delay:.6s"></div><span class="oi-city">Surat</span><span
+                            class="oi-phone">8460 160 127</span>
+                    </div>
+                    <div class="outlet-item" onclick="openMaps(OUTLETS.find(o=>o.id==='mumbai'))">
+                        <div class="oi-dot" style="animation-delay:.9s"></div><span class="oi-city">Mumbai</span><span
+                            class="oi-phone">9798 377 777</span>
+                    </div>
+                    <div class="outlet-item" onclick="openMaps(OUTLETS.find(o=>o.id==='delhi'))">
+                        <div class="oi-dot" style="animation-delay:1.2s"></div><span class="oi-city">Delhi</span><span
+                            class="oi-phone">7011 066 196</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-card reveal">
+                <div style="display:flex;align-items:center;gap:9px;margin-bottom:4px">
+                    <div class="ic-bar"></div>
+                    <div class="ic-title">Follow Peanutji</div>
+                </div>
+                <div style="font-size:.7rem;color:var(--brown-light);margin-bottom:0">Updates, recipes, and stories
+                </div>
+                <div class="social-grid">
+                    <a class="social-btn ig" onclick="showT('📸 Opening Instagram…')"><span class="sbi">📸</span>
+                        <div>
+                            <div class="sbn">Instagram</div>
+                            <div class="sbh">@peanutji_india</div>
+                        </div>
+                    </a>
+                    <a class="social-btn fb" onclick="showT('👍 Opening Facebook…')"><span class="sbi">👥</span>
+                        <div>
+                            <div class="sbn">Facebook</div>
+                            <div class="sbh">/PeanutjiOfficial</div>
+                        </div>
+                    </a>
+                    <a class="social-btn yt" onclick="showT('▶️ Opening YouTube…')"><span class="sbi">▶️</span>
+                        <div>
+                            <div class="sbn">YouTube</div>
+                            <div class="sbh">Peanutji Channel</div>
+                        </div>
+                    </a>
+                    <a class="social-btn li" onclick="showT('💼 Opening LinkedIn…')"><span class="sbi">💼</span>
+                        <div>
+                            <div class="sbn">LinkedIn</div>
+                            <div class="sbh">Fishfa Agri World</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+     GPS OUTLET FINDER
+  ═══════════════════════════════════════════════════════ -->
+    <div class="gps-section reveal" id="gpsSection">
+        <div class="gps-header">
+            <div>
+                <div class="gps-eyebrow">📡 Smart Store Locator</div>
+                <div class="gps-title">Find Your Nearest <em>Peanutji Outlet</em></div>
+            </div>
+            <div class="gps-btn-wrap">
+                <span class="gps-status-text" id="gpsStatusText">Click to detect your location</span>
+                <button class="gps-locate-btn" id="gpsLocateBtn" onclick="locateMe()">
+                    <span class="gps-ico">📡</span>
+                    <span id="gpsBtnLabel">Detect My Location</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- RADAR + SORTED NEAREST -->
+        <div class="radar-wrap" id="radarWrap">
+            <!-- Radar SVG -->
+            <div class="radar-canvas-area">
+                <div class="radar-label-row">
+                    <div class="radar-label">Proximity Radar</div>
+                </div>
+                <div class="radar-user-coords" id="userCoordsText">Locating…</div>
+                <svg class="radar-svg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" id="radarSvg">
+                    <defs>
+                        <radialGradient id="rg" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#F5820A" stop-opacity=".06" />
+                            <stop offset="100%" stop-color="#F5820A" stop-opacity="0" />
+                        </radialGradient>
+                    </defs>
+                    <circle cx="110" cy="110" r="108" fill="#FFF8EC" stroke="rgba(245,130,10,.1)" stroke-width="1.5" />
+                    <circle cx="110" cy="110" r="108" fill="url(#rg)" />
+                    <circle cx="110" cy="110" r="85" fill="none" stroke="rgba(245,130,10,.12)" stroke-width="1" />
+                    <circle cx="110" cy="110" r="62" fill="none" stroke="rgba(245,130,10,.12)" stroke-width="1" />
+                    <circle cx="110" cy="110" r="38" fill="none" stroke="rgba(245,130,10,.12)" stroke-width="1" />
+                    <line x1="110" y1="4" x2="110" y2="216" stroke="rgba(245,130,10,.1)" stroke-width="1" />
+                    <line x1="4" y1="110" x2="216" y2="110" stroke="rgba(245,130,10,.1)" stroke-width="1" />
+                    <g id="radarSweep" style="transform-origin:110px 110px;animation:sweep 3s linear infinite">
+                        <path d="M110 110 L195 80 A90 90 0 0 1 195 140 Z" fill="rgba(245,130,10,.12)" opacity=".8" />
+                        <line x1="110" y1="110" x2="195" y2="110" stroke="rgba(245,130,10,.6)" stroke-width="1.5" />
+                    </g>
+                    <circle cx="110" cy="110" r="7" fill="var(--orange)" opacity=".9" id="userDot" />
+                    <circle cx="110" cy="110" r="7" fill="none" stroke="var(--orange)" stroke-width="2" opacity=".5">
+                        <animate attributeName="r" from="7" to="22" dur="2s" repeatCount="indefinite" />
+                        <animate attributeName="opacity" from=".5" to="0" dur="2s" repeatCount="indefinite" />
+                    </circle>
+                    <g id="outletDots"></g>
+                    <text x="110" y="31" text-anchor="middle" font-size="8" fill="rgba(245,130,10,.4)"
+                        font-family="DM Sans">Far</text>
+                    <text x="110" y="54" text-anchor="middle" font-size="8" fill="rgba(245,130,10,.4)"
+                        font-family="DM Sans">Mid</text>
+                    <text x="110" y="76" text-anchor="middle" font-size="8" fill="rgba(245,130,10,.4)"
+                        font-family="DM Sans">Near</text>
+                </svg>
+                <style>
+                    @keyframes sweep {
+                        from {
+                            transform: rotate(0deg)
+                        }
+
+                        to {
+                            transform: rotate(360deg)
+                        }
+                    }
+                </style>
+            </div>
+
+            <!-- Nearest outlet big card + sorted list -->
+            <div class="radar-info-col">
+                <div class="nearest-label">🏆 Nearest Outlet</div>
+                <div class="nearest-card" id="nearestCard">
+                    <!-- Verified badge -->
+                    <div class="nc-verified">✔ Peanutji Authorized Seller</div>
+                    <div class="nc-city" id="ncCity">—</div>
+                    <!-- Store name — NEW -->
+                    <div class="nc-store-name" id="ncStoreName">—</div>
+                    <div class="nc-dist" id="ncDist">Calculating…</div>
+                    <div class="nc-addr" id="ncAddr">—</div>
+                    <!-- Store note hint — NEW -->
+                    <div class="nc-note" id="ncNote">—</div>
+                    <!-- Products available — NEW -->
+                    <div class="nc-products-label">Products available here</div>
+                    <div class="nc-product-tags" id="ncProductTags"></div>
+                    <div class="nc-phone" id="ncPhone">—</div>
+                    <div class="nc-actions">
+                        <button class="nc-btn-dir" id="ncDirBtn">Get Directions →</button>
+                        <button class="nc-btn-call" id="ncCallBtn">📞 Call Now</button>
+                    </div>
+                </div>
+                <div class="sorted-label">All outlets by distance</div>
+                <div class="all-outlets-sorted" id="sortedOutlets"></div>
+            </div>
+        </div>
+
+        <!-- SEARCH + FILTER -->
+        <div class="outlet-search-row">
+            <input class="outlet-search" type="text"
+                placeholder="🔍  Search city or store name — Rajkot, Mumbai, CG Road…" id="outletSearchInput"
+                oninput="filterOutlets(this.value)">
+            <div class="outlet-filter-chips">
+                <button class="ofc on" data-filter="all" onclick="filterChip(this)">All Outlets</button>
+                <button class="ofc" data-filter="factory" onclick="filterChip(this)">Factory</button>
+                <button class="ofc" data-filter="retail" onclick="filterChip(this)">Retail</button>
+            </div>
+        </div>
+
+        <!-- OUTLET CARDS GRID -->
+        <div class="outlet-cards-grid" id="outletCardsGrid">
+            <div class="no-results" id="noResults">
+                <span class="no-results-icon">🔍</span>
+                <div class="no-results-text">No outlets found</div>
+                <div class="no-results-sub">Try a different city or store name</div>
+            </div>
+        </div>
+    </div>
+    <div class="careers-section reveal" id="careersSection">
+
+        <!-- Header -->
+        <div class="careers-header">
+            <div>
+                <div class="careers-eyebrow">
+                    <span class="hiring-pulse"></span>
+                    We're Hiring
+                    <span class="hiring-badge">OPEN POSITIONS</span>
+                </div>
+                <div class="careers-title">Grow With <em>Peanutji</em></div>
+                <div class="careers-sub">Join the team behind India's most loved groundnut brand. We're building
+                    something
+                    special — and we want passionate people by our side.</div>
+            </div>
+            <div class="careers-stats">
+                <div class="cs-stat">
+                    <div class="cs-num">12+</div>
+                    <div class="cs-lbl">Team Members</div>
+                </div>
+                <div class="cs-div"></div>
+                <div class="cs-stat">
+                    <div class="cs-num">5</div>
+                    <div class="cs-lbl">Cities</div>
+                </div>
+                <div class="cs-div"></div>
+                <div class="cs-stat">
+                    <div class="cs-num">3</div>
+                    <div class="cs-lbl">Open Roles</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Job Cards -->
+        <div class="job-cards-grid" id="jobCardsGrid">
+
+            <div class="job-card" onclick="openApply('Sales Executive — Gujarat Region','Sales','Rajkot / Ahmedabad')">
+                <div class="jc-top">
+                    <div class="jc-dept">Sales</div>
+                    <div class="jc-hot">🔥 Urgent</div>
+                </div>
+                <div class="jc-role">Sales Executive</div>
+                <div class="jc-loc">📍 Gujarat Region — Rajkot / Ahmedabad</div>
+                <div class="jc-type-row">
+                    <span class="jc-badge full">Full-time</span>
+                    <span class="jc-badge onsite">On-site</span>
+                    <span class="jc-badge exp">1–3 yrs exp</span>
+                </div>
+                <div class="jc-desc">Drive B2B and retail sales for our groundnut oil and peanut product portfolio
+                    across Gujarat.
+                    Strong communication and field sales experience preferred.</div>
+                <div class="jc-skills">
+                    <span>B2B Sales</span><span>FMCG</span><span>Distribution</span><span>Gujarati fluency</span>
+                </div>
+                <button class="jc-apply-btn">Apply Now →</button>
+            </div>
+
+            <div class="job-card featured"
+                onclick="openApply('Digital Marketing Manager','Marketing','Remote / Rajkot')">
+                <div class="jc-featured-ribbon">Featured</div>
+                <div class="jc-top">
+                    <div class="jc-dept">Marketing</div>
+                    <div class="jc-hot">⭐ Featured</div>
+                </div>
+                <div class="jc-role">Digital Marketing Manager</div>
+                <div class="jc-loc">📍 Remote / Rajkot</div>
+                <div class="jc-type-row">
+                    <span class="jc-badge full">Full-time</span>
+                    <span class="jc-badge remote">Remote OK</span>
+                    <span class="jc-badge exp">2–5 yrs exp</span>
+                </div>
+                <div class="jc-desc">Own our digital presence across Instagram, YouTube, Amazon & D2C. Build campaigns
+                    that
+                    celebrate India's love for peanuts. Creative thinkers with data instincts welcome.</div>
+                <div class="jc-skills">
+                    <span>Meta Ads</span><span>SEO</span><span>Content Strategy</span><span>Amazon Seller</span>
+                </div>
+                <button class="jc-apply-btn">Apply Now →</button>
+            </div>
+
+            <div class="job-card" onclick="openApply('Production Supervisor','Operations','Rajkot Factory')">
+                <div class="jc-top">
+                    <div class="jc-dept">Operations</div>
+                    <div class="jc-new">New</div>
+                </div>
+                <div class="jc-role">Production Supervisor</div>
+                <div class="jc-loc">📍 Rajkot Factory (GIDC)</div>
+                <div class="jc-type-row">
+                    <span class="jc-badge full">Full-time</span>
+                    <span class="jc-badge onsite">On-site</span>
+                    <span class="jc-badge exp">3–6 yrs exp</span>
+                </div>
+                <div class="jc-desc">Oversee daily oil extraction and packaging operations at our GIDC plant. Ensure
+                    quality,
+                    safety, and production targets are consistently met.</div>
+                <div class="jc-skills">
+                    <span>Food Manufacturing</span><span>QC</span><span>Team Leadership</span><span>FSSAI</span>
+                </div>
+                <button class="jc-apply-btn">Apply Now →</button>
+            </div>
+
+        </div>
+
+        <!-- General application nudge -->
+        <div class="careers-general-cta">
+            <span>Don't see your role?</span>
+            <button onclick="openApply('General Application','Open','Any')">Send a General Application →</button>
+        </div>
+
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+     APPLY MODAL
+═══════════════════════════════════════════════════════ -->
+    <div class="apply-overlay" id="applyOverlay" onclick="closeApplyModal(event)">
+        <div class="apply-modal" id="applyModal">
+
+            <!-- Modal header -->
+            <div class="am-header">
+                <div class="am-pretitle" id="amDept">Sales</div>
+                <div class="am-title" id="amRole">Sales Executive</div>
+                <div class="am-loc" id="amLoc">📍 Rajkot / Ahmedabad</div>
+                <button class="am-close" onclick="closeApply()">✕</button>
+            </div>
+
+            <!-- Modal form -->
+            <div class="am-form" id="amForm">
+                <div class="am-form-grid">
+                    <div class="am-fg">
+                        <label class="am-label">Full Name <span class="am-req">*</span></label>
+                        <input class="am-input" id="am-name" placeholder="Priya Sharma" oninput="amValidate()">
+                    </div>
+                    <div class="am-fg">
+                        <label class="am-label">Email Address <span class="am-req">*</span></label>
+                        <input class="am-input" id="am-email" type="email" placeholder="priya@example.com"
+                            oninput="amValidate()">
+                    </div>
+                    <div class="am-fg">
+                        <label class="am-label">Phone Number <span class="am-req">*</span></label>
+                        <input class="am-input" id="am-phone" placeholder="+91 98765 43210" oninput="amValidate()">
+                    </div>
+                    <div class="am-fg">
+                        <label class="am-label">Current City</label>
+                        <input class="am-input" id="am-city" placeholder="Rajkot">
+                    </div>
+                    <div class="am-fg am-full">
+                        <label class="am-label">Years of Experience <span class="am-req">*</span></label>
+                        <select class="am-select" id="am-exp" onchange="amValidate()">
+                            <option value="">Select…</option>
+                            <option>Fresher (0 yrs)</option>
+                            <option>1–2 years</option>
+                            <option>2–5 years</option>
+                            <option>5–10 years</option>
+                            <option>10+ years</option>
+                        </select>
+                    </div>
+                    <div class="am-fg am-full">
+                        <label class="am-label">Why do you want to join Peanutji?</label>
+                        <textarea class="am-textarea" id="am-why"
+                            placeholder="Tell us a little about yourself and why you'd love working with us…"
+                            maxlength="500" oninput="amCharCount(this)"></textarea>
+                        <div class="am-char" id="amChar">0 / 500</div>
+                    </div>
+                    <div class="am-fg am-full">
+                        <label class="am-label">LinkedIn / Portfolio URL</label>
+                        <input class="am-input" id="am-link" placeholder="https://linkedin.com/in/yourname">
+                    </div>
+                </div>
+
+                <!-- Resume upload -->
+                <div class="am-resume-drop" id="amResumeDrop"
+                    ondragover="event.preventDefault();this.classList.add('drag')"
+                    ondragleave="this.classList.remove('drag')" ondrop="amHandleDrop(event)">
+                    <input type="file" id="amFileInput" accept=".pdf,.doc,.docx" onchange="amHandleFile(this.files[0])">
+                    <div class="am-resume-icon">📄</div>
+                    <div class="am-resume-text">
+                        <strong>Upload Resume / CV</strong>
+                        <span>or drag &amp; drop</span>
+                    </div>
+                    <div class="am-resume-sub">PDF · DOC · DOCX — max 5MB</div>
+                    <div class="am-resume-chosen" id="amFileChosen" style="display:none"></div>
+                </div>
+
+                <button class="am-submit" id="amSubmitBtn" onclick="amSubmit()" disabled>
+                    <span class="am-btn-text">Submit Application →</span>
+                    <div class="am-spinner"></div>
+                </button>
+            </div>
+
+            <!-- Success state -->
+            <div class="am-success" id="amSuccess" style="display:none">
+                <div class="am-success-icon">🎉</div>
+                <div class="am-success-title">Application <em>Received!</em></div>
+                <div class="am-success-sub">Thank you for your interest in joining Peanutji. Our HR team will review
+                    your application and reach out within 5–7 business days.</div>
+                <div class="am-success-ref" id="amRef">APP #PJ00000</div>
+                <button class="am-success-close" onclick="closeApply()">Close</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- DISTRIBUTOR STRIP -->
+    <div class="dist-strip reveal">
+        <div class="dist-card">
+            <div>
+                <div class="dc-eyebrow">🤝 Partnership Opportunities</div>
+                <div class="dc-title">Become a Peanutji <em>Distributor</em></div>
+                <div class="dc-sub">We're actively expanding our distributor and franchise network across India and
+                    internationally. If you're interested in carrying Peanutji products in your region, we'd love to
+                    talk.</div>
+            </div>
+            <button class="dc-cta" onclick="scrollToForm('distributor')">Apply Now →</button>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-strip reveal">
+        <div class="faq-header">
+            <div class="faq-eyebrow">Quick Answers</div>
+            <div class="faq-title">Common <em>Questions</em></div>
+        </div>
+        <div class="faq-cols">
+            <div class="faq-item">
+                <button class="faq-q" onclick="toggleFaq(this)">How quickly will you respond? <span
+                        class="fq-icon">+</span></button>
+                <div class="faq-a">
+                    <div class="faq-a-inner">We aim to respond to all inquiries within 24 business hours. Export and
+                        bulk
+                        inquiries may take up to 48 hours as they require coordination with our logistics team.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" onclick="toggleFaq(this)">Can I place a bulk / wholesale order? <span
+                        class="fq-icon">+</span></button>
+                <div class="faq-a">
+                    <div class="faq-a-inner">Yes! We supply to restaurants, retailers, caterers, and food manufacturers.
+                        Use the
+                        "Bulk / B2B" inquiry type above and our sales team will contact you with pricing.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" onclick="toggleFaq(this)">Do you ship internationally? <span
+                        class="fq-icon">+</span></button>
+                <div class="faq-a">
+                    <div class="faq-a-inner">We export to over 25 countries including the US, EU nations, UAE,
+                        Singapore, and
+                        more. Select "Export" inquiry type and share your location for a custom quote.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" onclick="toggleFaq(this)">I have an issue with my order — what do I do? <span
+                        class="fq-icon">+</span></button>
+                <div class="faq-a">
+                    <div class="faq-a-inner">Select "Order Status / Tracking" or "Return / Refund" in the subject
+                        dropdown and
+                        share your order number. Our support team will resolve it within 24 hours.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="ft-grid">
+            <div>
+                <div class="ft-logo">PEANUT<span>JI</span></div>
+                <p class="ft-desc">Premium groundnut oil, peanut butter & peanuts from Fishfa Agri World Pvt. Ltd. Pure,
+                    natural, made with love in Gujarat.</p>
+                <div class="ft-stores">
+                    <a href="https://www.amazon.in/s?k=Peanutji" class="ft-s">🛒 Amazon</a>
+                    <a href="#" class="ft-s">🛍 Flipkart</a>
+                    <a href="index.html" class="ft-s">🌐 Website</a>
+                </div>
+            </div>
+            <div class="ft-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="groundnutoil.html">Groundnut Oil</a></li>
+                    <li><a href="#">Vedic High Oleic</a></li>
+                    <li><a href="index.html#products">Peanut Butter</a></li>
+                    <li><a href="index.html#products">Peanuts</a></li>
+                </ul>
+            </div>
+            <div class="ft-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="blogs.html">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="ft-col">
+                <h4>Outlets (9AM–7PM)</h4>
+                <ul class="ft-outlets">
+                    <li><span class="ft-city">Rajkot</span><span>8460 160 126</span></li>
+                    <li><span class="ft-city">Ahmedabad</span><span>8460 160 125</span></li>
+                    <li><span class="ft-city">Surat</span><span>8460 160 127</span></li>
+                    <li><span class="ft-city">Mumbai</span><span>9798 377 777</span></li>
+                    <li><span class="ft-city">Delhi</span><span>7011 066 196</span></li>
+                    <li><span class="ft-city">Care</span><span>7777 966 944</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="ft-bot">
+            <p class="ft-copy">© 2026 Fishfa Agri World Pvt. Ltd. All rights reserved.</p>
+            <div class="ft-tag">Pyar Jaisa Pure ✦</div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger)
+
+        /* ══ OUTLET DATA — now includes storeName, products, verified flag ══ */
+        const OUTLETS = [
+            {
+                id: 'rajkot',
+                city: 'Rajkot',
+                type: 'factory',
+                typeLabel: 'Factory Outlet & Head Office',
+                storeName: 'Fishfa Agri World Pvt. Ltd.',
+                storeNote: 'Our own factory store — full range always in stock',
+                products: ['Groundnut Oil', 'Vedic High Oleic', 'Peanut Butter', 'Peanuts'],
+                verified: true,
+                addr: 'Fishfa Agri World, GIDC Estate\nRajkot, Gujarat — 360002',
+                phone: '8460 160 126',
+                lat: 22.3039,
+                lng: 70.8022,
+                mapQ: 'Fishfa+Agri+World+GIDC+Rajkot',
+                roads: [
+                    { type: 'h', top: '40%', thick: true },
+                    { type: 'h', top: '65%' },
+                    { type: 'v', left: '35%', thick: true },
+                    { type: 'v', left: '65%' }
+                ]
+            },
+            {
+                id: 'ahmedabad',
+                city: 'Ahmedabad',
+                type: 'retail',
+                typeLabel: 'Authorized Retail Partner',
+                storeName: 'Peanutji Store — CG Road',
+                storeNote: 'Look for the Peanutji shelf display near the oils section',
+                products: ['Groundnut Oil', 'Peanut Butter', 'Peanuts'],
+                verified: true,
+                addr: 'Peanutji Store, CG Road Area\nAhmedabad, Gujarat — 380009',
+                phone: '8460 160 125',
+                lat: 23.0225,
+                lng: 72.5714,
+                mapQ: 'Peanutji+Store+CG+Road+Ahmedabad',
+                roads: [
+                    { type: 'h', top: '35%', thick: true },
+                    { type: 'h', top: '70%' },
+                    { type: 'v', left: '30%', thick: true },
+                    { type: 'v', left: '70%' }
+                ]
+            },
+            {
+                id: 'surat',
+                city: 'Surat',
+                type: 'retail',
+                typeLabel: 'Authorized Retail Partner',
+                storeName: 'Peanutji Store — Ring Road',
+                storeNote: 'Ask staff for Peanutji products at the health foods counter',
+                products: ['Groundnut Oil', 'Peanut Butter'],
+                verified: true,
+                addr: 'Peanutji Store, Ring Road\nSurat, Gujarat — 395003',
+                phone: '8460 160 127',
+                lat: 21.1702,
+                lng: 72.8311,
+                mapQ: 'Peanutji+Store+Ring+Road+Surat',
+                roads: [
+                    { type: 'h', top: '45%', thick: true },
+                    { type: 'h', top: '62%' },
+                    { type: 'v', left: '40%', thick: true },
+                    { type: 'v', left: '68%' }
+                ]
+            },
+            {
+                id: 'mumbai',
+                city: 'Mumbai',
+                type: 'retail',
+                typeLabel: 'Authorized Retail Partner',
+                storeName: 'Peanutji Store — Andheri West',
+                storeNote: 'Full product range available. Call ahead to confirm stock',
+                products: ['Groundnut Oil', 'Vedic High Oleic', 'Peanut Butter', 'Peanuts'],
+                verified: true,
+                addr: 'Peanutji Store, Andheri West\nMumbai, Maharashtra — 400053',
+                phone: '9798 377 777',
+                lat: 19.076,
+                lng: 72.8777,
+                mapQ: 'Peanutji+Store+Andheri+West+Mumbai',
+                roads: [
+                    { type: 'h', top: '38%', thick: true },
+                    { type: 'h', top: '68%' },
+                    { type: 'v', left: '32%', thick: true },
+                    { type: 'v', left: '62%' }
+                ]
+            },
+            {
+                id: 'delhi',
+                city: 'Delhi',
+                type: 'retail',
+                typeLabel: 'Authorized Retail Partner',
+                storeName: 'Peanutji Store — Lajpat Nagar',
+                storeNote: 'Ask for Peanutji at the organic/natural foods aisle',
+                products: ['Groundnut Oil', 'Peanut Butter'],
+                verified: true,
+                addr: 'Peanutji Store, Lajpat Nagar\nNew Delhi — 110024',
+                phone: '7011 066 196',
+                lat: 28.6139,
+                lng: 77.209,
+                mapQ: 'Peanutji+Store+Lajpat+Nagar+Delhi',
+                roads: [
+                    { type: 'h', top: '42%', thick: true },
+                    { type: 'h', top: '63%' },
+                    { type: 'v', left: '38%', thick: true },
+                    { type: 'v', left: '66%' }
+                ]
+            }
+        ]
+
+        /* ══ PRODUCT TAG COLORS ══ */
+        const PRODUCT_COLORS = {
+            'Groundnut Oil': { bg: 'rgba(245,130,10,.1)', color: '#D4620A' },
+            'Vedic High Oleic': { bg: 'rgba(255,194,0,.15)', color: '#8B6500' },
+            'Peanut Butter': { bg: 'rgba(61,26,0,.08)', color: '#6B2F00' },
+            Peanuts: { bg: 'rgba(46,125,50,.1)', color: '#2E7D32' }
+        }
+
+        /* ══ STATE ══ */
+        let userLat = null,
+            userLng = null,
+            userAddr = ''
+        let sortedOutlets = [...OUTLETS]
+        let activeFilter = 'all',
+            searchQuery = ''
+        let liveWatchId = null // watchPosition ID for live tracking
+
+        /* ══ HAVERSINE DISTANCE (km) ══ */
+        function haversine(lat1, lng1, lat2, lng2) {
+            const R = 6371
+            const dLat = ((lat2 - lat1) * Math.PI) / 180
+            const dLng = ((lng2 - lng1) * Math.PI) / 180
+            const a =
+                Math.sin(dLat / 2) ** 2 +
+                Math.cos((lat1 * Math.PI) / 180) *
+                Math.cos((lat2 * Math.PI) / 180) *
+                Math.sin(dLng / 2) ** 2
+            return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+        }
+
+        function fmtDist(km) {
+            if (km < 0.1) return Math.round(km * 1000) + ' m'
+            if (km < 1) return Math.round(km * 1000) + ' m'
+            if (km < 10) return km.toFixed(1) + ' km'
+            return Math.round(km) + ' km'
+        }
+
+        /* ══ LOCATE ME — with live watchPosition ══ */
+        function locateMe() {
+            if (!navigator.geolocation) {
+                showT('❌ Geolocation not supported by your browser')
+                return
+            }
+            const btn = document.getElementById('gpsLocateBtn')
+            const sbBtn = document.getElementById('sidebarGpsBtn')
+            btn.classList.add('loading')
+            btn.querySelector('#gpsBtnLabel').textContent = 'Locating…'
+            document.getElementById('gpsStatusText').textContent =
+                'Requesting location access…'
+
+            // Stop any existing watch
+            if (liveWatchId !== null) {
+                navigator.geolocation.clearWatch(liveWatchId)
+                liveWatchId = null
+            }
+
+            // One-shot first fix
+            navigator.geolocation.getCurrentPosition(
+                pos => {
+                    userLat = pos.coords.latitude
+                    userLng = pos.coords.longitude
+
+                    btn.classList.remove('loading')
+                    btn.classList.add('done')
+                    btn.querySelector('.gps-ico').textContent = '✅'
+                    btn.querySelector('#gpsBtnLabel').textContent = 'Location Found!'
+
+                    if (sbBtn) {
+                        sbBtn.textContent = '✅ Located'
+                        sbBtn.style.background = 'linear-gradient(135deg,#2E7D32,#1B5E20)'
+                    }
+
+                    document.getElementById(
+                        'gpsStatusText'
+                    ).textContent = `📍 ${userLat.toFixed(4)}, ${userLng.toFixed(4)}`
+                    document.getElementById(
+                        'userCoordsText'
+                    ).textContent = `Your position: ${userLat.toFixed(
+                        3
+                    )}°N, ${userLng.toFixed(3)}°E`
+
+                    reverseGeocode(userLat, userLng)
+                    recalcAndRender()
+                    showT('📡 Location found! Outlets sorted by distance')
+
+                    setTimeout(
+                        () =>
+                            document
+                                .getElementById('gpsSection')
+                                .scrollIntoView({ behavior: 'smooth', block: 'start' }),
+                        300
+                    )
+
+                    // Start live tracking
+                    liveWatchId = navigator.geolocation.watchPosition(
+                        livePos => {
+                            userLat = livePos.coords.latitude
+                            userLng = livePos.coords.longitude
+                            document.getElementById(
+                                'userCoordsText'
+                            ).textContent = `Live position: ${userLat.toFixed(
+                                4
+                            )}°N, ${userLng.toFixed(4)}°E`
+                            recalcAndRender()
+                            // Check if arrived at nearest
+                            const nearest = sortedOutlets[0]
+                            if (nearest && nearest.dist < 0.15) {
+                                showT(`🎉 You've arrived at ${nearest.storeName}!`)
+                            }
+                        },
+                        () => { },
+                        { enableHighAccuracy: true, maximumAge: 5000, timeout: 10000 }
+                    )
+                },
+                err => {
+                    btn.classList.remove('loading')
+                    btn.querySelector('#gpsBtnLabel').textContent = 'Detect My Location'
+                    const msgs = {
+                        1: 'Location permission denied. Please allow access in browser settings.',
+                        2: 'Location unavailable.',
+                        3: 'Location request timed out.'
+                    }
+                    document.getElementById('gpsStatusText').textContent =
+                        '⚠️ ' + (msgs[err.code] || 'Location error.')
+                    showT('⚠️ ' + (msgs[err.code] || 'Location error.'))
+                    sortedOutlets = [...OUTLETS]
+                    renderOutletCards()
+                },
+                { timeout: 10000, maximumAge: 60000, enableHighAccuracy: true }
+            )
+        }
+
+        function recalcAndRender() {
+            sortedOutlets = OUTLETS.map(o => ({
+                ...o,
+                dist: haversine(userLat, userLng, o.lat, o.lng)
+            })).sort((a, b) => a.dist - b.dist)
+
+            showRadar()
+            renderOutletCards()
+            renderSidebarSorted()
+            renderNearestCard()
+        }
+
+        /* ══ REVERSE GEOCODE ══ */
+        function reverseGeocode(lat, lng) {
+            fetch(
+                `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`
+            )
+                .then(r => r.json())
+                .then(d => {
+                    const city =
+                        d.address?.city ||
+                        d.address?.town ||
+                        d.address?.village ||
+                        d.address?.state ||
+                        ''
+                    if (city) {
+                        userAddr = city
+                        document.getElementById('gpsStatusText').textContent = `📍 Near ${city}`
+                        document.getElementById(
+                            'userCoordsText'
+                        ).textContent = `Your position: ${city} (${lat.toFixed(
+                            3
+                        )}°N, ${lng.toFixed(3)}°E)`
+                    }
+                })
+                .catch(() => { })
+        }
+
+        /* ══ RADAR ══ */
+        function showRadar() {
+            const wrap = document.getElementById('radarWrap')
+            wrap.classList.add('vis')
+            const dotsG = document.getElementById('outletDots')
+            dotsG.innerHTML = ''
+            if (!userLat) return
+
+            const maxDist = Math.max(...sortedOutlets.map(o => o.dist || 0), 1)
+            const radarR = 90,
+                cx = 110,
+                cy = 110
+
+            sortedOutlets.forEach((o, i) => {
+                if (!o.dist) return
+                const norm = Math.min(o.dist / maxDist, 1)
+                const r = norm * radarR
+
+                const dLng = ((o.lng - userLng) * Math.PI) / 180
+                const lat1 = (userLat * Math.PI) / 180
+                const lat2 = (o.lat * Math.PI) / 180
+                const y = Math.sin(dLng) * Math.cos(lat2)
+                const x =
+                    Math.cos(lat1) * Math.sin(lat2) -
+                    Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLng)
+                const bearing = Math.atan2(y, x)
+
+                const dotX = cx + r * Math.sin(bearing)
+                const dotY = cy - r * Math.cos(bearing)
+                const isNearest = i === 0
+                const dotR = isNearest ? 7 : 5
+                const color = isNearest ? 'var(--orange)' : 'var(--brown-mid)'
+
+                if (isNearest) {
+                    const pulse = document.createElementNS(
+                        'http://www.w3.org/2000/svg',
+                        'circle'
+                    )
+                    pulse.setAttribute('cx', dotX)
+                    pulse.setAttribute('cy', dotY)
+                    pulse.setAttribute('r', '7')
+                    pulse.setAttribute('fill', 'none')
+                    pulse.setAttribute('stroke', 'var(--orange)')
+                    pulse.setAttribute('stroke-width', '2')
+                    pulse.innerHTML = `
+        <animate attributeName="r" from="7" to="18" dur="1.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" from=".6" to="0" dur="1.8s" repeatCount="indefinite"/>
+      `
+                    dotsG.appendChild(pulse)
+                }
+
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line')
+                line.setAttribute('x1', cx)
+                line.setAttribute('y1', cy)
+                line.setAttribute('x2', dotX)
+                line.setAttribute('y2', dotY)
+                line.setAttribute(
+                    'stroke',
+                    isNearest ? 'rgba(245,130,10,.3)' : 'rgba(61,26,0,.1)'
+                )
+                line.setAttribute('stroke-width', '1')
+                line.setAttribute('stroke-dasharray', '3,3')
+
+                const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
+                dot.setAttribute('cx', dotX)
+                dot.setAttribute('cy', dotY)
+                dot.setAttribute('r', dotR)
+                dot.setAttribute('fill', color)
+                dot.setAttribute('opacity', isNearest ? '1' : '0.6')
+
+                const label = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+                label.setAttribute('x', dotX + 10)
+                label.setAttribute('y', dotY + 4)
+                label.setAttribute('font-size', '8')
+                label.setAttribute('fill', isNearest ? 'var(--orange)' : 'var(--brown-mid)')
+                label.setAttribute('font-family', 'DM Sans')
+                label.setAttribute('font-weight', isNearest ? '700' : '400')
+                label.textContent = o.city
+
+                dotsG.appendChild(line)
+                dotsG.appendChild(dot)
+                dotsG.appendChild(label)
+            })
+        }
+
+        /* ══ NEAREST CARD ══ */
+        function renderNearestCard() {
+            const n = sortedOutlets[0]
+            if (!n) return
+            document.getElementById('ncCity').textContent = n.city
+            document.getElementById('ncStoreName').textContent = n.storeName
+            document.getElementById('ncDist').textContent = `📍 ${fmtDist(
+                n.dist
+            )} from your location`
+            document.getElementById('ncAddr').textContent = n.addr.replace('\n', ', ')
+            document.getElementById('ncPhone').textContent = '📞 ' + n.phone
+            document.getElementById('ncNote').textContent = '💡 ' + n.storeNote
+
+            // Products available
+            const tagsEl = document.getElementById('ncProductTags')
+            tagsEl.innerHTML = ''
+            n.products.forEach(p => {
+                const tag = document.createElement('span')
+                tag.className = 'nc-product-tag'
+                const c = PRODUCT_COLORS[p] || {
+                    bg: 'rgba(245,130,10,.1)',
+                    color: '#D4620A'
+                }
+                tag.style.cssText = `background:${c.bg};color:${c.color}`
+                tag.textContent = p
+                tagsEl.appendChild(tag)
+            })
+
+            document.getElementById('ncDirBtn').onclick = () => openMaps(n)
+            document.getElementById('ncCallBtn').onclick = () =>
+                copyToClip(n.phone, n.city + ' number copied!')
+        }
+
+        /* ══ SORTED OUTLETS SIDEBAR ══ */
+        function renderSidebarSorted() {
+            const wrap = document.getElementById('sortedOutlets')
+            wrap.innerHTML = ''
+            sortedOutlets.forEach((o, i) => {
+                const div = document.createElement('div')
+                div.className = 'sorted-outlet' + (i === 0 ? ' is-nearest' : '')
+                div.innerHTML = `
+      <span class="so-rank ${i === 0 ? 'top' : ''}">${i + 1}</span>
+      <span class="so-dot"></span>
+      <span class="so-city">${o.city}</span>
+      ${o.dist != null
+                        ? `<span class="so-dist ${o.dist > 500 ? 'far' : ''}">${fmtDist(
+                            o.dist
+                        )}</span>`
+                        : ''
+                    }
+      <span class="so-arrow">→</span>
+    `
+                div.onclick = () => openMaps(o)
+                wrap.appendChild(div)
+            })
+
+            const sidebarEl = document.getElementById('sidebarOutlets')
+            sidebarEl.innerHTML = ''
+            sortedOutlets.forEach((o, i) => {
+                const div = document.createElement('div')
+                div.className = 'outlet-item'
+                div.innerHTML = `
+      <div class="oi-dot" style="animation-delay:${i * 0.3}s"></div>
+      <span class="oi-city">${o.city}${i === 0 ? ' ⭐' : ''}</span>
+      ${o.dist != null
+                        ? `<span style="font-size:.65rem;color:var(--orange);font-weight:700;margin-right:6px">${fmtDist(
+                            o.dist
+                        )}</span>`
+                        : ''
+                    }
+      <span class="oi-phone">${o.phone}</span>
+    `
+                div.onclick = () => openMaps(o)
+                sidebarEl.appendChild(div)
+            })
+        }
+
+        /* ══ OUTLET CARDS GRID — updated with storeName, products, verified badge, store note ══ */
+        function renderOutletCards() {
+            const grid = document.getElementById('outletCardsGrid')
+            const noRes = document.getElementById('noResults')
+            grid.querySelectorAll('.outlet-card').forEach(c => c.remove())
+
+            let toShow = sortedOutlets.filter(o => {
+                const matchSearch =
+                    !searchQuery ||
+                    o.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    o.storeName.toLowerCase().includes(searchQuery.toLowerCase())
+                const matchFilter = activeFilter === 'all' || o.type === activeFilter
+                return matchSearch && matchFilter
+            })
+
+            noRes.classList.toggle('vis', toShow.length === 0)
+
+            toShow.forEach((o, i) => {
+                const isNearest = userLat && sortedOutlets[0]?.id === o.id
+                const card = document.createElement('div')
+                card.className = 'outlet-card' + (isNearest ? ' nearest-glow' : '')
+                card.setAttribute('data-type', o.type)
+                card.setAttribute('data-city', o.city.toLowerCase())
+
+                const roadsHTML = o.roads
+                    .map(r => {
+                        if (r.type === 'h')
+                            return `<div class="oc-road-h" style="top:${r.top};${r.thick ? 'height:3px;background:rgba(245,130,10,.3);' : ''
+                                }"></div>`
+                        return `<div class="oc-road-v" style="left:${r.left};${r.thick ? 'width:3px;background:rgba(245,130,10,.3);' : ''
+                            }"></div>`
+                    })
+                    .join('')
+
+                const distTag =
+                    o.dist != null
+                        ? `<div class="oc-dist-tag vis">${fmtDist(o.dist)}</div>`
+                        : ''
+                const nearestTag = `<div class="oc-nearest-tag">Nearest</div>`
+
+                // Product tags HTML
+                const productsHTML = o.products
+                    .map(p => {
+                        const c = PRODUCT_COLORS[p] || {
+                            bg: 'rgba(245,130,10,.1)',
+                            color: '#D4620A'
+                        }
+                        return `<span class="oc-product-tag" style="background:${c.bg};color:${c.color}">${p}</span>`
+                    })
+                    .join('')
+
+                // Verified badge
+                const verifiedBadge = o.verified
+                    ? `<div class="oc-verified-badge">✔ Peanutji Authorized</div>`
+                    : ''
+
+                // Store type icon
+                const storeIcon = o.type === 'factory' ? '🏭' : '🏪'
+
+                card.innerHTML = `
+      <div class="oc-map">
+        <div class="oc-grid"></div>
+        ${roadsHTML}
+        <div class="oc-pin">📍</div>
+        <div class="oc-pin-shadow"></div>
+        ${nearestTag}
+        ${distTag}
+        ${verifiedBadge}
+      </div>
+      <div class="oc-body">
+        <div class="oc-store-header">
+          <span class="oc-store-icon">${storeIcon}</span>
+          <div>
+            <div class="oc-store-name">${o.storeName}</div>
+            <div class="oc-type">${o.typeLabel}</div>
+          </div>
+        </div>
+        <div class="oc-city">${o.city}</div>
+        <div class="oc-addr">${o.addr.replace('\n', '<br>')}</div>
+        <div class="oc-store-note">💡 ${o.storeNote}</div>
+        <div class="oc-products-label">Available Products</div>
+        <div class="oc-products">${productsHTML}</div>
+        <div class="oc-phone">📞 ${o.phone}</div>
+        <div class="oc-actions">
+          <button class="oc-dir" onclick="openMaps(OUTLETS.find(x=>x.id==='${o.id
+                    }'))">Get Directions →</button>
+          <button class="oc-call" onclick="copyToClip('${o.phone}','${o.city
+                    } number copied!')">📞 Call</button>
+        </div>
+      </div>
+    `
+
+                card.style.opacity = '0'
+                card.style.transform = 'translateY(20px)'
+                grid.insertBefore(card, noRes)
+                setTimeout(() => {
+                    card.style.transition = 'opacity .45s ease, transform .55s ease'
+                    card.style.opacity = '1'
+                    card.style.transform = 'translateY(0)'
+                }, i * 80)
+            })
+
+            // Re-attach cursor hover for dynamically created cards
+            document
+                .querySelectorAll('.outlet-card,.sorted-outlet,.outlet-item')
+                .forEach(el => {
+                    el.addEventListener('mouseenter', () =>
+                        document.body.classList.add('hov')
+                    )
+                    el.addEventListener('mouseleave', () =>
+                        document.body.classList.remove('hov')
+                    )
+                })
+        }
+
+        /* Init cards on load */
+        window.addEventListener('DOMContentLoaded', () => {
+            renderOutletCards()
+        })
+
+        /* ══ FILTER + SEARCH ══ */
+        function filterOutlets(q) {
+            searchQuery = q
+            renderOutletCards()
+        }
+        function filterChip(el) {
+            document.querySelectorAll('.ofc').forEach(c => c.classList.remove('on'))
+            el.classList.add('on')
+            activeFilter = el.dataset.filter
+            renderOutletCards()
+        }
+
+        /* ══ OPEN GOOGLE MAPS — uses storeName for better pin accuracy ══ */
+        function openMaps(outlet) {
+            // If passed a plain object (from inline onclick fallback), look it up
+            if (typeof outlet === 'string') {
+                outlet = OUTLETS.find(o => o.city === outlet) || {
+                    lat: arguments[1],
+                    lng: arguments[2],
+                    storeName: arguments[0]
+                }
+            }
+            // Use named search so Maps shows the actual store, not a blank pin
+            const destination = encodeURIComponent(outlet.storeName + ', ' + outlet.city)
+            const url = `https://www.google.com/maps/search/${destination}/@${outlet.lat},${outlet.lng},17z`
+            window.open(url, '_blank')
+            showT(`🗺️ Opening directions to ${outlet.storeName}…`)
+        }
+
+        /* ══ CURSOR ══ */
+        const cur = document.getElementById('cur'),
+            cur2 = document.getElementById('cur2')
+        let mx = 0,
+            my = 0,
+            fx = 0,
+            fy = 0
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX
+            my = e.clientY
+            gsap.to(cur, { x: mx, y: my, duration: 0.06 })
+        })
+            ; (function loop() {
+                fx += (mx - fx) * 0.11
+                fy += (my - fy) * 0.11
+                gsap.set(cur2, { x: fx, y: fy })
+                requestAnimationFrame(loop)
+            })()
+        document
+            .querySelectorAll(
+                'a,button,.contact-item,.outlet-item,.outlet-card,.social-btn,.inq-tab,.faq-q,.fg-input,.fg-textarea,.fg-select,.sorted-outlet'
+            )
+            .forEach(el => {
+                el.addEventListener('mouseenter', () => document.body.classList.add('hov'))
+                el.addEventListener('mouseleave', () =>
+                    document.body.classList.remove('hov')
+                )
+            })
+
+        /* ══ NAV ══ */
+        window.addEventListener('scroll', () =>
+            document
+                .getElementById('mainNav')
+                .classList.toggle('scrolled', window.scrollY > 60)
+        )
+        const ddLi = document.getElementById('ddLi')
+        function toggleDd() {
+            const o = ddLi.classList.contains('ddo')
+            ddLi.classList.toggle('ddo', !o)
+            ddLi.querySelector('.nav-ddt').setAttribute('aria-expanded', String(!o))
+        }
+        document.addEventListener('click', e => {
+            if (!ddLi.contains(e.target)) {
+                ddLi.classList.remove('ddo')
+                ddLi.querySelector('.nav-ddt').setAttribute('aria-expanded', 'false')
+            }
+        })
+        let mn = false
+        function toggleMobNav() {
+            mn = !mn
+            document.getElementById('mobMenu').classList.toggle('open', mn)
+            const bars = document.getElementById('mobBtn').querySelectorAll('span')
+            if (mn) {
+                bars[0].style.cssText = 'transform:rotate(45deg) translate(5px,5px)'
+                bars[1].style.cssText = 'opacity:0'
+                bars[2].style.cssText = 'transform:rotate(-45deg) translate(5px,-5px)'
+            } else bars.forEach(b => (b.style.cssText = ''))
+        }
+
+        /* ══ HERO ENTRANCE ══ */
+        gsap.to('#phEyebrow', {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            delay: 0.2,
+            ease: 'power3.out'
+        })
+        gsap.to('#phTitle', {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            delay: 0.35,
+            ease: 'power3.out'
+        })
+        gsap.to('#phSub', {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            delay: 0.55,
+            ease: 'power3.out'
+        })
+        gsap.from('.phf', {
+            opacity: 0,
+            scale: 0.5,
+            duration: 1.2,
+            stagger: 0.15,
+            delay: 0.7,
+            ease: 'back.out(1.4)'
+        })
+
+        /* ══ SCROLL REVEAL ══ */
+        const ro = new IntersectionObserver(
+            entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) e.target.classList.add('in')
+                })
+            },
+            { threshold: 0.07 }
+        )
+        document.querySelectorAll('.reveal').forEach(el => ro.observe(el))
+
+        /* ══ FORM ══ */
+        let inqType = 'general'
+        function setInqType(type, btn) {
+            inqType = type
+            document.querySelectorAll('.inq-tab').forEach(b => b.classList.remove('on'))
+            btn.classList.add('on')
+            document.getElementById('exportRow').style.display =
+                type === 'export' ? 'grid' : 'none'
+            const subMap = {
+                general: 'General Inquiry',
+                order: 'Order Status / Tracking',
+                export: 'Export & International',
+                distributor: 'Distributor / Franchise',
+                bulk: 'Bulk / B2B Order'
+            }
+            const sel = document.getElementById('f-subject')
+            for (let o of sel.options) {
+                if (o.text === subMap[type]) {
+                    sel.value = o.value
+                    break
+                }
+            }
+        }
+        function validateF(id, type) {
+            const inp = document.getElementById(id)
+            const fg = document.getElementById('fg-' + id.replace('f-', ''))
+            if (!inp) return
+            let ok = false
+            if (type === 'email') ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inp.value)
+            else if (type === 'phone') ok = inp.value.replace(/\D/g, '').length >= 10
+            else ok = inp.value.trim().length > 1
+            if (fg) fg.classList.toggle('has-err', !ok && inp.value.length > 0)
+            inp.classList.toggle('valid', ok)
+            inp.classList.toggle('err', !ok && inp.value.length > 0)
+            checkTerms()
+        }
+        function countChars(ta) {
+            const n = ta.value.length,
+                max = 800
+            const el = document.getElementById('charCount')
+            el.textContent = n + ' / ' + max
+            el.className =
+                'char-counter' + (n > max * 0.85 ? ' warn' : '') + (n >= max ? ' over' : '')
+            checkTerms()
+        }
+        function checkTerms() {
+            const name = document.getElementById('f-name').value.trim().length > 1
+            const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+                document.getElementById('f-email').value
+            )
+            const msg = document.getElementById('f-msg').value.trim().length >= 10
+            const terms = document.getElementById('f-terms').checked
+            document.getElementById('submitBtn').disabled = !(
+                name &&
+                email &&
+                msg &&
+                terms
+            )
+        }
+        function handleFiles(files) {
+            const list = document.getElementById('fileList')
+            list.innerHTML = ''
+            Array.from(files).forEach(f => {
+                const item = document.createElement('div')
+                item.style.cssText =
+                    'display:flex;align-items:center;gap:8px;padding:7px 12px;background:rgba(245,130,10,.05);border:1px solid rgba(245,130,10,.15);border-radius:8px;font-size:.74rem;color:var(--brown-mid)'
+                item.innerHTML = `<span>📄</span><span style="flex:1">${f.name
+                    }</span><span style="color:var(--brown-light);font-size:.65rem">${(
+                        f.size / 1024
+                    ).toFixed(0)}KB</span>`
+                list.appendChild(item)
+            })
+            if (files.length > 0)
+                showT(
+                    '📎 ' +
+                    files.length +
+                    ' file' +
+                    (files.length > 1 ? 's' : '') +
+                    ' attached'
+                )
+        }
+        function handleDrop(e) {
+            e.preventDefault()
+            document.getElementById('fileInput').classList.remove('drag')
+            handleFiles(e.dataTransfer.files)
+        }
+        function submitForm() {
+            const btn = document.getElementById('submitBtn')
+            btn.classList.add('loading')
+            setTimeout(() => {
+                btn.classList.remove('loading')
+                document.getElementById('contactForm').style.display = 'none'
+                const suc = document.getElementById('formSuccess')
+                suc.classList.add('vis')
+                const ref = 'PJ' + Math.floor(10000 + Math.random() * 90000)
+                document.getElementById('ticketRef').textContent = 'REF #' + ref
+                showT('✅ Message sent! Ref #' + ref)
+                document
+                    .getElementById('formCard')
+                    .scrollIntoView({ behavior: 'smooth', block: 'center' })
+            }, 1600)
+        }
+        function resetForm() {
+            document.getElementById('contactForm').style.display = 'block'
+            document.getElementById('formSuccess').classList.remove('vis')
+                ;['f-name', 'f-email', 'f-phone', 'f-company', 'f-msg'].forEach(
+                    id => (document.getElementById(id).value = '')
+                )
+            document.getElementById('f-terms').checked = false
+            document.getElementById('fileList').innerHTML = ''
+            document.getElementById('charCount').textContent = '0 / 800'
+            document.getElementById('submitBtn').disabled = true
+            document
+                .querySelectorAll('.fg-input')
+                .forEach(i => i.classList.remove('valid', 'err'))
+        }
+        function scrollToForm(type) {
+            document
+                .querySelector('.form-card')
+                .scrollIntoView({ behavior: 'smooth', block: 'start' })
+            const tabs = document.querySelectorAll('.inq-tab')
+            tabs.forEach(t => {
+                if (t.textContent.toLowerCase().includes(type.substring(0, 4)))
+                    setInqType(type, t)
+            })
+        }
+
+        /* ══ FAQ ══ */
+        function toggleFaq(btn) {
+            const item = btn.closest('.faq-item')
+            const ans = btn.nextElementSibling
+            const isOpen = item.classList.contains('open')
+            document.querySelectorAll('.faq-item').forEach(i => {
+                i.classList.remove('open')
+                i.querySelector('.faq-a').classList.remove('open')
+            })
+            if (!isOpen) {
+                item.classList.add('open')
+                ans.classList.add('open')
+            }
+        }
+
+        /* ══ OPEN/CLOSED HOURS ══ */
+        function updateStatus() {
+            const now = new Date()
+            const ist = new Date(
+                now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' })
+            )
+            const h = ist.getHours(),
+                d = ist.getDay()
+            const open =
+                (d >= 1 && d <= 5 && h >= 9 && h < 19) || (d === 6 && h >= 9 && h < 17)
+            const badge = document.getElementById('openBadge')
+            if (badge) {
+                badge.textContent = open ? 'Open Now' : 'Closed'
+                badge.style.background = open ? 'rgba(46,125,50,.1)' : 'rgba(192,57,43,.1)'
+                badge.style.color = open ? '#4CAF50' : '#ff8070'
+                badge.style.border = open
+                    ? '1px solid rgba(46,125,50,.2)'
+                    : '1px solid rgba(192,57,43,.2)'
+            }
+            const tp = document.getElementById('liveTime')
+            if (tp)
+                tp.textContent = ist.toLocaleTimeString('en-IN', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                })
+        }
+        updateStatus()
+        setInterval(updateStatus, 60000)
+
+        /* ══ UTILS ══ */
+        function copyToClip(text, msg) {
+            navigator.clipboard
+                .writeText(text)
+                .then(() => showT('📋 ' + msg))
+                .catch(() => showT('📋 ' + text))
+        }
+        let tt
+        function showT(msg) {
+            const t = document.getElementById('toast')
+            t.innerHTML = msg
+            t.classList.add('vis')
+            clearTimeout(tt)
+            tt = setTimeout(() => t.classList.remove('vis'), 3000)
+        }
+
+        let currentApplyRole = '',
+            amFileSelected = false
+
+        function openApply(role, dept, loc) {
+            currentApplyRole = role
+            document.getElementById('amRole').textContent = role
+            document.getElementById('amDept').textContent = dept
+            document.getElementById('amLoc').textContent = '📍 ' + loc
+                // Reset form
+                ;['am-name', 'am-email', 'am-phone', 'am-city', 'am-link'].forEach(id => {
+                    const el = document.getElementById(id)
+                    if (el) el.value = ''
+                })
+            document.getElementById('am-exp').value = ''
+            document.getElementById('am-why').value = ''
+            document.getElementById('amChar').textContent = '0 / 500'
+            document.getElementById('amFileChosen').style.display = 'none'
+            document.getElementById('amFileChosen').textContent = ''
+            document.getElementById('amSuccess').style.display = 'none'
+            document.getElementById('amForm').style.display = 'block'
+            document.getElementById('amSubmitBtn').disabled = true
+            document.getElementById('amSubmitBtn').classList.remove('loading')
+            amFileSelected = false
+            document.getElementById('applyOverlay').classList.add('open')
+            document.body.style.overflow = 'hidden'
+        }
+
+        function closeApply() {
+            document.getElementById('applyOverlay').classList.remove('open')
+            document.body.style.overflow = ''
+        }
+
+        function closeApplyModal(e) {
+            if (e.target === document.getElementById('applyOverlay')) closeApply()
+        }
+
+        function amValidate() {
+            const name =
+                (document.getElementById('am-name')?.value || '').trim().length > 1
+            const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+                document.getElementById('am-email')?.value || ''
+            )
+            const phone =
+                (document.getElementById('am-phone')?.value || '').replace(/\D/g, '')
+                    .length >= 10
+            const exp = (document.getElementById('am-exp')?.value || '') !== ''
+            document.getElementById('amSubmitBtn').disabled = !(
+                name &&
+                email &&
+                phone &&
+                exp
+            )
+        }
+
+        function amCharCount(ta) {
+            const n = ta.value.length
+            const el = document.getElementById('amChar')
+            if (el) el.textContent = n + ' / 500'
+        }
+
+        function amHandleFile(file) {
+            if (!file) return
+            const mb = file.size / 1024 / 1024
+            if (mb > 5) {
+                showT('⚠️ File too large. Max 5MB allowed.')
+                return
+            }
+            const chosen = document.getElementById('amFileChosen')
+            chosen.textContent = '✅ ' + file.name + ' (' + mb.toFixed(1) + 'MB)'
+            chosen.style.display = 'block'
+            amFileSelected = true
+            showT('📄 Resume attached: ' + file.name)
+        }
+
+        function amHandleDrop(e) {
+            e.preventDefault()
+            document.getElementById('amResumeDrop').classList.remove('drag')
+            amHandleFile(e.dataTransfer.files[0])
+        }
+
+        function amSubmit() {
+            const btn = document.getElementById('amSubmitBtn')
+            btn.classList.add('loading')
+            setTimeout(() => {
+                btn.classList.remove('loading')
+                document.getElementById('amForm').style.display = 'none'
+                document.getElementById('amSuccess').style.display = 'block'
+                const ref = 'PJ' + Math.floor(10000 + Math.random() * 90000)
+                document.getElementById('amRef').textContent = 'APP #' + ref
+                showT('✅ Application submitted! Ref #' + ref)
+            }, 1800)
+        }
+
+        // Keyboard close
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeApply()
+        })
+
+        // Add cursor hover for career cards
+        document.querySelectorAll('.job-card,.jc-apply-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hov'))
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hov'))
+        })
+
+    </script>
+</body>
+
+</html>

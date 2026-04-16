@@ -1,0 +1,4503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peanutji — Groundnut Oil Collection</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1B2E6B;
+            --navy-deep: #162460;
+            --navy-mid: #243685;
+            --navy-light: #2E448F;
+            --red: #8B1A1A;
+            --red-mid: #A93226;
+            --red-bright: #C0392B;
+            --gold: #C8960C;
+            --gold-light: #E0AE1A;
+            --gold-pale: #F5E6A0;
+            --gold-bright: #F0C030;
+            --cream: #F5F0E8;
+            --cream-deep: #EDE5D5;
+            --white: #FFFFFF;
+            --dark: #0D1A3A;
+            --green: #1E6B3A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--navy);
+            overflow-x: hidden
+        }
+
+        /* ══ NAV ══ */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 52px;
+            height: 68px;
+            background: rgba(245, 240, 232, .97);
+            backdrop-filter: blur(18px);
+            border-bottom: 2px solid rgba(27, 46, 107, .12);
+            transition: all .3s
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 24px rgba(13, 26, 58, .12)
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue';
+            font-size: 1.9rem;
+            letter-spacing: 5px;
+            color: var(--navy);
+            text-decoration: none;
+            transition: letter-spacing .3s;
+            flex-shrink: 0
+        }
+
+        .nav-logo:hover {
+            letter-spacing: 6px
+        }
+
+        .nav-logo span {
+            color: var(--red-mid)
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+            margin: 0 auto;
+            padding: 0 20px
+        }
+
+        .nav-links>li {
+            position: relative
+        }
+
+        .nav-links>li>a,
+        .nav-dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            text-decoration: none;
+            padding: 8px 13px;
+            border-radius: 6px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: 'DM Sans';
+            position: relative;
+            white-space: nowrap;
+            transition: color .25s, background .25s
+        }
+
+        .nav-links>li>a:hover,
+        .nav-dropdown-toggle:hover {
+            color: var(--navy);
+            background: rgba(27, 46, 107, .07)
+        }
+
+        .nav-links>li>a::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 13px;
+            right: 13px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--navy), var(--gold));
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform .3s
+        }
+
+        .nav-links>li>a:hover::after {
+            transform: scaleX(1)
+        }
+
+        .nav-links>li>a.active {
+            color: var(--navy)
+        }
+
+        .nav-links>li>a.active::after {
+            transform: scaleX(1)
+        }
+
+        .nav-dropdown-toggle .chevron {
+            font-size: .6rem;
+            transition: transform .3s;
+            color: var(--red);
+            margin-top: 1px
+        }
+
+        .nav-links>li.open .chevron {
+            transform: rotate(180deg)
+        }
+
+        .nav-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border: 1px solid rgba(27, 46, 107, .12);
+            border-radius: 16px;
+            padding: 8px;
+            min-width: 220px;
+            box-shadow: 0 20px 50px rgba(13, 26, 58, .12), 0 4px 12px rgba(13, 26, 58, .06);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateX(-50%) translateY(-8px);
+            transition: opacity .25s ease, transform .25s ease, visibility .25s;
+            z-index: 300
+        }
+
+        .nav-dropdown::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-left: 1px solid rgba(27, 46, 107, .12);
+            border-top: 1px solid rgba(27, 46, 107, .12);
+            transform: translateX(-50%) rotate(45deg)
+        }
+
+        .nav-links>li.open .nav-dropdown {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0)
+        }
+
+        .nav-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: .82rem;
+            font-weight: 500;
+            color: var(--navy-light);
+            transition: all .2s;
+            white-space: nowrap
+        }
+
+        .nav-dropdown a:hover {
+            background: linear-gradient(90deg, rgba(27, 46, 107, .07), rgba(27, 46, 107, .02));
+            color: var(--navy);
+            transform: translateX(3px)
+        }
+
+        .nav-dropdown a .dd-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            transition: transform .2s
+        }
+
+        .nav-dropdown a:hover .dd-icon {
+            transform: scale(1.1)
+        }
+
+        .nav-dropdown a .dd-icon.oil-icon {
+            background: linear-gradient(135deg, #EDE5D5, rgba(200, 150, 12, .25))
+        }
+
+        .nav-dropdown a .dd-icon.butter-icon {
+            background: linear-gradient(135deg, #E8D5D5, rgba(139, 26, 26, .15))
+        }
+
+        .nav-dropdown a .dd-icon.peanut-icon {
+            background: linear-gradient(135deg, #DDE5F5, rgba(27, 46, 107, .12))
+        }
+
+        .nav-dropdown a .dd-name {
+            font-weight: 600;
+            color: var(--navy);
+            font-size: .82rem;
+            line-height: 1.2
+        }
+
+        .nav-dropdown a .dd-sub {
+            font-size: .68rem;
+            color: var(--navy-light);
+            margin-top: 1px
+        }
+
+        .dd-divider {
+            height: 1px;
+            background: rgba(27, 46, 107, .1);
+            margin: 6px 8px
+        }
+
+        .nav-dropdown a.dd-vedic {
+            background: linear-gradient(90deg, rgba(200, 150, 12, .1), rgba(27, 46, 107, .05));
+            border: 1px solid rgba(200, 150, 12, .2)
+        }
+
+        .nav-dropdown a.dd-vedic .dd-name {
+            color: var(--red)
+        }
+
+        .nav-dropdown a.dd-vedic:hover {
+            background: linear-gradient(90deg, rgba(200, 150, 12, .2), rgba(27, 46, 107, .1));
+            transform: translateX(3px)
+        }
+
+        .nav-cta-wrap {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-family: 'DM Sans';
+            font-size: .74rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all .3s;
+            white-space: nowrap;
+            box-shadow: 0 4px 14px rgba(27, 46, 107, .3)
+        }
+
+        .nav-cta:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(27, 46, 107, .4)
+        }
+
+        .nav-city-badge {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            background: rgba(27, 46, 107, .08);
+            border: 1px solid rgba(27, 46, 107, .2);
+            border-radius: 100px;
+            padding: 5px 12px;
+            font-size: .65rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            cursor: pointer;
+            transition: all .3s;
+            white-space: nowrap
+        }
+
+        .nav-city-badge.vis {
+            display: flex
+        }
+
+        .nav-city-badge:hover {
+            background: rgba(27, 46, 107, .15);
+            color: var(--navy)
+        }
+
+        .nav-city-badge .ncb-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--red-mid);
+            border-radius: 50%
+        }
+
+        .nav-mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px
+        }
+
+        .nav-mobile-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--navy);
+            border-radius: 2px;
+            transition: all .3s
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 68px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(245, 240, 232, .98);
+            backdrop-filter: blur(20px);
+            z-index: 150;
+            overflow-y: auto;
+            padding: 24px 24px 40px;
+            flex-direction: column;
+            gap: 6px;
+            transform: translateX(-100%);
+            transition: transform .35s cubic-bezier(.4, 0, .2, 1)
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0)
+        }
+
+        .mm-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: .9rem;
+            font-weight: 600;
+            color: var(--navy-light);
+            transition: all .2s
+        }
+
+        .mm-link:hover {
+            background: rgba(27, 46, 107, .07);
+            color: var(--navy)
+        }
+
+        .mm-link .mm-icon {
+            font-size: 1.3rem;
+            width: 32px;
+            text-align: center
+        }
+
+        .mm-section-label {
+            font-size: .6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red);
+            padding: 16px 16px 6px;
+            font-weight: 600
+        }
+
+        .mm-divider {
+            height: 1px;
+            background: rgba(27, 46, 107, .12);
+            margin: 8px 0
+        }
+
+        .mm-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: .82rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all .3s;
+            box-shadow: 0 6px 18px rgba(27, 46, 107, .3)
+        }
+
+        .mm-cta:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            color: white
+        }
+
+        /* ══ PERSONA BANNER ══ */
+        .persona-banner {
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 50%, var(--navy-mid) 100%);
+            padding: 14px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            position: sticky;
+            top: 68px;
+            z-index: 100;
+            border-bottom: 2px solid rgba(200, 150, 12, .28);
+            transform: translateY(-100%);
+            transition: transform .4s cubic-bezier(.34, 1.2, .64, 1)
+        }
+
+        .persona-banner.vis {
+            transform: translateY(0)
+        }
+
+        .pb-left {
+            display: flex;
+            align-items: center;
+            gap: 14px
+        }
+
+        .pb-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0
+        }
+
+        .pb-text {
+            font-size: .72rem;
+            color: rgba(255, 255, 255, .55)
+        }
+
+        .pb-text strong {
+            display: block;
+            font-family: 'Playfair Display';
+            font-size: .9rem;
+            font-weight: 700;
+            color: white
+        }
+
+        .pb-tags {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap
+        }
+
+        .pb-tag {
+            font-size: .56rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(200, 150, 12, .15);
+            border: 1px solid rgba(200, 150, 12, .3);
+            border-radius: 100px;
+            padding: 4px 10px;
+            color: var(--gold-light)
+        }
+
+        .pb-change {
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-radius: 8px;
+            padding: 7px 16px;
+            font-family: 'DM Sans';
+            font-size: .65rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .7);
+            cursor: pointer;
+            transition: all .3s;
+            white-space: nowrap
+        }
+
+        .pb-change:hover {
+            background: var(--gold);
+            color: var(--navy-deep);
+            border-color: var(--gold)
+        }
+
+        /* ══ HERO BANNER ══ */
+        .page-hero {
+            margin-top: 68px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #F5F0E8 0%, #EDE0C8 55%, #E0D0A0 100%);
+            padding: 56px 80px 48px
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 80% 30%, rgba(139, 26, 26, .08), transparent 55%), radial-gradient(ellipse at 10% 80%, rgba(27, 46, 107, .1), transparent 50%);
+            pointer-events: none
+        }
+
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(27, 46, 107, .1), transparent 70%)
+        }
+
+        .hero-blob:nth-child(1) {
+            width: 600px;
+            height: 600px;
+            top: -160px;
+            right: -80px;
+            background: radial-gradient(circle, rgba(139, 26, 26, .07), transparent 70%)
+        }
+
+        .hero-blob:nth-child(2) {
+            width: 320px;
+            height: 320px;
+            bottom: -80px;
+            left: -40px;
+            animation: pulse 6s ease-in-out 3s infinite
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: .6
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 1
+            }
+        }
+
+        .hero-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(27, 46, 107, .04) 1px, transparent 1px), linear-gradient(90deg, rgba(27, 46, 107, .04) 1px, transparent 1px);
+            background-size: 52px 52px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 72%)
+        }
+
+        .hero-floats {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none
+        }
+
+        .hfl {
+            position: absolute;
+            opacity: .06;
+            filter: blur(1px);
+            animation: hfdrift 22s ease-in-out infinite;
+            font-size: 5rem
+        }
+
+        .hfl:nth-child(1) {
+            top: 8%;
+            right: 5%;
+            font-size: 7rem;
+            animation-delay: 0s
+        }
+
+        .hfl:nth-child(2) {
+            top: 55%;
+            right: 22%;
+            font-size: 3.5rem;
+            animation-delay: 6s
+        }
+
+        .hfl:nth-child(3) {
+            bottom: 10%;
+            right: 38%;
+            font-size: 4rem;
+            animation-delay: 11s
+        }
+
+        .hfl:nth-child(4) {
+            top: 20%;
+            right: 42%;
+            animation-delay: 16s
+        }
+
+        @keyframes hfdrift {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg)
+            }
+
+            33% {
+                transform: translateY(-18px) rotate(7deg)
+            }
+
+            66% {
+                transform: translateY(10px) rotate(-4deg)
+            }
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px
+        }
+
+        .hero-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            margin-bottom: 18px;
+            animation: fadeUp .7s ease both
+        }
+
+        .hero-breadcrumb a {
+            color: var(--navy-light);
+            text-decoration: none;
+            transition: color .25s
+        }
+
+        .hero-breadcrumb a:hover {
+            color: var(--red-mid)
+        }
+
+        .hero-breadcrumb span {
+            color: rgba(27, 46, 107, .25)
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--navy-mid);
+            font-weight: 600;
+            border: 2px solid rgba(27, 46, 107, .35);
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 22px;
+            animation: fadeUp .8s .1s ease both;
+            background: rgba(255, 255, 255, .4)
+        }
+
+        .hero-tag::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--red-mid);
+            border-radius: 50%;
+            animation: blink 2s infinite
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .3
+            }
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display';
+            font-size: clamp(2.8rem, 5.5vw, 5rem);
+            font-weight: 900;
+            line-height: 1.0;
+            color: var(--navy);
+            animation: fadeUp .8s .2s ease both
+        }
+
+        .hero-title em {
+            color: var(--red-mid);
+            font-style: italic;
+            display: block
+        }
+
+        .hero-sub {
+            font-size: .9rem;
+            color: var(--navy-light);
+            margin: 18px 0 0;
+            line-height: 1.8;
+            max-width: 440px;
+            animation: fadeUp .8s .35s ease both;
+            opacity: .85
+        }
+
+        .hero-pills {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 22px;
+            animation: fadeUp .8s .45s ease both
+        }
+
+        .h-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, .6);
+            border: 1px solid rgba(27, 46, 107, .2);
+            border-radius: 100px;
+            padding: 6px 14px;
+            font-size: .68rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--navy-light)
+        }
+
+        .h-pill strong {
+            font-family: 'Bebas Neue';
+            font-size: .9rem;
+            color: var(--navy)
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 36px;
+            margin-top: 36px;
+            animation: fadeUp .8s .55s ease both;
+            padding-top: 28px;
+            border-top: 1px solid rgba(27, 46, 107, .15)
+        }
+
+        .hstat-num {
+            font-family: 'Bebas Neue';
+            font-size: 2.4rem;
+            color: var(--navy);
+            line-height: 1
+        }
+
+        .hstat-num span {
+            color: var(--red-mid)
+        }
+
+        .hstat-label {
+            font-size: .65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            margin-top: 4px
+        }
+
+        .hero-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeUp .8s .3s ease both
+        }
+
+        .hero-product-orbit {
+            position: relative;
+            width: 420px;
+            height: 420px
+        }
+
+        .orbit-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px dashed rgba(27, 46, 107, .2);
+            animation: orbit 20s linear infinite
+        }
+
+        @keyframes orbit {
+            from {
+                transform: rotate(0deg)
+            }
+
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .orbit-dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--red-mid);
+            border-radius: 50%;
+            top: 50%;
+            left: 0;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 12px rgba(139, 26, 26, .5)
+        }
+
+        .center-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 24px 70px rgba(27, 46, 107, .5), 0 0 0 8px rgba(200, 150, 12, .18), 0 0 0 16px rgba(200, 150, 12, .08);
+            animation: float 4s ease-in-out infinite
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) translateY(0)
+            }
+
+            50% {
+                transform: translate(-50%, -50%) translateY(-12px)
+            }
+        }
+
+        .cc-top {
+            font-size: .58rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .8)
+        }
+
+        .cc-emoji {
+            font-size: 3.5rem;
+            margin: 4px 0
+        }
+
+        .cc-bot {
+            font-family: 'Bebas Neue';
+            font-size: 1rem;
+            letter-spacing: 3px;
+            color: white
+        }
+
+        .orbit-card {
+            position: absolute;
+            background: white;
+            border-radius: 14px;
+            padding: 12px 16px;
+            box-shadow: 0 12px 36px rgba(13, 26, 58, .12), 0 0 0 1px rgba(27, 46, 107, .07);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: transform .3s;
+            white-space: nowrap
+        }
+
+        .orbit-card:hover {
+            transform: scale(1.06) translateY(-3px);
+            box-shadow: 0 20px 50px rgba(13, 26, 58, .18)
+        }
+
+        .orbit-card.c1 {
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%)
+        }
+
+        .orbit-card.c1:hover {
+            transform: translateX(-50%) scale(1.06)
+        }
+
+        .orbit-card.c2 {
+            bottom: 50px;
+            left: 10px
+        }
+
+        .orbit-card.c3 {
+            bottom: 50px;
+            right: 10px
+        }
+
+        .orbit-card.c4 {
+            top: 50%;
+            left: 2px;
+            transform: translateY(-50%)
+        }
+
+        .orbit-card.c4:hover {
+            transform: translateY(-50%) scale(1.06)
+        }
+
+        .oc-emoji {
+            font-size: 1.8rem
+        }
+
+        .oc-name {
+            font-family: 'Playfair Display';
+            font-weight: 700;
+            font-size: .85rem;
+            color: var(--navy)
+        }
+
+        .oc-sub {
+            font-size: .62rem;
+            color: var(--navy-light);
+            letter-spacing: 1px;
+            text-transform: uppercase
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(28px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* ══ MARQUEE ══ */
+        .marquee-band {
+            background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+            padding: 14px 0;
+            overflow: hidden;
+            display: flex;
+            border-top: 3px solid var(--red);
+            border-bottom: 3px solid var(--gold)
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 56px;
+            animation: marquee 25s linear infinite;
+            white-space: nowrap
+        }
+
+        .marquee-item {
+            font-family: 'Bebas Neue';
+            font-size: 1.05rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 18px
+        }
+
+        .marquee-item span {
+            color: rgba(255, 255, 255, .2)
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0)
+            }
+
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        /* ══ TOOLBAR ══ */
+        .toolbar {
+            position: sticky;
+            top: 68px;
+            z-index: 150;
+            background: rgba(245, 240, 232, .97);
+            backdrop-filter: blur(24px);
+            border-bottom: 2px solid rgba(27, 46, 107, .12);
+            padding: 0 52px;
+            transition: box-shadow .3s
+        }
+
+        .toolbar.shadow {
+            box-shadow: 0 8px 40px rgba(13, 26, 58, .1)
+        }
+
+        .tb-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            height: 62px;
+            overflow-x: auto
+        }
+
+        .tb-row::-webkit-scrollbar {
+            display: none
+        }
+
+        .srch-wrap {
+            position: relative;
+            flex-shrink: 0
+        }
+
+        .srch-ico {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: .82rem;
+            opacity: .35;
+            pointer-events: none
+        }
+
+        .srch {
+            background: rgba(27, 46, 107, .05);
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 100px;
+            padding: 9px 36px 9px 36px;
+            font-family: 'DM Sans';
+            font-size: .8rem;
+            color: var(--navy);
+            width: 220px;
+            outline: none;
+            transition: all .35s
+        }
+
+        .srch::placeholder {
+            color: rgba(27, 46, 107, .3)
+        }
+
+        .srch:focus {
+            border-color: rgba(27, 46, 107, .45);
+            background: rgba(27, 46, 107, .07);
+            width: 260px
+        }
+
+        .srch-clr {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: rgba(27, 46, 107, .3);
+            font-size: .78rem;
+            cursor: pointer;
+            display: none;
+            transition: color .3s
+        }
+
+        .srch-clr.vis {
+            display: block
+        }
+
+        .srch-clr:hover {
+            color: var(--navy)
+        }
+
+        .sort-wrap {
+            position: relative;
+            flex-shrink: 0
+        }
+
+        .sort-lbl {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: .55rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--red);
+            pointer-events: none
+        }
+
+        .sort-sel {
+            background: rgba(27, 46, 107, .05);
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 8px;
+            padding: 9px 30px 9px 60px;
+            font-family: 'DM Sans';
+            font-size: .76rem;
+            color: var(--navy);
+            outline: none;
+            appearance: none;
+            cursor: pointer;
+            transition: all .3s;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238B1A1A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 11px center;
+            min-width: 190px;
+            background-color: rgba(27, 46, 107, .05)
+        }
+
+        .sort-sel:focus,
+        .sort-sel:hover {
+            border-color: rgba(27, 46, 107, .4);
+            background-color: rgba(27, 46, 107, .07)
+        }
+
+        .sort-sel option {
+            background: var(--cream);
+            color: var(--navy)
+        }
+
+        .chips {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex: 1;
+            overflow-x: auto;
+            padding: 2px 0
+        }
+
+        .chips::-webkit-scrollbar {
+            display: none
+        }
+
+        .chip {
+            white-space: nowrap;
+            padding: 7px 16px;
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 100px;
+            font-size: .64rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            cursor: pointer;
+            transition: all .28s;
+            background: transparent;
+            flex-shrink: 0;
+            font-family: 'DM Sans';
+            font-weight: 600
+        }
+
+        .chip:hover {
+            border-color: var(--navy);
+            color: var(--navy);
+            background: rgba(27, 46, 107, .06)
+        }
+
+        .chip.on {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: var(--gold-light);
+            font-weight: 700
+        }
+
+        .tb-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+            margin-left: auto;
+            padding-left: 12px;
+            border-left: 1.5px solid rgba(27, 46, 107, .12)
+        }
+
+        .res-info {
+            font-size: .68rem;
+            color: rgba(27, 46, 107, .4);
+            white-space: nowrap
+        }
+
+        .res-info strong {
+            color: var(--red);
+            font-weight: 700
+        }
+
+        .view-btns {
+            display: flex;
+            gap: 3px
+        }
+
+        .vb {
+            width: 31px;
+            height: 31px;
+            border-radius: 7px;
+            background: transparent;
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all .3s;
+            font-size: .78rem;
+            color: rgba(27, 46, 107, .35)
+        }
+
+        .vb:hover {
+            border-color: rgba(27, 46, 107, .4);
+            color: var(--navy-light)
+        }
+
+        .vb.on {
+            background: rgba(27, 46, 107, .1);
+            border-color: rgba(27, 46, 107, .4);
+            color: var(--navy)
+        }
+
+        /* ══ ACTIVE FILTERS ══ */
+        .af-bar {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 52px;
+            background: rgba(27, 46, 107, .04);
+            border-bottom: 1px solid rgba(27, 46, 107, .1);
+            flex-wrap: wrap
+        }
+
+        .af-bar.vis {
+            display: flex
+        }
+
+        .af-lbl {
+            font-size: .6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--red)
+        }
+
+        .af-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(27, 46, 107, .08);
+            border: 1px solid rgba(27, 46, 107, .2);
+            border-radius: 100px;
+            padding: 4px 12px;
+            font-size: .64rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--navy-light)
+        }
+
+        .af-tag button {
+            background: none;
+            border: none;
+            color: var(--red);
+            cursor: pointer;
+            font-size: .72rem;
+            opacity: .6;
+            transition: opacity .2s;
+            padding: 0;
+            margin-left: 2px
+        }
+
+        .af-tag button:hover {
+            opacity: 1
+        }
+
+        .af-clear {
+            background: none;
+            border: none;
+            color: rgba(139, 26, 26, .55);
+            font-size: .64rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-left: auto;
+            transition: color .3s;
+            font-family: 'DM Sans'
+        }
+
+        .af-clear:hover {
+            color: var(--red)
+        }
+
+        /* ══ SHOP LAYOUT ══ */
+        .shop-wrap {
+            display: grid;
+            grid-template-columns: 268px 1fr;
+            max-width: 1500px;
+            margin: 0 auto
+        }
+
+        /* ══ SIDEBAR ══ */
+        .sidebar {
+            position: sticky;
+            top: calc(68px + 62px);
+            height: calc(100vh - 130px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 26px 22px 40px;
+            border-right: 1.5px solid rgba(27, 46, 107, .1);
+            background: rgba(245, 240, 232, .6)
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 2px
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(27, 46, 107, .2);
+            border-radius: 2px
+        }
+
+        .sb-sec {
+            margin-bottom: 28px
+        }
+
+        .sb-hd {
+            font-size: .58rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 13px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-weight: 600
+        }
+
+        .sb-hd::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(139, 26, 26, .3), transparent)
+        }
+
+        .price-disp {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 9px
+        }
+
+        .pd-v {
+            font-family: 'Bebas Neue';
+            font-size: 1.1rem;
+            color: var(--navy);
+            line-height: 1
+        }
+
+        .pd-l {
+            font-size: .58rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            margin-top: 2px
+        }
+
+        .range-wrap {
+            position: relative;
+            height: 4px;
+            background: rgba(27, 46, 107, .1);
+            border-radius: 4px;
+            margin: 8px 0 20px
+        }
+
+        .range-fill {
+            position: absolute;
+            height: 100%;
+            background: linear-gradient(90deg, var(--navy), var(--red-mid));
+            border-radius: 4px;
+            pointer-events: none
+        }
+
+        input[type=range] {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            appearance: none;
+            background: transparent;
+            height: 20px;
+            outline: none;
+            pointer-events: none
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: var(--navy);
+            border-radius: 50%;
+            pointer-events: all;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(27, 46, 107, .3);
+            transition: transform .2s;
+            border: 2px solid var(--gold)
+        }
+
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.35)
+        }
+
+        .cklist {
+            display: flex;
+            flex-direction: column;
+            gap: 5px
+        }
+
+        .ckrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 7px 10px;
+            border-radius: 9px;
+            transition: background .25s
+        }
+
+        .ckrow:hover {
+            background: rgba(27, 46, 107, .06)
+        }
+
+        .ckrow input {
+            display: none
+        }
+
+        .ckbox {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            border: 1.5px solid rgba(27, 46, 107, .2);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .25s;
+            font-size: .62rem
+        }
+
+        .ckrow input:checked~.ckbox {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: var(--gold-light)
+        }
+
+        .cklabel {
+            font-size: .78rem;
+            color: var(--navy-light);
+            transition: color .2s
+        }
+
+        .ckcount {
+            margin-left: auto;
+            font-size: .6rem;
+            color: var(--navy-light);
+            background: rgba(27, 46, 107, .08);
+            border-radius: 100px;
+            padding: 2px 7px
+        }
+
+        .ckrow input:checked~.cklabel {
+            color: var(--navy);
+            font-weight: 600
+        }
+
+        .size-g {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px
+        }
+
+        .sz {
+            padding: 8px 4px;
+            border-radius: 9px;
+            border: 1.5px solid rgba(27, 46, 107, .15);
+            background: transparent;
+            text-align: center;
+            cursor: pointer;
+            transition: all .28s
+        }
+
+        .sz:hover {
+            border-color: var(--navy);
+            background: rgba(27, 46, 107, .05)
+        }
+
+        .sz.on {
+            background: rgba(27, 46, 107, .08);
+            border-color: var(--navy)
+        }
+
+        .sz-v {
+            font-family: 'Bebas Neue';
+            font-size: .9rem;
+            color: var(--navy);
+            letter-spacing: 1px;
+            line-height: 1
+        }
+
+        .sz-t {
+            font-size: .54rem;
+            color: var(--navy-light);
+            text-transform: uppercase;
+            letter-spacing: .8px;
+            margin-top: 2px
+        }
+
+        .rlist {
+            display: flex;
+            flex-direction: column;
+            gap: 5px
+        }
+
+        .rrow {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            cursor: pointer;
+            padding: 6px 9px;
+            border-radius: 7px;
+            transition: background .25s
+        }
+
+        .rrow:hover,
+        .rrow.on {
+            background: rgba(27, 46, 107, .06)
+        }
+
+        .rstars {
+            font-size: .78rem;
+            letter-spacing: 2px;
+            color: rgba(200, 150, 12, .3);
+            transition: color .25s
+        }
+
+        .rrow.on .rstars,
+        .rrow:hover .rstars {
+            color: var(--gold)
+        }
+
+        .rbar-w {
+            flex: 1;
+            height: 2px;
+            background: rgba(27, 46, 107, .1);
+            border-radius: 2px;
+            overflow: hidden
+        }
+
+        .rbar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--navy), var(--red-mid));
+            border-radius: 2px
+        }
+
+        .rcnt {
+            font-size: .62rem;
+            color: var(--navy-light);
+            width: 22px;
+            text-align: right
+        }
+
+        .tog-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 7px 0
+        }
+
+        .tog-lbl {
+            font-size: .78rem;
+            color: var(--navy-light)
+        }
+
+        .tog-wrap {
+            position: relative;
+            width: 38px;
+            height: 21px;
+            cursor: pointer
+        }
+
+        .tog-input {
+            display: none
+        }
+
+        .tog-track {
+            position: absolute;
+            inset: 0;
+            background: rgba(27, 46, 107, .1);
+            border-radius: 100px;
+            transition: background .3s
+        }
+
+        .tog-input:checked~.tog-track {
+            background: var(--navy)
+        }
+
+        .tog-thumb {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 15px;
+            height: 15px;
+            background: white;
+            border-radius: 50%;
+            transition: transform .3s, background .3s;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .2)
+        }
+
+        .tog-input:checked~.tog-track .tog-thumb {
+            transform: translateX(17px)
+        }
+
+        .sb-reset {
+            width: 100%;
+            padding: 9px;
+            border-radius: 9px;
+            background: transparent;
+            border: 1.5px solid rgba(139, 26, 26, .15);
+            color: rgba(139, 26, 26, .5);
+            font-size: .66rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .28s;
+            margin-top: 4px;
+            font-family: 'DM Sans'
+        }
+
+        .sb-reset:hover {
+            background: rgba(139, 26, 26, .06);
+            border-color: rgba(139, 26, 26, .4);
+            color: var(--red)
+        }
+
+        /* ══ PRODUCT AREA ══ */
+        .prod-area {
+            padding: 26px 34px 80px;
+            background: linear-gradient(135deg, var(--cream-deep) 0%, #F5F0E8 100%)
+        }
+
+        #prodGrid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            transition: all .3s
+        }
+
+        #prodGrid.g4 {
+            grid-template-columns: repeat(4, 1fr)
+        }
+
+        #prodGrid.g2 {
+            grid-template-columns: repeat(2, 1fr)
+        }
+
+        #prodGrid.list {
+            grid-template-columns: 1fr
+        }
+
+        /* ══ PRODUCT CARD ══ */
+        .pcard {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform .35s, box-shadow .35s;
+            position: relative;
+            border: 1.5px solid rgba(27, 46, 107, .07)
+        }
+
+        .pcard:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 24px 60px rgba(13, 26, 58, .13), 0 0 0 2px rgba(27, 46, 107, .12)
+        }
+
+        .pcard-img {
+            position: relative;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5.5rem;
+            overflow: hidden
+        }
+
+        .bg-oil {
+            background: linear-gradient(145deg, #EDE5D5, rgba(200, 150, 12, .18))
+        }
+
+        .bg-vedic {
+            background: linear-gradient(145deg, #E0D8C8, rgba(139, 26, 26, .12))
+        }
+
+        .glow-layer {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity .4s
+        }
+
+        .glow-oil {
+            background: radial-gradient(circle at 50% 50%, rgba(200, 150, 12, .18), transparent 65%)
+        }
+
+        .glow-vedic {
+            background: radial-gradient(circle at 50% 50%, rgba(139, 26, 26, .15), transparent 65%)
+        }
+
+        .pcard:hover .glow-layer {
+            opacity: 1
+        }
+
+        .card-emoji {
+            position: relative;
+            z-index: 2;
+            transition: transform .4s cubic-bezier(.34, 1.56, .64, 1);
+            filter: drop-shadow(0 8px 18px rgba(13, 26, 58, .15))
+        }
+
+        .pcard:hover .card-emoji {
+            transform: scale(1.12) translateY(-4px) rotate(-3deg)
+        }
+
+        .pbadges {
+            position: absolute;
+            top: 11px;
+            left: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            z-index: 3
+        }
+
+        .pbadge {
+            font-size: .56rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 100px
+        }
+
+        .badge-sale {
+            background: var(--red);
+            color: #fff
+        }
+
+        .badge-new {
+            background: var(--green);
+            color: #fff
+        }
+
+        .badge-vedic {
+            background: linear-gradient(90deg, var(--navy), var(--red-mid));
+            color: #fff
+        }
+
+        .badge-oos {
+            background: rgba(27, 46, 107, .08);
+            color: rgba(27, 46, 107, .45)
+        }
+
+        .badge-bulk {
+            background: linear-gradient(90deg, var(--navy-light), var(--navy));
+            color: var(--gold-light)
+        }
+
+        .pcard-actions {
+            position: absolute;
+            top: 11px;
+            right: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 3;
+            opacity: 0;
+            transform: translateX(8px);
+            transition: all .3s
+        }
+
+        .pcard:hover .pcard-actions {
+            opacity: 1;
+            transform: translateX(0)
+        }
+
+        .pa-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(245, 240, 232, .92);
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .76rem;
+            cursor: pointer;
+            transition: all .25s;
+            color: var(--navy-light);
+            backdrop-filter: blur(4px)
+        }
+
+        .pa-btn:hover {
+            background: rgba(27, 46, 107, .1);
+            border-color: var(--navy);
+            color: var(--navy)
+        }
+
+        .pa-btn.wish-on {
+            color: var(--red);
+            border-color: rgba(139, 26, 26, .4);
+            background: rgba(139, 26, 26, .08)
+        }
+
+        .pcard-body {
+            padding: 14px 18px 20px
+        }
+
+        .pcard-cat {
+            font-size: .56rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 6px;
+            font-weight: 600
+        }
+
+        .pcard-name {
+            font-family: 'Playfair Display';
+            font-size: .95rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 4px;
+            color: var(--navy)
+        }
+
+        .pcard-sub {
+            font-size: .72rem;
+            color: var(--navy-light);
+            font-family: 'DM Sans';
+            font-weight: 400
+        }
+
+        .pcard-desc {
+            font-size: .72rem;
+            color: var(--navy-light);
+            line-height: 1.55;
+            margin-bottom: 10px;
+            opacity: .7
+        }
+
+        .pcard-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 12px
+        }
+
+        .pcs {
+            font-size: .7rem;
+            color: var(--gold);
+            letter-spacing: 2px
+        }
+
+        .prc {
+            font-size: .62rem;
+            color: var(--navy-light)
+        }
+
+        .pcard-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px
+        }
+
+        .pcard-price {
+            display: flex;
+            align-items: baseline;
+            gap: 6px
+        }
+
+        .pp-now {
+            font-family: 'Bebas Neue';
+            font-size: 1.6rem;
+            color: var(--navy);
+            letter-spacing: 1px;
+            line-height: 1
+        }
+
+        .pp-orig {
+            font-size: .78rem;
+            color: #bbb;
+            text-decoration: line-through
+        }
+
+        .pp-disc {
+            font-size: .56rem;
+            background: rgba(139, 26, 26, .1);
+            color: var(--red);
+            border-radius: 100px;
+            padding: 2px 8px;
+            letter-spacing: .8px;
+            white-space: nowrap
+        }
+
+        .atc {
+            height: 36px;
+            padding: 0 16px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'DM Sans';
+            font-size: .66rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+            white-space: nowrap;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(27, 46, 107, .3)
+        }
+
+        .atc:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(27, 46, 107, .4)
+        }
+
+        .atc.added {
+            background: linear-gradient(135deg, #1E6B3A, #145528)
+        }
+
+        .atc:disabled {
+            opacity: .38;
+            cursor: not-allowed
+        }
+
+        .atc:disabled:hover {
+            transform: none;
+            box-shadow: none
+        }
+
+        #prodGrid.list .pcard {
+            display: grid;
+            grid-template-columns: 170px 1fr;
+            gap: 0
+        }
+
+        #prodGrid.list .pcard-img {
+            aspect-ratio: auto;
+            height: 170px;
+            border-radius: 0
+        }
+
+        #prodGrid.list .pcard-body {
+            padding: 18px 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center
+        }
+
+        .empty {
+            display: none;
+            text-align: center;
+            padding: 80px 40px;
+            grid-column: 1/-1
+        }
+
+        .empty.vis {
+            display: block
+        }
+
+        .em-icon {
+            font-size: 4rem;
+            opacity: .2;
+            margin-bottom: 14px;
+            display: block
+        }
+
+        .em-title {
+            font-family: 'Playfair Display';
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: rgba(27, 46, 107, .28);
+            margin-bottom: 9px
+        }
+
+        .em-sub {
+            font-size: .82rem;
+            color: var(--navy-light);
+            margin-bottom: 22px;
+            opacity: .5
+        }
+
+        .em-reset {
+            display: inline-block;
+            padding: 10px 24px;
+            background: rgba(27, 46, 107, .08);
+            border: 1.5px solid rgba(27, 46, 107, .25);
+            border-radius: 8px;
+            color: var(--navy-light);
+            font-size: .7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s
+        }
+
+        .em-reset:hover {
+            background: var(--navy);
+            color: var(--gold-light);
+            border-color: var(--navy)
+        }
+
+        /* ══ PAGINATION ══ */
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            margin-top: 44px;
+            padding-top: 28px;
+            border-top: 1.5px solid rgba(27, 46, 107, .12);
+            flex-wrap: wrap
+        }
+
+        .pg-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .15);
+            color: var(--navy-light);
+            font-size: .8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s;
+            font-family: 'DM Sans';
+            font-weight: 600
+        }
+
+        .pg-btn:hover:not(:disabled) {
+            border-color: var(--navy);
+            color: var(--navy);
+            background: rgba(27, 46, 107, .06)
+        }
+
+        .pg-btn.on {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: var(--gold-light);
+            font-weight: 700
+        }
+
+        .pg-btn:disabled {
+            opacity: .25;
+            cursor: not-allowed
+        }
+
+        .pg-ellipsis {
+            color: var(--navy-light);
+            font-size: .9rem;
+            padding: 0 3px;
+            opacity: .5
+        }
+
+        .per-page {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-left: 16px
+        }
+
+        .pp-lbl {
+            font-size: .62rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy-light)
+        }
+
+        .pp-sel {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 7px;
+            padding: 7px 10px;
+            font-family: 'DM Sans';
+            font-size: .72rem;
+            color: var(--navy);
+            outline: none;
+            cursor: pointer;
+            transition: all .3s
+        }
+
+        .pp-sel:hover,
+        .pp-sel:focus {
+            border-color: var(--navy);
+            background: rgba(27, 46, 107, .04)
+        }
+
+        .page-info {
+            font-size: .68rem;
+            color: var(--navy-light);
+            white-space: nowrap;
+            opacity: .7
+        }
+
+        /* ══ CART DRAWER ══ */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(13, 26, 58, .3);
+            z-index: 700;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+            backdrop-filter: blur(4px)
+        }
+
+        .cart-overlay.vis {
+            opacity: 1;
+            pointer-events: all
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 395px;
+            height: 100vh;
+            background: var(--cream);
+            border-left: 1.5px solid rgba(27, 46, 107, .15);
+            z-index: 800;
+            transition: right .4s cubic-bezier(.34, 1.1, .64, 1);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column
+        }
+
+        .cart-drawer.vis {
+            right: 0
+        }
+
+        .cart-head {
+            padding: 22px 22px 18px;
+            border-bottom: 1.5px solid rgba(27, 46, 107, .12);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            background: var(--cream);
+            z-index: 2
+        }
+
+        .cart-head h3 {
+            font-family: 'Playfair Display';
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy)
+        }
+
+        .cart-head h3 span {
+            font-size: .78rem;
+            color: var(--red-mid);
+            font-family: 'DM Sans';
+            font-weight: 600;
+            margin-left: 8px
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            color: rgba(27, 46, 107, .4);
+            font-size: 1.35rem;
+            cursor: pointer;
+            transition: color .3s
+        }
+
+        .cart-close:hover {
+            color: var(--navy)
+        }
+
+        .cart-items {
+            flex: 1;
+            padding: 14px
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--navy-light)
+        }
+
+        .ce-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            display: block;
+            opacity: .3
+        }
+
+        .cart-empty p {
+            font-size: .82rem
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(27, 46, 107, .1)
+        }
+
+        .ci-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 11px;
+            background: rgba(27, 46, 107, .08);
+            border: 1px solid rgba(27, 46, 107, .15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            flex-shrink: 0
+        }
+
+        .ci-info {
+            flex: 1;
+            min-width: 0
+        }
+
+        .ci-name {
+            font-size: .78rem;
+            font-weight: 600;
+            color: var(--navy);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 3px
+        }
+
+        .ci-price {
+            font-family: 'Bebas Neue';
+            font-size: 1.05rem;
+            color: var(--navy-light);
+            letter-spacing: 1px
+        }
+
+        .ci-qty {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 5px
+        }
+
+        .ci-qty button {
+            width: 22px;
+            height: 22px;
+            border-radius: 5px;
+            background: rgba(27, 46, 107, .08);
+            border: 1px solid rgba(27, 46, 107, .15);
+            color: var(--navy);
+            font-size: .82rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s
+        }
+
+        .ci-qty button:hover {
+            background: rgba(27, 46, 107, .18);
+            border-color: var(--navy)
+        }
+
+        .ci-qty span {
+            font-size: .8rem;
+            color: var(--navy);
+            width: 18px;
+            text-align: center;
+            font-weight: 600
+        }
+
+        .ci-del {
+            background: none;
+            border: none;
+            color: rgba(139, 26, 26, .4);
+            font-size: .82rem;
+            cursor: pointer;
+            transition: color .2s;
+            padding: 3px
+        }
+
+        .ci-del:hover {
+            color: var(--red)
+        }
+
+        .cart-foot {
+            padding: 18px 22px;
+            border-top: 1.5px solid rgba(27, 46, 107, .12);
+            background: var(--cream)
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 14px
+        }
+
+        .ct-label {
+            font-size: .76rem;
+            color: var(--navy-light);
+            letter-spacing: 1px;
+            text-transform: uppercase
+        }
+
+        .ct-val {
+            font-family: 'Bebas Neue';
+            font-size: 1.7rem;
+            color: var(--navy);
+            letter-spacing: 2px
+        }
+
+        .cart-checkout {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 9px;
+            font-family: 'DM Sans';
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+            box-shadow: 0 6px 18px rgba(27, 46, 107, .3)
+        }
+
+        .cart-checkout:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(27, 46, 107, .4)
+        }
+
+        /* ══ QUICK VIEW ══ */
+        .qv-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(13, 26, 58, .45);
+            z-index: 900;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+            backdrop-filter: blur(8px)
+        }
+
+        .qv-overlay.vis {
+            opacity: 1;
+            pointer-events: all
+        }
+
+        .qv-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -42%);
+            width: min(660px, 90vw);
+            background: var(--cream);
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 22px;
+            z-index: 950;
+            transition: transform .4s cubic-bezier(.34, 1.2, .64, 1), opacity .3s;
+            opacity: 0;
+            padding: 32px;
+            overflow-y: auto;
+            max-height: 88vh;
+            box-shadow: 0 40px 80px rgba(13, 26, 58, .2)
+        }
+
+        .qv-overlay.vis .qv-modal {
+            transform: translate(-50%, -50%);
+            opacity: 1
+        }
+
+        .qv-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: rgba(27, 46, 107, .08);
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: .95rem;
+            color: var(--navy-light);
+            transition: all .3s
+        }
+
+        .qv-close:hover {
+            background: rgba(27, 46, 107, .12);
+            border-color: var(--navy);
+            color: var(--navy)
+        }
+
+        .qv-grid {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 26px;
+            align-items: start
+        }
+
+        .qv-img {
+            height: 220px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7.5rem;
+            background: linear-gradient(135deg, #EDE5D5, rgba(200, 150, 12, .15));
+            position: relative;
+            overflow: hidden
+        }
+
+        .qv-img::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 40% 30%, rgba(27, 46, 107, .1), transparent 65%)
+        }
+
+        .qv-tag {
+            font-size: .6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 9px;
+            font-weight: 600
+        }
+
+        .qv-name {
+            font-family: 'Playfair Display';
+            font-size: 1.45rem;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 9px;
+            color: var(--navy)
+        }
+
+        .qv-rat {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 12px
+        }
+
+        .qv-stars {
+            color: var(--gold);
+            font-size: .82rem;
+            letter-spacing: 2px
+        }
+
+        .qv-rc {
+            font-size: .7rem;
+            color: var(--navy-light)
+        }
+
+        .qv-pr {
+            display: flex;
+            align-items: baseline;
+            gap: 9px;
+            margin-bottom: 14px
+        }
+
+        .qv-price {
+            font-family: 'Bebas Neue';
+            font-size: 2.1rem;
+            color: var(--navy);
+            letter-spacing: 2px
+        }
+
+        .qv-orig {
+            font-size: .95rem;
+            color: #bbb;
+            text-decoration: line-through
+        }
+
+        .qv-disc {
+            font-size: .7rem;
+            background: rgba(139, 26, 26, .1);
+            color: var(--red);
+            border-radius: 100px;
+            padding: 3px 10px;
+            letter-spacing: 1px
+        }
+
+        .qv-desc {
+            font-size: .8rem;
+            color: var(--navy-light);
+            line-height: 1.75;
+            margin-bottom: 16px;
+            opacity: .75
+        }
+
+        .qv-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7px;
+            margin-bottom: 18px
+        }
+
+        .qvs {
+            background: rgba(27, 46, 107, .06);
+            border: 1px solid rgba(27, 46, 107, .12);
+            border-radius: 9px;
+            padding: 11px;
+            text-align: center
+        }
+
+        .qvs-v {
+            font-family: 'Bebas Neue';
+            font-size: 1.05rem;
+            color: var(--navy);
+            letter-spacing: 1px;
+            line-height: 1
+        }
+
+        .qvs-l {
+            font-size: .56rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            margin-top: 3px
+        }
+
+        .qv-actions {
+            display: flex;
+            gap: 9px
+        }
+
+        .qv-add {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 9px;
+            font-family: 'DM Sans';
+            font-size: .76rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+            box-shadow: 0 6px 16px rgba(27, 46, 107, .3)
+        }
+
+        .qv-add:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-2px)
+        }
+
+        .qv-add:disabled {
+            opacity: .4;
+            cursor: not-allowed
+        }
+
+        .qv-wish {
+            width: 44px;
+            height: 44px;
+            border-radius: 9px;
+            background: rgba(27, 46, 107, .06);
+            border: 1.5px solid rgba(27, 46, 107, .16);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all .3s
+        }
+
+        .qv-wish:hover {
+            background: rgba(139, 26, 26, .08);
+            border-color: rgba(139, 26, 26, .3)
+        }
+
+        .qv-wish.on {
+            background: rgba(139, 26, 26, .1);
+            border-color: rgba(139, 26, 26, .4)
+        }
+
+        /* ══ TOAST ══ */
+        .toast {
+            position: fixed;
+            bottom: 26px;
+            left: 50%;
+            transform: translateX(-50%) translateY(16px);
+            background: var(--navy);
+            border: 1.5px solid rgba(200, 150, 12, .3);
+            border-radius: 11px;
+            padding: 11px 20px;
+            font-size: .76rem;
+            color: var(--gold-light);
+            z-index: 9000;
+            opacity: 0;
+            transition: all .38s;
+            pointer-events: none;
+            white-space: nowrap;
+            box-shadow: 0 20px 50px rgba(13, 26, 58, .25)
+        }
+
+        .toast.vis {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0)
+        }
+
+        /* ══ FLOATING CART ══ */
+        .floating-cart {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 400;
+            box-shadow: 0 8px 28px rgba(27, 46, 107, .4);
+            transition: all .3s
+        }
+
+        .floating-cart:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: scale(1.1)
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 20px;
+            height: 20px;
+            background: var(--gold);
+            color: var(--navy-deep);
+            border-radius: 50%;
+            font-size: .68rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+            border: 2px solid white
+        }
+
+        /* ══ COMPARE BAR ══ */
+        .cmp-bar {
+            position: fixed;
+            bottom: -90px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 400;
+            background: rgba(245, 240, 232, .98);
+            border: 1.5px solid rgba(27, 46, 107, .22);
+            border-radius: 16px;
+            padding: 14px 22px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            backdrop-filter: blur(20px);
+            transition: bottom .4s cubic-bezier(.34, 1.56, .64, 1);
+            white-space: nowrap;
+            box-shadow: 0 20px 60px rgba(13, 26, 58, .15)
+        }
+
+        .cmp-bar.vis {
+            bottom: 26px
+        }
+
+        .cmp-slots {
+            display: flex;
+            gap: 9px
+        }
+
+        .cmp-slot {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            border: 1.5px dashed rgba(27, 46, 107, .28);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            background: rgba(27, 46, 107, .03);
+            position: relative;
+            transition: all .3s
+        }
+
+        .cmp-slot.filled {
+            border-style: solid;
+            border-color: rgba(27, 46, 107, .45);
+            background: rgba(27, 46, 107, .08)
+        }
+
+        .cmp-rem {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(139, 26, 26, .8);
+            color: #fff;
+            font-size: .55rem;
+            border: none;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center
+        }
+
+        .cmp-slot.filled .cmp-rem {
+            display: flex
+        }
+
+        .cmp-info {
+            font-size: .7rem;
+            color: var(--navy-light);
+            letter-spacing: 1px
+        }
+
+        .cmp-info strong {
+            display: block;
+            font-family: 'Playfair Display';
+            font-size: .88rem;
+            color: var(--navy);
+            font-weight: 700;
+            margin-bottom: 2px
+        }
+
+        .cmp-go {
+            background: var(--navy);
+            color: var(--gold-light);
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-family: 'DM Sans';
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s
+        }
+
+        .cmp-go:hover {
+            background: var(--red-mid);
+            color: white;
+            transform: translateY(-2px)
+        }
+
+        .cmp-x {
+            background: none;
+            border: none;
+            color: rgba(27, 46, 107, .3);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0 3px;
+            transition: color .3s
+        }
+
+        .cmp-x:hover {
+            color: var(--navy)
+        }
+
+        /* ══ FOOTER ══ */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 76px 60px 36px;
+            position: relative
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--red), var(--gold), var(--navy))
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 56px;
+            margin-bottom: 56px
+        }
+
+        .footer-brand .logo {
+            font-family: 'Bebas Neue';
+            font-size: 1.9rem;
+            letter-spacing: 4px;
+            color: white;
+            margin-bottom: 14px
+        }
+
+        .footer-brand .logo span {
+            color: var(--red-mid)
+        }
+
+        .footer-brand p {
+            font-size: .84rem;
+            color: rgba(255, 255, 255, .45);
+            line-height: 1.75;
+            max-width: 275px;
+            margin-bottom: 24px
+        }
+
+        .stores {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+
+        .store-btn {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 7px;
+            padding: 7px 14px;
+            font-size: .75rem;
+            letter-spacing: .8px;
+            color: rgba(255, 255, 255, .75);
+            text-decoration: none;
+            transition: all .3s
+        }
+
+        .store-btn:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--red));
+            color: white;
+            border-color: var(--navy-mid)
+        }
+
+        .footer-col h4 {
+            font-size: .62rem;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 18px
+        }
+
+        .footer-col ul {
+            list-style: none
+        }
+
+        .footer-col li {
+            margin-bottom: 9px
+        }
+
+        .footer-col a {
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .42);
+            text-decoration: none;
+            transition: color .3s
+        }
+
+        .footer-col a:hover {
+            color: var(--gold-light)
+        }
+
+        .footer-outlets li {
+            font-size: .79rem;
+            color: rgba(255, 255, 255, .42);
+            margin-bottom: 7px;
+            display: flex;
+            justify-content: space-between
+        }
+
+        .footer-outlets .city {
+            color: rgba(255, 255, 255, .75);
+            font-weight: 500
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, .07);
+            padding-top: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .footer-bottom p {
+            font-size: .75rem;
+            color: rgba(255, 255, 255, .25)
+        }
+
+        .footer-tagline {
+            font-family: 'Playfair Display';
+            font-size: .95rem;
+            font-style: italic;
+            color: var(--gold)
+        }
+
+        /* ══ SCROLL REVEAL ══ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .7s ease, transform .7s ease
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        /* ══ RESPONSIVE ══ */
+        @media(max-width:1100px) {
+            .shop-wrap {
+                grid-template-columns: 1fr
+            }
+
+            .sidebar {
+                position: static;
+                height: auto;
+                border-right: none;
+                border-bottom: 1.5px solid rgba(27, 46, 107, .12);
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+                padding: 18px 28px
+            }
+
+            .sb-sec:last-child {
+                grid-column: span 2
+            }
+        }
+
+        @media(max-width:960px) {
+            .nav-links {
+                display: none
+            }
+
+            .nav-mobile-toggle {
+                display: flex
+            }
+
+            .mobile-menu {
+                display: flex
+            }
+
+            .page-hero {
+                padding: 40px 28px 36px
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center
+            }
+
+            .hero-right {
+                display: none
+            }
+
+            .hero-sub {
+                margin: 14px auto 0
+            }
+
+            .hero-pills {
+                justify-content: center
+            }
+
+            .hero-stats {
+                justify-content: center
+            }
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 0 18px
+            }
+
+            .toolbar {
+                padding: 0 18px
+            }
+
+            .prod-area {
+                padding: 18px 18px 60px
+            }
+
+            #prodGrid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px
+            }
+
+            #prodGrid.list .pcard {
+                grid-template-columns: 1fr
+            }
+
+            #prodGrid.list .pcard-img {
+                height: 150px;
+                aspect-ratio: 2/1
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 36px
+            }
+
+            footer {
+                padding: 36px 18px 22px
+            }
+
+            .af-bar {
+                padding: 8px 18px
+            }
+
+            .qv-grid {
+                grid-template-columns: 1fr
+            }
+
+            .qv-img {
+                height: 160px
+            }
+        }
+
+        @media(max-width:480px) {
+            #prodGrid {
+                grid-template-columns: 1fr !important
+            }
+
+            .sidebar {
+                grid-template-columns: 1fr
+            }
+
+            .sb-sec:last-child {
+                grid-column: span 1
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav id="mainNav">
+        <a href="index.html" class="nav-logo">PEANUT<span>JI</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li id="ddLi">
+                <button class="nav-dropdown-toggle" onclick="toggleDropdown()" aria-expanded="false"
+                    aria-haspopup="true">
+                    Our Products
+                    <svg class="chevron" viewBox="0 0 10 6" fill="none" width="10" height="6">
+                        <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <div class="nav-dropdown" id="navDropdown" role="menu">
+                    <a href="#" class="dd-vedic" role="menuitem">
+                        <div class="dd-icon"
+                            style="background:linear-gradient(135deg,rgba(200,150,12,.18),rgba(27,46,107,.08))">✨
+                        </div>
+                        <div class="dd-text">
+                            <div class="dd-name">Vedic High Oleic Oil</div>
+                            <div class="dd-sub">India's First · 77%+ MUFA</div>
+                        </div>
+                    </a>
+                    <div class="dd-divider"></div>
+                    <a href="groundnutoil.html" role="menuitem">
+                        <div class="dd-icon oil-icon">🫙</div>
+                        <div class="dd-text">
+                            <div class="dd-name">Groundnut Oil</div>
+                            <div class="dd-sub">1L to 15Kg · Double Filtered</div>
+                        </div>
+                    </a>
+                    <a href="#" role="menuitem">
+                        <div class="dd-icon butter-icon">🧈</div>
+                        <div class="dd-text">
+                            <div class="dd-name">Peanut Butter</div>
+                            <div class="dd-sub">Classic & Choco · Creamy & Crunchy</div>
+                        </div>
+                    </a>
+                    <a href="#" role="menuitem">
+                        <div class="dd-icon peanut-icon">🥜</div>
+                        <div class="dd-text">
+                            <div class="dd-name">Peanuts</div>
+                            <div class="dd-sub">Gold · Platinum · Roasted</div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="dashboard.html">My Account</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+        </ul>
+        <div class="nav-cta-wrap">
+            <div class="nav-city-badge" id="navCityBadge" onclick="reopenCity()">
+                <div class="ncb-dot"></div><span id="navCityText">📍 Select City</span>
+            </div>
+            <button class="nav-mobile-toggle" id="mobileToggle" onclick="toggleMobile()"
+                aria-label="Menu"><span></span><span></span><span></span></button>
+            <a href="index.html#products" class="nav-cta">Shop Now →</a>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mm-section-label">Our Products</div>
+        <a href="#" class="mm-link"
+            style="background:rgba(27,46,107,.06);border:1px solid rgba(27,46,107,.12);border-radius:12px"><span
+                class="mm-icon">✨</span> Vedic High Oleic Oil</a>
+        <a href="groundnutoil.html" class="mm-link" style="color:var(--navy);font-weight:700"><span
+                class="mm-icon">🫙</span> Groundnut Oil</a>
+        <a href="#" class="mm-link"><span class="mm-icon">🧈</span> Peanut Butter</a>
+        <a href="#" class="mm-link"><span class="mm-icon">🥜</span> Peanuts</a>
+        <div class="mm-divider"></div>
+        <div class="mm-section-label">More</div>
+        <a href="blogs.html" class="mm-link"><span class="mm-icon">📖</span> Blogs</a>
+        <a href="aboutus.html" class="mm-link"><span class="mm-icon">🏭</span> About Us</a>
+        <a href="dashboard.html" class="mm-link"><span class="mm-icon">👤</span> My Account</a>
+        <a href="index.html#products" class="mm-cta" onclick="closeMobile()">🛒 Shop Now</a>
+    </div>
+
+    <!-- PERSONA BANNER -->
+
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="hero-blob"></div>
+        <div class="hero-blob"></div>
+        <div class="hero-grid-bg"></div>
+        <div class="hero-floats">
+            <span class="hfl">🫙</span>
+            <span class="hfl">✨</span>
+            <span class="hfl">🥜</span>
+            <span class="hfl">🌿</span>
+        </div>
+        <div class="hero-inner">
+            <div class="hero-left">
+                <div class="hero-breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>›</span>
+                    <a href="#">Products</a>
+                    <span>›</span>
+                    <span style="color:var(--red-mid)">Groundnut Oil</span>
+                </div>
+                <div class="hero-tag">Premium Oil Collection</div>
+                <h1 class="hero-title">Pure Groundnut<em>Oil</em></h1>
+                <p class="hero-sub">Double filtered, unrefined & preservative-free. Made from Grade A G-20 peanuts
+                    through
+                    11-stage quality sorting. Heart-healthy cooking oil straight from Gujarat.</p>
+                <div class="hero-pills">
+                    <div class="h-pill"><strong id="heroCount">8</strong>&nbsp;Varieties</div>
+                    <div class="h-pill">❤️ Zero Cholesterol</div>
+                    <div class="h-pill">🏆 FSSAI Certified</div>
+                    <div class="h-pill">🌿 No Preservatives</div>
+                </div>
+                <div class="hero-stats">
+                    <div class="hstat-item">
+                        <div class="hstat-num">77<span>%+</span></div>
+                        <div class="hstat-label">MUFA in Vedic</div>
+                    </div>
+                    <div class="hstat-item">
+                        <div class="hstat-num">11<span>×</span></div>
+                        <div class="hstat-label">QC Stages</div>
+                    </div>
+                    <div class="hstat-item">
+                        <div class="hstat-num">25<span>+</span></div>
+                        <div class="hstat-label">Export Nations</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="hero-product-orbit">
+                    <div class="orbit-ring">
+                        <div class="orbit-dot"></div>
+                    </div>
+                    <div class="center-circle">
+                        <span class="cc-top">Premium</span>
+                        <span class="cc-emoji">🫙</span>
+                        <span class="cc-bot">Peanutji Oil</span>
+                    </div>
+                    <div class="orbit-card c1"><span class="oc-emoji">✨</span>
+                        <div>
+                            <div class="oc-name">Vedic Oil</div>
+                            <div class="oc-sub">High Oleic · 750ml</div>
+                        </div>
+                    </div>
+                    <div class="orbit-card c2"><span class="oc-emoji">🧴</span>
+                        <div>
+                            <div class="oc-name">2L Bottle</div>
+                            <div class="oc-sub">Double Filtered</div>
+                        </div>
+                    </div>
+                    <div class="orbit-card c3"><span class="oc-emoji">🪣</span>
+                        <div>
+                            <div class="oc-name">5L Can</div>
+                            <div class="oc-sub">Family Size</div>
+                        </div>
+                    </div>
+                    <div class="orbit-card c4"><span class="oc-emoji">🏺</span>
+                        <div>
+                            <div class="oc-name">15Kg Tin</div>
+                            <div class="oc-sub">Commercial</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-band">
+        <div class="marquee-track">
+            <div class="marquee-item">🥜 100% Natural <span>—</span></div>
+            <div class="marquee-item">🫙 Double Filtered <span>—</span></div>
+            <div class="marquee-item">❤️ Zero Cholesterol <span>—</span></div>
+            <div class="marquee-item">🌿 Preservative Free <span>—</span></div>
+            <div class="marquee-item">🏆 FSSAI Certified <span>—</span></div>
+            <div class="marquee-item">🌍 Exported to 25+ Countries <span>—</span></div>
+            <div class="marquee-item">⚗️ No Chemicals <span>—</span></div>
+            <div class="marquee-item">✨ Premium Quality <span>—</span></div>
+            <div class="marquee-item">🥜 100% Natural <span>—</span></div>
+            <div class="marquee-item">🫙 Double Filtered <span>—</span></div>
+            <div class="marquee-item">❤️ Zero Cholesterol <span>—</span></div>
+            <div class="marquee-item">🌿 Preservative Free <span>—</span></div>
+            <div class="marquee-item">🏆 FSSAI Certified <span>—</span></div>
+            <div class="marquee-item">🌍 Exported to 25+ Countries <span>—</span></div>
+            <div class="marquee-item">⚗️ No Chemicals <span>—</span></div>
+            <div class="marquee-item">✨ Premium Quality <span>—</span></div>
+        </div>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar" id="toolbar">
+        <div class="tb-row">
+            <div class="srch-wrap">
+                <span class="srch-ico">🔍</span>
+                <input class="srch" id="searchInput" type="text" placeholder="Search oils…" oninput="onSearch(this)">
+                <button class="srch-clr" id="srchClr" onclick="clearSearch()">✕</button>
+            </div>
+            <div class="sort-wrap">
+                <span class="sort-lbl">Sort</span>
+                <select class="sort-sel" id="sortSel" onchange="applyAll()">
+                    <option value="featured">Featured</option>
+                    <option value="price-asc">Price: Low → High</option>
+                    <option value="price-desc">Price: High → Low</option>
+                    <option value="rating">Top Rated</option>
+                    <option value="discount">Biggest Discount</option>
+                    <option value="newest">Newest First</option>
+                </select>
+            </div>
+            <div class="chips">
+                <button class="chip on" data-filter="all" onclick="chipClick(this)">All Oils</button>
+                <button class="chip" data-filter="regular" onclick="chipClick(this)">Regular</button>
+                <button class="chip" data-filter="vedic" onclick="chipClick(this)">Vedic Premium</button>
+                <button class="chip" data-filter="bulk" onclick="chipClick(this)">Bulk / Commercial</button>
+                <button class="chip" data-filter="sale" onclick="chipClick(this)">On Sale</button>
+                <button class="chip" data-filter="new" onclick="chipClick(this)">New Arrivals</button>
+            </div>
+            <div class="tb-right">
+                <div class="res-info"><strong id="resCount">8</strong> products</div>
+                <div class="view-btns">
+                    <button class="vb" title="2 cols" onclick="setView(2,this)">⊞</button>
+                    <button class="vb on" title="3 cols" onclick="setView(3,this)">⊟</button>
+                    <button class="vb" title="4 cols" onclick="setView(4,this)">⊠</button>
+                    <button class="vb" title="List" onclick="setView('list',this)">☰</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ACTIVE FILTERS BAR -->
+    <div class="af-bar" id="afBar">
+        <span class="af-lbl">Active:</span>
+        <div id="afTags" style="display:flex;gap:7px;flex-wrap:wrap;align-items:center"></div>
+        <button class="af-clear" onclick="resetAll()">Clear All ✕</button>
+    </div>
+
+    <!-- SHOP LAYOUT -->
+    <div class="shop-wrap">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sb-sec">
+                <div class="sb-hd">Price Range</div>
+                <div class="price-disp">
+                    <div>
+                        <div class="pd-v" id="priceMin">₹0</div>
+                        <div class="pd-l">Min</div>
+                    </div>
+                    <div style="text-align:right">
+                        <div class="pd-v" id="priceMax">₹5,000</div>
+                        <div class="pd-l">Max</div>
+                    </div>
+                </div>
+                <div class="range-wrap">
+                    <div class="range-fill" id="rangeFill"></div>
+                    <input type="range" id="rMin" min="0" max="5000" value="0" step="50" oninput="updateRange()">
+                    <input type="range" id="rMax" min="0" max="5000" value="5000" step="50" oninput="updateRange()">
+                </div>
+            </div>
+            <div class="sb-sec">
+                <div class="sb-hd">Package Size</div>
+                <div class="size-g">
+                    <div class="sz on" data-size="all" onclick="sizeClick(this)">
+                        <div class="sz-v">All</div>
+                        <div class="sz-t">Sizes</div>
+                    </div>
+                    <div class="sz" data-size="750ml" onclick="sizeClick(this)">
+                        <div class="sz-v">750ml</div>
+                        <div class="sz-t">Bottle</div>
+                    </div>
+                    <div class="sz" data-size="1L" onclick="sizeClick(this)">
+                        <div class="sz-v">1L</div>
+                        <div class="sz-t">Btl/Pouch</div>
+                    </div>
+                    <div class="sz" data-size="2L" onclick="sizeClick(this)">
+                        <div class="sz-v">2L</div>
+                        <div class="sz-t">Bottle</div>
+                    </div>
+                    <div class="sz" data-size="5L" onclick="sizeClick(this)">
+                        <div class="sz-v">5L</div>
+                        <div class="sz-t">Can</div>
+                    </div>
+                    <div class="sz" data-size="15L" onclick="sizeClick(this)">
+                        <div class="sz-v">15L</div>
+                        <div class="sz-t">Jar/Tin</div>
+                    </div>
+                    <div class="sz" data-size="15Kg" onclick="sizeClick(this)">
+                        <div class="sz-v">15Kg</div>
+                        <div class="sz-t">Tin</div>
+                    </div>
+                </div>
+            </div>
+            <div class="sb-sec">
+                <div class="sb-hd">Oil Type</div>
+                <div class="cklist">
+                    <label class="ckrow"><input type="checkbox" data-type="filtered" onchange="applyAll()">
+                        <div class="ckbox">✓</div><span class="cklabel">Double Filtered</span><span
+                            class="ckcount">7</span>
+                    </label>
+                    <label class="ckrow"><input type="checkbox" data-type="unrefined" onchange="applyAll()">
+                        <div class="ckbox">✓</div><span class="cklabel">Unrefined</span><span class="ckcount">6</span>
+                    </label>
+                    <label class="ckrow"><input type="checkbox" data-type="high-oleic" onchange="applyAll()">
+                        <div class="ckbox">✓</div><span class="cklabel">High Oleic (MUFA)</span><span
+                            class="ckcount">1</span>
+                    </label>
+                    <label class="ckrow"><input type="checkbox" data-type="cold-pressed" onchange="applyAll()">
+                        <div class="ckbox">✓</div><span class="cklabel">Cold Pressed</span><span
+                            class="ckcount">1</span>
+                    </label>
+                </div>
+            </div>
+            <div class="sb-sec">
+                <div class="sb-hd">Container Type</div>
+                <div class="cklist">
+                    <label class="ckrow"><input type="checkbox" data-container="bottle" onchange="applyAll()">
+                        <div class="ckbox">✓</div><span class="cklabel">Bottle</span><span class="ckcount">3</span>
+                    </label>
+                    <label class="ckrow"><input type="checkbox" data-container="pouch" onchange="applyAll()">
+                        <div class="ckbox">✓</div><span class="cklabel">Pouch</span><span class="ckcount">1</span>
+                    </label>
+                    <label class="ckrow"><input type="checkbox" data-container="can" onchange="applyAll()">
+                        <div class="ckbox">✓</div><span class="cklabel">Can</span><span class="ckcount">1</span>
+                    </label>
+                    <label class="ckrow"><input type="checkbox" data-container="tin" onchange="applyAll()">
+                        <div class="ckbox">✓</div><span class="cklabel">Tin</span><span class="ckcount">2</span>
+                    </label>
+                    <label class="ckrow"><input type="checkbox" data-container="jar" onchange="applyAll()">
+                        <div class="ckbox">✓</div><span class="cklabel">Tap Jar</span><span class="ckcount">1</span>
+                    </label>
+                </div>
+            </div>
+            <div class="sb-sec">
+                <div class="sb-hd">Min Rating</div>
+                <div class="rlist">
+                    <div class="rrow on" data-rating="0" onclick="ratingClick(this)"><span class="rstars">★★★★★</span>
+                        <div class="rbar-w">
+                            <div class="rbar" style="width:100%"></div>
+                        </div><span class="rcnt">All</span>
+                    </div>
+                    <div class="rrow" data-rating="4.5" onclick="ratingClick(this)"><span class="rstars">★★★★½</span>
+                        <div class="rbar-w">
+                            <div class="rbar" style="width:85%"></div>
+                        </div><span class="rcnt">4.5+</span>
+                    </div>
+                    <div class="rrow" data-rating="4" onclick="ratingClick(this)"><span class="rstars">★★★★☆</span>
+                        <div class="rbar-w">
+                            <div class="rbar" style="width:68%"></div>
+                        </div><span class="rcnt">4.0+</span>
+                    </div>
+                    <div class="rrow" data-rating="3" onclick="ratingClick(this)"><span class="rstars">★★★☆☆</span>
+                        <div class="rbar-w">
+                            <div class="rbar" style="width:40%"></div>
+                        </div><span class="rcnt">3.0+</span>
+                    </div>
+                </div>
+            </div>
+            <div class="sb-sec">
+                <div class="sb-hd">Availability</div>
+                <div class="tog-row">
+                    <span class="tog-lbl">In Stock Only</span>
+                    <label class="tog-wrap"><input type="checkbox" class="tog-input" id="stockTog"
+                            onchange="applyAll()">
+                        <div class="tog-track">
+                            <div class="tog-thumb"></div>
+                        </div>
+                    </label>
+                </div>
+                <div class="tog-row">
+                    <span class="tog-lbl">On Sale Only</span>
+                    <label class="tog-wrap"><input type="checkbox" class="tog-input" id="saleTog" onchange="applyAll()">
+                        <div class="tog-track">
+                            <div class="tog-thumb"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <button class="sb-reset" onclick="resetAll()">✕ Reset All Filters</button>
+        </aside>
+
+        <!-- PRODUCT AREA -->
+        <div class="prod-area">
+            <div id="prodGrid" class="g3">
+                <div class="empty" id="emptyState">
+                    <span class="em-icon">🔍</span>
+                    <div class="em-title">No Oils Found</div>
+                    <p class="em-sub">Try adjusting your search or filters</p>
+                    <button class="em-reset" onclick="resetAll()">Reset Filters</button>
+                </div>
+            </div>
+            <div class="pagination" id="pgWrap">
+                <button class="pg-btn" id="pgPrev" onclick="prevPage()" disabled>‹</button>
+                <div id="pgNums" style="display:flex;gap:5px;align-items:center"></div>
+                <button class="pg-btn" id="pgNext" onclick="nextPage()">›</button>
+                <div class="per-page">
+                    <span class="pp-lbl">Per page</span>
+                    <select class="pp-sel" id="ppSel" onchange="changePerPage(this.value)">
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="8" selected>8</option>
+                        <option value="12">12</option>
+                        <option value="all">All</option>
+                    </select>
+                </div>
+                <span class="page-info" id="pgInfo"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMPARE BAR -->
+    <div class="cmp-bar" id="cmpBar">
+        <div class="cmp-slots" id="cmpSlots">
+            <div class="cmp-slot" id="cs0"><button class="cmp-rem" onclick="rmCmp(0)">✕</button></div>
+            <div class="cmp-slot" id="cs1"><button class="cmp-rem" onclick="rmCmp(1)">✕</button></div>
+            <div class="cmp-slot" id="cs2"><button class="cmp-rem" onclick="rmCmp(2)">✕</button></div>
+        </div>
+        <div class="cmp-info"><strong>Compare Products</strong>Select up to 3</div>
+        <button class="cmp-go" onclick="doCompare()">Compare →</button>
+        <button class="cmp-x" onclick="clearCmp()">✕</button>
+    </div>
+
+    <!-- CART DRAWER -->
+    <div class="cart-overlay" id="cartOv" onclick="closeCart()"></div>
+    <div class="cart-drawer" id="cartDr">
+        <div class="cart-head">
+            <h3>Your Cart <span id="chCount">(0)</span></h3><button class="cart-close" onclick="closeCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty"><span class="ce-icon">🛒</span>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-foot" id="cartFoot" style="display:none">
+            <div class="cart-total"><span class="ct-label">Total</span><span class="ct-val" id="cartTotal">₹0</span>
+            </div>
+            <button class="cart-checkout">Proceed to Checkout →</button>
+        </div>
+    </div>
+
+    <!-- QUICK VIEW -->
+    <div class="qv-overlay" id="qvOv" onclick="closeQV(event)">
+        <div class="qv-modal" id="qvMod">
+            <button class="qv-close" onclick="closeQV()">✕</button>
+            <div class="qv-grid" id="qvContent"></div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <!-- FLOATING CART -->
+    <div class="floating-cart" onclick="openCart()">🛒<div class="cart-count" id="fBdg">0</div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">PEANUT<span>JI</span></div>
+                <p>Premium groundnut oil, peanut butter & peanuts from Fishfa Agri World Ltd. Pure, natural, and made
+                    with love
+                    in Gujarat, India.</p>
+                <div class="stores">
+                    <a href="https://www.amazon.in/s?k=Peanutji" class="store-btn">🛒 Amazon</a>
+                    <a href="#" class="store-btn">🛍️ Flipkart</a>
+                    <a href="#" class="store-btn">🌐 Website</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Oil Range</h4>
+                <ul>
+                    <li><a href="#">Vedic High Oleic</a></li>
+                    <li><a href="#">Double Filtered</a></li>
+                    <li><a href="#">Bulk / Commercial</a></li>
+                    <li><a href="#">1L Starter Pack</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="#">Certifications</a></li>
+                    <li><a href="blogs.html">Blog</a></li>
+                    <li><a href="contactus.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Factory Outlets</h4>
+                <ul class="footer-outlets">
+                    <li><span class="city">Rajkot</span><span>8460 160 126</span></li>
+                    <li><span class="city">Ahmedabad</span><span>8460 160 125</span></li>
+                    <li><span class="city">Surat</span><span>8460 160 127</span></li>
+                    <li><span class="city">Mumbai</span><span>9798 377 777</span></li>
+                    <li><span class="city">Delhi</span><span>7011 066 196</span></li>
+                    <li><span class="city">Care</span><span>7777 966 944</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Fishfa Agri World Private Limited. All rights reserved.</p>
+            <div class="footer-tagline">Pyar Jaisa Pure ✦</div>
+        </div>
+    </footer>
+
+    <script>
+        /* ── NAV ── */
+        window.addEventListener('scroll', () => {
+            document
+                .getElementById('mainNav')
+                .classList.toggle('scrolled', window.scrollY > 50)
+            document
+                .getElementById('toolbar')
+                .classList.toggle('shadow', window.scrollY > 280)
+        })
+        const ddLi = document.getElementById('ddLi')
+        function toggleDropdown() {
+            const isOpen = ddLi.classList.contains('open')
+            if (!isOpen) {
+                ddLi.classList.add('open')
+                ddLi
+                    .querySelector('.nav-dropdown-toggle')
+                    .setAttribute('aria-expanded', 'true')
+            } else {
+                ddLi.classList.remove('open')
+                ddLi
+                    .querySelector('.nav-dropdown-toggle')
+                    .setAttribute('aria-expanded', 'false')
+            }
+        }
+        document.addEventListener('click', e => {
+            if (!ddLi.contains(e.target)) {
+                ddLi.classList.remove('open')
+                ddLi
+                    .querySelector('.nav-dropdown-toggle')
+                    .setAttribute('aria-expanded', 'false')
+            }
+        })
+        let mobileOpen = false
+        function toggleMobile() {
+            mobileOpen = !mobileOpen
+            document.getElementById('mobileMenu').classList.toggle('open', mobileOpen)
+            const bars = document.getElementById('mobileToggle').querySelectorAll('span')
+            if (mobileOpen) {
+                bars[0].style.cssText = 'transform:rotate(45deg) translate(5px,5px)'
+                bars[1].style.cssText = 'opacity:0'
+                bars[2].style.cssText = 'transform:rotate(-45deg) translate(5px,-5px)'
+            } else bars.forEach(b => (b.style.cssText = ''))
+        }
+        function closeMobile() {
+            mobileOpen = false
+            document.getElementById('mobileMenu').classList.remove('open')
+            document
+                .querySelectorAll('#mobileToggle span')
+                .forEach(b => (b.style.cssText = ''))
+        }
+
+        /* ── PERSONA BANNER ── */
+        const PERSONAS = {
+            home: {
+                label: 'Home Cook',
+                icon: '🏠',
+                tags: ['1L–5L Packs', 'Daily Cooking']
+            },
+            gym: {
+                label: 'Fitness & Gym',
+                icon: '💪',
+                tags: ['High Protein', 'Healthy Oil']
+            },
+            restaurant: {
+                label: 'Restaurant / Hotel',
+                icon: '🍽️',
+                tags: ['5L–15L Cans', 'Commercial']
+            },
+            distributor: { label: 'Distributor', icon: '🏪', tags: ['Wholesale', 'B2B'] },
+            manufacturer: {
+                label: 'Manufacturer',
+                icon: '🏭',
+                tags: ['Industrial', 'Bulk']
+            },
+            exporter: { label: 'Exporter', icon: '🌍', tags: ['Export Grade', 'Global'] }
+        }
+        function loadPersona() {
+            const type = localStorage.getItem('pj_utype')
+            const city = localStorage.getItem('pj_city')
+            if (city) {
+                document.getElementById('navCityBadge').classList.add('vis')
+                document.getElementById('navCityText').textContent = `📍 ${city}`
+            }
+            if (type && PERSONAS[type]) {
+                const p = PERSONAS[type]
+                document.getElementById('pbIcon').textContent = p.icon
+                document.getElementById('pbTitle').textContent = p.label
+                document.getElementById('pbTags').innerHTML = p.tags
+                    .map(t => `<span class="pb-tag">${t}</span>`)
+                    .join('')
+                document.getElementById('personaBanner').classList.add('vis')
+            }
+        }
+        function reopenCity() {
+            window.location.href = 'index.html'
+        }
+        document.addEventListener('DOMContentLoaded', loadPersona)
+
+        /* ── SCROLL REVEAL ── */
+        const revObs = new IntersectionObserver(
+            entries =>
+                entries.forEach(e => {
+                    if (e.isIntersecting) e.target.classList.add('visible')
+                }),
+            { threshold: 0.1 }
+        )
+        document.querySelectorAll('.reveal').forEach(el => revObs.observe(el))
+
+        /* ── PRODUCT DATA ── */
+        const PRODS = [
+            {
+                id: 1,
+                name: 'Vedic High Oleic Oil',
+                sub: '750ml Bottle',
+                cat: 'vedic',
+                size: '750ml',
+                container: 'bottle',
+                emoji: '✨',
+                price: 950,
+                orig: 0,
+                discount: 0,
+                rating: 4.9,
+                reviews: 128,
+                types: ['filtered', 'high-oleic', 'cold-pressed'],
+                tags: ['vedic', 'new'],
+                stock: true,
+                desc: "India's first High Oleic Groundnut Oil — 77%+ oleic acid (MUFA). No external heat, zero chemicals. Superior stability and extraordinary health benefits.",
+                specs: [
+                    { v: '77%+', l: 'Oleic Acid' },
+                    { v: '0', l: 'Chemicals' },
+                    { v: '2×', l: 'Shelf Life' },
+                    { v: '750ml', l: 'Volume' }
+                ]
+            },
+            {
+                id: 2,
+                name: 'Groundnut Oil',
+                sub: '2 Ltr Bottle',
+                cat: 'regular',
+                size: '2L',
+                container: 'bottle',
+                emoji: '🧴',
+                price: 700,
+                orig: 0,
+                discount: 0,
+                rating: 4.7,
+                reviews: 214,
+                types: ['filtered', 'unrefined'],
+                tags: ['new'],
+                stock: true,
+                desc: 'Fresh double-filtered, aromatic, preservative-free groundnut oil for everyday cooking. Made from Grade A G-20 peanuts.',
+                specs: [
+                    { v: '2L', l: 'Volume' },
+                    { v: 'A Grade', l: 'Peanuts' },
+                    { v: '0', l: 'Preservatives' },
+                    { v: '11', l: 'QC Stages' }
+                ]
+            },
+            {
+                id: 3,
+                name: 'Groundnut Oil',
+                sub: '1 Ltr Bottle',
+                cat: 'regular',
+                size: '1L',
+                container: 'bottle',
+                emoji: '🫗',
+                price: 315,
+                orig: 350,
+                discount: 10,
+                rating: 4.8,
+                reviews: 389,
+                types: ['filtered', 'unrefined'],
+                tags: ['sale'],
+                stock: true,
+                desc: 'Pure, nutty & heart-healthy. Rich in Vitamin E with zero cholesterol. Perfect for households of 3–4 people.',
+                specs: [
+                    { v: '1L', l: 'Volume' },
+                    { v: '0', l: 'Cholesterol' },
+                    { v: 'Vit-E', l: 'Rich In' },
+                    { v: '10%', l: 'Off' }
+                ]
+            },
+            {
+                id: 4,
+                name: 'Groundnut Oil',
+                sub: '1 Ltr Pouch',
+                cat: 'regular',
+                size: '1L',
+                container: 'pouch',
+                emoji: '🥡',
+                price: 270,
+                orig: 300,
+                discount: 10,
+                rating: 4.6,
+                reviews: 156,
+                types: ['filtered', 'unrefined'],
+                tags: ['sale'],
+                stock: true,
+                desc: 'Convenient 1L pouch — ideal for travel, gifting, or smaller households. Same premium double-filtered quality.',
+                specs: [
+                    { v: '1L', l: 'Volume' },
+                    { v: 'Pouch', l: 'Type' },
+                    { v: '10%', l: 'Discount' },
+                    { v: 'A Grade', l: 'Peanuts' }
+                ]
+            },
+            {
+                id: 5,
+                name: 'Groundnut Oil',
+                sub: '5 Ltr Can',
+                cat: 'regular',
+                size: '5L',
+                container: 'can',
+                emoji: '🪣',
+                price: 1350,
+                orig: 1500,
+                discount: 10,
+                rating: 4.7,
+                reviews: 298,
+                types: ['filtered', 'unrefined'],
+                tags: ['sale'],
+                stock: true,
+                desc: 'Family-size 5L can. High smoke point — perfect for deep-frying, tadka, and sautéing without harmful compounds.',
+                specs: [
+                    { v: '5L', l: 'Volume' },
+                    { v: 'Can', l: 'Container' },
+                    { v: 'High', l: 'Smoke Pt' },
+                    { v: '10%', l: 'Off' }
+                ]
+            },
+            {
+                id: 6,
+                name: 'Groundnut Oil',
+                sub: '15 Ltr Tap Jar',
+                cat: 'bulk',
+                size: '15L',
+                container: 'jar',
+                emoji: '🫙',
+                price: 4050,
+                orig: 4500,
+                discount: 10,
+                rating: 4.6,
+                reviews: 87,
+                types: ['filtered', 'unrefined'],
+                tags: ['sale'],
+                stock: true,
+                desc: 'Commercial 15L tap jar with easy dispensing valve. Perfect for restaurants, caterers, and large families.',
+                specs: [
+                    { v: '15L', l: 'Volume' },
+                    { v: 'Tap Jar', l: 'Container' },
+                    { v: '10%', l: 'Discount' },
+                    { v: 'Bulk', l: 'Category' }
+                ]
+            },
+            {
+                id: 7,
+                name: 'Groundnut Oil',
+                sub: '15 Ltr Tin',
+                cat: 'bulk',
+                size: '15L',
+                container: 'tin',
+                emoji: '🗑️',
+                price: 4005,
+                orig: 4450,
+                discount: 10,
+                rating: 4.5,
+                reviews: 62,
+                types: ['filtered', 'unrefined'],
+                tags: ['sale'],
+                stock: true,
+                desc: 'Classic 15L airtight tin. Trusted by commercial kitchens across India. Exported to 25+ countries.',
+                specs: [
+                    { v: '15L', l: 'Volume' },
+                    { v: 'Tin', l: 'Container' },
+                    { v: 'Airtight', l: 'Seal' },
+                    { v: '10%', l: 'Off' }
+                ]
+            },
+            {
+                id: 8,
+                name: 'Groundnut Oil',
+                sub: '15 Kg Tin',
+                cat: 'bulk',
+                size: '15Kg',
+                container: 'tin',
+                emoji: '🏺',
+                price: 4230,
+                orig: 4700,
+                discount: 10,
+                rating: 4.5,
+                reviews: 44,
+                types: ['filtered', 'unrefined'],
+                tags: ['sale'],
+                stock: false,
+                desc: 'Industrial 15Kg tin — best value for commercial operations and food businesses worldwide.',
+                specs: [
+                    { v: '15Kg', l: 'Weight' },
+                    { v: 'Tin', l: 'Container' },
+                    { v: '10%', l: 'Discount' },
+                    { v: 'Export', l: 'Grade' }
+                ]
+            }
+        ]
+
+        /* ── STATE ── */
+        let filtered = [...PRODS],
+            cart = [],
+            wishlist = new Set(),
+            cmpList = []
+        let curPage = 1,
+            perPage = 8,
+            activeChip = 'all',
+            activeSz = 'all',
+            activeRat = 0
+
+        /* ── RENDER ── */
+        function renderCards() {
+            const grid = document.getElementById('prodGrid')
+            const empty = document.getElementById('emptyState')
+            grid.querySelectorAll('.pcard').forEach(c => c.remove())
+            const total = filtered.length
+            const pp = perPage === 'all' ? total : parseInt(perPage)
+            const totalPg = Math.max(1, Math.ceil(total / pp))
+            if (curPage > totalPg) curPage = 1
+            const start = (curPage - 1) * pp,
+                end = Math.min(start + pp, total)
+            const page = filtered.slice(start, end)
+            empty.classList.toggle('vis', page.length === 0)
+            document.getElementById('resCount').textContent = total
+            document.getElementById('heroCount').textContent = total
+            document.getElementById('pgInfo').textContent =
+                total > 0 ? `Showing ${start + 1}–${end} of ${total}` : ''
+            page.forEach((p, i) => {
+                const card = document.createElement('div')
+                card.className = 'pcard'
+                card.style.cssText = 'opacity:0;transform:translateY(24px)'
+                const inW = wishlist.has(p.id)
+                card.innerHTML = `
+      <div class="pcard-img ${p.cat === 'vedic' ? 'bg-vedic' : 'bg-oil'}">
+        <div class="glow-layer ${p.cat === 'vedic' ? 'glow-vedic' : 'glow-oil'
+                    }"></div>
+        <span class="card-emoji">${p.emoji}</span>
+      </div>
+      <div class="pbadges">
+        ${p.tags.includes('sale')
+                        ? `<span class="pbadge badge-sale">−${p.discount}%</span>`
+                        : ''
+                    }
+        ${p.tags.includes('new')
+                        ? '<span class="pbadge badge-new">New</span>'
+                        : ''
+                    }
+        ${p.cat === 'vedic'
+                        ? '<span class="pbadge badge-vedic">Vedic</span>'
+                        : ''
+                    }
+        ${p.cat === 'bulk' ? '<span class="pbadge badge-bulk">B2B</span>' : ''}
+        ${!p.stock ? '<span class="pbadge badge-oos">Out of Stock</span>' : ''}
+      </div>
+      <div class="pcard-actions">
+        <button class="pa-btn ${inW ? 'wish-on' : ''
+                    }" title="Wishlist" onclick="toggleWish(${p.id},this)">${inW ? '♥' : '♡'
+                    }</button>
+        <button class="pa-btn ${cmpList.includes(p.id) ? 'cmp-on' : ''
+                    }" title="Compare" onclick="toggleCmp(${p.id},this)" style="${cmpList.includes(p.id) ? 'color:var(--navy);border-color:var(--navy)' : ''
+                    }">⚖</button>
+        <button class="pa-btn" title="Quick View" onclick="openQV(${p.id
+                    })">👁</button>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-cat">${p.cat === 'vedic'
+                        ? "Vedic Premium · India's First"
+                        : p.cat === 'bulk'
+                            ? 'Bulk / Commercial'
+                            : 'Pure Groundnut Oil'
+                    }</div>
+        <div class="pcard-name">${p.name} <span class="pcard-sub">${p.sub
+                    }</span></div>
+        <div class="pcard-desc">${p.desc.slice(0, 85)}…</div>
+        <div class="pcard-rating"><span class="pcs">${'★'.repeat(
+                        Math.round(p.rating)
+                    )}${'☆'.repeat(5 - Math.round(p.rating))}</span><span class="prc">${p.rating
+                    } (${p.reviews})</span></div>
+        <div class="pcard-footer">
+          <div class="pcard-price">
+            <span class="pp-now">₹${p.price.toLocaleString('en-IN')}</span>
+            ${p.orig
+                        ? `<span class="pp-orig">₹${p.orig.toLocaleString(
+                            'en-IN'
+                        )}</span><span class="pp-disc">−${p.discount}%</span>`
+                        : ''
+                    }
+          </div>
+          <button class="atc" onclick="addCart(${p.id},this)" ${!p.stock ? 'disabled' : ''
+                    }>${p.stock ? 'Add +' : 'Sold Out'}</button>
+        </div>
+      </div>`
+                grid.insertBefore(card, empty)
+                setTimeout(() => {
+                    card.style.transition = 'opacity .45s ease, transform .45s ease'
+                    card.style.opacity = '1'
+                    card.style.transform = 'translateY(0)'
+                }, i * 65)
+            })
+            renderPagination(totalPg)
+            updateAFBar()
+        }
+
+        function renderPagination(total) {
+            const nums = document.getElementById('pgNums')
+            nums.innerHTML = ''
+            document.getElementById('pgPrev').disabled = curPage === 1
+            document.getElementById('pgNext').disabled = curPage >= total || total === 0
+            if (total <= 1) return
+            const mk = n => {
+                const b = document.createElement('button')
+                b.className = 'pg-btn' + (n === curPage ? ' on' : '')
+                b.textContent = n
+                b.onclick = () => {
+                    curPage = n
+                    renderCards()
+                    scrollToTop()
+                }
+                nums.appendChild(b)
+            }
+            const el = () => {
+                const s = document.createElement('span')
+                s.className = 'pg-ellipsis'
+                s.textContent = '…'
+                nums.appendChild(s)
+            }
+            if (total <= 7) {
+                for (let i = 1; i <= total; i++) mk(i)
+            } else {
+                mk(1)
+                if (curPage > 3) el()
+                for (
+                    let i = Math.max(2, curPage - 1);
+                    i <= Math.min(total - 1, curPage + 1);
+                    i++
+                )
+                    mk(i)
+                if (curPage < total - 2) el()
+                mk(total)
+            }
+        }
+        function scrollToTop() {
+            window.scrollTo({
+                top: document.getElementById('toolbar').offsetTop - 10,
+                behavior: 'smooth'
+            })
+        }
+        function prevPage() {
+            if (curPage > 1) {
+                curPage--
+                renderCards()
+                scrollToTop()
+            }
+        }
+        function nextPage() {
+            curPage++
+            renderCards()
+            scrollToTop()
+        }
+        function changePerPage(v) {
+            perPage = v
+            curPage = 1
+            renderCards()
+        }
+
+        function applyAll() {
+            const q = document.getElementById('searchInput').value.toLowerCase().trim()
+            const sort = document.getElementById('sortSel').value
+            const minP = parseInt(document.getElementById('rMin').value)
+            const maxP = parseInt(document.getElementById('rMax').value)
+            const inStock = document.getElementById('stockTog').checked
+            const onSale = document.getElementById('saleTog').checked
+            const types = [...document.querySelectorAll('[data-type]:checked')].map(
+                e => e.dataset.type
+            )
+            const ctrs = [...document.querySelectorAll('[data-container]:checked')].map(
+                e => e.dataset.container
+            )
+            let res = PRODS.filter(p => {
+                if (q && !(p.name + ' ' + p.sub + ' ' + p.desc).toLowerCase().includes(q))
+                    return false
+                if (activeChip !== 'all') {
+                    if (activeChip === 'regular' && p.cat !== 'regular') return false
+                    if (activeChip === 'vedic' && p.cat !== 'vedic') return false
+                    if (activeChip === 'bulk' && p.cat !== 'bulk') return false
+                    if (activeChip === 'sale' && !p.tags.includes('sale')) return false
+                    if (activeChip === 'new' && !p.tags.includes('new')) return false
+                }
+                if (activeSz !== 'all' && p.size !== activeSz) return false
+                if (p.price < minP || p.price > maxP) return false
+                if (p.rating < activeRat) return false
+                if (inStock && !p.stock) return false
+                if (onSale && !p.tags.includes('sale')) return false
+                if (types.length && !types.some(t => p.types.includes(t))) return false
+                if (ctrs.length && !ctrs.includes(p.container)) return false
+                return true
+            })
+            const sortFns = {
+                'price-asc': (a, b) => a.price - b.price,
+                'price-desc': (a, b) => b.price - a.price,
+                rating: (a, b) => b.rating - a.rating,
+                discount: (a, b) => b.discount - a.discount,
+                newest: (a, b) =>
+                    (b.tags.includes('new') ? 1 : 0) - (a.tags.includes('new') ? 1 : 0),
+                featured: (a, b) => a.id - b.id
+            }
+            if (sortFns[sort]) res.sort(sortFns[sort])
+            filtered = res
+            curPage = 1
+            renderCards()
+        }
+
+        function onSearch(inp) {
+            document
+                .getElementById('srchClr')
+                .classList.toggle('vis', inp.value.length > 0)
+            applyAll()
+        }
+        function clearSearch() {
+            document.getElementById('searchInput').value = ''
+            document.getElementById('srchClr').classList.remove('vis')
+            applyAll()
+        }
+        function chipClick(el) {
+            document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'))
+            el.classList.add('on')
+            activeChip = el.dataset.filter
+            applyAll()
+        }
+        function sizeClick(el) {
+            document.querySelectorAll('.sz').forEach(s => s.classList.remove('on'))
+            el.classList.add('on')
+            activeSz = el.dataset.size
+            applyAll()
+        }
+        function ratingClick(el) {
+            document.querySelectorAll('.rrow').forEach(r => r.classList.remove('on'))
+            el.classList.add('on')
+            activeRat = parseFloat(el.dataset.rating)
+            applyAll()
+        }
+
+        function updateRange() {
+            let mn = parseInt(document.getElementById('rMin').value)
+            let mx = parseInt(document.getElementById('rMax').value)
+            if (mn > mx - 50) {
+                document.getElementById('rMin').value = mx - 50
+                mn = mx - 50
+            }
+            document.getElementById('priceMin').textContent =
+                '₹' + mn.toLocaleString('en-IN')
+            document.getElementById('priceMax').textContent =
+                '₹' + mx.toLocaleString('en-IN')
+            const p1 = (mn / 5000) * 100,
+                p2 = (mx / 5000) * 100
+            document.getElementById('rangeFill').style.left = p1 + '%'
+            document.getElementById('rangeFill').style.right = 100 - p2 + '%'
+            applyAll()
+        }
+
+        function setView(mode, btn) {
+            document.querySelectorAll('.vb').forEach(b => b.classList.remove('on'))
+            btn.classList.add('on')
+            const g = document.getElementById('prodGrid')
+            g.classList.remove('g2', 'g3', 'g4', 'list')
+            g.classList.add(mode === 'list' ? 'list' : 'g' + mode)
+        }
+
+        function resetAll() {
+            document.getElementById('searchInput').value = ''
+            document.getElementById('srchClr').classList.remove('vis')
+            document.getElementById('sortSel').value = 'featured'
+            document.getElementById('rMin').value = 0
+            document.getElementById('rMax').value = 5000
+            document.getElementById('stockTog').checked = false
+            document.getElementById('saleTog').checked = false
+            document
+                .querySelectorAll('[data-type],[data-container]')
+                .forEach(c => (c.checked = false))
+            document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'))
+            document.querySelector('[data-filter="all"]').classList.add('on')
+            document.querySelectorAll('.sz').forEach(s => s.classList.remove('on'))
+            document.querySelector('[data-size="all"]').classList.add('on')
+            document.querySelectorAll('.rrow').forEach(r => r.classList.remove('on'))
+            document.querySelector('[data-rating="0"]').classList.add('on')
+            activeChip = 'all'
+            activeSz = 'all'
+            activeRat = 0
+            updateRange()
+        }
+
+        function updateAFBar() {
+            const bar = document.getElementById('afBar'),
+                tags = document.getElementById('afTags')
+            tags.innerHTML = ''
+            const F = []
+            if (activeChip !== 'all')
+                F.push({
+                    l: activeChip,
+                    c: () => {
+                        document.querySelector('[data-filter="all"]').click()
+                    }
+                })
+            if (activeSz !== 'all')
+                F.push({
+                    l: 'Size: ' + activeSz,
+                    c: () => {
+                        document.querySelector('[data-size="all"]').click()
+                    }
+                })
+            if (activeRat > 0)
+                F.push({
+                    l: 'Rating: ' + activeRat + '+★',
+                    c: () => {
+                        document.querySelector('[data-rating="0"]').click()
+                    }
+                })
+            const mn = parseInt(document.getElementById('rMin').value),
+                mx = parseInt(document.getElementById('rMax').value)
+            if (mn > 0 || mx < 5000)
+                F.push({
+                    l: `₹${mn}–₹${mx}`,
+                    c: () => {
+                        document.getElementById('rMin').value = 0
+                        document.getElementById('rMax').value = 5000
+                        updateRange()
+                    }
+                })
+            if (document.getElementById('stockTog').checked)
+                F.push({
+                    l: 'In Stock',
+                    c: () => {
+                        document.getElementById('stockTog').checked = false
+                        applyAll()
+                    }
+                })
+            if (document.getElementById('saleTog').checked)
+                F.push({
+                    l: 'On Sale',
+                    c: () => {
+                        document.getElementById('saleTog').checked = false
+                        applyAll()
+                    }
+                })
+            const q = document.getElementById('searchInput').value
+            if (q) F.push({ l: `"${q}"`, c: () => clearSearch() })
+            F.forEach(f => {
+                const t = document.createElement('div')
+                t.className = 'af-tag'
+                t.innerHTML = `${f.l}<button onclick="(${f.c.toString()})()">✕</button>`
+                tags.appendChild(t)
+            })
+            bar.classList.toggle('vis', F.length > 0)
+        }
+
+        /* ── CART ── */
+        function addCart(id, btn) {
+            const p = PRODS.find(x => x.id === id)
+            if (!p || !p.stock) return
+            const ex = cart.find(x => x.id === id)
+            if (ex) ex.qty++
+            else cart.push({ ...p, qty: 1 })
+            btn.textContent = '✓ Added'
+            btn.classList.add('added')
+            setTimeout(() => {
+                btn.textContent = 'Add +'
+                btn.classList.remove('added')
+            }, 1400)
+            updateCartUI()
+            showToast(`🛒 ${p.name} ${p.sub} added!`)
+            const fc = document.querySelector('.floating-cart')
+            fc.style.transform = 'scale(1.35)'
+            setTimeout(() => {
+                fc.style.transform = ''
+            }, 300)
+        }
+        function updateCartUI() {
+            const tot = cart.reduce((a, c) => a + c.qty, 0)
+            document.getElementById('fBdg').textContent = tot
+            document.getElementById('chCount').textContent = `(${tot})`
+            document.getElementById('cartTotal').textContent =
+                '₹' + cart.reduce((a, c) => a + c.price * c.qty, 0).toLocaleString('en-IN')
+            const ci = document.getElementById('cartItems')
+            ci.innerHTML = ''
+            if (!cart.length) {
+                ci.innerHTML =
+                    '<div class="cart-empty"><span class="ce-icon">🛒</span><p>Your cart is empty</p></div>'
+                document.getElementById('cartFoot').style.display = 'none'
+                return
+            }
+            document.getElementById('cartFoot').style.display = 'block'
+            cart.forEach(item => {
+                const d = document.createElement('div')
+                d.className = 'cart-item'
+                d.innerHTML = `<div class="ci-icon">${item.emoji
+                    }</div><div class="ci-info"><div class="ci-name">${item.name} ${item.sub
+                    }</div><div class="ci-price">₹${(item.price * item.qty).toLocaleString(
+                        'en-IN'
+                    )}</div><div class="ci-qty"><button onclick="chQty(${item.id
+                    },-1)">−</button><span>${item.qty}</span><button onclick="chQty(${item.id
+                    },1)">+</button></div></div><button class="ci-del" onclick="rmCart(${item.id
+                    })">🗑</button>`
+                ci.appendChild(d)
+            })
+        }
+        function chQty(id, d) {
+            const i = cart.find(x => x.id === id)
+            if (!i) return
+            i.qty += d
+            if (i.qty <= 0) cart = cart.filter(x => x.id !== id)
+            updateCartUI()
+        }
+        function rmCart(id) {
+            cart = cart.filter(x => x.id !== id)
+            updateCartUI()
+        }
+        function openCart() {
+            document.getElementById('cartOv').classList.add('vis')
+            document.getElementById('cartDr').classList.add('vis')
+        }
+        function closeCart() {
+            document.getElementById('cartOv').classList.remove('vis')
+            document.getElementById('cartDr').classList.remove('vis')
+        }
+
+        /* ── WISHLIST ── */
+        function toggleWish(id, btn) {
+            const p = PRODS.find(x => x.id === id)
+            if (wishlist.has(id)) {
+                wishlist.delete(id)
+                btn.textContent = '♡'
+                btn.classList.remove('wish-on')
+                showToast('Removed from wishlist')
+            } else {
+                wishlist.add(id)
+                btn.textContent = '♥'
+                btn.classList.add('wish-on')
+                showToast(`♥ ${p.name} saved!`)
+            }
+        }
+
+        /* ── COMPARE ── */
+        function toggleCmp(id, btn) {
+            const p = PRODS.find(x => x.id === id)
+            if (cmpList.includes(id)) {
+                cmpList = cmpList.filter(x => x !== id)
+                btn.classList.remove('cmp-on')
+                btn.style.cssText = ''
+            } else {
+                if (cmpList.length >= 3) {
+                    showToast('⚖ Max 3 products for comparison')
+                    return
+                }
+                cmpList.push(id)
+                btn.classList.add('cmp-on')
+                btn.style.cssText = 'color:var(--navy);border-color:var(--navy)'
+                showToast(`⚖ ${p.name} added to compare`)
+            }
+            updateCmpBar()
+        }
+        function updateCmpBar() {
+            for (let i = 0; i < 3; i++) {
+                const s = document.getElementById('cs' + i)
+                const pid = cmpList[i]
+                if (pid) {
+                    const p = PRODS.find(x => x.id === pid)
+                    s.classList.add('filled')
+                    s.innerHTML = `<span style="font-size:1.4rem">${p.emoji}</span><button class="cmp-rem" onclick="rmCmp(${i})">✕</button>`
+                } else {
+                    s.classList.remove('filled')
+                    s.innerHTML = `<button class="cmp-rem" onclick="rmCmp(${i})">✕</button>`
+                }
+            }
+            document.getElementById('cmpBar').classList.toggle('vis', cmpList.length > 0)
+        }
+        function rmCmp(idx) {
+            cmpList.splice(idx, 1)
+            updateCmpBar()
+            renderCards()
+        }
+        function clearCmp() {
+            cmpList = []
+            updateCmpBar()
+            renderCards()
+        }
+        function doCompare() {
+            if (cmpList.length < 2) {
+                showToast('⚖ Select at least 2 products')
+                return
+            }
+            showToast('⚖ Opening comparison…')
+        }
+
+        /* ── QUICK VIEW ── */
+        function openQV(id) {
+            const p = PRODS.find(x => x.id === id)
+            const inW = wishlist.has(p.id)
+            document.getElementById('qvContent').innerHTML = `
+    <div class="qv-img"><span style="font-size:7.5rem;position:relative;z-index:2;filter:drop-shadow(0 20px 40px rgba(13,26,58,0.18))">${p.emoji
+                }</span></div>
+    <div>
+      <div class="qv-tag">${p.cat === 'vedic'
+                    ? "✦ Vedic Premium · India's First"
+                    : p.cat === 'bulk'
+                        ? 'Bulk / Commercial'
+                        : 'Pure Groundnut Oil'
+                }</div>
+      <div class="qv-name">${p.name} — ${p.sub}</div>
+      <div class="qv-rat"><span class="qv-stars">${'★'.repeat(
+                    Math.round(p.rating)
+                )}${'☆'.repeat(5 - Math.round(p.rating))}</span><span class="qv-rc">${p.rating
+                } · ${p.reviews} reviews</span></div>
+      <div class="qv-pr"><span class="qv-price">₹${p.price.toLocaleString(
+                    'en-IN'
+                )}</span>${p.orig
+                    ? `<span class="qv-orig">₹${p.orig.toLocaleString(
+                        'en-IN'
+                    )}</span><span class="qv-disc">−${p.discount}%</span>`
+                    : ''
+                }</div>
+      <p class="qv-desc">${p.desc}</p>
+      <div class="qv-specs">${p.specs
+                    .map(
+                        s =>
+                            `<div class="qvs"><div class="qvs-v">${s.v}</div><div class="qvs-l">${s.l}</div></div>`
+                    )
+                    .join('')}</div>
+      <div class="qv-actions">
+        <button class="qv-add" onclick="addCart(${p.id},this)" ${!p.stock ? 'disabled' : ''
+                }>${p.stock ? 'Add to Cart →' : 'Out of Stock'}</button>
+        <button class="qv-wish ${inW ? 'on' : ''}" onclick="toggleWish(${p.id
+                },this)">${inW ? '♥' : '♡'}</button>
+      </div>
+    </div>`
+            document.getElementById('qvOv').classList.add('vis')
+        }
+        function closeQV(e) {
+            if (!e || e.target === document.getElementById('qvOv'))
+                document.getElementById('qvOv').classList.remove('vis')
+        }
+
+        /* ── TOAST ── */
+        let toastTmr
+        function showToast(msg) {
+            const t = document.getElementById('toast')
+            t.innerHTML = msg
+            t.classList.add('vis')
+            clearTimeout(toastTmr)
+            toastTmr = setTimeout(() => t.classList.remove('vis'), 2800)
+        }
+
+        /* ── KEYBOARD ── */
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                closeCart()
+                document.getElementById('qvOv').classList.remove('vis')
+            }
+            if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                e.preventDefault()
+                document.getElementById('searchInput').focus()
+            }
+        })
+
+        /* ── INIT ── */
+        updateRange()
+        renderCards()
+
+            /* ── HERO ANIMATION ── */
+            ;[
+                '.hero-breadcrumb',
+                '.hero-tag',
+                '.hero-title',
+                '.hero-sub',
+                '.hero-pills',
+                '.hero-stats'
+            ].forEach((sel, i) => {
+                const el = document.querySelector(sel)
+                if (!el) return
+                el.style.cssText = `opacity:0;transform:translateY(28px);transition:opacity .8s ${0.2 + i * 0.12
+                    }s ease,transform .8s ${0.2 + i * 0.12}s ease`
+                setTimeout(() => {
+                    el.style.opacity = '1'
+                    el.style.transform = 'translateY(0)'
+                }, 80)
+            })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,3964 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — Peanutji · Pyar Jaisa Pure</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1B2E6B;
+            --navy-deep: #162460;
+            --navy-mid: #243685;
+            --navy-light: #2E448F;
+            --red: #8B1A1A;
+            --red-mid: #A93226;
+            --red-bright: #C0392B;
+            --gold: #C8960C;
+            --gold-light: #E0AE1A;
+            --gold-pale: #F5E6A0;
+            --gold-bright: #F0C030;
+            --cream: #F5F0E8;
+            --cream-deep: #EDE5D5;
+            --cream-mid: #E5D8C0;
+            --white: #FFFFFF;
+            --dark: #0D1A3A;
+            --green: #1E6B3A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--navy);
+            overflow-x: hidden;
+            cursor: none
+        }
+
+        /* ══ CURSOR ══ */
+        #cur {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--red-mid);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: multiply;
+            transition: width .25s, height .25s
+        }
+
+        #cur2 {
+            position: fixed;
+            width: 32px;
+            height: 32px;
+            border: 1.5px solid rgba(139, 26, 26, .35);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: all .13s linear
+        }
+
+        body.hov #cur {
+            width: 0;
+            height: 0
+        }
+
+        body.hov #cur2 {
+            width: 54px;
+            height: 54px;
+            border-color: var(--navy);
+            background: rgba(27, 46, 107, .04)
+        }
+
+        /* ══ NAV ══ */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 52px;
+            height: 68px;
+            background: rgba(245, 240, 232, .97);
+            backdrop-filter: blur(18px);
+            border-bottom: 2px solid rgba(27, 46, 107, .12);
+            transition: all .3s
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 24px rgba(13, 26, 58, .12)
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue';
+            font-size: 1.9rem;
+            letter-spacing: 5px;
+            color: var(--navy);
+            text-decoration: none;
+            transition: letter-spacing .3s;
+            flex-shrink: 0
+        }
+
+        .nav-logo:hover {
+            letter-spacing: 6px
+        }
+
+        .nav-logo span {
+            color: var(--red-mid)
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+            margin: 0 auto;
+            padding: 0 20px
+        }
+
+        .nav-links>li {
+            position: relative
+        }
+
+        .nav-links>li>a,
+        .nav-dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            text-decoration: none;
+            padding: 8px 13px;
+            border-radius: 6px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: 'DM Sans';
+            position: relative;
+            white-space: nowrap;
+            transition: color .25s, background .25s
+        }
+
+        .nav-links>li>a:hover,
+        .nav-dropdown-toggle:hover {
+            color: var(--navy);
+            background: rgba(27, 46, 107, .07)
+        }
+
+        .nav-links>li>a::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 13px;
+            right: 13px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--navy), var(--gold));
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform .3s
+        }
+
+        .nav-links>li>a:hover::after,
+        .nav-links>li>a.active::after {
+            transform: scaleX(1)
+        }
+
+        .nav-links>li>a.active {
+            color: var(--navy)
+        }
+
+        .nav-dropdown-toggle .chevron {
+            font-size: .6rem;
+            transition: transform .3s;
+            color: var(--red);
+            margin-top: 1px
+        }
+
+        .nav-links>li.open .chevron {
+            transform: rotate(180deg)
+        }
+
+        .nav-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-8px);
+            background: white;
+            border: 1px solid rgba(27, 46, 107, .12);
+            border-radius: 16px;
+            padding: 8px;
+            min-width: 220px;
+            box-shadow: 0 20px 50px rgba(13, 26, 58, .12);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity .25s, transform .25s, visibility .25s;
+            z-index: 300
+        }
+
+        .nav-dropdown::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-left: 1px solid rgba(27, 46, 107, .12);
+            border-top: 1px solid rgba(27, 46, 107, .12);
+            transform: translateX(-50%) rotate(45deg)
+        }
+
+        .nav-links>li.open .nav-dropdown {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0)
+        }
+
+        .nav-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: .82rem;
+            font-weight: 500;
+            color: var(--navy-light);
+            transition: all .2s;
+            white-space: nowrap
+        }
+
+        .nav-dropdown a:hover {
+            background: rgba(27, 46, 107, .07);
+            color: var(--navy);
+            transform: translateX(3px)
+        }
+
+        .nav-dropdown a .dd-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0
+        }
+
+        .nav-dropdown a .dd-icon.oil-icon {
+            background: linear-gradient(135deg, #EDE5D5, rgba(200, 150, 12, .25))
+        }
+
+        .nav-dropdown a .dd-icon.butter-icon {
+            background: linear-gradient(135deg, #E8D5D5, rgba(139, 26, 26, .15))
+        }
+
+        .nav-dropdown a .dd-icon.peanut-icon {
+            background: linear-gradient(135deg, #DDE5F5, rgba(27, 46, 107, .12))
+        }
+
+        .nav-dropdown a .dd-name {
+            font-weight: 600;
+            color: var(--navy);
+            font-size: .82rem;
+            line-height: 1.2
+        }
+
+        .nav-dropdown a .dd-sub {
+            font-size: .68rem;
+            color: var(--navy-light);
+            margin-top: 1px
+        }
+
+        .dd-divider {
+            height: 1px;
+            background: rgba(27, 46, 107, .1);
+            margin: 6px 8px
+        }
+
+        .nav-dropdown a.dd-vedic {
+            background: linear-gradient(90deg, rgba(200, 150, 12, .1), rgba(27, 46, 107, .05));
+            border: 1px solid rgba(200, 150, 12, .2)
+        }
+
+        .nav-dropdown a.dd-vedic .dd-name {
+            color: var(--red)
+        }
+
+        .nav-cta-wrap {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-family: 'DM Sans';
+            font-size: .74rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all .3s;
+            white-space: nowrap;
+            box-shadow: 0 4px 14px rgba(27, 46, 107, .3)
+        }
+
+        .nav-cta:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-1px)
+        }
+
+        .nav-city-badge {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            background: rgba(27, 46, 107, .08);
+            border: 1px solid rgba(27, 46, 107, .2);
+            border-radius: 100px;
+            padding: 5px 12px;
+            font-size: .65rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            cursor: pointer;
+            transition: all .3s;
+            white-space: nowrap
+        }
+
+        .nav-city-badge.vis {
+            display: flex
+        }
+
+        .nav-city-badge .ncb-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--red-mid);
+            border-radius: 50%
+        }
+
+        .nav-mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px
+        }
+
+        .nav-mobile-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--navy);
+            border-radius: 2px;
+            transition: all .3s
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 68px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(245, 240, 232, .98);
+            backdrop-filter: blur(20px);
+            z-index: 150;
+            overflow-y: auto;
+            padding: 24px 24px 40px;
+            flex-direction: column;
+            gap: 6px;
+            transform: translateX(-100%);
+            transition: transform .35s cubic-bezier(.4, 0, .2, 1)
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0)
+        }
+
+        .mm-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: .9rem;
+            font-weight: 600;
+            color: var(--navy-light);
+            transition: all .2s
+        }
+
+        .mm-link:hover {
+            background: rgba(27, 46, 107, .07);
+            color: var(--navy)
+        }
+
+        .mm-link .mm-icon {
+            font-size: 1.3rem;
+            width: 32px;
+            text-align: center
+        }
+
+        .mm-section-label {
+            font-size: .6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red);
+            padding: 16px 16px 6px;
+            font-weight: 600
+        }
+
+        .mm-divider {
+            height: 1px;
+            background: rgba(27, 46, 107, .12);
+            margin: 8px 0
+        }
+
+        .mm-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: .82rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all .3s
+        }
+
+        /* ══ HERO ══ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 68px;
+            background: linear-gradient(135deg, #F5F0E8 0%, #EDE0C8 50%, #E0D0A0 100%)
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 30%, rgba(139, 26, 26, .08), transparent 55%), radial-gradient(ellipse at 20% 80%, rgba(27, 46, 107, .1), transparent 50%);
+            pointer-events: none
+        }
+
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            animation: pulse 6s ease-in-out infinite;
+            pointer-events: none
+        }
+
+        .hero-blob:nth-child(1) {
+            width: 700px;
+            height: 700px;
+            top: -100px;
+            right: -100px;
+            background: radial-gradient(circle, rgba(139, 26, 26, .07), transparent 70%)
+        }
+
+        .hero-blob:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            bottom: 0;
+            left: -50px;
+            animation-delay: 3s;
+            background: radial-gradient(circle, rgba(27, 46, 107, .08), transparent 70%)
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: .6
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 1
+            }
+        }
+
+        .hero-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(27, 46, 107, .04) 1px, transparent 1px), linear-gradient(90deg, rgba(27, 46, 107, .04) 1px, transparent 1px);
+            background-size: 56px 56px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 72%)
+        }
+
+        .hero-floats {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none
+        }
+
+        .hfl {
+            position: absolute;
+            opacity: .06;
+            animation: hfdrift 22s ease-in-out infinite;
+            font-size: 5rem
+        }
+
+        .hfl:nth-child(1) {
+            top: 8%;
+            right: 5%;
+            font-size: 8rem;
+            animation-delay: 0s
+        }
+
+        .hfl:nth-child(2) {
+            top: 55%;
+            right: 22%;
+            font-size: 4rem;
+            animation-delay: 6s
+        }
+
+        .hfl:nth-child(3) {
+            bottom: 10%;
+            right: 38%;
+            font-size: 5rem;
+            animation-delay: 11s
+        }
+
+        .hfl:nth-child(4) {
+            top: 20%;
+            right: 58%;
+            font-size: 3.5rem;
+            animation-delay: 16s
+        }
+
+        @keyframes hfdrift {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg)
+            }
+
+            33% {
+                transform: translateY(-22px) rotate(8deg)
+            }
+
+            66% {
+                transform: translateY(12px) rotate(-4deg)
+            }
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 40px;
+            max-width: 900px
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: .65rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            margin-bottom: 22px;
+            opacity: 0;
+            animation: fadeUp .8s .2s ease forwards
+        }
+
+        .hero-eyebrow::before,
+        .hero-eyebrow::after {
+            content: '';
+            width: 28px;
+            height: 1.5px;
+            background: rgba(139, 26, 26, .4)
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display';
+            font-size: clamp(4rem, 9vw, 8.5rem);
+            font-weight: 900;
+            line-height: .88;
+            color: var(--navy);
+            opacity: 0;
+            animation: fadeUp .9s .4s ease forwards
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--red-mid);
+            display: block
+        }
+
+        .hero-sub {
+            font-family: 'DM Sans';
+            font-size: 1rem;
+            color: var(--navy-light);
+            margin: 28px auto 0;
+            max-width: 560px;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeUp .8s .7s ease forwards
+        }
+
+        .hero-pills {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 36px;
+            opacity: 0;
+            animation: fadeUp .8s .9s ease forwards
+        }
+
+        .h-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255, 255, 255, .55);
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 100px;
+            padding: 7px 18px;
+            font-size: .68rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            backdrop-filter: blur(6px)
+        }
+
+        .h-pill strong {
+            font-family: 'Bebas Neue';
+            font-size: .95rem;
+            color: var(--navy)
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeUp .8s 1.2s ease forwards
+        }
+
+        .hs-lbl {
+            font-size: .55rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(27, 46, 107, .35)
+        }
+
+        .hs-line {
+            width: 1px;
+            height: 56px;
+            background: linear-gradient(to bottom, rgba(27, 46, 107, .45), transparent);
+            animation: scrollPulse 2s ease-in-out infinite
+        }
+
+        @keyframes scrollPulse {
+
+            0%,
+            100% {
+                transform: scaleY(1);
+                opacity: .6
+            }
+
+            50% {
+                transform: scaleY(.5);
+                opacity: 1
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(28px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* ══ MARQUEE ══ */
+        .marquee-band {
+            background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+            padding: 15px 0;
+            overflow: hidden;
+            display: flex;
+            border-top: 3px solid var(--red);
+            border-bottom: 3px solid var(--gold)
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 56px;
+            animation: marquee 28s linear infinite;
+            white-space: nowrap
+        }
+
+        .marquee-item {
+            font-family: 'Bebas Neue';
+            font-size: 1.05rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 18px
+        }
+
+        .marquee-item span {
+            color: rgba(255, 255, 255, .2)
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0)
+            }
+
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        /* ══ SECTION COMMON ══ */
+        .section-tag {
+            font-size: .65rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--red);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 22px;
+            height: 1.5px;
+            background: var(--red-mid)
+        }
+
+        .section-title {
+            font-family: 'Playfair Display';
+            font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+            font-weight: 900;
+            color: var(--navy);
+            line-height: 1.05
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--red-mid)
+        }
+
+        /* ══ STORY SECTION ══ */
+        .story-section {
+            padding: 100px 80px;
+            background: var(--cream)
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .story-visual {
+            position: relative
+        }
+
+        .sv-frame {
+            width: 100%;
+            aspect-ratio: 4/5;
+            border-radius: 4px;
+            background: linear-gradient(145deg, #EDE5D5, #D5C898);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid rgba(27, 46, 107, .12)
+        }
+
+        .sv-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 40% 30%, rgba(200, 150, 12, .2), transparent 60%)
+        }
+
+        .sv-emoji {
+            font-size: 13rem;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 30px 50px rgba(13, 26, 58, .2));
+            animation: floatHero 5s ease-in-out infinite
+        }
+
+        @keyframes floatHero {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-2deg)
+            }
+
+            50% {
+                transform: translateY(-16px) rotate(2deg)
+            }
+        }
+
+        .sv-accent {
+            position: absolute;
+            top: 36px;
+            left: -28px;
+            width: 3px;
+            height: 55%;
+            background: linear-gradient(to bottom, var(--navy), transparent);
+            border-radius: 2px
+        }
+
+        .sv-badge {
+            position: absolute;
+            bottom: -28px;
+            right: -28px;
+            width: 130px;
+            height: 130px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 50px rgba(27, 46, 107, .45);
+            border: 4px solid white
+        }
+
+        .svb-num {
+            font-family: 'Bebas Neue';
+            font-size: 2.8rem;
+            color: white;
+            line-height: 1;
+            letter-spacing: 2px
+        }
+
+        .svb-lbl {
+            font-size: .48rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .75)
+        }
+
+        .story-intro {
+            font-family: 'Playfair Display';
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--navy-light);
+            line-height: 1.75;
+            margin: 22px 0 24px;
+            padding-left: 22px;
+            border-left: 3px solid rgba(27, 46, 107, .25)
+        }
+
+        .story-body {
+            font-size: .88rem;
+            color: var(--navy-light);
+            line-height: 1.88;
+            margin-bottom: 18px;
+            opacity: .85
+        }
+
+        .story-body strong {
+            color: var(--navy)
+        }
+
+        .story-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 40px
+        }
+
+        .sstat {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 14px;
+            padding: 20px 14px;
+            text-align: center;
+            transition: all .3s;
+            cursor: default
+        }
+
+        .sstat:hover {
+            border-color: var(--navy);
+            transform: translateY(-5px);
+            box-shadow: 0 16px 40px rgba(13, 26, 58, .1)
+        }
+
+        .sstat-val {
+            font-family: 'Bebas Neue';
+            font-size: 2.4rem;
+            color: var(--red-mid);
+            letter-spacing: 2px;
+            line-height: 1
+        }
+
+        .sstat-lbl {
+            font-size: .58rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            margin-top: 5px
+        }
+
+        /* ══ VALUES ══ */
+        .values-section {
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--dark) 50%, var(--navy) 100%);
+            position: relative;
+            overflow: hidden
+        }
+
+        .values-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(200, 150, 12, .12), transparent 60%)
+        }
+
+        .values-inner {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1
+        }
+
+        .val-item {
+            padding: 60px 36px;
+            border-right: 1px solid rgba(255, 255, 255, .06);
+            position: relative;
+            overflow: hidden;
+            transition: background .3s;
+            cursor: default
+        }
+
+        .val-item:last-child {
+            border-right: none
+        }
+
+        .val-item:hover {
+            background: rgba(255, 255, 255, .04)
+        }
+
+        .val-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--navy-mid), var(--gold));
+            transform: scaleX(0);
+            transition: transform .4s;
+            transform-origin: left
+        }
+
+        .val-item:hover::after {
+            transform: scaleX(1)
+        }
+
+        .val-num {
+            font-family: 'Bebas Neue';
+            font-size: 5rem;
+            color: rgba(200, 150, 12, .07);
+            line-height: 1;
+            margin-bottom: 12px;
+            letter-spacing: 2px
+        }
+
+        .val-icon {
+            font-size: 2rem;
+            margin-bottom: 14px;
+            display: block
+        }
+
+        .val-title {
+            font-family: 'Playfair Display';
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px
+        }
+
+        .val-desc {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .38);
+            line-height: 1.72
+        }
+
+        /* ══ FOUNDERS ══ */
+        .founders-section {
+            padding: 100px 80px;
+            background: var(--cream-deep)
+        }
+
+        .founders-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .founder-card {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all .4s;
+            position: relative
+        }
+
+        .founder-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 32px 80px rgba(13, 26, 58, .15), 0 0 0 2px rgba(27, 46, 107, .15)
+        }
+
+        .fc-top {
+            height: 260px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .fc-bg {
+            position: absolute;
+            inset: 0;
+            transition: transform .6s
+        }
+
+        .founder-card:hover .fc-bg {
+            transform: scale(1.06)
+        }
+
+        .fc-glow {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity .4s
+        }
+
+        .founder-card:hover .fc-glow {
+            opacity: 1
+        }
+
+        .fc-avatar {
+            position: relative;
+            z-index: 2;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display';
+            font-weight: 900;
+            font-size: 3.5rem;
+            color: white;
+            border: 4px solid rgba(255, 255, 255, .4);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .2);
+            transition: transform .4s cubic-bezier(.34, 1.56, .64, 1)
+        }
+
+        .founder-card:hover .fc-avatar {
+            transform: scale(1.1) translateY(-6px)
+        }
+
+        .fc-badge {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: var(--navy);
+            color: var(--gold-light);
+            font-size: .58rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 100px;
+            z-index: 3
+        }
+
+        .fc-body {
+            padding: 26px 30px 30px
+        }
+
+        .fc-role {
+            font-size: .6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 8px
+        }
+
+        .fc-name {
+            font-family: 'Playfair Display';
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--navy);
+            margin-bottom: 5px;
+            line-height: 1.1
+        }
+
+        .fc-title {
+            font-size: .78rem;
+            color: var(--navy-light);
+            margin-bottom: 18px;
+            letter-spacing: .5px
+        }
+
+        .fc-quote {
+            font-family: 'Playfair Display';
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--navy-light);
+            line-height: 1.7;
+            border-left: 3px solid rgba(27, 46, 107, .2);
+            padding-left: 16px;
+            margin-bottom: 18px
+        }
+
+        .fc-bio {
+            font-size: .78rem;
+            color: var(--navy-light);
+            line-height: 1.72;
+            margin-bottom: 20px
+        }
+
+        .fc-tags {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap
+        }
+
+        .fc-tag {
+            padding: 4px 12px;
+            background: rgba(27, 46, 107, .06);
+            border: 1px solid rgba(27, 46, 107, .15);
+            border-radius: 100px;
+            font-size: .6rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--navy-light)
+        }
+
+        /* ══ TEAM ══ */
+        .team-section {
+            padding: 80px 80px 100px;
+            background: var(--cream)
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-top: 50px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .team-card {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .08);
+            border-radius: 18px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: all .35s;
+            cursor: default;
+            position: relative;
+            overflow: hidden
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--navy), transparent);
+            transform: scaleX(0);
+            transition: transform .4s
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(13, 26, 58, .1), 0 0 0 2px rgba(27, 46, 107, .08)
+        }
+
+        .team-card:hover::before {
+            transform: scaleX(1)
+        }
+
+        .tc-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display';
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: white;
+            border: 2px solid rgba(27, 46, 107, .15)
+        }
+
+        .tc-name {
+            font-family: 'Playfair Display';
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 4px
+        }
+
+        .tc-role {
+            font-size: .62rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 10px
+        }
+
+        .tc-desc {
+            font-size: .74rem;
+            color: var(--navy-light);
+            line-height: 1.6
+        }
+
+        /* ══ CERT BAND ══ */
+        .cert-band {
+            background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+            padding: 22px 0;
+            overflow: hidden;
+            display: flex;
+            border-top: 2px solid rgba(200, 150, 12, .3);
+            border-bottom: 2px solid rgba(200, 150, 12, .3)
+        }
+
+        .cert-track {
+            display: flex;
+            gap: 0;
+            animation: certroll 28s linear infinite;
+            white-space: nowrap
+        }
+
+        .cert-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 0 32px;
+            font-family: 'Bebas Neue';
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            color: rgba(200, 150, 12, .5);
+            flex-shrink: 0;
+            transition: color .3s
+        }
+
+        .cert-item:hover {
+            color: var(--gold)
+        }
+
+        .cert-sep {
+            color: rgba(27, 46, 107, .3)
+        }
+
+        @keyframes certroll {
+            from {
+                transform: translateX(0)
+            }
+
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        /* ══ QUALITY PROCESS SECTION ══ */
+        .process-section {
+            padding: 100px 40px 120px;
+            background: linear-gradient(180deg, var(--cream) 0%, #fff 100%);
+            position: relative;
+            overflow: hidden
+        }
+
+        .process-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 20%, rgba(27, 46, 107, .04), transparent 60%)
+        }
+
+        .process-header {
+            text-align: center;
+            margin-bottom: 60px
+        }
+
+        .process-diagram {
+            max-width: 1240px;
+            margin: 0 auto;
+            position: relative
+        }
+
+        .proc-canvas {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 5;
+            width: 100%;
+            height: 100%
+        }
+
+        .proc-lane {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            align-items: center;
+            padding: 28px 40px;
+            position: relative;
+            gap: 0
+        }
+
+        .proc-lane::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 60px;
+            right: 60px;
+            height: 2px;
+            background: rgba(27, 46, 107, .12);
+            transform: translateY(-50%);
+            z-index: 0;
+            pointer-events: none;
+            transition: background .4s
+        }
+
+        .proc-lane.reverse {
+            direction: rtl
+        }
+
+        .proc-lane.reverse .proc-step {
+            direction: ltr
+        }
+
+        .proc-lane.reverse::after {
+            background: rgba(27, 46, 107, .12)
+        }
+
+        .proc-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+            padding: 8px 4px;
+            cursor: default;
+            transition: transform .4s cubic-bezier(.34, 1.4, .64, 1);
+            opacity: 0;
+            transform: translateY(18px) scale(.92)
+        }
+
+        .proc-step.revealed {
+            opacity: 1;
+            transform: translateY(0) scale(1)
+        }
+
+        .proc-step:hover {
+            transform: translateY(-7px) scale(1.04)
+        }
+
+        .proc-step:hover .ps-circle {
+            box-shadow: 0 14px 38px rgba(27, 46, 107, .22), 0 0 0 10px rgba(27, 46, 107, .07)
+        }
+
+        .proc-step:hover .ps-name {
+            color: var(--navy)
+        }
+
+        .ps-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: 2.5px solid rgba(27, 46, 107, .22);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(13, 26, 58, .07), 0 0 0 5px rgba(27, 46, 107, .04);
+            transition: all .45s cubic-bezier(.34, 1.2, .64, 1);
+            flex-shrink: 0;
+            position: relative
+        }
+
+        .ps-circle svg {
+            width: 34px;
+            height: 34px;
+            transition: transform .4s cubic-bezier(.34, 1.4, .64, 1)
+        }
+
+        .proc-step.active .ps-circle {
+            border-color: var(--navy);
+            background: linear-gradient(135deg, rgba(27, 46, 107, .06), rgba(27, 46, 107, .02));
+            box-shadow: 0 0 0 6px rgba(27, 46, 107, .09), 0 12px 32px rgba(27, 46, 107, .18)
+        }
+
+        .proc-step.active .ps-circle svg {
+            transform: scale(1.1)
+        }
+
+        .proc-step.active.highlight .ps-circle {
+            border-color: var(--red);
+            background: linear-gradient(135deg, rgba(139, 26, 26, .07), rgba(139, 26, 26, .02));
+            box-shadow: 0 0 0 6px rgba(139, 26, 26, .1), 0 12px 32px rgba(139, 26, 26, .2)
+        }
+
+        .proc-step.done .ps-circle {
+            border-color: rgba(27, 46, 107, .55);
+            background: rgba(27, 46, 107, .04)
+        }
+
+        .proc-step.done.highlight .ps-circle {
+            border-color: rgba(139, 26, 26, .55);
+            background: rgba(139, 26, 26, .04)
+        }
+
+        .ps-name {
+            font-family: 'DM Sans';
+            font-size: .66rem;
+            font-weight: 600;
+            letter-spacing: .5px;
+            color: var(--navy-light);
+            text-align: center;
+            line-height: 1.35;
+            max-width: 90px;
+            transition: color .3s
+        }
+
+        .proc-step.active .ps-name {
+            color: var(--navy);
+            font-weight: 700
+        }
+
+        .proc-step.active.highlight .ps-name {
+            color: var(--red)
+        }
+
+        /* Pulse ring on active step */
+        .ps-pulse {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1
+        }
+
+        .ps-pulse::before,
+        .ps-pulse::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px solid rgba(27, 46, 107, .35);
+            animation: none
+        }
+
+        .proc-step.active .ps-pulse::before {
+            animation: pulseRing 1.6s ease-out infinite
+        }
+
+        .proc-step.active .ps-pulse::after {
+            animation: pulseRing 1.6s ease-out .5s infinite
+        }
+
+        .proc-step.active.highlight .ps-pulse::before {
+            border-color: rgba(139, 26, 26, .35);
+            animation: pulseRingRed 1.6s ease-out infinite
+        }
+
+        .proc-step.active.highlight .ps-pulse::after {
+            border-color: rgba(139, 26, 26, .35);
+            animation: pulseRingRed 1.6s ease-out .5s infinite
+        }
+
+        @keyframes pulseRing {
+            0% {
+                transform: scale(1);
+                opacity: .7
+            }
+
+            100% {
+                transform: scale(2.1);
+                opacity: 0
+            }
+        }
+
+        @keyframes pulseRingRed {
+            0% {
+                transform: scale(1);
+                opacity: .6
+            }
+
+            100% {
+                transform: scale(2.1);
+                opacity: 0
+            }
+        }
+
+        /* Step number badge */
+        .ps-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--navy);
+            color: var(--gold-light);
+            font-family: 'Bebas Neue';
+            font-size: .6rem;
+            letter-spacing: 1.5px;
+            padding: 2px 8px;
+            border-radius: 100px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity .3s
+        }
+
+        .proc-step.active .ps-badge,
+        .proc-step.done .ps-badge {
+            opacity: .8
+        }
+
+        .proc-step.active.highlight .ps-badge {
+            background: var(--red)
+        }
+
+        /* Tooltip */
+        .ps-tooltip {
+            position: absolute;
+            bottom: calc(100% + 14px);
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            background: var(--navy);
+            color: white;
+            font-size: .7rem;
+            line-height: 1.5;
+            padding: 9px 14px;
+            border-radius: 10px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: all .25s;
+            z-index: 20;
+            max-width: 180px;
+            white-space: normal;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(13, 26, 58, .25)
+        }
+
+        .ps-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--navy)
+        }
+
+        .proc-step:hover .ps-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0)
+        }
+
+        .proc-step.highlight .ps-tooltip {
+            background: var(--red)
+        }
+
+        .proc-step.highlight .ps-tooltip::after {
+            border-top-color: var(--red)
+        }
+
+        /* U-turn connector */
+        .u-turn {
+            height: 68px;
+            position: relative;
+            margin: 0 20px;
+            display: flex;
+            align-items: center
+        }
+
+        .u-turn.right {
+            justify-content: flex-end
+        }
+
+        .u-turn.left {
+            justify-content: flex-start
+        }
+
+        .u-inner {
+            width: 70px;
+            height: 68px;
+            position: relative
+        }
+
+        .u-inner.right-arc {
+            border-right: 2px solid rgba(27, 46, 107, .2);
+            border-bottom: 2px solid rgba(27, 46, 107, .2);
+            border-radius: 0 0 35px 0;
+            margin-left: auto
+        }
+
+        .u-inner.left-arc {
+            border-left: 2px solid rgba(27, 46, 107, .2);
+            border-bottom: 2px solid rgba(27, 46, 107, .2);
+            border-radius: 0 0 0 35px;
+            margin-right: auto
+        }
+
+        .u-line {
+            flex: 1;
+            height: 2px;
+            background: rgba(27, 46, 107, .18);
+            align-self: flex-end
+        }
+
+        .u-arrow {
+            position: absolute;
+            bottom: -7px;
+            width: 12px;
+            height: 12px;
+            border-right: 2px solid rgba(27, 46, 107, .4);
+            border-bottom: 2px solid rgba(27, 46, 107, .4)
+        }
+
+        .u-inner.right-arc .u-arrow {
+            right: -1px;
+            transform: rotate(135deg)
+        }
+
+        .u-inner.left-arc .u-arrow {
+            left: -1px;
+            transform: rotate(-45deg)
+        }
+
+        /* SVG icon strokes */
+        .ico-farm path,
+        .ico-farm rect,
+        .ico-farm circle,
+        .ico-farm polygon {
+            fill: none;
+            stroke: var(--navy-mid);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-quality path,
+        .ico-quality circle,
+        .ico-quality polyline {
+            fill: none;
+            stroke: var(--red);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-class path,
+        .ico-class rect,
+        .ico-class line {
+            fill: none;
+            stroke: var(--navy-mid);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-de path,
+        .ico-de rect,
+        .ico-de circle {
+            fill: none;
+            stroke: var(--navy-mid);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-inspect path,
+        .ico-inspect circle,
+        .ico-inspect ellipse {
+            fill: none;
+            stroke: var(--navy-mid);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-kernel path,
+        .ico-kernel rect,
+        .ico-kernel ellipse {
+            fill: none;
+            stroke: var(--navy-mid);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-intake path,
+        .ico-intake rect,
+        .ico-intake line,
+        .ico-intake polygon {
+            fill: none;
+            stroke: var(--navy-mid);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-pods path,
+        .ico-pods ellipse,
+        .ico-pods line {
+            fill: none;
+            stroke: var(--navy-mid);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-shell path,
+        .ico-shell ellipse,
+        .ico-shell circle {
+            fill: none;
+            stroke: var(--navy-mid);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-mag path,
+        .ico-mag circle,
+        .ico-mag line,
+        .ico-mag rect {
+            fill: none;
+            stroke: var(--navy-mid);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-vibro path,
+        .ico-vibro rect,
+        .ico-vibro line {
+            fill: none;
+            stroke: var(--navy-mid);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-ai path,
+        .ico-ai circle,
+        .ico-ai rect,
+        .ico-ai line {
+            fill: none;
+            stroke: var(--red);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-asp path,
+        .ico-asp circle,
+        .ico-asp line,
+        .ico-asp rect {
+            fill: none;
+            stroke: var(--navy-mid);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-uni path,
+        .ico-uni rect,
+        .ico-uni line {
+            fill: none;
+            stroke: var(--navy-mid);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-metal path,
+        .ico-metal rect,
+        .ico-metal circle,
+        .ico-metal line {
+            fill: none;
+            stroke: var(--navy-mid);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-sample path,
+        .ico-sample rect,
+        .ico-sample circle,
+        .ico-sample line {
+            fill: none;
+            stroke: var(--navy-mid);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-pack path,
+        .ico-pack rect,
+        .ico-pack line,
+        .ico-pack polyline {
+            fill: none;
+            stroke: var(--red);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ico-lab path,
+        .ico-lab circle,
+        .ico-lab rect,
+        .ico-lab line {
+            fill: none;
+            stroke: var(--navy-mid);
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .proc-step.highlight .ps-circle {
+            border-color: var(--red);
+            background: linear-gradient(135deg, rgba(139, 26, 26, .06), rgba(139, 26, 26, .02));
+            box-shadow: 0 4px 18px rgba(139, 26, 26, .14), 0 0 0 5px rgba(139, 26, 26, .06)
+        }
+
+        .proc-step.highlight .ps-name {
+            color: var(--red)
+        }
+
+        /* Progress controls */
+        .proc-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 44px;
+            flex-wrap: wrap
+        }
+
+        .proc-ctrl-btn {
+            padding: 9px 22px;
+            border-radius: 100px;
+            border: 1.5px solid rgba(27, 46, 107, .25);
+            background: white;
+            font-family: 'DM Sans';
+            font-size: .7rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            cursor: pointer;
+            transition: all .3s
+        }
+
+        .proc-ctrl-btn:hover {
+            border-color: var(--navy);
+            color: var(--navy);
+            background: rgba(27, 46, 107, .04)
+        }
+
+        .proc-ctrl-btn.primary {
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 6px 18px rgba(27, 46, 107, .25)
+        }
+
+        .proc-ctrl-btn.primary:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-2px)
+        }
+
+        .proc-progress-bar {
+            width: 280px;
+            height: 4px;
+            background: rgba(27, 46, 107, .1);
+            border-radius: 4px;
+            overflow: hidden
+        }
+
+        .proc-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--navy), var(--red));
+            border-radius: 4px;
+            width: 0%;
+            transition: width .4s ease
+        }
+
+        .proc-step-counter {
+            font-family: 'Bebas Neue';
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: var(--navy);
+            min-width: 64px;
+            text-align: center
+        }
+
+        .proc-step-counter span {
+            color: var(--red-mid)
+        }
+
+        /* ══ JOURNEY SECTION ══ */
+        .journey-section {
+            padding: 120px 80px;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+            position: relative;
+            overflow: hidden
+        }
+
+        .journey-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 30%, rgba(27, 46, 107, .05), transparent 60%)
+        }
+
+        .journey-header {
+            text-align: center;
+            margin-bottom: 100px
+        }
+
+        .twirl-wrap {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto
+        }
+
+        #twirlSvg {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            pointer-events: none;
+            overflow: visible;
+            z-index: 1
+        }
+
+        .twirl-row {
+            display: grid;
+            grid-template-columns: 1fr 120px 1fr;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            min-height: 200px
+        }
+
+        .twirl-content {
+            padding: 30px 36px
+        }
+
+        .twirl-content.left {
+            text-align: right
+        }
+
+        .twirl-content.right {
+            text-align: left
+        }
+
+        .twirl-node-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            height: 100%
+        }
+
+        .twirl-node {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            position: relative;
+            z-index: 3;
+            transition: all .4s;
+            box-shadow: 0 8px 30px rgba(27, 46, 107, .2), 0 0 0 8px rgba(27, 46, 107, .06);
+            cursor: default;
+            flex-shrink: 0
+        }
+
+        .twirl-row:hover .twirl-node {
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            box-shadow: 0 12px 40px rgba(27, 46, 107, .4), 0 0 0 12px rgba(27, 46, 107, .1);
+            transform: scale(1.15)
+        }
+
+        .twirl-node-year {
+            font-family: 'Bebas Neue';
+            font-size: .8rem;
+            letter-spacing: 2px;
+            color: var(--navy-light);
+            margin-top: 8px
+        }
+
+        .twirl-card {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 18px;
+            padding: 24px 26px;
+            transition: all .4s;
+            position: relative;
+            overflow: hidden
+        }
+
+        .twirl-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 17px;
+            background: linear-gradient(135deg, rgba(27, 46, 107, .04), transparent);
+            opacity: 0;
+            transition: opacity .4s
+        }
+
+        .twirl-row:hover .twirl-card {
+            border-color: rgba(27, 46, 107, .25);
+            box-shadow: 0 20px 55px rgba(13, 26, 58, .1);
+            transform: translateY(-3px)
+        }
+
+        .twirl-row:hover .twirl-card::before {
+            opacity: 1
+        }
+
+        .tc-tag {
+            font-size: .55rem;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .twirl-content.left .tc-tag {
+            justify-content: flex-end
+        }
+
+        .tc-tag::before {
+            content: '';
+            width: 14px;
+            height: 1.5px;
+            background: var(--red-mid);
+            flex-shrink: 0
+        }
+
+        .twirl-content.left .tc-tag::before {
+            order: 2
+        }
+
+        .twirl-card-title {
+            font-family: 'Playfair Display';
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.25;
+            margin-bottom: 9px
+        }
+
+        .twirl-card-desc {
+            font-size: .78rem;
+            color: var(--navy-light);
+            line-height: 1.7;
+            opacity: .8
+        }
+
+        .twirl-highlight {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(27, 46, 107, .07);
+            border: 1px solid rgba(27, 46, 107, .18);
+            border-radius: 100px;
+            padding: 4px 12px;
+            font-size: .6rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-top: 12px
+        }
+
+        .twirl-empty {
+            padding: 30px 36px
+        }
+
+        /* ══ IMPACT ══ */
+        .impact-section {
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            position: relative;
+            overflow: hidden
+        }
+
+        .impact-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, .08), transparent 60%);
+            pointer-events: none
+        }
+
+        .impact-inner {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 72px 80px
+        }
+
+        .impact-item {
+            text-align: center;
+            border-right: 1px solid rgba(255, 255, 255, .15);
+            padding: 32px 24px
+        }
+
+        .impact-item:last-child {
+            border-right: none
+        }
+
+        .ii-num {
+            font-family: 'Bebas Neue';
+            font-size: 5rem;
+            color: white;
+            line-height: 1;
+            letter-spacing: 2px
+        }
+
+        .ii-suffix {
+            font-family: 'Bebas Neue';
+            font-size: 2.5rem;
+            color: rgba(255, 255, 255, .55)
+        }
+
+        .ii-label {
+            font-size: .65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .65);
+            margin-top: 6px
+        }
+
+        /* ══ GUJARAT ══ */
+        .gujarat-section {
+            padding: 100px 80px;
+            background: var(--cream)
+        }
+
+        .gujarat-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center
+        }
+
+        .guj-map {
+            position: relative;
+            height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .guj-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(27, 46, 107, .12)
+        }
+
+        .guj-ring:nth-child(1) {
+            width: 180px;
+            height: 180px;
+            animation: spinR 18s linear infinite
+        }
+
+        .guj-ring:nth-child(2) {
+            width: 280px;
+            height: 280px;
+            animation: spinR 28s linear infinite reverse
+        }
+
+        .guj-ring:nth-child(3) {
+            width: 380px;
+            height: 380px;
+            border-style: dashed;
+            border-color: rgba(27, 46, 107, .08);
+            animation: spinR 42s linear infinite
+        }
+
+        @keyframes spinR {
+            from {
+                transform: rotate(0)
+            }
+
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .guj-center {
+            position: relative;
+            z-index: 2;
+            text-align: center
+        }
+
+        .guj-emoji {
+            font-size: 8rem;
+            filter: drop-shadow(0 20px 40px rgba(27, 46, 107, .2));
+            animation: floatHero 6s ease-in-out infinite
+        }
+
+        .guj-label {
+            font-family: 'Bebas Neue';
+            font-size: .95rem;
+            letter-spacing: 4px;
+            color: var(--navy);
+            margin-top: 12px;
+            display: block
+        }
+
+        .guj-points {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 36px
+        }
+
+        .guj-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 18px 20px;
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .08);
+            border-radius: 14px;
+            transition: all .3s
+        }
+
+        .guj-point:hover {
+            border-color: var(--navy);
+            background: rgba(27, 46, 107, .02);
+            transform: translateX(8px)
+        }
+
+        .gp-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            margin-top: 1px
+        }
+
+        .gp-title {
+            font-weight: 600;
+            font-size: .88rem;
+            color: var(--navy);
+            margin-bottom: 3px
+        }
+
+        .gp-text {
+            font-size: .76rem;
+            color: var(--navy-light);
+            line-height: 1.6
+        }
+
+        /* ══ PHILOSOPHY ══ */
+        .philosophy-section {
+            padding: 100px 80px;
+            background: var(--cream-deep)
+        }
+
+        .phil-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .phil-card {
+            border-radius: 22px;
+            padding: 44px 32px;
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+            transition: transform .4s
+        }
+
+        .phil-card:hover {
+            transform: translateY(-8px)
+        }
+
+        .phil-card:nth-child(1) {
+            background: linear-gradient(145deg, rgba(27, 46, 107, .08), rgba(27, 46, 107, .03));
+            border: 1.5px solid rgba(27, 46, 107, .15)
+        }
+
+        .phil-card:nth-child(2) {
+            background: linear-gradient(145deg, rgba(30, 107, 58, .08), rgba(30, 107, 58, .03));
+            border: 1.5px solid rgba(30, 107, 58, .12)
+        }
+
+        .phil-card:nth-child(3) {
+            background: linear-gradient(145deg, rgba(200, 150, 12, .08), rgba(200, 150, 12, .03));
+            border: 1.5px solid rgba(200, 150, 12, .18)
+        }
+
+        .pc-num {
+            font-family: 'Bebas Neue';
+            font-size: 6rem;
+            color: rgba(27, 46, 107, .06);
+            line-height: 1;
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            letter-spacing: 2px
+        }
+
+        .pc-icon {
+            font-size: 2.4rem;
+            margin-bottom: 18px;
+            display: block;
+            position: relative;
+            z-index: 1
+        }
+
+        .pc-title {
+            font-family: 'Playfair Display';
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1
+        }
+
+        .pc-text {
+            font-size: .82rem;
+            color: var(--navy-light);
+            line-height: 1.78;
+            position: relative;
+            z-index: 1;
+            opacity: .8
+        }
+
+        /* ══ FOOTER ══ */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 76px 60px 36px;
+            position: relative
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--red), var(--gold), var(--navy))
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 56px;
+            margin-bottom: 56px
+        }
+
+        .footer-brand .logo {
+            font-family: 'Bebas Neue';
+            font-size: 1.9rem;
+            letter-spacing: 4px;
+            color: white;
+            margin-bottom: 14px
+        }
+
+        .footer-brand .logo span {
+            color: var(--red-mid)
+        }
+
+        .footer-brand p {
+            font-size: .84rem;
+            color: rgba(255, 255, 255, .45);
+            line-height: 1.75;
+            max-width: 275px;
+            margin-bottom: 24px
+        }
+
+        .stores {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+
+        .store-btn {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 7px;
+            padding: 7px 14px;
+            font-size: .75rem;
+            letter-spacing: .8px;
+            color: rgba(255, 255, 255, .75);
+            text-decoration: none;
+            transition: all .3s
+        }
+
+        .store-btn:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--red));
+            color: white;
+            border-color: var(--navy-mid)
+        }
+
+        .footer-col h4 {
+            font-size: .62rem;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 18px
+        }
+
+        .footer-col ul {
+            list-style: none
+        }
+
+        .footer-col li {
+            margin-bottom: 9px
+        }
+
+        .footer-col a {
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .42);
+            text-decoration: none;
+            transition: color .3s
+        }
+
+        .footer-col a:hover {
+            color: var(--gold-light)
+        }
+
+        .footer-outlets li {
+            font-size: .79rem;
+            color: rgba(255, 255, 255, .42);
+            margin-bottom: 7px;
+            display: flex;
+            justify-content: space-between
+        }
+
+        .footer-outlets .city {
+            color: rgba(255, 255, 255, .75);
+            font-weight: 500
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, .07);
+            padding-top: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .footer-bottom p {
+            font-size: .75rem;
+            color: rgba(255, 255, 255, .25)
+        }
+
+        .footer-tagline {
+            font-family: 'Playfair Display';
+            font-size: .95rem;
+            font-style: italic;
+            color: var(--gold)
+        }
+
+        /* ══ FLOATING CART ══ */
+        .floating-cart {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 50;
+            box-shadow: 0 8px 28px rgba(27, 46, 107, .4);
+            transition: all .3s
+        }
+
+        .floating-cart:hover {
+            transform: scale(1.1)
+        }
+
+        /* ══ SCROLL REVEAL ══ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity .7s ease, transform .7s ease
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-36px);
+            transition: opacity .7s ease, transform .7s ease
+        }
+
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0)
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(36px);
+            transition: opacity .7s ease, transform .7s ease
+        }
+
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0)
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(.9);
+            transition: opacity .6s ease, transform .6s ease
+        }
+
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: scale(1)
+        }
+
+        /* ══ RESPONSIVE ══ */
+        @media(max-width:1100px) {
+
+            .story-grid,
+            .gujarat-inner {
+                grid-template-columns: 1fr
+            }
+
+            .founders-grid {
+                grid-template-columns: 1fr
+            }
+
+            .phil-grid {
+                grid-template-columns: 1fr
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .impact-inner {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .values-inner {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .story-section,
+            .founders-section,
+            .team-section,
+            .journey-section,
+            .gujarat-section,
+            .philosophy-section,
+            .process-section {
+                padding: 70px 36px
+            }
+
+            .twirl-row {
+                grid-template-columns: 1fr 80px 1fr
+            }
+
+            .proc-lane {
+                grid-template-columns: repeat(5, 1fr);
+                padding: 20px 20px
+            }
+        }
+
+        @media(max-width:960px) {
+            .nav-links {
+                display: none
+            }
+
+            .nav-mobile-toggle {
+                display: flex
+            }
+
+            .mobile-menu {
+                display: flex
+            }
+
+            .twirl-row {
+                grid-template-columns: 60px 1fr;
+                grid-template-rows: auto
+            }
+
+            .twirl-content.left {
+                grid-column: 2;
+                text-align: left
+            }
+
+            .twirl-content.right {
+                grid-column: 2
+            }
+
+            .twirl-node-col {
+                grid-column: 1;
+                grid-row: 1
+            }
+
+            .twirl-empty {
+                display: none
+            }
+
+            .impact-inner {
+                padding: 50px 30px
+            }
+
+            .proc-lane {
+                grid-template-columns: repeat(3, 1fr)
+            }
+
+            .proc-lane .proc-step:nth-child(n+4) {
+                display: none
+            }
+        }
+
+        @media(max-width:640px) {
+            nav {
+                padding: 0 18px
+            }
+
+            .values-inner {
+                grid-template-columns: 1fr
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .impact-inner {
+                grid-template-columns: 1fr 1fr;
+                padding: 40px 20px
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 36px
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center
+            }
+
+            footer {
+                padding: 50px 22px 28px
+            }
+
+            .proc-lane {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cur"></div>
+    <div id="cur2"></div>
+
+    <!-- NAV -->
+    <nav id="mainNav">
+        <a href="index.html" class="nav-logo">PEANUT<span>JI</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li id="ddLi">
+                <button class="nav-dropdown-toggle" onclick="toggleDropdown()" aria-expanded="false"
+                    aria-haspopup="true">
+                    Our Products
+                    <svg class="chevron" viewBox="0 0 10 6" fill="none" width="10" height="6">
+                        <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <div class="nav-dropdown" id="navDropdown" role="menu">
+                    <a href="#" class="dd-vedic" role="menuitem">
+                        <div class="dd-icon"
+                            style="background:linear-gradient(135deg,rgba(200,150,12,.18),rgba(27,46,107,.08))">✨
+                        </div>
+                        <div class="dd-text">
+                            <div class="dd-name">Vedic High Oleic Oil</div>
+                            <div class="dd-sub">India's First · 77%+ MUFA</div>
+                        </div>
+                    </a>
+                    <div class="dd-divider"></div>
+                    <a href="groundnutoil.html" role="menuitem">
+                        <div class="dd-icon oil-icon">🫙</div>
+                        <div class="dd-text">
+                            <div class="dd-name">Groundnut Oil</div>
+                            <div class="dd-sub">1L to 15Kg · Double Filtered</div>
+                        </div>
+                    </a>
+                    <a href="#" role="menuitem">
+                        <div class="dd-icon butter-icon">🧈</div>
+                        <div class="dd-text">
+                            <div class="dd-name">Peanut Butter</div>
+                            <div class="dd-sub">Classic & Choco · Creamy & Crunchy</div>
+                        </div>
+                    </a>
+                    <a href="#" role="menuitem">
+                        <div class="dd-icon peanut-icon">🥜</div>
+                        <div class="dd-text">
+                            <div class="dd-name">Peanuts</div>
+                            <div class="dd-sub">Gold · Platinum · Roasted</div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="aboutus.html" class="active">About Us</a></li>
+            <li><a href="dashboard.html">My Account</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+        </ul>
+        <div class="nav-cta-wrap">
+            <div class="nav-city-badge" id="navCityBadge">
+                <div class="ncb-dot"></div><span id="navCityText">📍 Select City</span>
+            </div>
+            <button class="nav-mobile-toggle" id="mobileToggle" onclick="toggleMobile()"
+                aria-label="Menu"><span></span><span></span><span></span></button>
+            <a href="index.html#products" class="nav-cta">Shop Now →</a>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mm-section-label">Our Products</div>
+        <a href="#" class="mm-link"
+            style="background:rgba(27,46,107,.06);border:1px solid rgba(27,46,107,.12);border-radius:12px"><span
+                class="mm-icon">✨</span> Vedic High Oleic Oil</a>
+        <a href="groundnutoil.html" class="mm-link"><span class="mm-icon">🫙</span> Groundnut Oil</a>
+        <a href="#" class="mm-link"><span class="mm-icon">🧈</span> Peanut Butter</a>
+        <a href="#" class="mm-link"><span class="mm-icon">🥜</span> Peanuts</a>
+        <div class="mm-divider"></div>
+        <div class="mm-section-label">More</div>
+        <a href="blogs.html" class="mm-link"><span class="mm-icon">📖</span> Blogs</a>
+        <a href="aboutus.html" class="mm-link" style="color:var(--navy);font-weight:700"><span class="mm-icon">🏭</span>
+            About Us</a>
+        <a href="dashboard.html" class="mm-link"><span class="mm-icon">👤</span> My Account</a>
+        <a href="index.html#products" class="mm-cta">🛒 Shop Now</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-blob"></div>
+        <div class="hero-blob"></div>
+        <div class="hero-grid-bg"></div>
+        <div class="hero-floats">
+            <span class="hfl">🥜</span><span class="hfl">🫙</span><span class="hfl">🌿</span><span class="hfl">✨</span>
+        </div>
+        <div class="hero-inner">
+            <div class="hero-eyebrow">Fishfa Agri World Ltd · Gujarat, India</div>
+            <h1 class="hero-title">Pure.<br><em>Always.</em></h1>
+            <p class="hero-sub">From the red-soil farmlands of Saurashtra to kitchens across 25 nations — a story built
+                on one
+                unbreakable promise: Pyar Jaisa Pure.</p>
+            <div class="hero-pills">
+                <div class="h-pill"><strong>2014</strong>&nbsp;Founded</div>
+                <div class="h-pill">🌍 25+ Countries</div>
+                <div class="h-pill">🏆 6 Certifications</div>
+                <div class="h-pill">🌿 Zero Chemicals</div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span class="hs-lbl">Scroll to Explore</span>
+            <div class="hs-line"></div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-band">
+        <div class="marquee-track">
+            <div class="marquee-item">🥜 Pure <span>—</span></div>
+            <div class="marquee-item">Natural <span>—</span></div>
+            <div class="marquee-item">Honest <span>—</span></div>
+            <div class="marquee-item">✨ Pyar Jaisa Pure <span>—</span></div>
+            <div class="marquee-item">Gujarat <span>—</span></div>
+            <div class="marquee-item">Farm to Table <span>—</span></div>
+            <div class="marquee-item">❤️ Heart Healthy <span>—</span></div>
+            <div class="marquee-item">EU Certified <span>—</span></div>
+            <div class="marquee-item">🥜 Pure <span>—</span></div>
+            <div class="marquee-item">Natural <span>—</span></div>
+            <div class="marquee-item">Honest <span>—</span></div>
+            <div class="marquee-item">✨ Pyar Jaisa Pure <span>—</span></div>
+            <div class="marquee-item">Gujarat <span>—</span></div>
+            <div class="marquee-item">Farm to Table <span>—</span></div>
+            <div class="marquee-item">❤️ Heart Healthy <span>—</span></div>
+            <div class="marquee-item">EU Certified <span>—</span></div>
+        </div>
+    </div>
+
+    <!-- OUR STORY -->
+    <section class="story-section">
+        <div class="story-grid">
+            <div class="story-visual reveal-left">
+                <div class="sv-accent"></div>
+                <div class="sv-frame"><span class="sv-emoji">🥜</span></div>
+                <div class="sv-badge">
+                    <div class="svb-num">10+</div>
+                    <div class="svb-lbl">Years Pure</div>
+                </div>
+            </div>
+            <div class="story-content reveal-right">
+                <div class="section-tag">Our Story</div>
+                <h2 class="section-title" style="margin-bottom:0">Born from <em>Saurashtra's</em><br>Rich Red Soil</h2>
+                <p class="story-intro">"We didn't start Peanutji to make a product. We started it to make a promise —
+                    that what
+                    comes from our farms would reach your kitchen exactly as nature intended."</p>
+                <p class="story-body">In 2014, two brothers from Rajkot walked into a processing facility and saw what
+                    the
+                    groundnut oil industry had become: chemical extraction, heavy refining, multiple adulterants, and no
+                    connection to the farmer who grew the peanut. They walked out with a simple idea — do it the right
+                    way, or
+                    don't do it at all.</p>
+                <p class="story-body"><strong>Fishfa Agri World Private Limited</strong> was born from that conviction.
+                    Starting
+                    with a single cold-press unit in Rajkot, they built what is now one of India's most certified, most
+                    trusted,
+                    and most exported groundnut food brands.</p>
+                <p class="story-body">Today, Peanutji ships to <strong>25+ countries</strong> and five major cities
+                    across
+                    India. But the mission hasn't changed: <em>Pyar Jaisa Pure.</em></p>
+                <div class="story-stats">
+                    <div class="sstat reveal-scale">
+                        <div class="sstat-val">2014</div>
+                        <div class="sstat-lbl">Founded</div>
+                    </div>
+                    <div class="sstat reveal-scale">
+                        <div class="sstat-val">25+</div>
+                        <div class="sstat-lbl">Countries</div>
+                    </div>
+                    <div class="sstat reveal-scale">
+                        <div class="sstat-val">6</div>
+                        <div class="sstat-lbl">Certifications</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALUES -->
+    <div class="impact-section">
+        <div class="impact-inner">
+            <div class="impact-item reveal">
+                <div class="ii-num" id="c1">0</div><span class="ii-suffix">+</span>
+                <div class="ii-label">Countries Served</div>
+            </div>
+            <div class="impact-item reveal">
+                <div class="ii-num" id="c2">0</div><span class="ii-suffix">+</span>
+                <div class="ii-label">Partner Farmers</div>
+            </div>
+            <div class="impact-item reveal">
+                <div class="ii-num" id="c3">0</div>
+                <div class="ii-label">Certifications</div>
+            </div>
+            <div class="impact-item reveal">
+                <div class="ii-num" id="c4">0</div><span class="ii-suffix">%</span>
+                <div class="ii-label">Chemical Free</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOUNDERS -->
+    <section class="founders-section">
+        <div style="max-width:1200px;margin:0 auto">
+            <div class="reveal">
+                <div class="section-tag">Leadership</div>
+                <h2 class="section-title">The <em>Minds</em> Behind<br>the Mission</h2>
+            </div>
+            <div class="founders-grid">
+                <div class="founder-card reveal-left">
+                    <div class="fc-top">
+                        <div class="fc-bg"
+                            style="background:linear-gradient(145deg,rgba(27,46,107,.15),rgba(27,46,107,.06))"></div>
+                        <div class="fc-glow"
+                            style="background:radial-gradient(circle,rgba(27,46,107,.2),transparent 65%)"></div>
+                        <div class="fc-avatar" style="background:linear-gradient(135deg,var(--navy),var(--red))">R</div>
+                        <span class="fc-badge">Founder & CEO</span>
+                    </div>
+                    <div class="fc-body">
+                        <div class="fc-role">Founder & Chief Executive</div>
+                        <div class="fc-name">Rajesh Fishfa</div>
+                        <div class="fc-title">Visionary · Agri Entrepreneur · Gujarat Native</div>
+                        <div class="fc-quote">"The peanut is the most honest crop in the world. It asks for nothing but
+                            red soil,
+                            hard work, and sunlight. We owe it the same honesty in return."</div>
+                        <div class="fc-bio">Rajesh grew up watching his grandfather press oil in a wooden ghani in rural
+                            Rajkot.
+                            With a background in agricultural sciences and two decades in the food trade, he transformed
+                            a small
+                            cold-press unit into a globally certified production facility.</div>
+                        <div class="fc-tags"><span class="fc-tag">Agri Science</span><span class="fc-tag">Food
+                                Safety</span><span class="fc-tag">Export Markets</span><span class="fc-tag">Vedic
+                                Nutrition</span></div>
+                    </div>
+                </div>
+                <div class="founder-card reveal-right">
+                    <div class="fc-top">
+                        <div class="fc-bg"
+                            style="background:linear-gradient(145deg,rgba(30,107,58,.15),rgba(30,107,58,.06))"></div>
+                        <div class="fc-glow"
+                            style="background:radial-gradient(circle,rgba(30,107,58,.18),transparent 65%)"></div>
+                        <div class="fc-avatar" style="background:linear-gradient(135deg,#1E6B3A,#124225)">M</div>
+                        <span class="fc-badge" style="background:var(--green)">Co-Founder & COO</span>
+                    </div>
+                    <div class="fc-body">
+                        <div class="fc-role">Co-Founder & Chief Operations</div>
+                        <div class="fc-name">Manish Fishfa</div>
+                        <div class="fc-title">Operations Architect · Quality Champion · Export Strategist</div>
+                        <div class="fc-quote">"Quality is not a department. It's a decision you make before the seed
+                            goes into the
+                            ground — and you keep making it, every single day."</div>
+                        <div class="fc-bio">Manish designed the 20-stage AI-sorting quality control system, led the EU
+                            certification
+                            process, and opened distribution networks across Europe, the Middle East, and Southeast
+                            Asia.</div>
+                        <div class="fc-tags"><span class="fc-tag">QC Systems</span><span class="fc-tag">International
+                                Trade</span><span class="fc-tag">HEPA Technology</span><span class="fc-tag">EU
+                                Compliance</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="team-section">
+        <div class="reveal">
+            <div class="section-tag" style="justify-content:center">The Team</div>
+            <h2 class="section-title" style="text-align:center">People Who Make <em>Pure</em> Possible</h2>
+        </div>
+        <div class="team-grid">
+            <div class="team-card reveal">
+                <div class="tc-avatar" style="background:linear-gradient(135deg,var(--navy),var(--navy-mid))">P</div>
+                <div class="tc-name">Priya Desai</div>
+                <div class="tc-role">Head of R&D</div>
+                <div class="tc-desc">Led development of India's first High Oleic groundnut variety for Peanutji Vedic.
+                    MSc Food
+                    Science, NDRI Karnal.</div>
+            </div>
+            <div class="team-card reveal">
+                <div class="tc-avatar" style="background:linear-gradient(135deg,var(--navy-mid),var(--navy-light))">V
+                </div>
+                <div class="tc-name">Viral Shah</div>
+                <div class="tc-role">Export Director</div>
+                <div class="tc-desc">Manages distribution relationships across 25+ countries. 15 years in FMCG export
+                    from
+                    Gujarat.</div>
+            </div>
+            <div class="team-card reveal">
+                <div class="tc-avatar" style="background:linear-gradient(135deg,var(--red),var(--red-mid))">S</div>
+                <div class="tc-name">Sunita Patel</div>
+                <div class="tc-role">Quality Assurance Head</div>
+                <div class="tc-desc">Oversees the 20-stage AI sorting process and all FSSAI, ISO, and EU compliance at
+                    the
+                    Rajkot facility.</div>
+            </div>
+            <div class="team-card reveal">
+                <div class="tc-avatar" style="background:linear-gradient(135deg,#1E6B3A,#124225)">A</div>
+                <div class="tc-name">Anil Mehta</div>
+                <div class="tc-role">Farm Relations</div>
+                <div class="tc-desc">Manages direct relationships with 200+ G-20 peanut farmers across Saurashtra and
+                    Kutch
+                    districts.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERT BAND -->
+    <div class="cert-band">
+        <div class="cert-track">
+            <span class="cert-item">🇺🇸 US FDA <span class="cert-sep">✦</span></span>
+            <span class="cert-item">🇪🇺 EU Certified <span class="cert-sep">✦</span></span>
+            <span class="cert-item">🏆 FSSAI <span class="cert-sep">✦</span></span>
+            <span class="cert-item">📋 ISO 22000 <span class="cert-sep">✦</span></span>
+            <span class="cert-item">☪️ HALAL <span class="cert-sep">✦</span></span>
+            <span class="cert-item">🌏 APEDA <span class="cert-sep">✦</span></span>
+            <span class="cert-item">🇮🇳 Make in India <span class="cert-sep">✦</span></span>
+            <span class="cert-item">🇺🇸 US FDA <span class="cert-sep">✦</span></span>
+            <span class="cert-item">🇪🇺 EU Certified <span class="cert-sep">✦</span></span>
+            <span class="cert-item">🏆 FSSAI <span class="cert-sep">✦</span></span>
+            <span class="cert-item">📋 ISO 22000 <span class="cert-sep">✦</span></span>
+            <span class="cert-item">☪️ HALAL <span class="cert-sep">✦</span></span>
+            <span class="cert-item">🌏 APEDA <span class="cert-sep">✦</span></span>
+            <span class="cert-item">🇮🇳 Make in India <span class="cert-sep">✦</span></span>
+        </div>
+    </div>
+
+    <!-- ══ 20-STAGE QUALITY PROCESS ══ -->
+
+
+    <!-- JOURNEY SECTION -->
+    <section class="journey-section" id="journey">
+        <div class="journey-header reveal">
+            <div class="section-tag" style="justify-content:center">The Journey</div>
+            <h2 class="section-title" style="text-align:center">A Decade of <em>Pure Purpose</em></h2>
+            <p style="font-size:.9rem;color:var(--navy-light);margin-top:16px;opacity:.7">From a single cold-press unit
+                in Rajkot to 25+ countries worldwide.</p>
+        </div>
+        <div class="twirl-wrap" id="twirlWrap">
+            <svg id="twirlSvg" width="220" height="100"></svg>
+
+            <div class="twirl-row reveal" data-side="left">
+                <div class="twirl-content left">
+                    <div class="twirl-card">
+                        <div class="tc-tag">The Beginning</div>
+                        <div class="twirl-card-title">Two Brothers, One Cold Press</div>
+                        <div class="twirl-card-desc">Rajesh and Manish Fishfa register Fishfa Agri World Pvt. Ltd. in
+                            Rajkot. A single cold-press unit, 2 employees, and one rule: no chemicals. Ever.</div>
+                        <div class="twirl-highlight">🏭 Rajkot, Gujarat</div>
+                    </div>
+                </div>
+                <div class="twirl-node-col">
+                    <div class="twirl-node">🌱</div>
+                    <div class="twirl-node-year">2014</div>
+                </div>
+                <div class="twirl-empty"></div>
+            </div>
+
+            <div class="twirl-row reveal" data-side="right">
+                <div class="twirl-empty"></div>
+                <div class="twirl-node-col">
+                    <div class="twirl-node">🏆</div>
+                    <div class="twirl-node-year">2016</div>
+                </div>
+                <div class="twirl-content right">
+                    <div class="twirl-card">
+                        <div class="tc-tag">First Certification</div>
+                        <div class="twirl-card-title">FSSAI & APEDA Certified</div>
+                        <div class="twirl-card-desc">Achieved FSSAI food safety certification and APEDA export
+                            clearance. First shipment of groundnut oil sent to Middle East — 5 tonnes.</div>
+                        <div class="twirl-highlight">🌍 First Export</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="twirl-row reveal" data-side="left">
+                <div class="twirl-content left">
+                    <div class="twirl-card">
+                        <div class="tc-tag">Global Standards</div>
+                        <div class="twirl-card-title">EU & US FDA Registration</div>
+                        <div class="twirl-card-desc">Manish leads a 14-month compliance journey. Peanutji becomes one of
+                            very few Indian groundnut brands with simultaneous US FDA registration and EU food safety
+                            clearance.</div>
+                        <div class="twirl-highlight">🇺🇸🇪🇺 Dual Certification</div>
+                    </div>
+                </div>
+                <div class="twirl-node-col">
+                    <div class="twirl-node">🎯</div>
+                    <div class="twirl-node-year">2018</div>
+                </div>
+                <div class="twirl-empty"></div>
+            </div>
+
+            <div class="twirl-row reveal" data-side="right">
+                <div class="twirl-empty"></div>
+                <div class="twirl-node-col">
+                    <div class="twirl-node">🧈</div>
+                    <div class="twirl-node-year">2019</div>
+                </div>
+                <div class="twirl-content right">
+                    <div class="twirl-card">
+                        <div class="tc-tag">New Category</div>
+                        <div class="twirl-card-title">Peanut Butter Launch</div>
+                        <div class="twirl-card-desc">Classic Creamy and Crunchy variants launched — no palm oil, no
+                            artificial flavours. Within 6 months, reaches 3 states.</div>
+                        <div class="twirl-highlight">🥜 4 Variants Launched</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="twirl-row reveal" data-side="left">
+                <div class="twirl-content left">
+                    <div class="twirl-card">
+                        <div class="tc-tag">The Pandemic Pivot</div>
+                        <div class="twirl-card-title">D2C & Amazon India Launch</div>
+                        <div class="twirl-card-desc">COVID-19 forces a pivot to direct consumer sales. Revenue doubles
+                            despite global supply chain disruption as health-conscious buying fuels rapid growth.</div>
+                        <div class="twirl-highlight">📦 Online First</div>
+                    </div>
+                </div>
+                <div class="twirl-node-col">
+                    <div class="twirl-node">💪</div>
+                    <div class="twirl-node-year">2020</div>
+                </div>
+                <div class="twirl-empty"></div>
+            </div>
+
+            <div class="twirl-row reveal" data-side="right">
+                <div class="twirl-empty"></div>
+                <div class="twirl-node-col">
+                    <div class="twirl-node">🏭</div>
+                    <div class="twirl-node-year">2022</div>
+                </div>
+                <div class="twirl-content right">
+                    <div class="twirl-card">
+                        <div class="tc-tag">World-Class Facility</div>
+                        <div class="twirl-card-title">HEPA-Filtered Factory Opens</div>
+                        <div class="twirl-card-desc">New 40,000 sq ft EU-standard facility launches with
+                            positive-pressure HEPA filtration and zero human contact during production.</div>
+                        <div class="twirl-highlight">🔬 6 Certifications Total</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="twirl-row reveal" data-side="left">
+                <div class="twirl-content left">
+                    <div class="twirl-card">
+                        <div class="tc-tag">India's First</div>
+                        <div class="twirl-card-title">Vedic High Oleic Oil Launched</div>
+                        <div class="twirl-card-desc">Peanutji Vedic — India's first 77%+ MUFA groundnut oil — launches
+                            to national acclaim and media coverage.</div>
+                        <div class="twirl-highlight">✨ Historic Innovation</div>
+                    </div>
+                </div>
+                <div class="twirl-node-col">
+                    <div class="twirl-node">✨</div>
+                    <div class="twirl-node-year">2024</div>
+                </div>
+                <div class="twirl-empty"></div>
+            </div>
+
+            <div class="twirl-row reveal" data-side="right">
+                <div class="twirl-empty"></div>
+                <div class="twirl-node-col">
+                    <div class="twirl-node">🌍</div>
+                    <div class="twirl-node-year">2026</div>
+                </div>
+                <div class="twirl-content right">
+                    <div class="twirl-card"
+                        style="border-color:rgba(27,46,107,.25);background:linear-gradient(135deg,rgba(27,46,107,.04),rgba(200,150,12,.02))">
+                        <div class="tc-tag">Today & Beyond</div>
+                        <div class="twirl-card-title">25 Countries. Next: The World.</div>
+                        <div class="twirl-card-desc">Peanutji now exports to 25+ countries across Europe, Middle East,
+                            Southeast Asia & North America. 5 Indian cities. The mission: pure, honest food for every
+                            kitchen on earth.</div>
+                        <div class="twirl-highlight">🚀 Still Growing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT -->
+
+
+    <div class="values-section">
+        <div class="values-inner">
+            <div class="val-item reveal">
+                <div class="val-num">01</div><span class="val-icon">🌿</span>
+                <div class="val-title">Zero Compromise</div>
+                <div class="val-desc">No chemicals, no hexane, no blending with cheaper oils. Every bottle carries our
+                    reputation — and we guard it absolutely.</div>
+            </div>
+            <div class="val-item reveal">
+                <div class="val-num">02</div><span class="val-icon">🤝</span>
+                <div class="val-title">Farmer First</div>
+                <div class="val-desc">We source directly from G-20 peanut farmers in Saurashtra — ensuring fair prices
+                    and
+                    traceability from seed to shelf.</div>
+            </div>
+            <div class="val-item reveal">
+                <div class="val-num">03</div><span class="val-icon">🔬</span>
+                <div class="val-title">Science-Backed</div>
+                <div class="val-desc">Our Vedic High Oleic oil proves that ancient purity and modern food science aren't
+                    opposites — they're partners.</div>
+            </div>
+            <div class="val-item reveal">
+                <div class="val-num">04</div><span class="val-icon">🌍</span>
+                <div class="val-title">Global Standards</div>
+                <div class="val-desc">US FDA, EU, FSSAI, ISO 22000, HALAL, APEDA — six certifications because trust must
+                    be
+                    earned, not assumed.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GUJARAT -->
+    <section class="gujarat-section">
+        <div class="gujarat-inner">
+            <div class="reveal-left">
+                <div class="section-tag">Our Roots</div>
+                <h2 class="section-title" style="margin-bottom:22px">Gujarat: Where <em>Pure</em> Begins</h2>
+                <p
+                    style="font-size:.9rem;color:var(--navy-light);line-height:1.8;max-width:500px;margin-bottom:36px;opacity:.85">
+                    Saurashtra's red laterite soil produces some of the world's finest groundnuts — higher oil content,
+                    better
+                    flavour, and a terroir that no other region can replicate.</p>
+                <div class="guj-points">
+                    <div class="guj-point"><span class="gp-icon">🌾</span>
+                        <div>
+                            <div class="gp-title">G-20 Peanut Variety</div>
+                            <div class="gp-text">We exclusively source the G-20 groundnut variety — selected for highest
+                                oil yield,
+                                cleanest flavour profile, and consistency of quality across every harvest season.</div>
+                        </div>
+                    </div>
+                    <div class="guj-point"><span class="gp-icon">🤝</span>
+                        <div>
+                            <div class="gp-title">200+ Partner Farmers</div>
+                            <div class="gp-text">Direct farm relationships across Saurashtra and Kutch. Fair pricing,
+                                advance payment,
+                                and zero middlemen.</div>
+                        </div>
+                    </div>
+                    <div class="guj-point"><span class="gp-icon">🏭</span>
+                        <div>
+                            <div class="gp-title">Rajkot Production Hub</div>
+                            <div class="gp-text">Our 40,000 sq ft Rajkot facility — EU-standard, AI-sorted,
+                                HEPA-conditioned,
+                                certified by six international bodies.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal-right" style="display:flex;align-items:center;justify-content:center">
+                <div class="guj-map">
+                    <div class="guj-ring"></div>
+                    <div class="guj-ring"></div>
+                    <div class="guj-ring"></div>
+                    <div class="guj-center">
+                        <div class="guj-emoji">🌾</div><span class="guj-label">Saurashtra · Gujarat · India</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section class="philosophy-section">
+        <div class="reveal" style="text-align:center">
+            <div class="section-tag" style="justify-content:center">Our Philosophy</div>
+            <h2 class="section-title" style="text-align:center">Three Pillars of <em>Purity</em></h2>
+        </div>
+        <div class="phil-grid">
+            <div class="phil-card reveal">
+                <div class="pc-num">01</div><span class="pc-icon">🌿</span>
+                <div class="pc-title">Source Pure</div>
+                <div class="pc-text">Everything starts with the right seed in the right soil. G-20 peanuts from
+                    Saurashtra's red
+                    laterite farms, contracted directly from families we've known for a decade. No shortcuts. No
+                    substitutions.
+                </div>
+            </div>
+            <div class="phil-card reveal">
+                <div class="pc-num">02</div><span class="pc-icon">🔬</span>
+                <div class="pc-title">Process Pure</div>
+                <div class="pc-text">Cold-filtration only. No hexane. No deodorisation. No bleaching. Our HEPA-filtered
+                    facility
+                    ensures that what goes in comes out unchanged, uncompromised, and nutritionally whole.</div>
+            </div>
+            <div class="phil-card reveal">
+                <div class="pc-num">03</div><span class="pc-icon">❤️</span>
+                <div class="pc-title">Deliver Pure</div>
+                <div class="pc-text">From AI-sorted quality control to tamper-proof packaging — every decision is made
+                    with one
+                    question: would we give this to our own family? If no, we start again.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">PEANUT<span>JI</span></div>
+                <p>Premium groundnut oil, peanut butter & peanuts from Fishfa Agri World Ltd. Pure, natural, and made
+                    with love
+                    in Gujarat, India.</p>
+                <div class="stores">
+                    <a href="https://www.amazon.in/s?k=Peanutji" class="store-btn">🛒 Amazon</a>
+                    <a href="#" class="store-btn">🛍️ Flipkart</a>
+                    <a href="#" class="store-btn">🌐 Website</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="groundnutoil.html">Groundnut Oil</a></li>
+                    <li><a href="#">Peanut Butter</a></li>
+                    <li><a href="#">Peanuts</a></li>
+                    <li><a href="#">Vedic High Oleic</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="blogs.html">Blog</a></li>
+                    <li><a href="#">Distributor Enquiry</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Factory Outlets</h4>
+                <ul class="footer-outlets">
+                    <li><span class="city">Rajkot</span><span>8460 160 126</span></li>
+                    <li><span class="city">Ahmedabad</span><span>8460 160 125</span></li>
+                    <li><span class="city">Surat</span><span>8460 160 127</span></li>
+                    <li><span class="city">Mumbai</span><span>9798 377 777</span></li>
+                    <li><span class="city">Delhi</span><span>7011 066 196</span></li>
+                    <li><span class="city">Care</span><span>7777 966 944</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Fishfa Agri World Private Limited. All rights reserved.</p>
+            <div class="footer-tagline">Pyar Jaisa Pure ✦</div>
+        </div>
+    </footer>
+
+    <div class="floating-cart" onclick="alert('🛒 Visit Shop')">🛒</div>
+</body>
+<script>
+    /* ── CURSOR ── */
+    const cur = document.getElementById('cur'),
+        cur2 = document.getElementById('cur2')
+    let mx = 0,
+        my = 0,
+        fx = 0,
+        fy = 0
+    document.addEventListener('mousemove', e => {
+        mx = e.clientX
+        my = e.clientY
+        cur.style.left = mx + 'px'
+        cur.style.top = my + 'px'
+    })
+        ; (function loop() {
+            fx += (mx - fx) * 0.12
+            fy += (my - fy) * 0.12
+            cur2.style.left = fx + 'px'
+            cur2.style.top = fy + 'px'
+            requestAnimationFrame(loop)
+        })()
+    document
+        .querySelectorAll(
+            'a,button,.founder-card,.team-card,.phil-card,.val-item,.guj-point,.sstat,.proc-step,.twirl-node,.floating-cart'
+        )
+        .forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hov'))
+            el.addEventListener('mouseleave', () =>
+                document.body.classList.remove('hov')
+            )
+        })
+
+    /* ── NAV ── */
+    window.addEventListener('scroll', () =>
+        document
+            .getElementById('mainNav')
+            .classList.toggle('scrolled', window.scrollY > 50)
+    )
+    const ddLi = document.getElementById('ddLi')
+    function toggleDropdown() {
+        const isOpen = ddLi.classList.contains('open')
+        if (!isOpen) {
+            ddLi.classList.add('open')
+            ddLi
+                .querySelector('.nav-dropdown-toggle')
+                .setAttribute('aria-expanded', 'true')
+        } else {
+            ddLi.classList.remove('open')
+            ddLi
+                .querySelector('.nav-dropdown-toggle')
+                .setAttribute('aria-expanded', 'false')
+        }
+    }
+    document.addEventListener('click', e => {
+        if (!ddLi.contains(e.target)) {
+            ddLi.classList.remove('open')
+            ddLi
+                .querySelector('.nav-dropdown-toggle')
+                .setAttribute('aria-expanded', 'false')
+        }
+    })
+    let mobileOpen = false
+    function toggleMobile() {
+        mobileOpen = !mobileOpen
+        const menu = document.getElementById('mobileMenu')
+        const toggle = document.getElementById('mobileToggle')
+        menu.classList.toggle('open', mobileOpen)
+        const bars = toggle.querySelectorAll('span')
+        if (mobileOpen) {
+            bars[0].style.cssText = 'transform:rotate(45deg) translate(5px,5px)'
+            bars[1].style.cssText = 'opacity:0;transform:translateX(-8px)'
+            bars[2].style.cssText = 'transform:rotate(-45deg) translate(5px,-5px)'
+        } else bars.forEach(b => (b.style.cssText = ''))
+    }
+
+    /* ── CITY BADGE ── */
+    const savedCity = localStorage.getItem('pj_city')
+    if (savedCity) {
+        document.getElementById('navCityBadge').classList.add('vis')
+        document.getElementById('navCityText').textContent = `📍 ${savedCity}`
+    }
+
+    /* ── SCROLL REVEAL ── */
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible')
+            })
+        },
+        { threshold: 0.1 }
+    )
+    document
+        .querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale')
+        .forEach(el => observer.observe(el))
+
+    /* ── STEP NUMBER TOOLTIPS ── */
+    const STEP_NUMS = [
+        '01',
+        '02',
+        '03',
+        '04',
+        '05',
+        '06',
+        '07',
+        '08',
+        '09',
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+        '15',
+        '16',
+        '17',
+        '18',
+        '19',
+        '20'
+    ]
+    document.querySelectorAll('.proc-step').forEach((step, i) => {
+        const badge = document.createElement('div')
+        badge.style.cssText = `position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--navy);color:var(--gold-light);font-family:'Bebas Neue';font-size:.65rem;letter-spacing:1.5px;padding:2px 7px;border-radius:100px;white-space:nowrap;pointer-events:none;opacity:.7`
+        badge.textContent = `Step ${STEP_NUMS[i] || String(i + 1).padStart(2, '0')}`
+        step.style.position = 'relative'
+        step.appendChild(badge)
+    })
+
+    /* ── TWIRL SVG SPINE ── */
+    function buildTwirlSpine() {
+        const wrap = document.getElementById('twirlWrap')
+        const svg = document.getElementById('twirlSvg')
+        const rows = [...wrap.querySelectorAll('.twirl-row')]
+        if (!rows.length) return
+        const wrapRect = wrap.getBoundingClientRect()
+        const totalH = wrap.offsetHeight
+        svg.setAttribute('height', totalH)
+        svg.setAttribute('width', '220')
+        svg.style.height = totalH + 'px'
+        const nodeYs = rows.map(row => {
+            const nodeEl = row.querySelector('.twirl-node')
+            const rowRect = row.getBoundingClientRect()
+            return (
+                rowRect.top - wrapRect.top + nodeEl.offsetTop + nodeEl.offsetHeight / 2
+            )
+        })
+        const cx = 110,
+            amp = 55
+        let pathD = ''
+        const sides = rows.map(r => r.dataset.side)
+        nodeYs.forEach((y, i) => {
+            if (i === 0) {
+                pathD += `M ${cx} 0 L ${cx} ${y}`
+            } else {
+                const prevY = nodeYs[i - 1]
+                const midY = (prevY + y) / 2
+                const swingX = sides[i] === 'right' ? cx + amp : cx - amp
+                pathD += ` C ${swingX} ${prevY + 40}, ${swingX} ${midY}, ${cx} ${midY}`
+                pathD += ` C ${cx - (swingX - cx)} ${midY}, ${cx - (swingX - cx)} ${y - 40
+                    }, ${cx} ${y}`
+            }
+        })
+        pathD += ` L ${cx} ${totalH}`
+        svg.innerHTML = ''
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs')
+        defs.innerHTML = `
+    <linearGradient id="spineGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1B2E6B" stop-opacity="0.12"/>
+      <stop offset="40%" stop-color="#1B2E6B" stop-opacity="0.4"/>
+      <stop offset="60%" stop-color="#8B1A1A" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#C8960C" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="spineGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1B2E6B" stop-opacity="0.0"/>
+      <stop offset="30%" stop-color="#1B2E6B" stop-opacity="0.65"/>
+      <stop offset="70%" stop-color="#8B1A1A" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#C8960C" stop-opacity="0.1"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>`
+        svg.appendChild(defs)
+        const glowPath = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'path'
+        )
+        glowPath.setAttribute('d', pathD)
+        glowPath.setAttribute('fill', 'none')
+        glowPath.setAttribute('stroke', 'url(#spineGrad)')
+        glowPath.setAttribute('stroke-width', '18')
+        glowPath.setAttribute('stroke-linecap', 'round')
+        glowPath.setAttribute('filter', 'url(#glow)')
+        svg.appendChild(glowPath)
+        const mainPath = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'path'
+        )
+        mainPath.setAttribute('d', pathD)
+        mainPath.setAttribute('fill', 'none')
+        mainPath.setAttribute('stroke', 'url(#spineGrad2)')
+        mainPath.setAttribute('stroke-width', '2.5')
+        mainPath.setAttribute('stroke-linecap', 'round')
+        mainPath.setAttribute('stroke-dasharray', '6 5')
+        svg.appendChild(mainPath)
+        nodeYs.forEach(y => {
+            const circ = document.createElementNS(
+                'http://www.w3.org/2000/svg',
+                'circle'
+            )
+            circ.setAttribute('cx', cx)
+            circ.setAttribute('cy', y)
+            circ.setAttribute('r', '4')
+            circ.setAttribute('fill', '#1B2E6B')
+            circ.setAttribute('opacity', '0.25')
+            svg.appendChild(circ)
+            const ring = document.createElementNS(
+                'http://www.w3.org/2000/svg',
+                'circle'
+            )
+            ring.setAttribute('cx', cx)
+            ring.setAttribute('cy', y)
+            ring.setAttribute('r', '10')
+            ring.setAttribute('fill', 'none')
+            ring.setAttribute('stroke', 'rgba(27,46,107,0.12)')
+            ring.setAttribute('stroke-width', '1')
+            svg.appendChild(ring)
+        })
+        const totalLen = mainPath.getTotalLength ? mainPath.getTotalLength() : 1500
+        mainPath.setAttribute('stroke-dasharray', totalLen)
+        mainPath.setAttribute('stroke-dashoffset', totalLen)
+        const journeyObs = new IntersectionObserver(
+            entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        mainPath.style.transition = `stroke-dashoffset 3.5s cubic-bezier(0.4,0,0.2,1)`
+                        mainPath.style.strokeDashoffset = '0'
+                        journeyObs.disconnect()
+                    }
+                })
+            },
+            { threshold: 0.05 }
+        )
+        journeyObs.observe(wrap)
+    }
+    window.addEventListener('load', () => {
+        buildTwirlSpine()
+    })
+    window.addEventListener('resize', () => {
+        clearTimeout(window._rto)
+        window._rto = setTimeout(buildTwirlSpine, 200)
+    })
+
+        /* ── COUNTERS ── */
+        ;[
+            { id: 'c1', target: 25 },
+            { id: 'c2', target: 200 },
+            { id: 'c3', target: 6 },
+            { id: 'c4', target: 100 }
+        ].forEach(({ id, target }) => {
+            const el = document.getElementById(id)
+            const cObs = new IntersectionObserver(
+                entries => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) {
+                            let start = 0
+                            const step = Math.ceil(target / 60)
+                            const timer = setInterval(() => {
+                                start = Math.min(start + step, target)
+                                el.textContent = start
+                                if (start >= target) clearInterval(timer)
+                            }, 1800 / 60)
+                            cObs.disconnect()
+                        }
+                    })
+                },
+                { threshold: 0.3 }
+            )
+            cObs.observe(el)
+        })
+
+    /* ── FOUNDER 3D TILT ── */
+    document.querySelectorAll('.founder-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const r = card.getBoundingClientRect()
+            const x = (e.clientX - r.left) / r.width - 0.5
+            const y = (e.clientY - r.top) / r.height - 0.5
+            card.style.transform = `translateY(-8px) perspective(1000px) rotateY(${x * 8
+                }deg) rotateX(${-y * 6}deg)`
+        })
+        card.addEventListener('mouseleave', () => {
+            card.style.transform =
+                'translateY(0) perspective(1000px) rotateY(0deg) rotateX(0deg)'
+            setTimeout(() => {
+                card.style.transform = ''
+            }, 400)
+        })
+    })
+
+        /* ── PROCESS ANIMATION ENGINE ── */
+        ; (function () {
+            const steps = [...document.querySelectorAll('.proc-step')]
+            const totalSteps = steps.length
+            let currentStep = -1,
+                animTimer = null,
+                isPlaying = false,
+                hasRevealed = false
+
+            /* ── Reveal all steps on scroll (initial) ── */
+            const sectionEl = document.getElementById('processDiagram')
+            const revealObs = new IntersectionObserver(
+                entries => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting && !hasRevealed) {
+                            hasRevealed = true
+                            steps.forEach((s, i) => {
+                                setTimeout(() => s.classList.add('revealed'), i * 80 + 100)
+                            })
+                            /* auto-start after reveal */
+                            setTimeout(() => {
+                                if (!isPlaying) {
+                                    startProcAnim()
+                                }
+                            }, steps.length * 80 + 800)
+                            revealObs.disconnect()
+                        }
+                    })
+                },
+                { threshold: 0.15 }
+            )
+            if (sectionEl) revealObs.observe(sectionEl)
+
+            /* ── Canvas particle system ── */
+            const canvas = document.getElementById('procCanvas')
+            let ctx,
+                particles = [],
+                pathPoints = []
+
+            function buildPathPoints() {
+                if (!canvas) return
+                const diagram = document.getElementById('processDiagram')
+                const dRect = diagram.getBoundingClientRect()
+                canvas.width = diagram.offsetWidth
+                canvas.height = diagram.offsetHeight
+                ctx = canvas.getContext('2d')
+                pathPoints = []
+
+                /* Collect step center positions relative to diagram */
+                steps.forEach(step => {
+                    const r = step.getBoundingClientRect()
+                    const dr = diagram.getBoundingClientRect()
+                    pathPoints.push({
+                        x: r.left - dr.left + r.width / 2,
+                        y: r.top - dr.top + r.height / 2
+                    })
+                })
+            }
+
+            function spawnParticle(fromIdx) {
+                if (!ctx || pathPoints.length < 2) return
+                const src = pathPoints[fromIdx]
+                if (!src) return
+                particles.push({
+                    x: src.x,
+                    y: src.y,
+                    targetIdx: fromIdx + 1,
+                    progress: 0,
+                    speed: 0.025 + Math.random() * 0.012,
+                    size: 3 + Math.random() * 2.5,
+                    alpha: 0.9,
+                    color:
+                        steps[fromIdx] && steps[fromIdx].classList.contains('highlight')
+                            ? '139,26,26'
+                            : '27,46,107'
+                })
+            }
+
+            let rafId = null
+            function animParticles() {
+                if (!ctx) return
+                ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+                /* Draw soft path lines between consecutive steps */
+                if (pathPoints.length > 1) {
+                    ctx.beginPath()
+                    pathPoints.forEach((p, i) => {
+                        if (i === 0) ctx.moveTo(p.x, p.y)
+                        else {
+                            const prev = pathPoints[i - 1]
+                            const mx = (prev.x + p.x) / 2,
+                                my = (prev.y + p.y) / 2
+                            ctx.quadraticCurveTo(prev.x, prev.y, mx, my)
+                        }
+                    })
+                    ctx.strokeStyle = 'rgba(27,46,107,0.06)'
+                    ctx.lineWidth = 2
+                    ctx.stroke()
+                }
+
+                /* Update + draw particles */
+                particles = particles.filter(p => {
+                    if (p.targetIdx >= pathPoints.length) {
+                        p.alpha -= 0.06
+                        return p.alpha > 0
+                    }
+                    const target = pathPoints[p.targetIdx]
+                    const prev = pathPoints[p.targetIdx - 1] || pathPoints[0]
+                    p.progress = Math.min(1, p.progress + p.speed)
+                    /* Bezier interpolation */
+                    const t = p.progress
+                    const midX = (prev.x + target.x) / 2,
+                        midY = (prev.y + target.y) / 2
+                    p.x =
+                        prev.x * (1 - t) * (1 - t) + midX * 2 * (1 - t) * t + target.x * t * t
+                    p.y =
+                        prev.y * (1 - t) * (1 - t) + midY * 2 * (1 - t) * t + target.y * t * t
+                    if (p.progress >= 1) {
+                        p.targetIdx++
+                        p.progress = 0
+                    }
+
+                    /* Draw particle */
+                    const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 2)
+                    grad.addColorStop(0, `rgba(${p.color},${p.alpha})`)
+                    grad.addColorStop(1, `rgba(${p.color},0)`)
+                    ctx.beginPath()
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
+                    ctx.fillStyle = grad
+                    ctx.fill()
+
+                    /* Trail */
+                    ctx.beginPath()
+                    ctx.arc(p.x, p.y, p.size * 0.5, 0, Math.PI * 2)
+                    ctx.fillStyle = `rgba(${p.color},${p.alpha * 0.6})`
+                    ctx.fill()
+                    return true
+                })
+                rafId = requestAnimationFrame(animParticles)
+            }
+
+            /* ── Active step highlight ── */
+            function setActiveStep(idx) {
+                steps.forEach((s, i) => {
+                    s.classList.remove('active', 'done')
+                    if (i < idx) s.classList.add('done')
+                    else if (i === idx) s.classList.add('active')
+                })
+                /* Progress bar */
+                const fill = document.getElementById('procProgressFill')
+                const counter = document.getElementById('procStepCounter')
+                if (fill) fill.style.width = ((idx + 1) / totalSteps) * 100 + '%'
+                if (counter)
+                    counter.innerHTML = idx + 1 + '<span>/' + totalSteps + '</span>'
+                /* Spawn particle from current to next */
+                if (idx < totalSteps - 1) spawnParticle(idx)
+            }
+
+            /* ── Play / Pause ── */
+            function startProcAnim() {
+                if (isPlaying) return
+                isPlaying = true
+                const btn = document.getElementById('procPlayBtn')
+                if (btn) btn.innerHTML = '&#9646;&#9646; Pause'
+                if (currentStep >= totalSteps - 1) currentStep = -1
+                buildPathPoints()
+                if (!rafId) animParticles()
+                function tick() {
+                    currentStep++
+                    if (currentStep >= totalSteps) {
+                        isPlaying = false
+                        if (btn) btn.innerHTML = '&#9654; Play Again'
+                        return
+                    }
+                    setActiveStep(currentStep)
+                    animTimer = setTimeout(tick, 520)
+                }
+                tick()
+            }
+
+            function pauseProcAnim() {
+                isPlaying = false
+                clearTimeout(animTimer)
+                const btn = document.getElementById('procPlayBtn')
+                if (btn) btn.innerHTML = '&#9654; Resume'
+            }
+
+            window.toggleProcAnim = function () {
+                if (isPlaying) pauseProcAnim()
+                else startProcAnim()
+            }
+            window.resetProcAnim = function () {
+                pauseProcAnim()
+                currentStep = -1
+                steps.forEach(s => s.classList.remove('active', 'done'))
+                particles = []
+                const fill = document.getElementById('procProgressFill')
+                const counter = document.getElementById('procStepCounter')
+                if (fill) fill.style.width = '0%'
+                if (counter) counter.innerHTML = '0<span>/' + totalSteps + '</span>'
+                const btn = document.getElementById('procPlayBtn')
+                if (btn) btn.innerHTML = '&#9654; Play Process'
+            }
+
+            /* ── Rebuild canvas on resize ── */
+            window.addEventListener('resize', () => {
+                clearTimeout(window._pcrt)
+                window._pcrt = setTimeout(buildPathPoints, 200)
+            })
+
+            /* ── Step hover interaction ── */
+            steps.forEach((step, i) => {
+                step.addEventListener('click', () => {
+                    clearTimeout(animTimer)
+                    isPlaying = false
+                    currentStep = i
+                    setActiveStep(i)
+                    const btn = document.getElementById('procPlayBtn')
+                    if (btn) btn.innerHTML = '&#9654; Resume'
+                })
+            })
+        })()
+
+    /* ── TWIRL ROW HOVER ── */
+    document.querySelectorAll('.twirl-row').forEach(row => {
+        row.addEventListener('mouseenter', () => {
+            const node = row.querySelector('.twirl-node')
+            node.style.transform = 'scale(1.18)'
+            node.style.transition = 'transform .35s cubic-bezier(.34,1.56,.64,1)'
+        })
+        row.addEventListener('mouseleave', () => {
+            const node = row.querySelector('.twirl-node')
+            node.style.transform = 'scale(1)'
+        })
+    })
+
+</script>
+
+</html>

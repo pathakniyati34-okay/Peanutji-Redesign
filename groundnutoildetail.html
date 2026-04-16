@@ -1,0 +1,4369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groundnut Oil 1L Bottle — Peanutji · Pyar Jaisa Pure</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Sans:wght@300;400;500;600;700&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* ── HOME PAGE MATCHED PALETTE ── */
+            --navy: #1B2E6B;
+            --navy-deep: #162460;
+            --navy-mid: #243685;
+            --navy-light: #2E448F;
+            --red: #8B1A1A;
+            --red-mid: #A93226;
+            --red-bright: #C0392B;
+            --gold: #C8960C;
+            --gold-light: #E0AE1A;
+            --gold-pale: #F5E6A0;
+            --gold-bright: #F0C030;
+            --cream: #F5F0E8;
+            --cream-deep: #EDE5D5;
+            --white: #FFFFFF;
+            --dark: #0D1A3A;
+            --green: #2E7D32;
+            --green-l: #4CAF50;
+
+            /* Aliases for old orange-based vars mapped to new palette */
+            --orange: var(--gold);
+            --orange-deep: var(--gold);
+            --orange-bright: var(--gold-light);
+            --brown: var(--navy);
+            --brown-mid: var(--navy-mid);
+            --brown-light: var(--navy-light);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--navy);
+            overflow-x: hidden;
+            cursor: none
+        }
+
+        /* ── CURSOR ── */
+        #cur {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--navy);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform .15s
+        }
+
+        #cur2 {
+            position: fixed;
+            width: 28px;
+            height: 28px;
+            border: 1.5px solid rgba(27, 46, 107, .45);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .18s, height .18s, border-color .2s
+        }
+
+        .hov #cur {
+            transform: translate(-50%, -50%) scale(0)
+        }
+
+        .hov #cur2 {
+            width: 46px;
+            height: 46px;
+            border-color: var(--navy)
+        }
+
+        /* ── GRAIN ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 8000;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.018'/%3E%3C/svg%3E");
+            opacity: .5
+        }
+
+        /* ══════════════════════════
+   NAV
+══════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 52px;
+            height: 68px;
+            background: rgba(245, 240, 232, .97);
+            backdrop-filter: blur(18px);
+            border-bottom: 2px solid rgba(27, 46, 107, .12);
+            transition: box-shadow .3s
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 24px rgba(13, 26, 58, .12)
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue';
+            font-size: 1.9rem;
+            letter-spacing: 5px;
+            color: var(--navy);
+            text-decoration: none;
+            flex-shrink: 0
+        }
+
+        .nav-logo span {
+            color: var(--red-mid)
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+            margin: 0 auto
+        }
+
+        .nav-links>li>a {
+            display: flex;
+            align-items: center;
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            text-decoration: none;
+            padding: 8px 13px;
+            border-radius: 6px;
+            transition: color .25s, background .25s
+        }
+
+        .nav-links>li>a:hover {
+            color: var(--navy);
+            background: rgba(27, 46, 107, .07)
+        }
+
+        .nav-cta-wrap {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-family: 'DM Sans';
+            font-size: .74rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all .3s;
+            box-shadow: 0 4px 14px rgba(27, 46, 107, .3)
+        }
+
+        .nav-cta:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-1px)
+        }
+
+        .cart-icon-btn {
+            position: relative;
+            background: none;
+            border: 1.5px solid rgba(27, 46, 107, .25);
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all .3s
+        }
+
+        .cart-icon-btn:hover {
+            border-color: var(--navy);
+            background: rgba(27, 46, 107, .07)
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 17px;
+            height: 17px;
+            background: var(--red-mid);
+            color: white;
+            border-radius: 50%;
+            font-size: .58rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--cream)
+        }
+
+        @media(max-width:900px) {
+            .nav-links {
+                display: none
+            }
+        }
+
+        @media(max-width:600px) {
+            nav {
+                padding: 0 18px
+            }
+        }
+
+        /* ══════════════════════════
+   BREADCRUMB
+══════════════════════════ */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 24px 60px 0;
+            margin-top: 68px;
+            font-size: .65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            flex-wrap: wrap
+        }
+
+        .breadcrumb a {
+            color: var(--navy-light);
+            text-decoration: none;
+            transition: color .25s
+        }
+
+        .breadcrumb a:hover {
+            color: var(--red-mid)
+        }
+
+        .breadcrumb span {
+            color: rgba(27, 46, 107, .3)
+        }
+
+        .breadcrumb .bc-current {
+            color: var(--red-mid)
+        }
+
+        @media(max-width:600px) {
+            .breadcrumb {
+                padding: 20px 20px 0
+            }
+        }
+
+        /* ══════════════════════════
+   HERO SECTION
+══════════════════════════ */
+        .product-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            max-width: 1500px;
+            margin: 0 auto;
+            min-height: calc(100vh - 100px)
+        }
+
+        /* LEFT: IMAGE GALLERY */
+        .gallery-side {
+            padding: 32px 40px 40px 60px;
+            position: sticky;
+            top: 68px;
+            height: calc(100vh - 68px);
+            display: flex;
+            flex-direction: column;
+            gap: 16px
+        }
+
+        .main-img-wrap {
+            flex: 1;
+            background: linear-gradient(145deg, #EDE5D5 0%, #D5C8A0 50%, rgba(200, 150, 12, .25) 100%);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            cursor: zoom-in
+        }
+
+        .main-img-bg-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 40%, rgba(200, 150, 12, .3), transparent 60%);
+            pointer-events: none
+        }
+
+        .main-img-dots {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(27, 46, 107, .06) 1px, transparent 1px);
+            background-size: 24px 24px;
+            mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+            pointer-events: none
+        }
+
+        .main-img-emoji {
+            font-size: 14rem;
+            filter: drop-shadow(0 24px 50px rgba(13, 26, 58, .2));
+            transition: transform .6s cubic-bezier(.34, 1.56, .64, 1);
+            position: relative;
+            z-index: 2;
+            line-height: 1;
+            display: block;
+            text-align: center
+        }
+
+        .main-img-wrap:hover .main-img-emoji {
+            transform: scale(1.08) translateY(-8px) rotate(-3deg)
+        }
+
+        .main-img-badge {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 3
+        }
+
+        .mib {
+            font-size: .55rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 11px;
+            border-radius: 100px
+        }
+
+        .mib-sale {
+            background: linear-gradient(135deg, var(--red), var(--red-mid));
+            color: white
+        }
+
+        .mib-new {
+            background: var(--green);
+            color: white
+        }
+
+        .mib-cert {
+            background: linear-gradient(90deg, var(--navy), var(--navy-mid));
+            color: var(--gold-light)
+        }
+
+        .zoom-hint {
+            position: absolute;
+            bottom: 14px;
+            right: 14px;
+            font-size: .6rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(27, 46, 107, .3);
+            display: flex;
+            align-items: center;
+            gap: 5px
+        }
+
+        .thumb-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center
+        }
+
+        .thumb {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            background: linear-gradient(145deg, #EDE5D5, rgba(200, 150, 12, .2));
+            border: 2px solid rgba(27, 46, 107, .15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all .3s;
+            flex-shrink: 0
+        }
+
+        .thumb:hover {
+            border-color: rgba(27, 46, 107, .5);
+            transform: translateY(-3px)
+        }
+
+        .thumb.active {
+            border-color: var(--navy);
+            background: rgba(27, 46, 107, .08);
+            box-shadow: 0 4px 14px rgba(27, 46, 107, .2)
+        }
+
+        @media(max-width:960px) {
+            .gallery-side {
+                position: static;
+                height: auto;
+                padding: 20px 20px 0
+            }
+        }
+
+        /* RIGHT: PRODUCT INFO */
+        .info-side {
+            padding: 32px 60px 80px 40px;
+            overflow-y: auto
+        }
+
+        .info-side::-webkit-scrollbar {
+            width: 2px
+        }
+
+        .info-side::-webkit-scrollbar-thumb {
+            background: rgba(27, 46, 107, .2)
+        }
+
+        /* Brand tag */
+        .prod-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px
+        }
+
+        .pe-tag {
+            font-size: .58rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--red-mid);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .pe-tag::before {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background: var(--red-mid)
+        }
+
+        .pe-new {
+            font-size: .56rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: var(--green-l);
+            color: white;
+            border-radius: 100px;
+            padding: 3px 10px
+        }
+
+        /* Title */
+        .prod-title {
+            font-family: 'Playfair Display';
+            font-size: clamp(2rem, 3.5vw, 3.2rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -.02em;
+            color: var(--navy);
+            margin-bottom: 6px
+        }
+
+        .prod-title em {
+            font-style: italic;
+            color: var(--red-mid)
+        }
+
+        .prod-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--navy-light);
+            margin-bottom: 20px;
+            line-height: 1.5
+        }
+
+        /* Rating row */
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 22px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid rgba(27, 46, 107, .15)
+        }
+
+        .stars {
+            font-size: 1rem;
+            color: var(--gold);
+            letter-spacing: 3px
+        }
+
+        .rating-val {
+            font-family: 'Bebas Neue';
+            font-size: 1.2rem;
+            color: var(--navy);
+            letter-spacing: 1px
+        }
+
+        .rating-count {
+            font-size: .75rem;
+            color: var(--navy-light)
+        }
+
+        .rating-sep {
+            width: 1px;
+            height: 16px;
+            background: rgba(27, 46, 107, .12)
+        }
+
+        .verified-badge {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .65rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--green);
+            font-weight: 600
+        }
+
+        /* Price block */
+        .price-block {
+            margin-bottom: 24px
+        }
+
+        .pb-row {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 6px
+        }
+
+        .price-now {
+            font-family: 'Bebas Neue';
+            font-size: 3.2rem;
+            color: var(--navy);
+            letter-spacing: 2px;
+            line-height: 1
+        }
+
+        .price-orig {
+            font-size: 1.1rem;
+            color: rgba(27, 46, 107, .3);
+            text-decoration: line-through
+        }
+
+        .price-save {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .68rem;
+            background: rgba(139, 26, 26, .1);
+            color: var(--red);
+            border-radius: 100px;
+            padding: 4px 12px;
+            font-weight: 700;
+            letter-spacing: .8px
+        }
+
+        .price-tax {
+            font-size: .68rem;
+            color: var(--navy-light);
+            opacity: .7
+        }
+
+        .price-note {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: .7rem;
+            color: var(--green);
+            background: rgba(46, 125, 50, .07);
+            border: 1px solid rgba(46, 125, 50, .18);
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-top: 8px
+        }
+
+        /* Variant selector */
+        .variant-section {
+            margin-bottom: 24px
+        }
+
+        .vs-head {
+            font-size: .58rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .vs-head span {
+            color: var(--red-mid);
+            font-size: .72rem;
+            letter-spacing: 1px;
+            text-transform: none;
+            font-weight: 600
+        }
+
+        .variant-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px
+        }
+
+        .variant-card {
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 12px;
+            padding: 10px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all .3s;
+            background: white;
+            position: relative
+        }
+
+        .variant-card:hover {
+            border-color: rgba(27, 46, 107, .45);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(13, 26, 58, .1)
+        }
+
+        .variant-card.active {
+            border-color: var(--navy);
+            background: rgba(27, 46, 107, .05);
+            box-shadow: 0 0 0 3px rgba(27, 46, 107, .1)
+        }
+
+        .variant-card.oos {
+            opacity: .4;
+            cursor: not-allowed
+        }
+
+        .variant-card.oos:hover {
+            transform: none;
+            box-shadow: none
+        }
+
+        .vc-oos {
+            position: absolute;
+            inset: 0;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, .7)
+        }
+
+        .vc-oos-line {
+            position: absolute;
+            inset: 0;
+            border-radius: 11px;
+            overflow: hidden
+        }
+
+        .vc-oos-line::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(27, 46, 107, .15);
+            transform: rotate(-20deg) scaleX(1.3)
+        }
+
+        .vc-size {
+            font-family: 'Bebas Neue';
+            font-size: 1.1rem;
+            color: var(--navy);
+            letter-spacing: 1px;
+            line-height: 1;
+            margin-bottom: 3px
+        }
+
+        .vc-container {
+            font-size: .58rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            margin-bottom: 5px
+        }
+
+        .vc-price {
+            font-size: .7rem;
+            font-weight: 700;
+            color: var(--red-mid)
+        }
+
+        /* Quantity */
+        .qty-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 22px
+        }
+
+        .qty-label {
+            font-size: .58rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            font-weight: 700;
+            flex-shrink: 0
+        }
+
+        .qty-ctrl {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            border: 1.5px solid rgba(27, 46, 107, .25);
+            border-radius: 10px;
+            overflow: hidden;
+            background: white
+        }
+
+        .qty-btn {
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            color: var(--navy-mid);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all .25s;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .qty-btn:hover {
+            background: rgba(27, 46, 107, .1);
+            color: var(--navy)
+        }
+
+        .qty-val {
+            width: 44px;
+            text-align: center;
+            font-family: 'Bebas Neue';
+            font-size: 1.2rem;
+            color: var(--navy);
+            letter-spacing: 1px;
+            border: none;
+            outline: none;
+            background: none;
+            padding: 0
+        }
+
+        .qty-note {
+            font-size: .68rem;
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            gap: 5px
+        }
+
+        /* CTA Buttons */
+        .cta-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 22px
+        }
+
+        .btn-atc {
+            flex: 1;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'DM Sans';
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .35s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 22px rgba(27, 46, 107, .3)
+        }
+
+        .btn-atc::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .15), transparent);
+            transform: translateX(-100%);
+            transition: transform .55s
+        }
+
+        .btn-atc:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-2px);
+            box-shadow: 0 14px 34px rgba(27, 46, 107, .42)
+        }
+
+        .btn-atc:hover::before {
+            transform: translateX(100%)
+        }
+
+        .btn-atc.added {
+            background: linear-gradient(135deg, var(--green), #1B5E20)
+        }
+
+        .btn-buy {
+            flex: 1;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, var(--gold), var(--red-mid));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'DM Sans';
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .35s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 6px 22px rgba(200, 150, 12, .25)
+        }
+
+        .btn-buy:hover {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: var(--navy-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 34px rgba(200, 150, 12, .35)
+        }
+
+        .btn-wish {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all .3s;
+            flex-shrink: 0
+        }
+
+        .btn-wish:hover {
+            border-color: rgba(139, 26, 26, .4);
+            background: rgba(139, 26, 26, .06);
+            transform: translateY(-2px)
+        }
+
+        .btn-wish.on {
+            border-color: rgba(139, 26, 26, .45);
+            background: rgba(139, 26, 26, .08);
+            color: var(--red)
+        }
+
+        /* Delivery info */
+        .delivery-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 24px
+        }
+
+        .ds-item {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .12);
+            border-radius: 12px;
+            padding: 14px 12px;
+            text-align: center;
+            transition: all .3s
+        }
+
+        .ds-item:hover {
+            border-color: rgba(27, 46, 107, .3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(13, 26, 58, .07)
+        }
+
+        .ds-icon {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 5px
+        }
+
+        .ds-title {
+            font-size: .7rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 2px
+        }
+
+        .ds-sub {
+            font-size: .6rem;
+            color: var(--navy-light);
+            line-height: 1.4
+        }
+
+        /* Trust badges */
+        .trust-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+            padding: 14px 0;
+            border-top: 1px solid rgba(27, 46, 107, .12);
+            border-bottom: 1px solid rgba(27, 46, 107, .12)
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .62rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--navy-mid);
+            font-weight: 600;
+            padding: 5px 11px;
+            border-radius: 100px;
+            background: rgba(27, 46, 107, .05);
+            border: 1px solid rgba(27, 46, 107, .12)
+        }
+
+        .trust-badge span {
+            font-size: .9rem
+        }
+
+        /* Offer strip */
+        .offer-strip {
+            background: linear-gradient(135deg, rgba(200, 150, 12, .1), rgba(27, 46, 107, .06));
+            border: 1.5px solid rgba(200, 150, 12, .3);
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin-bottom: 24px
+        }
+
+        .offer-head {
+            font-size: .58rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red-mid);
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .offer-head::before {
+            content: '🏷️'
+        }
+
+        .offer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 7px
+        }
+
+        .offer-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            font-size: .76rem;
+            color: var(--navy-mid);
+            line-height: 1.5
+        }
+
+        .offer-item::before {
+            content: '✦';
+            color: var(--gold);
+            font-size: .7rem;
+            flex-shrink: 0;
+            margin-top: 2px
+        }
+
+        .offer-item strong {
+            color: var(--navy);
+            font-weight: 700
+        }
+
+        /* Pincode checker */
+        .pincode-section {
+            margin-bottom: 24px
+        }
+
+        .pc-head {
+            font-size: .58rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            font-weight: 700;
+            margin-bottom: 8px
+        }
+
+        .pc-row {
+            display: flex;
+            gap: 0;
+            border: 1.5px solid rgba(27, 46, 107, .22);
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            transition: border-color .3s, box-shadow .3s
+        }
+
+        .pc-row:focus-within {
+            border-color: rgba(27, 46, 107, .5);
+            box-shadow: 0 0 0 3px rgba(27, 46, 107, .08)
+        }
+
+        .pc-input {
+            flex: 1;
+            border: none;
+            background: none;
+            padding: 11px 14px;
+            font-family: 'DM Sans';
+            font-size: .84rem;
+            color: var(--navy);
+            outline: none
+        }
+
+        .pc-input::placeholder {
+            color: rgba(27, 46, 107, .28)
+        }
+
+        .pc-btn {
+            background: rgba(27, 46, 107, .08);
+            color: var(--navy);
+            border: none;
+            padding: 0 18px;
+            font-family: 'DM Sans';
+            font-size: .64rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+            border-left: 1.5px solid rgba(27, 46, 107, .15)
+        }
+
+        .pc-btn:hover {
+            background: rgba(27, 46, 107, .15)
+        }
+
+        .pc-result {
+            margin-top: 7px;
+            font-size: .72rem;
+            display: none
+        }
+
+        .pc-result.vis {
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .pc-result.ok {
+            color: var(--green)
+        }
+
+        .pc-result.err {
+            color: var(--red)
+        }
+
+        /* ══════════════════════════
+   PRODUCT DETAIL TABS
+══════════════════════════ */
+        .detail-section {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 60px 80px
+        }
+
+        @media(max-width:600px) {
+            .detail-section {
+                padding: 0 20px 60px
+            }
+        }
+
+        .tab-nav {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid rgba(27, 46, 107, .15);
+            margin-bottom: 40px;
+            overflow-x: auto;
+            position: sticky;
+            top: 68px;
+            background: var(--cream);
+            z-index: 100;
+            padding-top: 4px
+        }
+
+        .tab-nav::-webkit-scrollbar {
+            display: none
+        }
+
+        .tab-btn {
+            padding: 16px 24px;
+            background: none;
+            border: none;
+            font-family: 'DM Sans';
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            cursor: pointer;
+            transition: all .3s;
+            white-space: nowrap;
+            position: relative;
+            flex-shrink: 0
+        }
+
+        .tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--navy), var(--red));
+            transform: scaleX(0);
+            transition: transform .3s
+        }
+
+        .tab-btn:hover {
+            color: var(--navy-mid)
+        }
+
+        .tab-btn.active {
+            color: var(--navy)
+        }
+
+        .tab-btn.active::after {
+            transform: scaleX(1)
+        }
+
+        .tab-panel {
+            display: none;
+            animation: fadeIn .35s ease both
+        }
+
+        .tab-panel.active {
+            display: block
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* ── OVERVIEW TAB ── */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start
+        }
+
+        .ov-title {
+            font-family: 'Playfair Display';
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--navy);
+            margin-bottom: 16px;
+            line-height: 1.1
+        }
+
+        .ov-title em {
+            font-style: italic;
+            color: var(--red-mid)
+        }
+
+        .ov-body {
+            font-size: .86rem;
+            color: var(--navy-mid);
+            line-height: 1.85;
+            margin-bottom: 24px
+        }
+
+        .ov-body p {
+            margin-bottom: 12px
+        }
+
+        /* USP list */
+        .usp-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 28px
+        }
+
+        .usp-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 16px;
+            background: white;
+            border-radius: 12px;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            transition: all .3s
+        }
+
+        .usp-item:hover {
+            border-color: rgba(27, 46, 107, .3);
+            transform: translateX(4px);
+            box-shadow: 0 6px 18px rgba(13, 26, 58, .07)
+        }
+
+        .usp-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(200, 150, 12, .18), rgba(27, 46, 107, .1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0
+        }
+
+        .usp-title {
+            font-size: .78rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 3px
+        }
+
+        .usp-sub {
+            font-size: .72rem;
+            color: var(--navy-light);
+            line-height: 1.5
+        }
+
+        /* Process steps */
+        .process-steps {
+            margin-top: 32px
+        }
+
+        .ps-title {
+            font-family: 'Playfair Display';
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 20px
+        }
+
+        .ps-title em {
+            color: var(--red-mid);
+            font-style: italic
+        }
+
+        .ps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0
+        }
+
+        .ps-step {
+            display: flex;
+            gap: 16px;
+            position: relative;
+            padding-bottom: 24px
+        }
+
+        .ps-step:last-child {
+            padding-bottom: 0
+        }
+
+        .ps-step:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 18px;
+            top: 38px;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, rgba(27, 46, 107, .3), transparent)
+        }
+
+        .ps-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            font-family: 'Bebas Neue';
+            font-size: .9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(27, 46, 107, .3)
+        }
+
+        .ps-name {
+            font-size: .78rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 3px
+        }
+
+        .ps-desc {
+            font-size: .72rem;
+            color: var(--navy-light);
+            line-height: 1.5
+        }
+
+        /* Right: Nutrition + Certifications */
+        .nutrition-card {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .15);
+            border-radius: 18px;
+            overflow: hidden;
+            margin-bottom: 22px;
+            box-shadow: 0 8px 28px rgba(13, 26, 58, .07)
+        }
+
+        .nc-head {
+            background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .nc-title {
+            font-family: 'Playfair Display';
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white
+        }
+
+        .nc-sub {
+            font-size: .62rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .4)
+        }
+
+        .nc-serving {
+            font-size: .64rem;
+            color: var(--gold-light);
+            background: rgba(200, 150, 12, .18);
+            border-radius: 100px;
+            padding: 4px 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase
+        }
+
+        .nc-body {
+            padding: 8px 0
+        }
+
+        .nc-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11px 20px;
+            border-bottom: 1px solid rgba(27, 46, 107, .07);
+            transition: background .2s
+        }
+
+        .nc-row:last-child {
+            border-bottom: none
+        }
+
+        .nc-row:hover {
+            background: rgba(27, 46, 107, .03)
+        }
+
+        .nc-row.head {
+            font-weight: 700;
+            background: rgba(27, 46, 107, .04)
+        }
+
+        .nc-label {
+            font-size: .78rem;
+            color: var(--navy-mid);
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .nc-label .nc-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--red-mid);
+            flex-shrink: 0
+        }
+
+        .nc-val {
+            font-family: 'Bebas Neue';
+            font-size: .95rem;
+            color: var(--navy);
+            letter-spacing: .5px
+        }
+
+        .nc-bar-row {
+            padding: 6px 20px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .nc-bar-label {
+            font-size: .6rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            width: 50px;
+            flex-shrink: 0
+        }
+
+        .nc-bar-track {
+            flex: 1;
+            height: 5px;
+            background: rgba(27, 46, 107, .1);
+            border-radius: 3px;
+            overflow: hidden
+        }
+
+        .nc-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--navy), var(--gold))
+        }
+
+        /* Cert badges */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px
+        }
+
+        .cert-card {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .12);
+            border-radius: 12px;
+            padding: 14px 10px;
+            text-align: center;
+            transition: all .3s
+        }
+
+        .cert-card:hover {
+            border-color: rgba(27, 46, 107, .35);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(13, 26, 58, .08)
+        }
+
+        .cert-icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 7px
+        }
+
+        .cert-name {
+            font-size: .65rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 2px
+        }
+
+        .cert-issuer {
+            font-size: .58rem;
+            color: var(--navy-light)
+        }
+
+        /* ── NUTRITION TAB ── */
+        .nutrition-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px
+        }
+
+        .nh-visual {
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, var(--red) 100%);
+            border-radius: 20px;
+            padding: 36px;
+            color: white;
+            position: relative;
+            overflow: hidden
+        }
+
+        .nh-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 80% 20%, rgba(200, 150, 12, .18), transparent 55%);
+            pointer-events: none
+        }
+
+        .nh-label {
+            font-size: .58rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .4);
+            margin-bottom: 8px
+        }
+
+        .nh-val {
+            font-family: 'Bebas Neue';
+            font-size: 4rem;
+            color: var(--gold-light);
+            letter-spacing: 3px;
+            line-height: 1
+        }
+
+        .nh-desc {
+            font-size: .76rem;
+            color: rgba(255, 255, 255, .55);
+            margin-top: 10px;
+            line-height: 1.65
+        }
+
+        .nh-emoji {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 5rem;
+            opacity: .15
+        }
+
+        .nut-detail-table {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 16px;
+            overflow: hidden
+        }
+
+        .ndt-head {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 0;
+            background: linear-gradient(135deg, rgba(27, 46, 107, .06), rgba(200, 150, 12, .03));
+            border-bottom: 1.5px solid rgba(27, 46, 107, .12);
+            padding: 12px 20px
+        }
+
+        .ndt-head span {
+            font-size: .6rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            font-weight: 700
+        }
+
+        .ndt-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 0;
+            padding: 13px 20px;
+            border-bottom: 1px solid rgba(27, 46, 107, .07);
+            transition: background .2s
+        }
+
+        .ndt-row:last-child {
+            border-bottom: none
+        }
+
+        .ndt-row:hover {
+            background: rgba(27, 46, 107, .03)
+        }
+
+        .ndt-row.cat {
+            background: rgba(27, 46, 107, .04);
+            font-weight: 700
+        }
+
+        .ndt-row span:first-child {
+            font-size: .8rem;
+            color: var(--navy-mid)
+        }
+
+        .ndt-row.cat span:first-child {
+            color: var(--navy);
+            font-size: .82rem
+        }
+
+        .ndt-row span:not(:first-child) {
+            font-family: 'Bebas Neue';
+            font-size: .92rem;
+            color: var(--navy);
+            letter-spacing: .5px
+        }
+
+        .ndt-row.sub span:first-child {
+            padding-left: 16px;
+            color: var(--navy-light)
+        }
+
+        .fatty-acid-chart {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 22px
+        }
+
+        .fac-title {
+            font-size: .6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red-mid);
+            font-weight: 700;
+            margin-bottom: 16px
+        }
+
+        .fac-item {
+            margin-bottom: 16px
+        }
+
+        .fac-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 5px
+        }
+
+        .fac-name {
+            font-size: .76rem;
+            color: var(--navy-mid);
+            font-weight: 500
+        }
+
+        .fac-val {
+            font-family: 'Bebas Neue';
+            font-size: .92rem;
+            color: var(--navy);
+            letter-spacing: .5px
+        }
+
+        .fac-bar {
+            height: 8px;
+            background: rgba(27, 46, 107, .1);
+            border-radius: 4px;
+            overflow: hidden
+        }
+
+        .fac-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1.2s cubic-bezier(.4, 0, .2, 1)
+        }
+
+        .fac-fill.mufa {
+            background: linear-gradient(90deg, var(--green), var(--green-l))
+        }
+
+        .fac-fill.pufa {
+            background: linear-gradient(90deg, #1976D2, #42A5F5)
+        }
+
+        .fac-fill.sfa {
+            background: linear-gradient(90deg, var(--red), var(--red-mid))
+        }
+
+        /* ── REVIEWS TAB ── */
+        .reviews-top {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: start
+        }
+
+        .rating-summary {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .12);
+            border-radius: 18px;
+            padding: 28px 24px;
+            text-align: center
+        }
+
+        .rs-big {
+            font-family: 'Bebas Neue';
+            font-size: 5rem;
+            color: var(--navy);
+            letter-spacing: 3px;
+            line-height: 1
+        }
+
+        .rs-big span {
+            color: var(--red-mid)
+        }
+
+        .rs-stars {
+            font-size: 1.3rem;
+            color: var(--gold);
+            letter-spacing: 3px;
+            margin: 6px 0
+        }
+
+        .rs-total {
+            font-size: .72rem;
+            color: var(--navy-light);
+            margin-bottom: 22px
+        }
+
+        .rs-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 7px
+        }
+
+        .rsb-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            cursor: pointer
+        }
+
+        .rsb-label {
+            font-size: .7rem;
+            color: var(--navy-light);
+            width: 30px;
+            text-align: right;
+            flex-shrink: 0
+        }
+
+        .rsb-track {
+            flex: 1;
+            height: 7px;
+            background: rgba(27, 46, 107, .1);
+            border-radius: 4px;
+            overflow: hidden
+        }
+
+        .rsb-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--navy), var(--gold));
+            border-radius: 4px;
+            transition: width 1s ease
+        }
+
+        .rsb-count {
+            font-size: .64rem;
+            color: var(--navy-light);
+            width: 24px;
+            text-align: left
+        }
+
+        .review-filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 24px
+        }
+
+        .rev-filter {
+            padding: 7px 16px;
+            border: 1.5px solid rgba(27, 46, 107, .2);
+            border-radius: 100px;
+            background: none;
+            font-family: 'DM Sans';
+            font-size: .66rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            cursor: pointer;
+            transition: all .3s
+        }
+
+        .rev-filter:hover {
+            border-color: rgba(27, 46, 107, .4);
+            color: var(--navy-mid)
+        }
+
+        .rev-filter.on {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: var(--gold-light)
+        }
+
+        .review-card {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 14px;
+            transition: all .3s
+        }
+
+        .review-card:hover {
+            border-color: rgba(27, 46, 107, .25);
+            box-shadow: 0 8px 24px rgba(13, 26, 58, .07)
+        }
+
+        .rc-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            gap: 12px
+        }
+
+        .rc-author {
+            display: flex;
+            align-items: center;
+            gap: 11px
+        }
+
+        .rc-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px rgba(27, 46, 107, .25)
+        }
+
+        .rc-name {
+            font-size: .82rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 2px
+        }
+
+        .rc-verified {
+            font-size: .6rem;
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            gap: 4px
+        }
+
+        .rc-meta {
+            text-align: right;
+            flex-shrink: 0
+        }
+
+        .rc-stars {
+            font-size: .82rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            margin-bottom: 2px
+        }
+
+        .rc-date {
+            font-size: .62rem;
+            color: var(--navy-light)
+        }
+
+        .rc-variant {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(27, 46, 107, .06);
+            border: 1px solid rgba(27, 46, 107, .15);
+            border-radius: 100px;
+            padding: 3px 10px;
+            font-size: .62rem;
+            color: var(--navy-mid);
+            margin-bottom: 10px
+        }
+
+        .rc-title {
+            font-size: .84rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 7px
+        }
+
+        .rc-body {
+            font-size: .78rem;
+            color: var(--navy-mid);
+            line-height: 1.7
+        }
+
+        .rc-images {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px
+        }
+
+        .rc-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            background: rgba(27, 46, 107, .08);
+            border: 1px solid rgba(27, 46, 107, .12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            cursor: pointer;
+            transition: transform .2s
+        }
+
+        .rc-img:hover {
+            transform: scale(1.1)
+        }
+
+        .rc-helpful {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(27, 46, 107, .08)
+        }
+
+        .rch-label {
+            font-size: .64rem;
+            color: var(--navy-light)
+        }
+
+        .rch-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: none;
+            border: 1px solid rgba(27, 46, 107, .18);
+            border-radius: 100px;
+            padding: 4px 12px;
+            font-family: 'DM Sans';
+            font-size: .64rem;
+            color: var(--navy-light);
+            cursor: pointer;
+            transition: all .25s
+        }
+
+        .rch-btn:hover {
+            border-color: rgba(27, 46, 107, .4);
+            color: var(--navy-mid);
+            background: rgba(27, 46, 107, .05)
+        }
+
+        .rch-btn.yes.clicked {
+            background: rgba(46, 125, 50, .08);
+            border-color: rgba(46, 125, 50, .3);
+            color: var(--green)
+        }
+
+        .load-more-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px;
+            background: none;
+            border: 1.5px solid rgba(27, 46, 107, .22);
+            border-radius: 11px;
+            font-family: 'DM Sans';
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy-mid);
+            cursor: pointer;
+            transition: all .3s;
+            margin-top: 8px
+        }
+
+        .load-more-btn:hover {
+            border-color: var(--navy);
+            color: var(--navy);
+            background: rgba(27, 46, 107, .04)
+        }
+
+        /* ── HOW TO USE TAB ── */
+        .htu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px
+        }
+
+        .usage-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0
+        }
+
+        .us-step {
+            display: flex;
+            gap: 18px;
+            padding-bottom: 32px;
+            position: relative
+        }
+
+        .us-step:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 46px;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, rgba(27, 46, 107, .25), transparent)
+        }
+
+        .us-num {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            font-family: 'Bebas Neue';
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 6px 16px rgba(27, 46, 107, .3)
+        }
+
+        .us-content {
+            padding-top: 4px
+        }
+
+        .us-title {
+            font-size: .86rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 6px
+        }
+
+        .us-desc {
+            font-size: .78rem;
+            color: var(--navy-mid);
+            line-height: 1.7
+        }
+
+        .us-tip {
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+            margin-top: 8px;
+            background: rgba(27, 46, 107, .04);
+            border-radius: 8px;
+            padding: 9px 12px;
+            font-size: .72rem;
+            color: var(--navy-mid);
+            line-height: 1.5
+        }
+
+        .us-tip::before {
+            content: '💡';
+            font-size: .85rem;
+            flex-shrink: 0
+        }
+
+        .smoke-points {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .12);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 22px
+        }
+
+        .sp-title {
+            font-size: .58rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red-mid);
+            font-weight: 700;
+            margin-bottom: 16px
+        }
+
+        .sp-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px
+        }
+
+        .sp-temp {
+            font-family: 'Bebas Neue';
+            font-size: 1.2rem;
+            color: var(--navy);
+            letter-spacing: 1px;
+            width: 70px;
+            flex-shrink: 0
+        }
+
+        .sp-bar-wrap {
+            flex: 1
+        }
+
+        .sp-label {
+            font-size: .68rem;
+            color: var(--navy-mid);
+            margin-bottom: 4px;
+            font-weight: 600
+        }
+
+        .sp-bar {
+            height: 6px;
+            background: rgba(27, 46, 107, .1);
+            border-radius: 3px;
+            overflow: hidden
+        }
+
+        .sp-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green), var(--gold), var(--red));
+            border-radius: 3px
+        }
+
+        .recipe-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .recipe-card {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: all .3s;
+            cursor: pointer
+        }
+
+        .recipe-card:hover {
+            border-color: rgba(27, 46, 107, .3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(13, 26, 58, .09)
+        }
+
+        .recipe-img {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            background: linear-gradient(135deg, #EDE5D5, rgba(200, 150, 12, .18))
+        }
+
+        .recipe-body {
+            padding: 14px 16px
+        }
+
+        .recipe-name {
+            font-family: 'Playfair Display';
+            font-size: .9rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 3px
+        }
+
+        .recipe-meta {
+            display: flex;
+            gap: 12px;
+            font-size: .62rem;
+            color: var(--navy-light)
+        }
+
+        /* ── COMPARE TAB ── */
+        .compare-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .12);
+            border-radius: 16px;
+            overflow: hidden
+        }
+
+        .compare-table th {
+            background: linear-gradient(135deg, rgba(27, 46, 107, .06), rgba(200, 150, 12, .03));
+            padding: 16px 20px;
+            font-size: .62rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            font-weight: 700;
+            text-align: left;
+            border-bottom: 1.5px solid rgba(27, 46, 107, .12)
+        }
+
+        .compare-table th:first-child {
+            color: var(--red-mid)
+        }
+
+        .compare-table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(27, 46, 107, .07);
+            font-size: .8rem;
+            color: var(--navy-mid);
+            transition: background .2s;
+            vertical-align: middle
+        }
+
+        .compare-table tr:last-child td {
+            border-bottom: none
+        }
+
+        .compare-table tr:hover td {
+            background: rgba(27, 46, 107, .02)
+        }
+
+        .compare-table td:first-child {
+            font-weight: 600;
+            color: var(--navy);
+            font-size: .74rem
+        }
+
+        .compare-table td.highlight {
+            color: var(--red-mid);
+            font-weight: 700
+        }
+
+        .compare-table td.yes::before {
+            content: '✓  ';
+            color: var(--green);
+            font-weight: 700
+        }
+
+        .compare-table td.no::before {
+            content: '✗  ';
+            color: rgba(27, 46, 107, .2)
+        }
+
+        .cmp-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 20px;
+            background: linear-gradient(135deg, rgba(27, 46, 107, .07), transparent);
+            border-bottom: 1.5px solid rgba(27, 46, 107, .12)
+        }
+
+        .cmp-prod-name {
+            font-family: 'Playfair Display';
+            font-size: .88rem;
+            font-weight: 700;
+            color: var(--navy)
+        }
+
+        .cmp-prod-sub {
+            font-size: .62rem;
+            color: var(--navy-light);
+            letter-spacing: 1px;
+            text-transform: uppercase
+        }
+
+        .cmp-prod-emoji {
+            font-size: 1.6rem
+        }
+
+        .cmp-prod-badge {
+            font-size: .56rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 100px;
+            margin-top: 3px
+        }
+
+        .cmp-prod-badge.current {
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white
+        }
+
+        .cmp-prod-badge.other {
+            background: rgba(27, 46, 107, .06);
+            color: var(--navy-light)
+        }
+
+        /* ══════════════════════════
+   RELATED PRODUCTS
+══════════════════════════ */
+        .related-section {
+            background: linear-gradient(135deg, var(--cream-deep) 0%, var(--cream) 100%);
+            padding: 60px;
+            border-top: 1.5px solid rgba(27, 46, 107, .12)
+        }
+
+        .rs-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 32px
+        }
+
+        .rs-title {
+            font-family: 'Playfair Display';
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--navy);
+            line-height: 1
+        }
+
+        .rs-title em {
+            color: var(--red-mid);
+            font-style: italic
+        }
+
+        .rs-see-all {
+            font-size: .68rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy);
+            text-decoration: none;
+            transition: opacity .2s
+        }
+
+        .rs-see-all:hover {
+            opacity: .7
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px
+        }
+
+        .rel-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all .35s;
+            border: 1.5px solid rgba(27, 46, 107, .08)
+        }
+
+        .rel-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 48px rgba(13, 26, 58, .12), 0 0 0 2px rgba(27, 46, 107, .15)
+        }
+
+        .rel-img {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            background: linear-gradient(145deg, #EDE5D5, rgba(200, 150, 12, .18));
+            position: relative;
+            overflow: hidden
+        }
+
+        .rel-img-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(200, 150, 12, .18), transparent 65%);
+            opacity: 0;
+            transition: opacity .4s
+        }
+
+        .rel-card:hover .rel-img-glow {
+            opacity: 1
+        }
+
+        .rel-body {
+            padding: 14px 16px
+        }
+
+        .rel-name {
+            font-family: 'Playfair Display';
+            font-size: .88rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 2px
+        }
+
+        .rel-sub {
+            font-size: .64rem;
+            color: var(--navy-light);
+            margin-bottom: 8px
+        }
+
+        .rel-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .rel-price {
+            font-family: 'Bebas Neue';
+            font-size: 1.2rem;
+            color: var(--navy);
+            letter-spacing: 1px
+        }
+
+        .rel-atc {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            font-size: .9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s;
+            box-shadow: 0 3px 10px rgba(27, 46, 107, .3)
+        }
+
+        .rel-atc:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: scale(1.1)
+        }
+
+        @media(max-width:960px) {
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .related-section {
+                padding: 40px 20px
+            }
+        }
+
+        /* ══════════════════════════
+   CART DRAWER
+══════════════════════════ */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(13, 26, 58, .35);
+            z-index: 700;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+            backdrop-filter: blur(4px)
+        }
+
+        .cart-overlay.vis {
+            opacity: 1;
+            pointer-events: all
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 395px;
+            height: 100vh;
+            background: var(--cream);
+            border-left: 1.5px solid rgba(27, 46, 107, .18);
+            z-index: 800;
+            transition: right .4s cubic-bezier(.34, 1.1, .64, 1);
+            display: flex;
+            flex-direction: column
+        }
+
+        .cart-drawer.vis {
+            right: 0
+        }
+
+        .cart-head {
+            padding: 22px;
+            border-bottom: 1.5px solid rgba(27, 46, 107, .15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            background: var(--cream);
+            z-index: 2
+        }
+
+        .cart-head h3 {
+            font-family: 'Playfair Display';
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy)
+        }
+
+        .cart-head h3 span {
+            font-size: .78rem;
+            color: var(--red-mid);
+            font-family: 'DM Sans';
+            font-weight: 600;
+            margin-left: 8px
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            color: rgba(27, 46, 107, .4);
+            font-size: 1.35rem;
+            cursor: pointer;
+            transition: color .3s
+        }
+
+        .cart-close:hover {
+            color: var(--navy)
+        }
+
+        .cart-items {
+            flex: 1;
+            padding: 14px;
+            overflow-y: auto
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--navy-light)
+        }
+
+        .ce-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            display: block;
+            opacity: .3
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(27, 46, 107, .1)
+        }
+
+        .ci-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 11px;
+            background: rgba(27, 46, 107, .08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            flex-shrink: 0
+        }
+
+        .ci-info {
+            flex: 1;
+            min-width: 0
+        }
+
+        .ci-name {
+            font-size: .78rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 3px
+        }
+
+        .ci-price {
+            font-family: 'Bebas Neue';
+            font-size: 1rem;
+            color: var(--navy-mid);
+            letter-spacing: 1px
+        }
+
+        .ci-qty {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 5px
+        }
+
+        .ci-qty button {
+            width: 22px;
+            height: 22px;
+            border-radius: 5px;
+            background: rgba(27, 46, 107, .08);
+            border: 1px solid rgba(27, 46, 107, .18);
+            color: var(--navy);
+            font-size: .82rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s
+        }
+
+        .ci-qty button:hover {
+            background: rgba(27, 46, 107, .18)
+        }
+
+        .ci-qty span {
+            font-size: .8rem;
+            color: var(--navy);
+            width: 18px;
+            text-align: center;
+            font-weight: 600
+        }
+
+        .ci-del {
+            background: none;
+            border: none;
+            color: rgba(139, 26, 26, .4);
+            font-size: .82rem;
+            cursor: pointer;
+            transition: color .2s
+        }
+
+        .ci-del:hover {
+            color: var(--red)
+        }
+
+        .cart-foot {
+            padding: 18px 22px;
+            border-top: 1.5px solid rgba(27, 46, 107, .15)
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 14px
+        }
+
+        .ct-label {
+            font-size: .72rem;
+            color: var(--navy-light);
+            letter-spacing: 1px;
+            text-transform: uppercase
+        }
+
+        .ct-val {
+            font-family: 'Bebas Neue';
+            font-size: 1.7rem;
+            color: var(--navy);
+            letter-spacing: 2px
+        }
+
+        .cart-checkout {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'DM Sans';
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+            box-shadow: 0 6px 18px rgba(27, 46, 107, .3)
+        }
+
+        .cart-checkout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(27, 46, 107, .4)
+        }
+
+        /* ══════════════════════════
+   TOAST + STICKY BUY
+══════════════════════════ */
+        .toast {
+            position: fixed;
+            bottom: 26px;
+            left: 50%;
+            transform: translateX(-50%) translateY(16px);
+            background: var(--navy);
+            border: 1.5px solid rgba(200, 150, 12, .3);
+            border-radius: 11px;
+            padding: 11px 22px;
+            font-size: .76rem;
+            color: var(--gold-light);
+            z-index: 9900;
+            opacity: 0;
+            transition: all .38s;
+            pointer-events: none;
+            white-space: nowrap;
+            box-shadow: 0 20px 50px rgba(13, 26, 58, .25)
+        }
+
+        .toast.vis {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0)
+        }
+
+        .sticky-buy {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 400;
+            background: rgba(245, 240, 232, .97);
+            backdrop-filter: blur(20px);
+            border-top: 1.5px solid rgba(27, 46, 107, .2);
+            padding: 14px 60px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transform: translateY(100%);
+            transition: transform .4s cubic-bezier(.34, 1.1, .64, 1);
+            box-shadow: 0 -8px 32px rgba(13, 26, 58, .1)
+        }
+
+        .sticky-buy.vis {
+            transform: translateY(0)
+        }
+
+        .sb-prod {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1
+        }
+
+        .sb-emoji {
+            font-size: 2rem
+        }
+
+        .sb-name {
+            font-size: .78rem;
+            font-weight: 700;
+            color: var(--navy)
+        }
+
+        .sb-sub {
+            font-size: .66rem;
+            color: var(--navy-light)
+        }
+
+        .sb-price {
+            font-family: 'Bebas Neue';
+            font-size: 1.8rem;
+            color: var(--navy);
+            letter-spacing: 2px
+        }
+
+        .sb-atc {
+            padding: 12px 32px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'DM Sans';
+            font-size: .76rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+            box-shadow: 0 5px 16px rgba(27, 46, 107, .3);
+            white-space: nowrap
+        }
+
+        .sb-atc:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-2px)
+        }
+
+        @media(max-width:600px) {
+            .sticky-buy {
+                padding: 12px 20px
+            }
+
+            .sb-prod .sb-sub {
+                display: none
+            }
+        }
+
+        /* ══════════════════════════
+   FOOTER
+══════════════════════════ */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 60px 32px;
+            position: relative
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--red), var(--gold), var(--navy))
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px
+        }
+
+        .footer-brand .logo {
+            font-family: 'Bebas Neue';
+            font-size: 1.9rem;
+            letter-spacing: 4px;
+            color: white;
+            margin-bottom: 12px
+        }
+
+        .footer-brand .logo span {
+            color: var(--red-mid)
+        }
+
+        .footer-brand p {
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .4);
+            line-height: 1.75;
+            max-width: 260px
+        }
+
+        .footer-col h4 {
+            font-size: .6rem;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px
+        }
+
+        .footer-col ul {
+            list-style: none
+        }
+
+        .footer-col li {
+            margin-bottom: 9px
+        }
+
+        .footer-col a {
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .38);
+            text-decoration: none;
+            transition: color .3s
+        }
+
+        .footer-col a:hover {
+            color: var(--gold-light)
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, .07);
+            padding-top: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .footer-bottom p {
+            font-size: .72rem;
+            color: rgba(255, 255, 255, .22)
+        }
+
+        .footer-tagline {
+            font-family: 'Playfair Display';
+            font-size: .9rem;
+            font-style: italic;
+            color: var(--gold)
+        }
+
+        @media(max-width:768px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 28px
+            }
+
+            footer {
+                padding: 40px 20px 24px
+            }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media(max-width:960px) {
+            .product-hero {
+                grid-template-columns: 1fr
+            }
+
+            .gallery-side {
+                padding: 20px 20px 0;
+                height: auto
+            }
+
+            .info-side {
+                padding: 24px 20px 60px
+            }
+
+            .overview-grid,
+            .nutrition-hero,
+            .htu-grid,
+            .reviews-top {
+                grid-template-columns: 1fr
+            }
+
+            .variant-grid {
+                grid-template-columns: repeat(3, 1fr)
+            }
+
+            .breadcrumb {
+                padding: 20px 20px 0
+            }
+
+            .detail-section {
+                padding: 0 20px 60px
+            }
+        }
+
+        @media(max-width:480px) {
+            .variant-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .delivery-strip {
+                grid-template-columns: 1fr
+            }
+
+            .cta-row {
+                flex-wrap: wrap
+            }
+
+            .btn-buy {
+                order: 3
+            }
+
+            .cert-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cur"></div>
+    <div id="cur2"></div>
+
+    <!-- ══════════════ NAV ══════════════ -->
+    <nav id="mainNav">
+        <a href="groundnutoil.html" class="nav-logo">PEANUT<span>JI</span></a>
+        <ul class="nav-links">
+            <li><a href="groundnutoil.html">All Oils</a></li>
+            <li><a href="#">Peanut Butter</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="contactus.html">Contact</a></li>
+        </ul>
+        <div class="nav-cta-wrap">
+            <button class="cart-icon-btn" onclick="openCart()">🛒<div class="cart-badge" id="navBadge">0</div></button>
+            <a href="groundnutoil.html" class="nav-cta">Shop All →</a>
+        </div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="groundnutoil.html">Groundnut Oil</a><span>›</span>
+        <span class="bc-current">Groundnut Oil — 1 Ltr Bottle</span>
+    </div>
+
+    <!-- ══════════════════════════
+     PRODUCT HERO
+══════════════════════════ -->
+    <div class="product-hero">
+
+        <!-- LEFT: GALLERY -->
+        <div class="gallery-side">
+            <div class="main-img-wrap" id="mainImgWrap">
+                <div class="main-img-bg-glow"></div>
+                <div class="main-img-dots"></div>
+                <div class="main-img-badge">
+                    <span class="mib mib-sale">−10% Off</span>
+                    <span class="mib mib-new">New Pack</span>
+                    <span class="mib mib-cert">FSSAI ✓</span>
+                </div>
+                <span class="main-img-emoji" id="mainEmoji">🫗</span>
+                <div class="zoom-hint">🔍 Hover to Zoom</div>
+            </div>
+            <div class="thumb-row">
+                <div class="thumb active" onclick="setThumb(this,'🫗')" title="Bottle view">🫗</div>
+                <div class="thumb" onclick="setThumb(this,'🫙')" title="Jar view">🫙</div>
+                <div class="thumb" onclick="setThumb(this,'🥜')" title="Peanuts">🥜</div>
+                <div class="thumb" onclick="setThumb(this,'🌿')" title="Natural">🌿</div>
+                <div class="thumb" onclick="setThumb(this,'✨')" title="Quality">✨</div>
+            </div>
+        </div>
+
+        <!-- RIGHT: INFO -->
+        <div class="info-side" id="infoSide">
+            <div class="prod-eyebrow">
+                <div class="pe-tag">Pure Groundnut Oil</div>
+                <div class="pe-new">New Pack</div>
+            </div>
+
+            <h1 class="prod-title">Groundnut <em>Oil</em></h1>
+            <div class="prod-subtitle">1 Litre Bottle · Double Filtered · Grade A G-20 Peanuts</div>
+
+            <div class="rating-row">
+                <span class="stars">★★★★★</span>
+                <span class="rating-val">4.8</span>
+                <span class="rating-count">389 reviews</span>
+                <div class="rating-sep"></div>
+                <div class="verified-badge">✓ 1,200+ verified buyers</div>
+            </div>
+
+            <!-- PRICE -->
+            <div class="price-block">
+                <div class="pb-row">
+                    <span class="price-now" id="displayPrice">₹315</span>
+                    <span class="price-orig" id="displayOrig">₹350</span>
+                    <span class="price-save">Save ₹35 · 10% Off</span>
+                </div>
+                <div class="price-tax">Inclusive of all taxes</div>
+                <div class="price-note">✦ &nbsp;<strong>₹13 off</strong> per 100ml vs market average · Best price
+                    guarantee
+                </div>
+            </div>
+
+            <!-- VARIANTS -->
+            <div class="variant-section">
+                <div class="vs-head">Pack Size <span id="activeVariant">1 Litre Bottle selected</span></div>
+                <div class="variant-grid">
+                    <div class="variant-card" onclick="selectVariant(this,'750ml','Bottle','₹270','₹300')"
+                        data-emoji="🫗">
+                        <div class="vc-size">750ml</div>
+                        <div class="vc-container">Bottle</div>
+                        <div class="vc-price">₹270</div>
+                    </div>
+                    <div class="variant-card active" onclick="selectVariant(this,'1 Litre','Bottle','₹315','₹350')"
+                        data-emoji="🫗">
+                        <div class="vc-size">1L</div>
+                        <div class="vc-container">Bottle</div>
+                        <div class="vc-price">₹315</div>
+                    </div>
+                    <div class="variant-card" onclick="selectVariant(this,'1 Litre','Pouch','₹270','₹300')"
+                        data-emoji="🥡">
+                        <div class="vc-size">1L</div>
+                        <div class="vc-container">Pouch</div>
+                        <div class="vc-price">₹270</div>
+                    </div>
+                    <div class="variant-card" onclick="selectVariant(this,'2 Litre','Bottle','₹700','')"
+                        data-emoji="🧴">
+                        <div class="vc-size">2L</div>
+                        <div class="vc-container">Bottle</div>
+                        <div class="vc-price">₹700</div>
+                    </div>
+                    <div class="variant-card" onclick="selectVariant(this,'5 Litre','Can','₹1,350','₹1,500')"
+                        data-emoji="🪣">
+                        <div class="vc-size">5L</div>
+                        <div class="vc-container">Can</div>
+                        <div class="vc-price">₹1,350</div>
+                    </div>
+                    <div class="variant-card" onclick="selectVariant(this,'15 Litre','Tap Jar','₹4,050','₹4,500')"
+                        data-emoji="🫙">
+                        <div class="vc-size">15L</div>
+                        <div class="vc-container">Tap Jar</div>
+                        <div class="vc-price">₹4,050</div>
+                    </div>
+                    <div class="variant-card" onclick="selectVariant(this,'15 Kg','Tin','₹4,230','₹4,700')"
+                        data-emoji="🏺">
+                        <div class="vc-size">15Kg</div>
+                        <div class="vc-container">Tin</div>
+                        <div class="vc-price">₹4,230</div>
+                    </div>
+                    <div class="variant-card oos">
+                        <div class="vc-oos">
+                            <div class="vc-oos-line"></div><span
+                                style="font-size:.6rem;color:rgba(61,26,0,.35);font-weight:600;letter-spacing:1px;z-index:1">Sold
+                                Out</span>
+                        </div>
+                        <div class="vc-size">15L</div>
+                        <div class="vc-container">Tin</div>
+                        <div class="vc-price">₹4,005</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUANTITY -->
+            <div class="qty-row">
+                <span class="qty-label">Quantity</span>
+                <div class="qty-ctrl">
+                    <button class="qty-btn" onclick="changeQty(-1)">−</button>
+                    <input class="qty-val" id="qtyVal" value="1" readonly>
+                    <button class="qty-btn" onclick="changeQty(1)">+</button>
+                </div>
+                <div class="qty-note">✅ In stock · Ships today</div>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-row">
+                <button class="btn-atc" id="mainAtc" onclick="addToCart()">
+                    🛒 &nbsp;Add to Cart
+                </button>
+                <button class="btn-buy" onclick="showToast('🚀 Redirecting to checkout…')">
+                    ⚡ &nbsp;Buy Now
+                </button>
+                <button class="btn-wish" id="wishBtn" onclick="toggleWish()" title="Wishlist">♡</button>
+            </div>
+
+            <!-- DELIVERY -->
+            <div class="delivery-strip">
+                <div class="ds-item">
+                    <span class="ds-icon">🚚</span>
+                    <div class="ds-title">Free Delivery</div>
+                    <div class="ds-sub">On orders above ₹499</div>
+                </div>
+                <div class="ds-item">
+                    <span class="ds-icon">↩️</span>
+                    <div class="ds-title">Easy Returns</div>
+                    <div class="ds-sub">7-day hassle-free returns</div>
+                </div>
+                <div class="ds-item">
+                    <span class="ds-icon">🔒</span>
+                    <div class="ds-title">Secure Checkout</div>
+                    <div class="ds-sub">SSL encrypted · Safe pay</div>
+                </div>
+            </div>
+
+            <!-- TRUST -->
+            <div class="trust-row">
+                <div class="trust-badge"><span>🏆</span> FSSAI Certified</div>
+                <div class="trust-badge"><span>🌿</span> No Preservatives</div>
+                <div class="trust-badge"><span>🥜</span> Grade A G-20</div>
+                <div class="trust-badge"><span>❤️</span> Zero Cholesterol</div>
+                <div class="trust-badge"><span>🇮🇳</span> Made in Gujarat</div>
+            </div>
+
+            <!-- OFFERS -->
+            <div class="offer-strip">
+                <div class="offer-head">Available Offers</div>
+                <div class="offer-list">
+                    <div class="offer-item"><strong>Bank Offer:</strong> 10% instant discount on HDFC & SBI credit cards
+                        · Min
+                        order ₹500</div>
+                    <div class="offer-item"><strong>Combo Deal:</strong> Buy 2 bottles, get 1 pouch FREE · Use code
+                        <strong>PJ2FREE</strong>
+                    </div>
+                    <div class="offer-item"><strong>First Order:</strong> Extra ₹50 off for new customers · Use code
+                        <strong>PJNEW50</strong>
+                    </div>
+                    <div class="offer-item"><strong>Refer & Earn:</strong> Share your code, both get ₹100 Peanutji
+                        credits</div>
+                </div>
+            </div>
+
+            <!-- PINCODE -->
+            <div class="pincode-section">
+                <div class="pc-head">Check Delivery Availability</div>
+                <div class="pc-row">
+                    <input class="pc-input" type="text" id="pinInput" placeholder="Enter your PIN code" maxlength="6"
+                        oninput="this.value=this.value.replace(/\D/g,'')">
+                    <button class="pc-btn" onclick="checkPin()">Check →</button>
+                </div>
+                <div class="pc-result" id="pcResult"></div>
+            </div>
+
+        </div><!-- /info-side -->
+    </div>
+
+    <!-- ══════════════════════════
+     DETAIL TABS
+══════════════════════════ -->
+    <div class="detail-section">
+
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('overview',this)">Overview</button>
+            <button class="tab-btn" onclick="switchTab('nutrition',this)">Nutrition Facts</button>
+            <button class="tab-btn" onclick="switchTab('reviews',this)">Reviews (389)</button>
+            <button class="tab-btn" onclick="switchTab('howtouse',this)">How to Use</button>
+            <button class="tab-btn" onclick="switchTab('compare',this)">Compare Variants</button>
+        </div>
+
+        <!-- ── OVERVIEW ── -->
+        <div class="tab-panel active" id="tab-overview">
+            <div class="overview-grid">
+                <div class="overview-left">
+                    <div class="ov-title">Pure. <em>Natural.</em> Unrefined.</div>
+                    <div class="ov-body">
+                        <p>Peanutji Groundnut Oil is cold-extracted from carefully selected Grade A G-20 peanuts,
+                            sourced directly
+                            from the fertile farms of Saurashtra, Gujarat. Every batch passes through our proprietary
+                            11-stage quality
+                            sorting process before reaching your kitchen.</p>
+                        <p>Unlike refined oils that use hexane and bleaching chemicals, our oil retains its natural
+                            golden colour,
+                            earthy aroma, and full nutritional profile — Vitamin E, antioxidants, and healthy
+                            unsaturated fats —
+                            exactly as nature intended.</p>
+                    </div>
+
+                    <div class="usp-list">
+                        <div class="usp-item">
+                            <div class="usp-icon">🥜</div>
+                            <div class="usp-info">
+                                <div class="usp-title">Grade A G-20 Peanuts Only</div>
+                                <div class="usp-sub">Sourced exclusively from Saurashtra farms. Hand-sorted,
+                                    machine-graded to reject
+                                    substandard nuts before pressing.</div>
+                            </div>
+                        </div>
+                        <div class="usp-item">
+                            <div class="usp-icon">⚗️</div>
+                            <div class="usp-info">
+                                <div class="usp-title">Zero Chemicals. Zero Solvents.</div>
+                                <div class="usp-sub">No hexane extraction, no bleaching agents, no artificial
+                                    preservatives. Just pure
+                                    mechanical pressing.</div>
+                            </div>
+                        </div>
+                        <div class="usp-item">
+                            <div class="usp-icon">🔬</div>
+                            <div class="usp-info">
+                                <div class="usp-title">11-Stage Quality Control</div>
+                                <div class="usp-sub">Every batch tested for aflatoxin, moisture, acid value, peroxide
+                                    value, and 7 other
+                                    parameters before dispatch.</div>
+                            </div>
+                        </div>
+                        <div class="usp-item">
+                            <div class="usp-icon">❤️</div>
+                            <div class="usp-info">
+                                <div class="usp-title">Heart-Healthy Fats Profile</div>
+                                <div class="usp-sub">Rich in MUFA (oleic acid) and PUFA. Zero cholesterol, naturally.
+                                    Ideal for
+                                    cardiac-conscious households.</div>
+                            </div>
+                        </div>
+                        <div class="usp-item">
+                            <div class="usp-icon">🌍</div>
+                            <div class="usp-info">
+                                <div class="usp-title">Export Grade Quality</div>
+                                <div class="usp-sub">The same oil exported to 25+ countries across USA, UK, UAE, Canada,
+                                    and Southeast
+                                    Asia.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="process-steps">
+                        <div class="ps-title">Our <em>Process</em></div>
+                        <div class="ps-list">
+                            <div class="ps-step">
+                                <div class="ps-num">1</div>
+                                <div class="ps-content">
+                                    <div class="ps-name">Farm-to-Factory Sourcing</div>
+                                    <div class="ps-desc">Direct procurement from 200+ contracted farmers in Rajkot,
+                                        Junagadh, and Amreli
+                                        districts of Gujarat.</div>
+                                </div>
+                            </div>
+                            <div class="ps-step">
+                                <div class="ps-num">2</div>
+                                <div class="ps-content">
+                                    <div class="ps-name">11-Stage Quality Sorting</div>
+                                    <div class="ps-desc">Mechanical grading, optical colour sorting, moisture testing,
+                                        and aflatoxin
+                                        screening before pressing.</div>
+                                </div>
+                            </div>
+                            <div class="ps-step">
+                                <div class="ps-num">3</div>
+                                <div class="ps-content">
+                                    <div class="ps-name">Cold Mechanical Pressing</div>
+                                    <div class="ps-desc">Expeller-pressed at controlled temperatures below 45°C to
+                                        preserve natural
+                                        nutrients and flavour.</div>
+                                </div>
+                            </div>
+                            <div class="ps-step">
+                                <div class="ps-num">4</div>
+                                <div class="ps-content">
+                                    <div class="ps-name">Double Filtration</div>
+                                    <div class="ps-desc">Two-stage filtration through food-grade ceramic filters.
+                                        Crystal clear, clean oil
+                                        — no sedimentation.</div>
+                                </div>
+                            </div>
+                            <div class="ps-step">
+                                <div class="ps-num">5</div>
+                                <div class="ps-content">
+                                    <div class="ps-name">Lab Certification & Packing</div>
+                                    <div class="ps-desc">FSSAI lab certification, nitrogen-flush packaging to prevent
+                                        oxidation, then
+                                        sealed and dispatched.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overview-right">
+                    <!-- Mini Nutrition Card -->
+                    <div class="nutrition-card">
+                        <div class="nc-head">
+                            <div>
+                                <div class="nc-title">Nutrition Facts</div>
+                                <div class="nc-sub">Per 100ml serving</div>
+                            </div>
+                            <div class="nc-serving">100ml</div>
+                        </div>
+                        <div class="nc-body">
+                            <div class="nc-row head"><span class="nc-label">Energy</span><span class="nc-val">884
+                                    kcal</span></div>
+                            <div class="nc-row"><span class="nc-label">
+                                    <div class="nc-dot"></div>Total Fat
+                                </span><span class="nc-val">100g</span></div>
+                            <div class="nc-bar-row"><span class="nc-bar-label">MUFA</span>
+                                <div class="nc-bar-track">
+                                    <div class="nc-bar-fill" style="width:51%"></div>
+                                </div><span style="font-size:.64rem;color:var(--brown-light)">51g</span>
+                            </div>
+                            <div class="nc-bar-row"><span class="nc-bar-label">PUFA</span>
+                                <div class="nc-bar-track">
+                                    <div class="nc-bar-fill"
+                                        style="width:31%;background:linear-gradient(90deg,#1976D2,#42A5F5)"></div>
+                                </div><span style="font-size:.64rem;color:var(--brown-light)">31g</span>
+                            </div>
+                            <div class="nc-bar-row"><span class="nc-bar-label">SFA</span>
+                                <div class="nc-bar-track">
+                                    <div class="nc-bar-fill"
+                                        style="width:18%;background:linear-gradient(90deg,var(--orange-deep),var(--orange))">
+                                    </div>
+                                </div><span style="font-size:.64rem;color:var(--brown-light)">18g</span>
+                            </div>
+                            <div class="nc-row"><span class="nc-label">
+                                    <div class="nc-dot"></div>Cholesterol
+                                </span><span class="nc-val" style="color:var(--green)">0 mg</span></div>
+                            <div class="nc-row"><span class="nc-label">
+                                    <div class="nc-dot"></div>Vitamin E
+                                </span><span class="nc-val">15.7 mg</span></div>
+                            <div class="nc-row"><span class="nc-label">
+                                    <div class="nc-dot"></div>Vitamin K
+                                </span><span class="nc-val">0.7 mcg</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div class="ov-title" style="font-size:1.2rem;margin-bottom:14px">Certifications <em>&amp;
+                            Awards</em></div>
+                    <div class="cert-grid">
+                        <div class="cert-card"><span class="cert-icon">🏆</span>
+                            <div class="cert-name">FSSAI</div>
+                            <div class="cert-issuer">Food Safety Auth.</div>
+                        </div>
+                        <div class="cert-card"><span class="cert-icon">🌿</span>
+                            <div class="cert-name">ISO 22000</div>
+                            <div class="cert-issuer">Food Safety Mgmt.</div>
+                        </div>
+                        <div class="cert-card"><span class="cert-icon">✅</span>
+                            <div class="cert-name">HACCP</div>
+                            <div class="cert-issuer">Hazard Control</div>
+                        </div>
+                        <div class="cert-card"><span class="cert-icon">🧪</span>
+                            <div class="cert-name">NABL Lab</div>
+                            <div class="cert-issuer">Accredited Testing</div>
+                        </div>
+                        <div class="cert-card"><span class="cert-icon">🌍</span>
+                            <div class="cert-name">APEDA</div>
+                            <div class="cert-issuer">Export Certified</div>
+                        </div>
+                        <div class="cert-card"><span class="cert-icon">⭐</span>
+                            <div class="cert-name">Agmark</div>
+                            <div class="cert-issuer">Govt. of India</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── NUTRITION ── -->
+        <div class="tab-panel" id="tab-nutrition">
+            <div class="nutrition-hero">
+                <div class="nh-visual">
+                    <div class="nh-label">Energy per 100ml</div>
+                    <div class="nh-val">884<span> kcal</span></div>
+                    <div class="nh-desc">100% fat-based oil. Rich in heart-healthy MUFA (51g) and PUFA (31g). Zero
+                        cholesterol.
+                        Natural Vitamin E at 15.7mg per 100ml — a powerful antioxidant.</div>
+                    <div class="nh-emoji">🫙</div>
+                </div>
+                <div class="fatty-acid-chart">
+                    <div class="fac-title">Fatty Acid Profile — per 100ml</div>
+                    <div class="fac-item">
+                        <div class="fac-row"><span class="fac-name">Monounsaturated (MUFA) — Oleic Acid</span><span
+                                class="fac-val">51g</span></div>
+                        <div class="fac-bar">
+                            <div class="fac-fill mufa" style="width:51%"></div>
+                        </div>
+                    </div>
+                    <div class="fac-item">
+                        <div class="fac-row"><span class="fac-name">Polyunsaturated (PUFA) — Linoleic Acid</span><span
+                                class="fac-val">31g</span></div>
+                        <div class="fac-bar">
+                            <div class="fac-fill pufa" style="width:31%"></div>
+                        </div>
+                    </div>
+                    <div class="fac-item">
+                        <div class="fac-row"><span class="fac-name">Saturated Fatty Acids (SFA)</span><span
+                                class="fac-val">18g</span></div>
+                        <div class="fac-bar">
+                            <div class="fac-fill sfa" style="width:18%"></div>
+                        </div>
+                    </div>
+                    <div class="fac-item"
+                        style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(245,130,10,.1)">
+                        <div class="fac-row"><span class="fac-name"
+                                style="color:var(--green);font-weight:700">Cholesterol</span><span class="fac-val"
+                                style="color:var(--green)">0 mg</span></div>
+                        <div class="fac-bar">
+                            <div class="fac-fill mufa" style="width:0%;background:var(--green)"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nut-detail-table">
+                <div class="ndt-head">
+                    <span>Nutrient</span>
+                    <span>Per 100ml</span>
+                    <span>% Daily Value*</span>
+                </div>
+                <div class="ndt-row cat"><span>Energy</span><span>884 kcal</span><span>44%</span></div>
+                <div class="ndt-row cat"><span>Total Fat</span><span>100 g</span><span>154%</span></div>
+                <div class="ndt-row sub"><span>Saturated Fat</span><span>18 g</span><span>90%</span></div>
+                <div class="ndt-row sub"><span>Monounsaturated Fat (MUFA)</span><span>51 g</span><span>—</span></div>
+                <div class="ndt-row sub"><span>Polyunsaturated Fat (PUFA)</span><span>31 g</span><span>—</span></div>
+                <div class="ndt-row sub"><span>Omega-6 (Linoleic Acid)</span><span>30 g</span><span>—</span></div>
+                <div class="ndt-row sub"><span>Omega-3 (Alpha-Linolenic)</span><span>0.1 g</span><span>—</span></div>
+                <div class="ndt-row cat"><span>Cholesterol</span><span style="color:var(--green);font-weight:700">0
+                        mg</span><span style="color:var(--green)">0%</span></div>
+                <div class="ndt-row cat"><span>Vitamins</span><span></span><span></span></div>
+                <div class="ndt-row sub"><span>Vitamin E (α-Tocopherol)</span><span>15.7 mg</span><span>105%</span>
+                </div>
+                <div class="ndt-row sub"><span>Vitamin K</span><span>0.7 mcg</span><span>1%</span></div>
+                <div class="ndt-row cat"><span>Minerals</span><span></span><span></span></div>
+                <div class="ndt-row sub"><span>Iron</span><span>0.0 mg</span><span>0%</span></div>
+                <div class="ndt-row sub"><span>Sodium</span><span>0 mg</span><span>0%</span></div>
+                <div class="ndt-row sub"><span>Carbohydrates</span><span>0 g</span><span>0%</span></div>
+                <div class="ndt-row sub"><span>Protein</span><span>0 g</span><span>0%</span></div>
+            </div>
+            <p style="font-size:.66rem;color:var(--brown-light);margin-top:10px;opacity:.65">* % Daily Values based on a
+                2,000
+                kcal diet. Individual needs may vary. Source: Peanutji NABL-accredited lab analysis, 2025.</p>
+        </div>
+
+        <!-- ── REVIEWS ── -->
+        <div class="tab-panel" id="tab-reviews">
+            <div class="reviews-top">
+                <div class="rating-summary">
+                    <div class="rs-big">4.<span>8</span></div>
+                    <div class="rs-stars">★★★★★</div>
+                    <div class="rs-total">Based on 389 reviews</div>
+                    <div class="rs-bars">
+                        <div class="rsb-row"><span class="rsb-label">5★</span>
+                            <div class="rsb-track">
+                                <div class="rsb-fill" style="width:72%"></div>
+                            </div><span class="rsb-count">279</span>
+                        </div>
+                        <div class="rsb-row"><span class="rsb-label">4★</span>
+                            <div class="rsb-track">
+                                <div class="rsb-fill" style="width:20%"></div>
+                            </div><span class="rsb-count">78</span>
+                        </div>
+                        <div class="rsb-row"><span class="rsb-label">3★</span>
+                            <div class="rsb-track">
+                                <div class="rsb-fill" style="width:5%"></div>
+                            </div><span class="rsb-count">19</span>
+                        </div>
+                        <div class="rsb-row"><span class="rsb-label">2★</span>
+                            <div class="rsb-track">
+                                <div class="rsb-fill" style="width:2%"></div>
+                            </div><span class="rsb-count">7</span>
+                        </div>
+                        <div class="rsb-row"><span class="rsb-label">1★</span>
+                            <div class="rsb-track">
+                                <div class="rsb-fill" style="width:1%"></div>
+                            </div><span class="rsb-count">6</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reviews-right">
+                    <div class="review-filters">
+                        <button class="rev-filter on" onclick="filterReviews('all',this)">All Reviews</button>
+                        <button class="rev-filter" onclick="filterReviews('5',this)">5 Star</button>
+                        <button class="rev-filter" onclick="filterReviews('4',this)">4 Star</button>
+                        <button class="rev-filter" onclick="filterReviews('images',this)">With Photos</button>
+                        <button class="rev-filter" onclick="filterReviews('verified',this)">Verified Only</button>
+                    </div>
+
+                    <div id="reviewsList">
+                        <div class="review-card">
+                            <div class="rc-top">
+                                <div class="rc-author">
+                                    <div class="rc-avatar">🙋</div>
+                                    <div>
+                                        <div class="rc-name">Meera Sharma</div>
+                                        <div class="rc-verified">✓ Verified Purchase</div>
+                                    </div>
+                                </div>
+                                <div class="rc-meta">
+                                    <div class="rc-stars">★★★★★</div>
+                                    <div class="rc-date">12 Mar 2025</div>
+                                </div>
+                            </div>
+                            <div class="rc-variant">🫗 1 Litre Bottle</div>
+                            <div class="rc-title">The fragrance changed how our kitchen smells!</div>
+                            <div class="rc-body">We've been using Peanutji oil for 8 months now. The aroma when you heat
+                                it is just
+                                incredible — exactly like homemade ghani oil from our village. My mother-in-law, who is
+                                very particular
+                                about oil quality, immediately approved. Zero strange smell, pure golden colour, and our
+                                food genuinely
+                                tastes better.</div>
+                            <div class="rc-images">
+                                <div class="rc-img">🍳</div>
+                                <div class="rc-img">🫙</div>
+                            </div>
+                            <div class="rc-helpful"><span class="rch-label">Helpful?</span><button class="rch-btn yes"
+                                    onclick="markHelpful(this,'42')">👍 Yes (42)</button><button class="rch-btn">👎 No
+                                    (3)</button></div>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="rc-top">
+                                <div class="rc-author">
+                                    <div class="rc-avatar">👨</div>
+                                    <div>
+                                        <div class="rc-name">Rajesh Patel</div>
+                                        <div class="rc-verified">✓ Verified Purchase</div>
+                                    </div>
+                                </div>
+                                <div class="rc-meta">
+                                    <div class="rc-stars">★★★★★</div>
+                                    <div class="rc-date">28 Feb 2025</div>
+                                </div>
+                            </div>
+                            <div class="rc-variant">🪣 5 Litre Can</div>
+                            <div class="rc-title">Running a dhaba — this is our go-to oil now</div>
+                            <div class="rc-body">Ordered the 5L can for my dhaba in Rajkot. The high smoke point is
+                                perfect for deep
+                                frying — no burning smell, no foam. Customers have noticed the cleaner taste in our
+                                food. Repeat
+                                ordering every 2 weeks now. Delivery is always fast and the packaging never leaks.
+                                Highly recommended
+                                for commercial use.</div>
+                            <div class="rc-helpful"><span class="rch-label">Helpful?</span><button class="rch-btn yes"
+                                    onclick="markHelpful(this,'31')">👍 Yes (31)</button><button class="rch-btn">👎 No
+                                    (1)</button></div>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="rc-top">
+                                <div class="rc-author">
+                                    <div class="rc-avatar">👩</div>
+                                    <div>
+                                        <div class="rc-name">Priya Desai</div>
+                                        <div class="rc-verified">✓ Verified Purchase</div>
+                                    </div>
+                                </div>
+                                <div class="rc-meta">
+                                    <div class="rc-stars">★★★★☆</div>
+                                    <div class="rc-date">15 Feb 2025</div>
+                                </div>
+                            </div>
+                            <div class="rc-variant">🫗 1 Litre Bottle</div>
+                            <div class="rc-title">Great quality, packaging could be better</div>
+                            <div class="rc-body">The oil quality itself is fantastic — pure, aromatic, exactly what
+                                you'd expect from
+                                fresh-pressed groundnut oil. Slight deduction because the bottle cap was a little loose
+                                during delivery
+                                (though nothing spilled due to the inner seal). Product quality: 5/5. Packaging: 3/5.
+                                Overall very happy
+                                and will order again.</div>
+                            <div class="rc-helpful"><span class="rch-label">Helpful?</span><button class="rch-btn yes"
+                                    onclick="markHelpful(this,'18')">👍 Yes (18)</button><button class="rch-btn">👎 No
+                                    (4)</button></div>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="rc-top">
+                                <div class="rc-author">
+                                    <div class="rc-avatar">🧑</div>
+                                    <div>
+                                        <div class="rc-name">Arjun Mehta</div>
+                                        <div class="rc-verified">✓ Verified Purchase</div>
+                                    </div>
+                                </div>
+                                <div class="rc-meta">
+                                    <div class="rc-stars">★★★★★</div>
+                                    <div class="rc-date">5 Jan 2025</div>
+                                </div>
+                            </div>
+                            <div class="rc-variant">🫗 750ml Bottle</div>
+                            <div class="rc-title">Switched from a branded refined oil — no going back</div>
+                            <div class="rc-body">I was skeptical about switching from Fortune to Peanutji, but my
+                                nutritionist
+                                recommended cold-pressed over refined. The difference in taste and smell is night and
+                                day. Even my kids
+                                noticed. My cholesterol levels have improved too in the 3 months I've been using it. The
+                                750ml is
+                                perfect for a family of 3.</div>
+                            <div class="rc-images">
+                                <div class="rc-img">🥗</div>
+                            </div>
+                            <div class="rc-helpful"><span class="rch-label">Helpful?</span><button class="rch-btn yes"
+                                    onclick="markHelpful(this,'55')">👍 Yes (55)</button><button class="rch-btn">👎 No
+                                    (2)</button></div>
+                        </div>
+                    </div>
+
+                    <button class="load-more-btn" onclick="loadMore()">Load More Reviews ↓</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── HOW TO USE ── -->
+        <div class="tab-panel" id="tab-howtouse">
+            <div class="htu-grid">
+                <div>
+                    <div class="ov-title" style="margin-bottom:24px">Best Practices for <em>Cooking</em></div>
+                    <div class="usage-steps">
+                        <div class="us-step">
+                            <div class="us-num">1</div>
+                            <div class="us-content">
+                                <div class="us-title">Start with a Cold Pan</div>
+                                <div class="us-desc">Pour Peanutji oil into a cold pan before turning on the heat. This
+                                    helps the oil
+                                    heat uniformly and prevents hot spots that can cause local burning.</div>
+                                <div class="us-tip">Use a heavy-bottomed pan (cast iron or stainless steel) for most
+                                    even results.</div>
+                            </div>
+                        </div>
+                        <div class="us-step">
+                            <div class="us-num">2</div>
+                            <div class="us-content">
+                                <div class="us-title">Heat to Shimmer — Not Smoke</div>
+                                <div class="us-desc">Heat until the oil shimmers (around 160°C). You'll see gentle
+                                    movement across the
+                                    surface. For deep frying, test with a small piece of bread — it should sizzle gently
+                                    and rise to the
+                                    surface within 3 seconds.</div>
+                            </div>
+                        </div>
+                        <div class="us-step">
+                            <div class="us-num">3</div>
+                            <div class="us-content">
+                                <div class="us-title">Use for High-Heat Cooking</div>
+                                <div class="us-desc">Groundnut oil's smoke point of ~232°C makes it ideal for deep
+                                    frying, stir-frying,
+                                    sautéing, and tadka. It won't break down or release harmful free radicals at normal
+                                    cooking
+                                    temperatures.</div>
+                            </div>
+                        </div>
+                        <div class="us-step">
+                            <div class="us-num">4</div>
+                            <div class="us-content">
+                                <div class="us-title">Perfect for Pickles & Marinades</div>
+                                <div class="us-desc">The mild, nutty flavour pairs beautifully with Indian spices. Use
+                                    unheated for
+                                    pickling, salad dressings, or as a base for marinades — the raw oil retains maximum
+                                    nutrients and
+                                    Vitamin E.</div>
+                            </div>
+                        </div>
+                        <div class="us-step">
+                            <div class="us-num">5</div>
+                            <div class="us-content">
+                                <div class="us-title">Storage Tips</div>
+                                <div class="us-desc">Store in a cool, dark place away from direct sunlight. Keep the
+                                    bottle sealed
+                                    tight. Avoid storing near the stove. Best consumed within 12 months of manufacture
+                                    date printed on
+                                    bottle.</div>
+                                <div class="us-tip">Refrigeration is optional but extends shelf life in humid climates.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="smoke-points">
+                        <div class="sp-title">Smoke Point Comparison</div>
+                        <div class="sp-item"><span class="sp-temp">232°C</span>
+                            <div class="sp-bar-wrap">
+                                <div class="sp-label">Peanutji Groundnut Oil</div>
+                                <div class="sp-bar">
+                                    <div class="sp-bar-fill" style="width:93%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sp-item"><span class="sp-temp">204°C</span>
+                            <div class="sp-bar-wrap">
+                                <div class="sp-label">Refined Sunflower Oil</div>
+                                <div class="sp-bar">
+                                    <div class="sp-bar-fill" style="width:78%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sp-item"><span class="sp-temp">177°C</span>
+                            <div class="sp-bar-wrap">
+                                <div class="sp-label">Coconut Oil (Unrefined)</div>
+                                <div class="sp-bar">
+                                    <div class="sp-bar-fill" style="width:64%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sp-item"><span class="sp-temp">163°C</span>
+                            <div class="sp-bar-wrap">
+                                <div class="sp-label">Extra Virgin Olive Oil</div>
+                                <div class="sp-bar">
+                                    <div class="sp-bar-fill" style="width:56%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sp-item"><span class="sp-temp">250°C</span>
+                            <div class="sp-bar-wrap">
+                                <div class="sp-label">Vedic High Oleic (Our Premium)</div>
+                                <div class="sp-bar">
+                                    <div class="sp-bar-fill" style="width:100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ov-title" style="font-size:1.2rem;margin-bottom:16px">Quick <em>Recipes</em></div>
+                    <div class="recipe-cards">
+                        <div class="recipe-card">
+                            <div class="recipe-img">🥘</div>
+                            <div class="recipe-body">
+                                <div class="recipe-name">Classic Gujarati Dal Tadka</div>
+                                <div class="recipe-meta"><span>⏱ 20 mins</span><span>👥 4 servings</span></div>
+                            </div>
+                        </div>
+                        <div class="recipe-card">
+                            <div class="recipe-img">🍟</div>
+                            <div class="recipe-body">
+                                <div class="recipe-name">Crispy Potato Stir Fry</div>
+                                <div class="recipe-meta"><span>⏱ 15 mins</span><span>👥 2 servings</span></div>
+                            </div>
+                        </div>
+                        <div class="recipe-card">
+                            <div class="recipe-img">🥒</div>
+                            <div class="recipe-body">
+                                <div class="recipe-name">Spiced Mango Pickle</div>
+                                <div class="recipe-meta"><span>⏱ 30 mins</span><span>⏳ 7-day cure</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── COMPARE ── -->
+        <div class="tab-panel" id="tab-compare">
+            <div style="overflow-x:auto">
+                <table class="compare-table" style="min-width:700px">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>
+                                <div class="cmp-head"><span class="cmp-prod-emoji">🫗</span>
+                                    <div>
+                                        <div class="cmp-prod-name">Groundnut Oil</div>
+                                        <div class="cmp-prod-sub">1L Bottle</div>
+                                        <div class="cmp-prod-badge current">This Product</div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="cmp-head"><span class="cmp-prod-emoji">✨</span>
+                                    <div>
+                                        <div class="cmp-prod-name">Vedic High Oleic</div>
+                                        <div class="cmp-prod-sub">750ml Bottle</div>
+                                        <div class="cmp-prod-badge other">Premium</div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="cmp-head"><span class="cmp-prod-emoji">🪣</span>
+                                    <div>
+                                        <div class="cmp-prod-name">Groundnut Oil</div>
+                                        <div class="cmp-prod-sub">5L Can</div>
+                                        <div class="cmp-prod-badge other">Family Size</div>
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Price</td>
+                            <td class="highlight">₹315</td>
+                            <td>₹950</td>
+                            <td>₹1,350</td>
+                        </tr>
+                        <tr>
+                            <td>Per 100ml cost</td>
+                            <td class="highlight">₹31.5</td>
+                            <td>₹126.7</td>
+                            <td>₹27.0</td>
+                        </tr>
+                        <tr>
+                            <td>Volume</td>
+                            <td>1 Litre</td>
+                            <td>750 ml</td>
+                            <td>5 Litres</td>
+                        </tr>
+                        <tr>
+                            <td>Container</td>
+                            <td>PET Bottle</td>
+                            <td>Glass Bottle</td>
+                            <td>HDPE Can</td>
+                        </tr>
+                        <tr>
+                            <td>MUFA Content</td>
+                            <td>51g/100ml</td>
+                            <td class="highlight">77g+/100ml</td>
+                            <td>51g/100ml</td>
+                        </tr>
+                        <tr>
+                            <td>Smoke Point</td>
+                            <td>232°C</td>
+                            <td class="highlight">250°C+</td>
+                            <td>232°C</td>
+                        </tr>
+                        <tr>
+                            <td>Pressing Method</td>
+                            <td class="yes">Cold Pressed</td>
+                            <td class="yes">Cold Pressed</td>
+                            <td class="yes">Cold Pressed</td>
+                        </tr>
+                        <tr>
+                            <td>Double Filtered</td>
+                            <td class="yes">Yes</td>
+                            <td class="yes">Yes</td>
+                            <td class="yes">Yes</td>
+                        </tr>
+                        <tr>
+                            <td>No Preservatives</td>
+                            <td class="yes">Yes</td>
+                            <td class="yes">Yes</td>
+                            <td class="yes">Yes</td>
+                        </tr>
+                        <tr>
+                            <td>High Oleic Variety</td>
+                            <td class="no">Standard G-20</td>
+                            <td class="yes">High Oleic (HO)</td>
+                            <td class="no">Standard G-20</td>
+                        </tr>
+                        <tr>
+                            <td>Shelf Life</td>
+                            <td>12 months</td>
+                            <td class="highlight">24 months</td>
+                            <td>12 months</td>
+                        </tr>
+                        <tr>
+                            <td>Best For</td>
+                            <td>Daily household cooking</td>
+                            <td>Health-conscious, cardiac care</td>
+                            <td>Family / semi-commercial</td>
+                        </tr>
+                        <tr>
+                            <td>Cholesterol</td>
+                            <td class="yes">Zero</td>
+                            <td class="yes">Zero</td>
+                            <td class="yes">Zero</td>
+                        </tr>
+                        <tr>
+                            <td>Export Grade</td>
+                            <td class="yes">Yes</td>
+                            <td class="yes">Yes</td>
+                            <td class="yes">Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div><!-- /detail-section -->
+
+    <!-- ══════════════════════════
+     RELATED PRODUCTS
+══════════════════════════ -->
+    <div class="related-section">
+        <div class="rs-head">
+            <div class="rs-title">You May Also <em>Like</em></div>
+            <a href="groundnutoil.html" class="rs-see-all">View All Oils →</a>
+        </div>
+        <div class="related-grid">
+            <div class="rel-card" onclick="showToast('🫙 Opening Vedic Oil page…')">
+                <div class="rel-img">
+                    <div class="rel-img-glow"></div>✨
+                </div>
+                <div class="rel-body">
+                    <div class="rel-name">Vedic High Oleic Oil</div>
+                    <div class="rel-sub">750ml · India's First · 77%+ MUFA</div>
+                    <div class="rel-foot"><span class="rel-price">₹950</span><button class="rel-atc"
+                            onclick="event.stopPropagation();quickAdd('Vedic High Oleic Oil ✨',950)">+</button></div>
+                </div>
+            </div>
+            <div class="rel-card" onclick="showToast('🫙 Opening 2L Bottle page…')">
+                <div class="rel-img">
+                    <div class="rel-img-glow"></div>🧴
+                </div>
+                <div class="rel-body">
+                    <div class="rel-name">Groundnut Oil</div>
+                    <div class="rel-sub">2 Litre Bottle · Double Filtered</div>
+                    <div class="rel-foot"><span class="rel-price">₹700</span><button class="rel-atc"
+                            onclick="event.stopPropagation();quickAdd('Groundnut Oil 2L 🧴',700)">+</button></div>
+                </div>
+            </div>
+            <div class="rel-card" onclick="showToast('🪣 Opening 5L Can page…')">
+                <div class="rel-img">
+                    <div class="rel-img-glow"></div>🪣
+                </div>
+                <div class="rel-body">
+                    <div class="rel-name">Groundnut Oil</div>
+                    <div class="rel-sub">5 Litre Can · Family Size</div>
+                    <div class="rel-foot"><span class="rel-price">₹1,350</span><button class="rel-atc"
+                            onclick="event.stopPropagation();quickAdd('Groundnut Oil 5L 🪣',1350)">+</button></div>
+                </div>
+            </div>
+            <div class="rel-card" onclick="showToast('🧈 Opening Peanut Butter page…')">
+                <div class="rel-img">
+                    <div class="rel-img-glow"></div>🧈
+                </div>
+                <div class="rel-body">
+                    <div class="rel-name">Peanut Butter</div>
+                    <div class="rel-sub">500g · Classic Creamy</div>
+                    <div class="rel-foot"><span class="rel-price">₹280</span><button class="rel-atc"
+                            onclick="event.stopPropagation();quickAdd('Peanut Butter 🧈',280)">+</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART DRAWER -->
+    <div class="cart-overlay" id="cartOv" onclick="closeCart()"></div>
+    <div class="cart-drawer" id="cartDr">
+        <div class="cart-head">
+            <h3>Your Cart <span id="chCount">(0)</span></h3><button class="cart-close" onclick="closeCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty"><span class="ce-icon">🛒</span>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-foot" id="cartFoot" style="display:none">
+            <div class="cart-total-row"><span class="ct-label">Total</span><span class="ct-val" id="cartTotal">₹0</span>
+            </div>
+            <button class="cart-checkout" onclick="showToast('🚀 Redirecting to checkout…')">Proceed to Checkout
+                →</button>
+        </div>
+    </div>
+
+    <!-- STICKY BUY BAR -->
+    <div class="sticky-buy" id="stickyBuy">
+        <div class="sb-prod">
+            <span class="sb-emoji" id="sbEmoji">🫗</span>
+            <div>
+                <div class="sb-name" id="sbName">Groundnut Oil — 1 Litre Bottle</div>
+                <div class="sb-sub">⭐ 4.8 · In Stock</div>
+            </div>
+        </div>
+        <div class="sb-price" id="sbPrice">₹315</div>
+        <button class="sb-atc" onclick="addToCart()">🛒 Add to Cart</button>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">PEANUT<span>JI</span></div>
+                <p>Premium groundnut oil, peanut butter & peanuts from Fishfa Agri World Ltd. Pure, natural, made with
+                    love in
+                    Gujarat.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Oil Range</h4>
+                <ul>
+                    <li><a href="#">Vedic High Oleic</a></li>
+                    <li><a href="#">Double Filtered 1L</a></li>
+                    <li><a href="#">Bulk / Commercial</a></li>
+                    <li><a href="#">5L Family Can</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="#">Certifications</a></li>
+                    <li><a href="blogs.html">Blog</a></li>
+                    <li><a href="contactus.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">Returns Policy</a></li>
+                    <li><a href="#">Bulk Orders</a></li>
+                    <li><a href="#">WhatsApp Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Fishfa Agri World Private Limited. All rights reserved.</p>
+            <div class="footer-tagline">Pyar Jaisa Pure ✦</div>
+        </div>
+    </footer>
+
+    <script>
+        /* ── CURSOR ── */
+        const cur = document.getElementById('cur'),
+            cur2 = document.getElementById('cur2')
+        let mx = 0,
+            my = 0,
+            fx = 0,
+            fy = 0
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX
+            my = e.clientY
+            cur.style.left = mx + 'px'
+            cur.style.top = my + 'px'
+        })
+            ; (function loop() {
+                fx += (mx - fx) * 0.12
+                fy += (my - fy) * 0.12
+                cur2.style.left = fx + 'px'
+                cur2.style.top = fy + 'px'
+                requestAnimationFrame(loop)
+            })()
+        document
+            .querySelectorAll(
+                'a,button,input,select,.variant-card,.thumb,.tab-btn,.review-card,.rel-card,.recipe-card,.usp-item,.cert-card,.rsb-row'
+            )
+            .forEach(el => {
+                el.addEventListener('mouseenter', () => document.body.classList.add('hov'))
+                el.addEventListener('mouseleave', () =>
+                    document.body.classList.remove('hov')
+                )
+            })
+
+        /* ── NAV SCROLL ── */
+        window.addEventListener('scroll', () => {
+            document
+                .getElementById('mainNav')
+                .classList.toggle('scrolled', window.scrollY > 50)
+            const heroBottom =
+                document.querySelector('.product-hero').offsetTop +
+                document.querySelector('.product-hero').offsetHeight
+            document
+                .getElementById('stickyBuy')
+                .classList.toggle('vis', window.scrollY > heroBottom - 200)
+        })
+
+        /* ── THUMB GALLERY ── */
+        function setThumb(el, emoji) {
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'))
+            el.classList.add('active')
+            const mainEmoji = document.getElementById('mainEmoji')
+            mainEmoji.style.transform = 'scale(0.8)'
+            mainEmoji.style.opacity = '0'
+            setTimeout(() => {
+                mainEmoji.textContent = emoji
+                mainEmoji.style.transform = 'scale(1)'
+                mainEmoji.style.opacity = '1'
+            }, 200)
+        }
+
+        /* ── TABS ── */
+        function switchTab(id, btn) {
+            document
+                .querySelectorAll('.tab-btn')
+                .forEach(b => b.classList.remove('active'))
+            document
+                .querySelectorAll('.tab-panel')
+                .forEach(p => p.classList.remove('active'))
+            btn.classList.add('active')
+            document.getElementById('tab-' + id).classList.add('active')
+            // Animate bar fills on nutrition tab
+            if (id === 'nutrition') {
+                setTimeout(() => {
+                    document.querySelectorAll('.fac-fill').forEach(f => {
+                        const w = f.style.width
+                        f.style.width = '0'
+                        setTimeout(() => {
+                            f.style.width = w
+                        }, 50)
+                    })
+                }, 100)
+            }
+        }
+
+        /* ── VARIANT SELECTOR ── */
+        function selectVariant(el, size, container, price, orig) {
+            if (el.classList.contains('oos')) return
+            document
+                .querySelectorAll('.variant-card')
+                .forEach(v => v.classList.remove('active'))
+            el.classList.add('active')
+            document.getElementById(
+                'activeVariant'
+            ).textContent = `${size} ${container} selected`
+            document.getElementById('displayPrice').textContent = price
+            document.getElementById('displayOrig').textContent = orig || ''
+            document.getElementById(
+                'sbName'
+            ).textContent = `Groundnut Oil — ${size} ${container}`
+            document.getElementById('sbPrice').textContent = price
+            // Update emoji
+            const emoji = el.dataset.emoji || '🫗'
+            document.getElementById('mainEmoji').textContent = emoji
+            document.getElementById('sbEmoji').textContent = emoji
+        }
+
+        /* ── QTY ── */
+        let qty = 1
+        function changeQty(d) {
+            qty = Math.max(1, Math.min(10, qty + d))
+            document.getElementById('qtyVal').value = qty
+        }
+
+        /* ── CART ── */
+        let cart = []
+        function addToCart() {
+            const activeV = document.querySelector('.variant-card.active')
+            const size = document
+                .getElementById('activeVariant')
+                .textContent.replace(' selected', '')
+            const price = parseInt(
+                document.getElementById('displayPrice').textContent.replace(/[₹,]/g, '')
+            )
+            const emoji = document.getElementById('mainEmoji').textContent
+            const name = `Groundnut Oil — ${size}`
+            const existing = cart.find(i => i.name === name)
+            if (existing) existing.qty += qty
+            else cart.push({ name, price, qty, emoji })
+            updateCartUI()
+            const btn = document.getElementById('mainAtc')
+            btn.textContent = '✓ Added to Cart'
+            btn.classList.add('added')
+            setTimeout(() => {
+                btn.innerHTML = '🛒 &nbsp;Add to Cart'
+                btn.classList.remove('added')
+            }, 1600)
+            showToast(`🛒 ${name} ×${qty} added!`)
+            const nb = document.getElementById('navBadge')
+            nb.style.transform = 'scale(1.5)'
+            setTimeout(() => {
+                nb.style.transform = ''
+            }, 300)
+        }
+        function quickAdd(name, price) {
+            const existing = cart.find(i => i.name === name)
+            if (existing) existing.qty++
+            else cart.push({ name, price, qty: 1, emoji: name.slice(-2) })
+            updateCartUI()
+            showToast(`🛒 ${name} added!`)
+        }
+        function updateCartUI() {
+            const total = cart.reduce((a, c) => a + c.qty, 0)
+            document.getElementById('navBadge').textContent = total
+            document.getElementById('chCount').textContent = `(${total})`
+            document.getElementById('cartTotal').textContent =
+                '₹' + cart.reduce((a, c) => a + c.price * c.qty, 0).toLocaleString('en-IN')
+            const ci = document.getElementById('cartItems')
+            ci.innerHTML = ''
+            if (!cart.length) {
+                ci.innerHTML =
+                    '<div class="cart-empty"><span class="ce-icon">🛒</span><p>Your cart is empty</p></div>'
+                document.getElementById('cartFoot').style.display = 'none'
+                return
+            }
+            document.getElementById('cartFoot').style.display = 'block'
+            cart.forEach(item => {
+                const d = document.createElement('div')
+                d.className = 'cart-item'
+                d.innerHTML = `<div class="ci-icon">${item.emoji
+                    }</div><div class="ci-info"><div class="ci-name">${item.name
+                    }</div><div class="ci-price">₹${(item.price * item.qty).toLocaleString(
+                        'en-IN'
+                    )}</div><div class="ci-qty"><button onclick="chQty('${item.name
+                    }',-1)">−</button><span>${item.qty}</span><button onclick="chQty('${item.name
+                    }',1)">+</button></div></div><button class="ci-del" onclick="rmCart('${item.name
+                    }')">🗑</button>`
+                ci.appendChild(d)
+            })
+        }
+        function chQty(name, d) {
+            const i = cart.find(x => x.name === name)
+            if (!i) return
+            i.qty += d
+            if (i.qty <= 0) cart = cart.filter(x => x.name !== name)
+            updateCartUI()
+        }
+        function rmCart(name) {
+            cart = cart.filter(x => x.name !== name)
+            updateCartUI()
+        }
+        function openCart() {
+            document.getElementById('cartOv').classList.add('vis')
+            document.getElementById('cartDr').classList.add('vis')
+        }
+        function closeCart() {
+            document.getElementById('cartOv').classList.remove('vis')
+            document.getElementById('cartDr').classList.remove('vis')
+        }
+
+        /* ── WISHLIST ── */
+        let wished = false
+        function toggleWish() {
+            wished = !wished
+            const btn = document.getElementById('wishBtn')
+            btn.textContent = wished ? '♥' : '♡'
+            btn.classList.toggle('on', wished)
+            showToast(wished ? '♥ Added to wishlist!' : 'Removed from wishlist')
+        }
+
+        /* ── PINCODE ── */
+        function checkPin() {
+            const pin = document.getElementById('pinInput').value
+            const result = document.getElementById('pcResult')
+            if (pin.length !== 6) {
+                result.className = 'pc-result vis err'
+                result.innerHTML = '❌ Please enter a valid 6-digit PIN'
+                return
+            }
+            result.className = 'pc-result vis ok'
+            const days = Math.floor(Math.random() * 2) + 1
+            result.innerHTML = `✅ Delivery available! Estimated delivery in ${days}–${days + 1
+                } business days`
+        }
+
+        /* ── REVIEWS ── */
+        function filterReviews(type, btn) {
+            document
+                .querySelectorAll('.rev-filter')
+                .forEach(b => b.classList.remove('on'))
+            btn.classList.add('on')
+            showToast(`Showing ${type === 'all' ? 'all reviews' : type + ' reviews'}`)
+        }
+        function markHelpful(btn, count) {
+            if (btn.classList.contains('clicked')) return
+            btn.classList.add('clicked')
+            const n = parseInt(count) + 1
+            btn.textContent = `👍 Yes (${n})`
+            showToast('Thanks for your feedback!')
+        }
+        function loadMore() {
+            showToast('📑 Loading more reviews…')
+        }
+
+        /* ── TOAST ── */
+        let tt
+        function showToast(msg) {
+            const t = document.getElementById('toast')
+            t.innerHTML = msg
+            t.classList.add('vis')
+            clearTimeout(tt)
+            tt = setTimeout(() => t.classList.remove('vis'), 2800)
+        }
+
+        /* ── KEYBOARD ── */
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeCart()
+        })
+
+        /* ── INIT: Animate Nutrition Bars on Scroll ── */
+        const barObserver = new IntersectionObserver(
+            entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target
+                            .querySelectorAll('.nc-bar-fill,.rsb-fill,.fac-fill')
+                            .forEach(bar => {
+                                const w = bar.style.width
+                                bar.style.width = '0'
+                                setTimeout(() => {
+                                    bar.style.transition = 'width 1s ease'
+                                    bar.style.width = w
+                                }, 100)
+                            })
+                        barObserver.unobserve(e.target)
+                    }
+                })
+            },
+            { threshold: 0.2 }
+        )
+        document
+            .querySelectorAll('.nutrition-card,.rating-summary,.fatty-acid-chart')
+            .forEach(el => barObserver.observe(el))
+
+        /* ── Scroll reveal ── */
+        const revObs = new IntersectionObserver(
+            entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.style.opacity = '1'
+                        e.target.style.transform = 'translateY(0)'
+                    }
+                })
+            },
+            { threshold: 0.1 }
+        )
+        document
+            .querySelectorAll(
+                '.usp-item,.cert-card,.ps-step,.us-step,.rel-card,.review-card,.ds-item'
+            )
+            .forEach(el => {
+                el.style.cssText =
+                    'opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease'
+                revObs.observe(el)
+            })
+
+    </script>
+</body>
+
+</html>

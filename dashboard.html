@@ -1,0 +1,3002 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard — Peanutji</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Bebas+Neue&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* ── HOME PAGE PALETTE (matched to home.css) ── */
+            --navy: #1B2E6B;
+            --navy-deep: #162460;
+            --navy-mid: #243685;
+            --navy-light: #2E448F;
+            --red: #8B1A1A;
+            --red-mid: #A93226;
+            --red-bright: #C0392B;
+            --gold: #C8960C;
+            --gold-light: #E0AE1A;
+            --gold-pale: #F5E6A0;
+            --gold-bright: #F0C030;
+            --cream: #F5F0E8;
+            --cream-deep: #EDE5D5;
+            --white: #FFFFFF;
+            --dark: #0D1A3A;
+
+            /* ── ALIAS MAPPINGS (keep old names for layout compat) ── */
+            --orange: var(--red-mid);
+            --orange-deep: var(--red);
+            --orange-bright: var(--red-bright);
+            --brown: var(--navy-deep);
+            --brown-mid: var(--navy);
+            --brown-light: var(--navy-light);
+            --sun-red: var(--red-bright);
+            --green: #2E7D32;
+            --green-l: #4CAF50;
+            --blue: var(--navy-mid);
+
+            --sidebar-w: 272px;
+            --topbar-h: 68px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            overflow-x: hidden;
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--navy);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+        }
+
+        /* ══ GRAIN OVERLAY ══ */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9000;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.018'/%3E%3C/svg%3E");
+            opacity: .55;
+        }
+
+        /* ══════════════════════════════
+   SIDEBAR
+══════════════════════════════ */
+        .sidebar {
+            width: var(--sidebar-w);
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-mid) 100%);
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid rgba(200, 150, 12, .18);
+            transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+            overflow: hidden;
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 20% 10%, rgba(200, 150, 12, .18), transparent 55%),
+                radial-gradient(ellipse at 80% 90%, rgba(139, 26, 26, .12), transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Logo */
+        .sb-logo {
+            padding: 22px 24px 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sb-logo-link {
+            text-decoration: none
+        }
+
+        .sb-logo-text {
+            font-family: 'Bebas Neue';
+            font-size: 1.75rem;
+            letter-spacing: 4px;
+            color: white;
+        }
+
+        .sb-logo-text span {
+            color: var(--gold)
+        }
+
+        .sb-logo-badge {
+            font-size: .5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(200, 150, 12, .15);
+            border: 1px solid rgba(200, 150, 12, .3);
+            border-radius: 100px;
+            padding: 3px 10px;
+            color: var(--gold-light);
+        }
+
+        /* User Card */
+        .sb-user {
+            padding: 18px 24px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sb-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--red-mid), var(--red));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display';
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            border: 2px solid rgba(200, 150, 12, .3);
+            flex-shrink: 0;
+            box-shadow: 0 4px 14px rgba(139, 26, 26, .35);
+        }
+
+        .sb-user-name {
+            font-weight: 600;
+            font-size: .88rem;
+            color: white;
+            line-height: 1.2
+        }
+
+        .sb-user-email {
+            font-size: .65rem;
+            color: rgba(255, 255, 255, .38)
+        }
+
+        .sb-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .58rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--green-l);
+            margin-top: 4px;
+        }
+
+        .sb-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--green-l);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: .4;
+                transform: scale(.7)
+            }
+        }
+
+        /* Nav */
+        .sb-nav {
+            flex: 1;
+            padding: 14px 12px;
+            overflow-y: auto;
+            position: relative;
+            z-index: 1
+        }
+
+        .sb-nav::-webkit-scrollbar {
+            width: 2px
+        }
+
+        .sb-nav::-webkit-scrollbar-thumb {
+            background: rgba(200, 150, 12, .25);
+            border-radius: 2px
+        }
+
+        .sb-section-label {
+            font-size: .54rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .22);
+            padding: 10px 12px 5px;
+            margin-top: 6px;
+        }
+
+        .sb-link {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 11px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all .25s;
+            margin-bottom: 2px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, .45);
+            position: relative;
+        }
+
+        .sb-link:hover {
+            background: rgba(255, 255, 255, .06);
+            color: rgba(255, 255, 255, .85)
+        }
+
+        .sb-link.active {
+            background: rgba(200, 150, 12, .15);
+            color: var(--gold-light);
+            border: 1px solid rgba(200, 150, 12, .25);
+        }
+
+        .sb-link.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 60%;
+            background: linear-gradient(to bottom, var(--red-mid), var(--gold));
+            border-radius: 0 2px 2px 0;
+        }
+
+        .sb-icon {
+            font-size: 1.05rem;
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0
+        }
+
+        .sb-link-text {
+            font-size: .78rem;
+            font-weight: 500;
+            flex: 1;
+            letter-spacing: .2px
+        }
+
+        .sb-badge {
+            background: var(--gold);
+            color: var(--navy-deep);
+            font-size: .58rem;
+            font-weight: 700;
+            font-family: 'Bebas Neue';
+            letter-spacing: 1px;
+            padding: 2px 7px;
+            border-radius: 100px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .sb-badge.red {
+            background: var(--red-bright);
+            color: white
+        }
+
+        .sb-bottom {
+            padding: 14px 12px;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            position: relative;
+            z-index: 1;
+        }
+
+        .sb-link.logout {
+            color: rgba(255, 140, 120, .45)
+        }
+
+        .sb-link.logout:hover {
+            background: rgba(139, 26, 26, .1);
+            color: rgba(255, 130, 110, .9)
+        }
+
+        /* ══════════════════════════════
+   MAIN AREA
+══════════════════════════════ */
+        .main {
+            margin-left: var(--sidebar-w);
+            flex: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ══ TOP BAR ══ */
+        .topbar {
+            height: var(--topbar-h);
+            background: rgba(245, 240, 232, .97);
+            backdrop-filter: blur(18px);
+            border-bottom: 2px solid rgba(27, 46, 107, .12);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 36px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: box-shadow .3s;
+        }
+
+        .topbar.scrolled {
+            box-shadow: 0 4px 24px rgba(13, 26, 58, .1)
+        }
+
+        .tb-left {
+            display: flex;
+            align-items: center;
+            gap: 16px
+        }
+
+        .tb-page-title {
+            font-family: 'Playfair Display';
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .tb-breadcrumb {
+            font-size: .62rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tb-breadcrumb a {
+            color: var(--navy-light);
+            text-decoration: none;
+            transition: color .2s
+        }
+
+        .tb-breadcrumb a:hover {
+            color: var(--red-mid)
+        }
+
+        .tb-sep {
+            color: rgba(27, 46, 107, .25)
+        }
+
+        .tb-right {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .tb-search {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(27, 46, 107, .06);
+            border: 1.5px solid rgba(27, 46, 107, .2);
+            border-radius: 8px;
+            padding: 8px 14px;
+            width: 210px;
+            transition: all .3s;
+        }
+
+        .tb-search:focus-within {
+            border-color: rgba(27, 46, 107, .5);
+            background: rgba(27, 46, 107, .09);
+            width: 250px;
+        }
+
+        .tb-search input {
+            background: none;
+            border: none;
+            outline: none;
+            font-family: 'DM Sans';
+            font-size: .78rem;
+            color: var(--navy);
+            width: 100%;
+        }
+
+        .tb-search input::placeholder {
+            color: rgba(27, 46, 107, .3)
+        }
+
+        .tb-search span {
+            font-size: .82rem;
+            color: rgba(27, 46, 107, .3);
+            flex-shrink: 0
+        }
+
+        .tb-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            background: rgba(27, 46, 107, .07);
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .95rem;
+            cursor: pointer;
+            transition: all .25s;
+            position: relative;
+            color: var(--navy-mid);
+        }
+
+        .tb-btn:hover {
+            background: rgba(27, 46, 107, .14);
+            border-color: rgba(27, 46, 107, .4);
+            color: var(--navy);
+        }
+
+        .tb-notif-dot {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 7px;
+            height: 7px;
+            background: var(--red-bright);
+            border-radius: 50%;
+            border: 2px solid var(--cream);
+        }
+
+        .tb-avatar-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display';
+            font-weight: 700;
+            font-size: .82rem;
+            color: white;
+            cursor: pointer;
+            border: 2px solid rgba(27, 46, 107, .3);
+            box-shadow: 0 3px 10px rgba(27, 46, 107, .3);
+            transition: all .25s;
+        }
+
+        .tb-avatar-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 5px 16px rgba(27, 46, 107, .4)
+        }
+
+        /* ══ CONTENT ══ */
+        .content {
+            flex: 1;
+            padding: 28px 36px 60px;
+            overflow-y: auto
+        }
+
+        /* ══ WELCOME BANNER ══ */
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-mid) 100%);
+            border-radius: 20px;
+            padding: 28px 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+            animation: slideDown .6s ease both;
+        }
+
+        .welcome-banner::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -40px;
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle, rgba(200, 150, 12, .18), transparent 65%);
+            pointer-events: none;
+        }
+
+        .welcome-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: 40%;
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle, rgba(139, 26, 26, .12), transparent 65%);
+            pointer-events: none;
+        }
+
+        .wb-emoji {
+            font-size: 3.8rem;
+            filter: drop-shadow(0 12px 22px rgba(200, 150, 12, .4));
+            animation: floatEmoji 4s ease-in-out infinite;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes floatEmoji {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-2deg)
+            }
+
+            50% {
+                transform: translateY(-9px) rotate(2deg)
+            }
+        }
+
+        .wb-content {
+            flex: 1;
+            position: relative;
+            z-index: 1
+        }
+
+        .wb-greeting {
+            font-size: .58rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 5px
+        }
+
+        .wb-title {
+            font-family: 'Playfair Display';
+            font-size: 1.55rem;
+            font-weight: 900;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 5px
+        }
+
+        .wb-sub {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .48)
+        }
+
+        .wb-cta {
+            background: linear-gradient(135deg, var(--gold), var(--red-mid));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 11px 24px;
+            font-family: 'DM Sans';
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+            white-space: nowrap;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 6px 18px rgba(200, 150, 12, .3);
+        }
+
+        .wb-cta:hover {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: var(--navy-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(200, 150, 12, .4)
+        }
+
+        /* ══ STAT CARDS ══ */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 16px;
+            padding: 20px 20px 18px;
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+            transition: all .35s;
+            animation: fadeUp .6s ease both;
+        }
+
+        .stat-card:nth-child(1) {
+            animation-delay: .08s
+        }
+
+        .stat-card:nth-child(2) {
+            animation-delay: .16s
+        }
+
+        .stat-card:nth-child(3) {
+            animation-delay: .24s
+        }
+
+        .stat-card:nth-child(4) {
+            animation-delay: .32s
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 48px rgba(13, 26, 58, .1), 0 0 0 2px rgba(27, 46, 107, .12);
+        }
+
+        .sc-icon-wrap {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 14px;
+        }
+
+        .sc-icon-wrap.navy,
+        .sc-icon-wrap.orange {
+            background: linear-gradient(135deg, rgba(27, 46, 107, .14), rgba(27, 46, 107, .06))
+        }
+
+        .sc-icon-wrap.gold {
+            background: linear-gradient(135deg, rgba(200, 150, 12, .18), rgba(200, 150, 12, .08))
+        }
+
+        .sc-icon-wrap.brown {
+            background: linear-gradient(135deg, rgba(27, 46, 107, .1), rgba(27, 46, 107, .04))
+        }
+
+        .sc-icon-wrap.red {
+            background: linear-gradient(135deg, rgba(139, 26, 26, .12), rgba(139, 26, 26, .05))
+        }
+
+        .sc-icon-wrap.green {
+            background: linear-gradient(135deg, rgba(46, 125, 50, .12), rgba(46, 125, 50, .05))
+        }
+
+        .sc-val {
+            font-family: 'Bebas Neue';
+            font-size: 2.3rem;
+            color: var(--navy);
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-bottom: 3px;
+        }
+
+        .sc-label {
+            font-size: .66rem;
+            color: var(--navy-light);
+            margin-bottom: 10px;
+            letter-spacing: .5px
+        }
+
+        .sc-change {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: .62rem;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 100px;
+        }
+
+        .sc-change.up {
+            background: rgba(46, 125, 50, .1);
+            color: #2E7D32
+        }
+
+        .sc-change.down {
+            background: rgba(139, 26, 26, .1);
+            color: var(--red)
+        }
+
+        .sc-bg {
+            position: absolute;
+            right: -8px;
+            bottom: -8px;
+            font-size: 5rem;
+            opacity: .04;
+            pointer-events: none;
+            transform: rotate(-10deg);
+        }
+
+        /* ══ LAYOUT HELPERS ══ */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 330px;
+            gap: 18px;
+            margin-bottom: 22px
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 22px
+        }
+
+        .flex-col {
+            display: flex;
+            flex-direction: column;
+            gap: 16px
+        }
+
+        /* ══ WIDGET CARD ══ */
+        .widget {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 18px;
+            overflow: hidden;
+            animation: fadeUp .6s ease both;
+        }
+
+        .widget-head {
+            padding: 16px 22px;
+            border-bottom: 1.5px solid rgba(27, 46, 107, .1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .wh-title {
+            font-family: 'Playfair Display';
+            font-size: .95rem;
+            font-weight: 700;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .wh-title::before {
+            content: '';
+            width: 3px;
+            height: 16px;
+            background: linear-gradient(to bottom, var(--navy), var(--gold));
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .wh-action {
+            font-size: .62rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            cursor: pointer;
+            transition: color .2s;
+            background: none;
+            border: none;
+            font-family: 'DM Sans';
+            font-weight: 600;
+        }
+
+        .wh-action:hover {
+            color: var(--red-mid)
+        }
+
+        .widget-body {
+            padding: 18px 22px
+        }
+
+        /* ══ TABS ══ */
+        .tab-row {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid rgba(27, 46, 107, .12);
+            margin-bottom: 22px;
+            overflow-x: auto;
+        }
+
+        .tab-row::-webkit-scrollbar {
+            display: none
+        }
+
+        .tab-btn {
+            padding: 11px 18px;
+            background: none;
+            border: none;
+            font-family: 'DM Sans';
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            cursor: pointer;
+            transition: all .3s;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            color: var(--navy)
+        }
+
+        .tab-btn.on {
+            color: var(--red-mid);
+            border-bottom-color: var(--red-mid)
+        }
+
+        .tab-panel {
+            display: none
+        }
+
+        .tab-panel.on {
+            display: block
+        }
+
+        /* ══ ORDER ITEMS ══ */
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(27, 46, 107, .08);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background .2s;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0
+        }
+
+        .order-item:hover {
+            background: rgba(27, 46, 107, .04);
+            margin: 0 -8px;
+            padding: 12px 8px
+        }
+
+        .oi-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(27, 46, 107, .1), rgba(200, 150, 12, .08));
+            border: 1px solid rgba(27, 46, 107, .15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .oi-info {
+            flex: 1;
+            min-width: 0
+        }
+
+        .oi-name {
+            font-weight: 600;
+            font-size: .81rem;
+            color: var(--navy);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 2px
+        }
+
+        .oi-date {
+            font-size: .63rem;
+            color: var(--navy-light)
+        }
+
+        .oi-right {
+            text-align: right;
+            flex-shrink: 0
+        }
+
+        .oi-price {
+            font-family: 'Bebas Neue';
+            font-size: 1.1rem;
+            color: var(--navy);
+            letter-spacing: 1px
+        }
+
+        .oi-status {
+            font-size: .56rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 100px;
+            font-weight: 700;
+            margin-top: 3px;
+            display: inline-block
+        }
+
+        .status-delivered {
+            background: rgba(46, 125, 50, .1);
+            color: #2E7D32
+        }
+
+        .status-transit {
+            background: rgba(27, 46, 107, .12);
+            color: var(--navy-mid)
+        }
+
+        .status-processing {
+            background: rgba(200, 150, 12, .12);
+            color: var(--gold)
+        }
+
+        .status-cancelled {
+            background: rgba(139, 26, 26, .1);
+            color: var(--red)
+        }
+
+        /* ══ ACTION BUTTONS ══ */
+        .action-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(27, 46, 107, .1)
+        }
+
+        .btn-primary {
+            flex: 1;
+            padding: 9px 0;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'DM Sans';
+            font-size: .67rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+            box-shadow: 0 4px 12px rgba(27, 46, 107, .25);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-1px);
+            box-shadow: 0 7px 18px rgba(27, 46, 107, .35)
+        }
+
+        .btn-ghost {
+            padding: 9px 16px;
+            background: transparent;
+            border: 1.5px solid rgba(27, 46, 107, .15);
+            border-radius: 8px;
+            color: var(--navy-mid);
+            font-family: 'DM Sans';
+            font-size: .67rem;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .btn-ghost:hover {
+            border-color: rgba(27, 46, 107, .3);
+            color: var(--navy)
+        }
+
+        .btn-danger {
+            padding: 9px 16px;
+            background: transparent;
+            border: 1.5px solid rgba(139, 26, 26, .18);
+            border-radius: 8px;
+            color: rgba(139, 26, 26, .55);
+            font-family: 'DM Sans';
+            font-size: .67rem;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .btn-danger:hover {
+            background: rgba(139, 26, 26, .05);
+            border-color: rgba(139, 26, 26, .4);
+            color: var(--red)
+        }
+
+        /* ══ LOYALTY CARD ══ */
+        .loyalty-card {
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-mid) 100%);
+            border-radius: 14px;
+            padding: 22px 22px 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loyalty-card::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -30px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(200, 150, 12, .2), transparent 65%);
+            pointer-events: none;
+        }
+
+        .lc-bg {
+            position: absolute;
+            right: -10px;
+            bottom: -18px;
+            font-size: 6.5rem;
+            opacity: .06;
+            pointer-events: none
+        }
+
+        .lc-label {
+            font-size: .54rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1
+        }
+
+        .lc-points {
+            font-family: 'Bebas Neue';
+            font-size: 3rem;
+            color: var(--gold);
+            letter-spacing: 3px;
+            line-height: 1;
+            margin-bottom: 3px;
+            position: relative;
+            z-index: 1
+        }
+
+        .lc-sub {
+            font-size: .7rem;
+            color: rgba(255, 255, 255, .42);
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1
+        }
+
+        .lc-bar-wrap {
+            background: rgba(255, 255, 255, .12);
+            border-radius: 100px;
+            height: 6px;
+            overflow: hidden;
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 1
+        }
+
+        .lc-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--red-mid), var(--gold));
+            border-radius: 100px;
+            width: 0%;
+            transition: width 1.5s ease
+        }
+
+        .lc-bar-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: .58rem;
+            color: rgba(255, 255, 255, .3);
+            position: relative;
+            z-index: 1
+        }
+
+        .lc-next {
+            font-size: .68rem;
+            color: rgba(255, 255, 255, .4);
+            margin-top: 8px;
+            position: relative;
+            z-index: 1
+        }
+
+        .lc-next strong {
+            color: var(--gold)
+        }
+
+        /* ══ WISHLIST ══ */
+        .wish-item {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 11px 0;
+            border-bottom: 1px solid rgba(27, 46, 107, .08);
+            cursor: pointer;
+            transition: all .25s;
+        }
+
+        .wish-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0
+        }
+
+        .wish-item:hover .wi-name {
+            color: var(--red-mid)
+        }
+
+        .wi-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, rgba(27, 46, 107, .1), rgba(200, 150, 12, .06));
+            border: 1px solid rgba(27, 46, 107, .15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .wi-name {
+            font-size: .78rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 2px;
+            transition: color .2s
+        }
+
+        .wi-price {
+            font-family: 'Bebas Neue';
+            font-size: .95rem;
+            color: var(--red);
+            letter-spacing: 1px
+        }
+
+        .wi-add {
+            padding: 6px 14px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-family: 'DM Sans';
+            font-size: .6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all .3s;
+            flex-shrink: 0;
+        }
+
+        .wi-add:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-1px)
+        }
+
+        .wi-remove {
+            background: none;
+            border: none;
+            color: rgba(139, 26, 26, .35);
+            font-size: .8rem;
+            cursor: pointer;
+            transition: color .2s;
+            padding: 4px 7px;
+            border-radius: 5px;
+        }
+
+        .wi-remove:hover {
+            color: var(--red);
+            background: rgba(139, 26, 26, .06)
+        }
+
+        /* ══ ADDRESS CARD ══ */
+        .address-card {
+            background: rgba(27, 46, 107, .04);
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 13px;
+            padding: 16px 18px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all .3s;
+            position: relative;
+        }
+
+        .address-card:hover {
+            border-color: rgba(27, 46, 107, .3);
+            background: rgba(27, 46, 107, .07)
+        }
+
+        .address-card.default {
+            border-color: rgba(200, 150, 12, .3);
+            background: rgba(200, 150, 12, .06)
+        }
+
+        .ac-default-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: .52rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            padding: 3px 9px;
+            border-radius: 100px;
+            font-weight: 700;
+        }
+
+        .ac-name {
+            font-weight: 600;
+            font-size: .82rem;
+            color: var(--navy);
+            margin-bottom: 4px
+        }
+
+        .ac-address {
+            font-size: .74rem;
+            color: var(--navy-mid);
+            line-height: 1.55
+        }
+
+        .ac-phone {
+            font-size: .68rem;
+            color: var(--navy-light);
+            margin-top: 4px
+        }
+
+        .ac-add-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 18px;
+            border: 1.5px dashed rgba(27, 46, 107, .25);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all .3s;
+            color: var(--navy-light);
+            font-size: .76rem;
+            background: none;
+            width: 100%;
+            font-family: 'DM Sans';
+            font-weight: 500;
+        }
+
+        .ac-add-btn:hover {
+            border-color: var(--navy);
+            color: var(--navy);
+            background: rgba(27, 46, 107, .05)
+        }
+
+        /* ══ ACTIVITY ══ */
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            padding: 11px 0;
+            border-bottom: 1px solid rgba(27, 46, 107, .08);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0
+        }
+
+        .ai-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 5px
+        }
+
+        .ai-dot.orange {
+            background: var(--gold)
+        }
+
+        .ai-dot.green {
+            background: var(--green-l)
+        }
+
+        .ai-dot.blue {
+            background: var(--navy-mid)
+        }
+
+        .ai-dot.red {
+            background: var(--red-mid)
+        }
+
+        .ai-text {
+            font-size: .77rem;
+            color: var(--navy-mid);
+            line-height: 1.5
+        }
+
+        .ai-text strong {
+            color: var(--navy)
+        }
+
+        .ai-time {
+            font-size: .62rem;
+            color: var(--navy-light);
+            margin-top: 2px
+        }
+
+        /* ══ SPARKLINE ══ */
+        .sparkline-wrap {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            height: 48px;
+            margin-top: 10px
+        }
+
+        .spark-bar {
+            flex: 1;
+            background: rgba(27, 46, 107, .15);
+            border-radius: 3px 3px 0 0;
+            transition: background .25s;
+            cursor: default;
+            min-height: 4px;
+            position: relative;
+        }
+
+        .spark-bar:hover {
+            background: var(--navy)
+        }
+
+        .spark-bar.peak {
+            background: rgba(27, 46, 107, .38)
+        }
+
+        .spark-bar.peak:hover {
+            background: var(--red-mid)
+        }
+
+        /* ══ RECOMMENDED PRODUCTS ══ */
+        .rec-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px
+        }
+
+        .rec-card {
+            background: rgba(27, 46, 107, .03);
+            border: 1.5px solid rgba(27, 46, 107, .1);
+            border-radius: 13px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .rec-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 36px rgba(13, 26, 58, .1);
+            border-color: rgba(27, 46, 107, .25);
+        }
+
+        .rc-img {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rc-bg {
+            position: absolute;
+            inset: 0
+        }
+
+        .rc-emoji {
+            position: relative;
+            z-index: 1;
+            transition: transform .35s cubic-bezier(.34, 1.56, .64, 1)
+        }
+
+        .rec-card:hover .rc-emoji {
+            transform: scale(1.14) translateY(-4px) rotate(-3deg)
+        }
+
+        .rc-body {
+            padding: 11px 13px 14px
+        }
+
+        .rc-name {
+            font-size: .74rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 4px;
+            line-height: 1.3
+        }
+
+        .rc-price {
+            font-family: 'Bebas Neue';
+            font-size: 1.05rem;
+            color: var(--red);
+            letter-spacing: 1px
+        }
+
+        .rc-atc {
+            width: 100%;
+            padding: 8px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-family: 'DM Sans';
+            font-size: .6rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 9px;
+            transition: all .3s;
+            box-shadow: 0 3px 8px rgba(27, 46, 107, .22);
+        }
+
+        .rc-atc:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-1px)
+        }
+
+        /* ══ PROFILE FORM ══ */
+        .profile-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px
+        }
+
+        .pf-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px
+        }
+
+        .pf-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px
+        }
+
+        .pf-label {
+            font-size: .58rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--navy-light)
+        }
+
+        .pf-input {
+            background: rgba(27, 46, 107, .05);
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 9px;
+            padding: 11px 14px;
+            font-family: 'DM Sans';
+            font-size: .82rem;
+            color: var(--navy);
+            outline: none;
+            transition: all .3s;
+        }
+
+        .pf-input:focus {
+            border-color: rgba(27, 46, 107, .45);
+            background: rgba(27, 46, 107, .08)
+        }
+
+        .pf-input::placeholder {
+            color: rgba(27, 46, 107, .28)
+        }
+
+        .pf-save {
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 9px;
+            padding: 11px 28px;
+            font-family: 'DM Sans';
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+            margin-top: 4px;
+            align-self: flex-start;
+            box-shadow: 0 5px 14px rgba(27, 46, 107, .28);
+        }
+
+        .pf-save:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(27, 46, 107, .38)
+        }
+
+        /* ══ TOGGLE ══ */
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(27, 46, 107, .08)
+        }
+
+        .toggle-row:last-child {
+            border-bottom: none
+        }
+
+        .toggle-label {
+            font-size: .8rem;
+            color: var(--navy-mid)
+        }
+
+        .toggle-sw {
+            width: 38px;
+            height: 21px;
+            border-radius: 100px;
+            position: relative;
+            cursor: pointer;
+            transition: background .3s;
+            flex-shrink: 0
+        }
+
+        .toggle-sw.on {
+            background: linear-gradient(135deg, var(--navy), var(--red-mid))
+        }
+
+        .toggle-sw.off {
+            background: rgba(27, 46, 107, .12)
+        }
+
+        .toggle-thumb {
+            position: absolute;
+            top: 3px;
+            width: 15px;
+            height: 15px;
+            background: white;
+            border-radius: 50%;
+            transition: left .3s;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .18);
+        }
+
+        .toggle-sw.on .toggle-thumb {
+            left: calc(100% - 18px)
+        }
+
+        .toggle-sw.off .toggle-thumb {
+            left: 3px
+        }
+
+        /* ══ SUMMARY BOX ══ */
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            font-size: .8rem;
+            color: var(--navy-mid);
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(27, 46, 107, .07)
+        }
+
+        .summary-line:last-child {
+            border-bottom: none
+        }
+
+        .summary-line .val {
+            color: var(--navy);
+            font-weight: 600
+        }
+
+        .summary-line .val.green {
+            color: var(--green)
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 0 0;
+            margin-top: 4px;
+            border-top: 2px solid rgba(27, 46, 107, .15)
+        }
+
+        .summary-total .lbl {
+            font-family: 'Playfair Display';
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy)
+        }
+
+        .summary-total .val {
+            font-family: 'Bebas Neue';
+            font-size: 1.8rem;
+            color: var(--red);
+            letter-spacing: 2px
+        }
+
+        /* ══ COUPON INPUT ══ */
+        .coupon-wrap {
+            display: flex;
+            gap: 0;
+            background: rgba(27, 46, 107, .05);
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 9px;
+            overflow: hidden;
+            margin-bottom: 14px;
+            transition: border-color .3s;
+        }
+
+        .coupon-wrap:focus-within {
+            border-color: rgba(27, 46, 107, .4)
+        }
+
+        .coupon-input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            font-family: 'DM Sans';
+            font-size: .8rem;
+            color: var(--navy);
+            padding: 11px 14px;
+        }
+
+        .coupon-input::placeholder {
+            color: rgba(27, 46, 107, .28)
+        }
+
+        .coupon-btn {
+            background: var(--navy);
+            color: var(--gold-light);
+            border: none;
+            padding: 0 18px;
+            font-family: 'DM Sans';
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .coupon-btn:hover {
+            background: var(--red-mid);
+            color: white
+        }
+
+        /* ══ CHECKOUT BTN ══ */
+        .checkout-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'DM Sans';
+            font-size: .76rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+            box-shadow: 0 6px 18px rgba(27, 46, 107, .3);
+        }
+
+        .checkout-btn:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            transform: translateY(-2px);
+            box-shadow: 0 10px 26px rgba(27, 46, 107, .4)
+        }
+
+        /* ══ TOAST ══ */
+        .toast {
+            position: fixed;
+            bottom: 26px;
+            right: 26px;
+            background: var(--navy-deep);
+            border: 1.5px solid rgba(200, 150, 12, .3);
+            border-radius: 11px;
+            padding: 12px 20px;
+            font-size: .76rem;
+            color: var(--gold-light);
+            z-index: 9999;
+            opacity: 0;
+            transition: all .35s;
+            pointer-events: none;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(13, 26, 58, .3);
+            transform: translateY(8px);
+        }
+
+        .toast.vis {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        /* ══ MOBILE TOGGLE ══ */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            z-index: 250;
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            border-radius: 50%;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(27, 46, 107, .4);
+            color: white;
+        }
+
+        /* ══ SECTION LABEL ══ */
+        .sec-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: .56rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            margin: 6px 0 18px;
+        }
+
+        .sec-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(27, 46, 107, .2), transparent)
+        }
+
+        /* ══ NOTIFICATION ITEM ══ */
+        .notif-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(27, 46, 107, .08);
+        }
+
+        .notif-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0
+        }
+
+        .notif-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .notif-title {
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 3px
+        }
+
+        .notif-title.unread {
+            color: var(--navy)
+        }
+
+        .notif-title.read {
+            color: var(--navy-mid)
+        }
+
+        .notif-body {
+            font-size: .73rem;
+            color: var(--navy-mid);
+            line-height: 1.5;
+            opacity: .75
+        }
+
+        .notif-time {
+            font-size: .62rem;
+            color: var(--navy-light);
+            margin-top: 4px
+        }
+
+        .notif-new-badge {
+            font-size: .52rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            padding: 2px 8px;
+            border-radius: 100px;
+            font-weight: 700;
+            margin-left: 6px;
+        }
+
+        /* ══ LOYALTY HISTORY ══ */
+        .pts-row {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 11px 0;
+            border-bottom: 1px solid rgba(27, 46, 107, .07);
+        }
+
+        .pts-row:last-child {
+            border-bottom: none
+        }
+
+        .pts-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0
+        }
+
+        .pts-dot.earn {
+            background: var(--green-l)
+        }
+
+        .pts-dot.redeem {
+            background: var(--red-bright)
+        }
+
+        .pts-amount {
+            font-family: 'Bebas Neue';
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-left: auto;
+            flex-shrink: 0
+        }
+
+        .pts-amount.earn {
+            color: var(--green)
+        }
+
+        .pts-amount.redeem {
+            color: var(--red)
+        }
+
+        /* ══ ANIMATIONS ══ */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-14px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* ══ RESPONSIVE ══ */
+        @media(max-width:1280px) {
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr
+            }
+        }
+
+        @media(max-width:1024px) {
+            .grid-3 {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        @media(max-width:900px) {
+            .sidebar {
+                transform: translateX(-100%)
+            }
+
+            .sidebar.open {
+                transform: translateX(0)
+            }
+
+            .main {
+                margin-left: 0
+            }
+
+            .mobile-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center
+            }
+
+            .rec-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .pf-row {
+                grid-template-columns: 1fr
+            }
+
+            .topbar {
+                padding: 0 18px
+            }
+
+            .content {
+                padding: 18px 18px 60px
+            }
+        }
+
+        @media(max-width:600px) {
+            .stats-row {
+                grid-template-columns: 1fr
+            }
+
+            .rec-grid {
+                grid-template-columns: 1fr
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════ SIDEBAR ═══════ -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sb-logo">
+            <a href="index.html" class="sb-logo-link">
+                <div class="sb-logo-text">PEANUT<span>JI</span></div>
+            </a>
+            <span class="sb-logo-badge">Member</span>
+        </div>
+
+        <div class="sb-user">
+            <div class="sb-avatar">N</div>
+            <div>
+                <div class="sb-user-name">Niyati Pathak</div>
+                <div class="sb-user-email">pathakniyati34@gmail.com</div>
+                <div class="sb-status">Active Member</div>
+            </div>
+        </div>
+
+        <nav class="sb-nav">
+            <div class="sb-section-label">Main</div>
+            <a class="sb-link active" onclick="switchSection('overview',this)">
+                <span class="sb-icon">🏠</span><span class="sb-link-text">Overview</span>
+            </a>
+            <a class="sb-link" onclick="switchSection('orders',this)">
+                <span class="sb-icon">📦</span><span class="sb-link-text">My Orders</span>
+                <span class="sb-badge">3</span>
+            </a>
+            <a class="sb-link" onclick="switchSection('wishlist',this)">
+                <span class="sb-icon">♥</span><span class="sb-link-text">Wishlist</span>
+                <span class="sb-badge">5</span>
+            </a>
+            <a class="sb-link" onclick="switchSection('cart',this)">
+                <span class="sb-icon">🛒</span><span class="sb-link-text">My Cart</span>
+                <span class="sb-badge red">2</span>
+            </a>
+
+            <div class="sb-section-label">Account</div>
+            <a class="sb-link" onclick="switchSection('profile',this)">
+                <span class="sb-icon">👤</span><span class="sb-link-text">My Profile</span>
+            </a>
+            <a class="sb-link" onclick="switchSection('addresses',this)">
+                <span class="sb-icon">📍</span><span class="sb-link-text">Addresses</span>
+            </a>
+            <a class="sb-link" onclick="switchSection('loyalty',this)">
+                <span class="sb-icon">⭐</span><span class="sb-link-text">Rewards & Points</span>
+            </a>
+            <a class="sb-link" onclick="switchSection('notifications',this)">
+                <span class="sb-icon">🔔</span><span class="sb-link-text">Notifications</span>
+                <span class="sb-badge red">2</span>
+            </a>
+
+            <div class="sb-section-label">Support</div>
+            <a class="sb-link" onclick="showToast('💬 Opening support chat…')">
+                <span class="sb-icon">💬</span><span class="sb-link-text">Help & Support</span>
+            </a>
+            <a class="sb-link" href="index.html">
+                <span class="sb-icon">🛍</span><span class="sb-link-text">Continue Shopping</span>
+            </a>
+        </nav>
+
+        <div class="sb-bottom">
+            <a class="sb-link logout" onclick="showToast('👋 Logging out…')">
+                <span class="sb-icon">↩</span><span class="sb-link-text">Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- ═══════ MAIN ═══════ -->
+    <div class="main">
+
+        <!-- TOP BAR -->
+        <div class="topbar" id="topbar">
+            <div class="tb-left">
+                <div>
+                    <div class="tb-page-title" id="pageTitle">Dashboard</div>
+                    <div class="tb-breadcrumb">
+                        <a href="index.html">Peanutji</a>
+                        <span class="tb-sep">›</span>
+                        <span id="pageBreadcrumb">My Account</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tb-right">
+                <div class="tb-search">
+                    <span>🔍</span>
+                    <input type="text" placeholder="Search orders, products…" id="globalSearch">
+                </div>
+                <div class="tb-btn" onclick="showToast('🔔 2 new notifications'); switchSection('notifications',null)"
+                    title="Notifications">
+                    🔔<div class="tb-notif-dot"></div>
+                </div>
+                <div class="tb-btn" onclick="switchSection('cart',null)" title="Cart">🛒</div>
+                <div class="tb-avatar-btn" onclick="switchSection('profile',null)" title="Profile">N</div>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content" id="mainContent">
+
+            <!-- ════ OVERVIEW ════ -->
+            <div id="sec-overview" class="tab-panel on">
+
+
+
+                <div class="welcome-banner">
+                    <span class="wb-emoji">🥜</span>
+                    <div class="wb-content">
+                        <div class="wb-greeting">Welcome back</div>
+                        <div class="wb-title">Good Morning, Niyati! ☀️</div>
+                        <div class="wb-sub">You have 3 active orders · 680 loyalty points ready to redeem</div>
+                    </div>
+                    <button class="wb-cta" onclick="switchSection('orders',null)">Track Orders →</button>
+                </div>
+
+                <!-- STATS -->
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="sc-icon-wrap navy">📦</div>
+                        <div class="sc-val">12</div>
+                        <div class="sc-label">Total Orders</div>
+                        <span class="sc-change up">▲ +2 this month</span>
+                        <div class="sc-bg">📦</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="sc-icon-wrap gold">⭐</div>
+                        <div class="sc-val">680</div>
+                        <div class="sc-label">Loyalty Points</div>
+                        <span class="sc-change up">▲ +120 earned</span>
+                        <div class="sc-bg">⭐</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="sc-icon-wrap red">♥</div>
+                        <div class="sc-val">5</div>
+                        <div class="sc-label">Wishlist Items</div>
+                        <span class="sc-change up">▲ Added 1</span>
+                        <div class="sc-bg">♥</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="sc-icon-wrap green">💰</div>
+                        <div class="sc-val">₹8,430</div>
+                        <div class="sc-label">Total Spent</div>
+                        <span class="sc-change up">▲ ₹1,265 this month</span>
+                        <div class="sc-bg">💰</div>
+                    </div>
+                </div>
+
+                <!-- MAIN GRID -->
+                <div class="grid-2">
+                    <!-- Recent Orders -->
+                    <div class="widget" style="animation-delay:.2s">
+                        <div class="widget-head">
+                            <div class="wh-title">Recent Orders</div>
+                            <button class="wh-action" onclick="switchSection('orders',null)">View All →</button>
+                        </div>
+                        <div class="widget-body">
+                            <div class="order-item" onclick="showToast('📦 Order #PJ2024 details')">
+                                <div class="oi-icon">✨</div>
+                                <div class="oi-info">
+                                    <div class="oi-name">Vedic High Oleic Oil 750ml</div>
+                                    <div class="oi-date">Order #PJ2024 · Mar 18, 2026</div>
+                                </div>
+                                <div class="oi-right">
+                                    <div class="oi-price">₹950</div>
+                                    <div class="oi-status status-transit">In Transit</div>
+                                </div>
+                            </div>
+                            <div class="order-item" onclick="showToast('📦 Order #PJ2021 details')">
+                                <div class="oi-icon">🧈</div>
+                                <div class="oi-info">
+                                    <div class="oi-name">Classic Crunchy 1kg + Creamy 1kg</div>
+                                    <div class="oi-date">Order #PJ2021 · Mar 10, 2026</div>
+                                </div>
+                                <div class="oi-right">
+                                    <div class="oi-price">₹1,098</div>
+                                    <div class="oi-status status-delivered">Delivered</div>
+                                </div>
+                            </div>
+                            <div class="order-item" onclick="showToast('📦 Order #PJ2019 details')">
+                                <div class="oi-icon">🪣</div>
+                                <div class="oi-info">
+                                    <div class="oi-name">Groundnut Oil 5 Ltr Can</div>
+                                    <div class="oi-date">Order #PJ2019 · Mar 2, 2026</div>
+                                </div>
+                                <div class="oi-right">
+                                    <div class="oi-price">₹1,350</div>
+                                    <div class="oi-status status-delivered">Delivered</div>
+                                </div>
+                            </div>
+                            <div class="order-item" onclick="showToast('📦 Order #PJ2015 details')">
+                                <div class="oi-icon">🥜</div>
+                                <div class="oi-info">
+                                    <div class="oi-name">Peanut Platinum 500g × 2</div>
+                                    <div class="oi-date">Order #PJ2015 · Feb 20, 2026</div>
+                                </div>
+                                <div class="oi-right">
+                                    <div class="oi-price">₹360</div>
+                                    <div class="oi-status status-delivered">Delivered</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="flex-col">
+                        <div class="widget" style="animation-delay:.3s">
+                            <div class="widget-head">
+                                <div class="wh-title">Loyalty Points</div>
+                                <button class="wh-action" onclick="switchSection('loyalty',null)">Details →</button>
+                            </div>
+                            <div class="widget-body">
+                                <div class="loyalty-card">
+                                    <div class="lc-bg">⭐</div>
+                                    <div class="lc-label">Your Balance</div>
+                                    <div class="lc-points">680</div>
+                                    <div class="lc-sub">Worth ₹68 off your next order</div>
+                                    <div class="lc-bar-wrap">
+                                        <div class="lc-bar-fill" id="loyaltyBar"></div>
+                                    </div>
+                                    <div class="lc-bar-labels"><span>Silver (0)</span><span>Gold (1000)</span></div>
+                                    <div class="lc-next">Need <strong>320 more</strong> to reach Gold tier</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="widget" style="animation-delay:.4s">
+                            <div class="widget-head">
+                                <div class="wh-title">Recent Activity</div>
+                            </div>
+                            <div class="widget-body">
+                                <div class="activity-item">
+                                    <div class="ai-dot orange"></div>
+                                    <div>
+                                        <div class="ai-text"><strong>Order placed</strong> — Vedic Oil 750ml</div>
+                                        <div class="ai-time">Today, 10:24 AM</div>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="ai-dot green"></div>
+                                    <div>
+                                        <div class="ai-text"><strong>+120 points</strong> earned from last order</div>
+                                        <div class="ai-time">Mar 10, 2026</div>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="ai-dot blue"></div>
+                                    <div>
+                                        <div class="ai-text">Added <strong>Choco Crunchy 1kg</strong> to wishlist</div>
+                                        <div class="ai-time">Mar 8, 2026</div>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="ai-dot green"></div>
+                                    <div>
+                                        <div class="ai-text"><strong>Delivered</strong> — Groundnut Oil 5L Can</div>
+                                        <div class="ai-time">Mar 4, 2026</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spending Chart -->
+                <div class="widget" style="margin-bottom:20px;animation-delay:.5s">
+                    <div class="widget-head">
+                        <div class="wh-title">Monthly Spending</div>
+                        <button class="wh-action">Last 6 Months</button>
+                    </div>
+                    <div class="widget-body">
+                        <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:12px">
+                            <div>
+                                <div
+                                    style="font-family:'Bebas Neue';font-size:2rem;color:var(--navy);letter-spacing:2px">
+                                    ₹8,430</div>
+                                <div style="font-size:.68rem;color:var(--navy-light)">Total in 6 months</div>
+                            </div>
+                            <div style="text-align:right">
+                                <div style="font-size:.72rem;color:var(--green);font-weight:600">▲ 18% vs last period
+                                </div>
+                                <div style="font-size:.63rem;color:var(--navy-light)">Healthy spending pattern!</div>
+                            </div>
+                        </div>
+                        <div class="sparkline-wrap">
+                            <div class="spark-bar" style="height:38%" title="Oct ₹820"></div>
+                            <div class="spark-bar" style="height:52%" title="Nov ₹1,100"></div>
+                            <div class="spark-bar" style="height:44%" title="Dec ₹940"></div>
+                            <div class="spark-bar peak" style="height:76%" title="Jan ₹1,600"></div>
+                            <div class="spark-bar" style="height:61%" title="Feb ₹1,290"></div>
+                            <div class="spark-bar peak" style="height:88%" title="Mar ₹1,780"></div>
+                        </div>
+                        <div
+                            style="display:flex;justify-content:space-between;margin-top:6px;font-size:.6rem;color:var(--navy-light)">
+                            <span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommended -->
+                <div class="widget" style="animation-delay:.6s">
+                    <div class="widget-head">
+                        <div class="wh-title">Recommended For You</div>
+                        <button class="wh-action" onclick="showToast('🛒 Opening full shop…')">Shop All →</button>
+                    </div>
+                    <div class="widget-body">
+                        <div class="rec-grid">
+                            <div class="rec-card">
+                                <div class="rc-img">
+                                    <div class="rc-bg"
+                                        style="background:linear-gradient(145deg,rgba(27,46,107,.08),rgba(200,150,12,.06))">
+                                    </div>
+                                    <span class="rc-emoji">🫗</span>
+                                </div>
+                                <div class="rc-body">
+                                    <div class="rc-name">Groundnut Oil 1L Bottle</div>
+                                    <div class="rc-price">₹315 <span
+                                            style="font-size:.65rem;color:var(--navy-light);text-decoration:line-through;font-family:'DM Sans'">₹350</span>
+                                    </div>
+                                    <button class="rc-atc" onclick="showToast('🛒 Added to cart!')">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="rec-card">
+                                <div class="rc-img">
+                                    <div class="rc-bg"
+                                        style="background:linear-gradient(145deg,rgba(139,26,26,.08),rgba(27,46,107,.06))">
+                                    </div>
+                                    <span class="rc-emoji">🍫</span>
+                                </div>
+                                <div class="rc-body">
+                                    <div class="rc-name">Choco Crunchy 1kg</div>
+                                    <div class="rc-price">₹630 <span
+                                            style="font-size:.65rem;color:var(--navy-light);text-decoration:line-through;font-family:'DM Sans'">₹700</span>
+                                    </div>
+                                    <button class="rc-atc" onclick="showToast('🛒 Added to cart!')">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="rec-card">
+                                <div class="rc-img">
+                                    <div class="rc-bg"
+                                        style="background:linear-gradient(145deg,rgba(200,150,12,.1),rgba(27,46,107,.06))">
+                                    </div>
+                                    <span class="rc-emoji">✨</span>
+                                </div>
+                                <div class="rc-body">
+                                    <div class="rc-name">Peanut Platinum 500g</div>
+                                    <div class="rc-price">₹180 <span
+                                            style="font-size:.65rem;color:var(--navy-light);text-decoration:line-through;font-family:'DM Sans'">₹200</span>
+                                    </div>
+                                    <button class="rc-atc" onclick="showToast('🛒 Added to cart!')">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ════ ORDERS ════ -->
+            <div id="sec-orders" class="tab-panel">
+                <div class="tab-row">
+                    <button class="tab-btn on" onclick="orderTab('All',this)">All Orders (12)</button>
+                    <button class="tab-btn" onclick="orderTab('Active',this)">Active (3)</button>
+                    <button class="tab-btn" onclick="orderTab('Delivered',this)">Delivered (8)</button>
+                    <button class="tab-btn" onclick="orderTab('Cancelled',this)">Cancelled (1)</button>
+                </div>
+
+                <div class="widget" style="margin-bottom:14px">
+                    <div class="widget-body">
+                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+                            <div
+                                style="font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--navy-light)">
+                                Order #PJ2024 · Mar 18, 2026</div>
+                            <span class="oi-status status-transit">In Transit</span>
+                        </div>
+                        <div class="order-item">
+                            <div class="oi-icon">✨</div>
+                            <div class="oi-info">
+                                <div class="oi-name">Vedic High Oleic Oil 750ml</div>
+                                <div class="oi-date">Qty: 1 · Expected: Mar 22, 2026</div>
+                            </div>
+                            <div class="oi-right">
+                                <div class="oi-price">₹950</div>
+                            </div>
+                        </div>
+                        <div class="action-row">
+                            <button class="btn-primary" onclick="showToast('📦 Tracking #PJ2024…')">Track Order</button>
+                            <button class="btn-ghost" onclick="showToast('📃 Invoice downloaded')">Invoice</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="widget" style="margin-bottom:14px">
+                    <div class="widget-body">
+                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+                            <div
+                                style="font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--navy-light)">
+                                Order #PJ2023 · Mar 15, 2026</div>
+                            <span class="oi-status status-processing">Processing</span>
+                        </div>
+                        <div class="order-item">
+                            <div class="oi-icon">🪣</div>
+                            <div class="oi-info">
+                                <div class="oi-name">Groundnut Oil 5 Ltr Can</div>
+                                <div class="oi-date">Qty: 1 · Estimated dispatch: Mar 20</div>
+                            </div>
+                            <div class="oi-right">
+                                <div class="oi-price">₹1,350</div>
+                            </div>
+                        </div>
+                        <div class="action-row">
+                            <button class="btn-primary" onclick="showToast('📦 Tracking #PJ2023…')">Track Order</button>
+                            <button class="btn-danger" onclick="showToast('✅ Cancellation requested')">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="widget">
+                    <div class="widget-body">
+                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+                            <div
+                                style="font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--navy-light)">
+                                Order #PJ2021 · Mar 10, 2026</div>
+                            <span class="oi-status status-delivered">Delivered</span>
+                        </div>
+                        <div class="order-item"
+                            style="border-bottom:1px solid rgba(27,46,107,.07);padding-bottom:12px;margin-bottom:12px">
+                            <div class="oi-icon">🧈</div>
+                            <div class="oi-info">
+                                <div class="oi-name">Classic Crunchy Peanut Butter 1kg</div>
+                                <div class="oi-date">Qty: 1</div>
+                            </div>
+                            <div class="oi-right">
+                                <div class="oi-price">₹549</div>
+                            </div>
+                        </div>
+                        <div class="order-item">
+                            <div class="oi-icon">🥜</div>
+                            <div class="oi-info">
+                                <div class="oi-name">Classic Creamy Peanut Butter 1kg</div>
+                                <div class="oi-date">Qty: 1</div>
+                            </div>
+                            <div class="oi-right">
+                                <div class="oi-price">₹549</div>
+                            </div>
+                        </div>
+                        <div class="action-row">
+                            <button class="btn-primary" onclick="showToast('🔁 Reorder placed!')">Reorder</button>
+                            <button class="btn-ghost" onclick="showToast('⭐ Opening review…')">Review</button>
+                            <button class="btn-ghost" onclick="showToast('📃 Invoice downloaded')">Invoice</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ════ WISHLIST ════ -->
+            <div id="sec-wishlist" class="tab-panel">
+                <div class="widget">
+                    <div class="widget-head">
+                        <div class="wh-title">My Wishlist (5)</div>
+                        <button class="wh-action" onclick="showToast('🛒 All items added to cart!')">Add All to
+                            Cart</button>
+                    </div>
+                    <div class="widget-body">
+                        <div class="wish-item">
+                            <div class="wi-icon">✨</div>
+                            <div style="flex:1;min-width:0">
+                                <div class="wi-name">Vedic High Oleic Oil 750ml</div>
+                                <div class="wi-price">₹950</div>
+                            </div>
+                            <button class="wi-add" onclick="showToast('🛒 Added!')">Add</button>
+                            <button class="wi-remove" onclick="showToast('♡ Removed')">✕</button>
+                        </div>
+                        <div class="wish-item">
+                            <div class="wi-icon">🍫</div>
+                            <div style="flex:1;min-width:0">
+                                <div class="wi-name">Choco Crunchy Peanut Butter 1kg</div>
+                                <div class="wi-price">₹630</div>
+                            </div>
+                            <button class="wi-add" onclick="showToast('🛒 Added!')">Add</button>
+                            <button class="wi-remove" onclick="showToast('♡ Removed')">✕</button>
+                        </div>
+                        <div class="wish-item">
+                            <div class="wi-icon">🫙</div>
+                            <div style="flex:1;min-width:0">
+                                <div class="wi-name">Groundnut Oil 15 Ltr Tap Jar</div>
+                                <div class="wi-price">₹4,050</div>
+                            </div>
+                            <button class="wi-add" onclick="showToast('🛒 Added!')">Add</button>
+                            <button class="wi-remove" onclick="showToast('♡ Removed')">✕</button>
+                        </div>
+                        <div class="wish-item">
+                            <div class="wi-icon">🌰</div>
+                            <div style="flex:1;min-width:0">
+                                <div class="wi-name">Peanut Gold 500g</div>
+                                <div class="wi-price">₹162</div>
+                            </div>
+                            <button class="wi-add" onclick="showToast('🛒 Added!')">Add</button>
+                            <button class="wi-remove" onclick="showToast('♡ Removed')">✕</button>
+                        </div>
+                        <div class="wish-item">
+                            <div class="wi-icon">🥡</div>
+                            <div style="flex:1;min-width:0">
+                                <div class="wi-name">Groundnut Oil 1L Pouch</div>
+                                <div class="wi-price">₹270</div>
+                            </div>
+                            <button class="wi-add" onclick="showToast('🛒 Added!')">Add</button>
+                            <button class="wi-remove" onclick="showToast('♡ Removed')">✕</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ════ CART ════ -->
+            <div id="sec-cart" class="tab-panel">
+                <div class="grid-2" style="align-items:start">
+                    <div class="widget">
+                        <div class="widget-head">
+                            <div class="wh-title">My Cart (2 items)</div>
+                            <button class="wh-action" onclick="showToast('🗑 Cart cleared')">Clear Cart</button>
+                        </div>
+                        <div class="widget-body">
+                            <div class="order-item">
+                                <div class="oi-icon">✨</div>
+                                <div class="oi-info">
+                                    <div class="oi-name">Vedic High Oleic Oil 750ml</div>
+                                    <div style="display:flex;align-items:center;gap:8px;margin-top:7px">
+                                        <button onclick="showToast('−1')"
+                                            style="width:24px;height:24px;background:rgba(27,46,107,.08);border:1.5px solid rgba(27,46,107,.18);border-radius:6px;color:var(--navy);cursor:pointer;font-size:.9rem">−</button>
+                                        <span
+                                            style="font-size:.82rem;font-weight:600;color:var(--navy);width:20px;text-align:center">1</span>
+                                        <button onclick="showToast('+1')"
+                                            style="width:24px;height:24px;background:rgba(27,46,107,.08);border:1.5px solid rgba(27,46,107,.18);border-radius:6px;color:var(--navy);cursor:pointer;font-size:.9rem">+</button>
+                                    </div>
+                                </div>
+                                <div class="oi-right">
+                                    <div class="oi-price">₹950</div>
+                                    <button onclick="showToast('🗑 Removed')"
+                                        style="background:none;border:none;color:rgba(139,26,26,.4);cursor:pointer;font-size:.72rem;margin-top:4px;font-family:'DM Sans'">Remove</button>
+                                </div>
+                            </div>
+                            <div class="order-item">
+                                <div class="oi-icon">🧈</div>
+                                <div class="oi-info">
+                                    <div class="oi-name">Classic Crunchy Peanut Butter 1kg</div>
+                                    <div style="display:flex;align-items:center;gap:8px;margin-top:7px">
+                                        <button onclick="showToast('−1')"
+                                            style="width:24px;height:24px;background:rgba(27,46,107,.08);border:1.5px solid rgba(27,46,107,.18);border-radius:6px;color:var(--navy);cursor:pointer;font-size:.9rem">−</button>
+                                        <span
+                                            style="font-size:.82rem;font-weight:600;color:var(--navy);width:20px;text-align:center">2</span>
+                                        <button onclick="showToast('+1')"
+                                            style="width:24px;height:24px;background:rgba(27,46,107,.08);border:1.5px solid rgba(27,46,107,.18);border-radius:6px;color:var(--navy);cursor:pointer;font-size:.9rem">+</button>
+                                    </div>
+                                </div>
+                                <div class="oi-right">
+                                    <div class="oi-price">₹1,098</div>
+                                    <button onclick="showToast('🗑 Removed')"
+                                        style="background:none;border:none;color:rgba(139,26,26,.4);cursor:pointer;font-size:.72rem;margin-top:4px;font-family:'DM Sans'">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget">
+                        <div class="widget-head">
+                            <div class="wh-title">Order Summary</div>
+                        </div>
+                        <div class="widget-body">
+                            <div style="margin-bottom:16px">
+                                <div class="summary-line"><span>Subtotal (3 items)</span><span class="val">₹2,048</span>
+                                </div>
+                                <div class="summary-line"><span>Delivery</span><span class="val green">Free</span></div>
+                                <div class="summary-line"><span>Loyalty Discount</span><span
+                                        class="val green">−₹68</span></div>
+                            </div>
+                            <div class="summary-total"><span class="lbl">Total</span><span class="val">₹1,980</span>
+                            </div>
+                            <div style="margin-top:20px">
+                                <div class="coupon-wrap">
+                                    <input class="coupon-input" id="couponInput" placeholder="Enter coupon code…">
+                                    <button class="coupon-btn" onclick="applyCoupon()">Apply</button>
+                                </div>
+                                <button class="checkout-btn" onclick="showToast('⚡ Redirecting to checkout…')">Proceed
+                                    to Checkout →</button>
+                                <div
+                                    style="text-align:center;font-size:.62rem;color:var(--navy-light);margin-top:10px;opacity:.7">
+                                    🔒 Secure · GST Included · Free Shipping above ₹499</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ════ PROFILE ════ -->
+            <div id="sec-profile" class="tab-panel">
+                <div class="grid-2" style="align-items:start">
+                    <div class="widget">
+                        <div class="widget-head">
+                            <div class="wh-title">Personal Information</div>
+                        </div>
+                        <div class="widget-body">
+                            <div
+                                style="display:flex;align-items:center;gap:18px;margin-bottom:26px;padding-bottom:22px;border-bottom:1.5px solid rgba(27,46,107,.08)">
+                                <div
+                                    style="width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--red));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display';font-weight:900;font-size:1.9rem;color:white;border:3px solid rgba(200,150,12,.25);flex-shrink:0;box-shadow:0 6px 18px rgba(27,46,107,.3)">
+                                    N</div>
+                                <div>
+                                    <div
+                                        style="font-family:'Playfair Display';font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:3px">
+                                        Niyati Pathak</div>
+                                    <div style="font-size:.7rem;color:var(--navy-light);margin-bottom:9px">Member since
+                                        January 2024</div>
+                                    <button onclick="showToast('📷 Upload photo')"
+                                        style="padding:6px 16px;background:rgba(27,46,107,.07);border:1.5px solid rgba(27,46,107,.18);border-radius:7px;color:var(--navy-light);font-family:'DM Sans';font-size:.66rem;cursor:pointer;transition:all .3s"
+                                        onmouseover="this.style.borderColor='var(--navy)'"
+                                        onmouseout="this.style.borderColor='rgba(27,46,107,.18)'">Change Photo</button>
+                                </div>
+                            </div>
+                            <div class="profile-form">
+                                <div class="pf-row">
+                                    <div class="pf-group">
+                                        <div class="pf-label">First Name</div><input class="pf-input" value="Niyati">
+                                    </div>
+                                    <div class="pf-group">
+                                        <div class="pf-label">Last Name</div><input class="pf-input" value="Pathak">
+                                    </div>
+                                </div>
+                                <div class="pf-group">
+                                    <div class="pf-label">Email Address</div><input class="pf-input"
+                                        value="pathakniyati34@gmail.com" type="email">
+                                </div>
+                                <div class="pf-row">
+                                    <div class="pf-group">
+                                        <div class="pf-label">Phone Number</div><input class="pf-input"
+                                            value="+91 81285 22985">
+                                    </div>
+                                    <div class="pf-group">
+                                        <div class="pf-label">City</div><input class="pf-input" value="Ahmedabad">
+                                    </div>
+                                </div>
+                                <div class="pf-group">
+                                    <div class="pf-label">Date of Birth</div><input class="pf-input" type="date"
+                                        value="1999-09-15">
+                                </div>
+                                <button class="pf-save" onclick="showToast('✅ Profile updated successfully!')">Save
+                                    Changes</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex-col">
+                        <div class="widget">
+                            <div class="widget-head">
+                                <div class="wh-title">Change Password</div>
+                            </div>
+                            <div class="widget-body">
+                                <div class="profile-form">
+                                    <div class="pf-group">
+                                        <div class="pf-label">Current Password</div><input class="pf-input"
+                                            type="password" placeholder="••••••••">
+                                    </div>
+                                    <div class="pf-group">
+                                        <div class="pf-label">New Password</div><input class="pf-input" type="password"
+                                            placeholder="••••••••">
+                                    </div>
+                                    <div class="pf-group">
+                                        <div class="pf-label">Confirm New Password</div><input class="pf-input"
+                                            type="password" placeholder="••••••••">
+                                    </div>
+                                    <button class="pf-save" onclick="showToast('🔒 Password updated!')">Update
+                                        Password</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <div class="widget-head">
+                                <div class="wh-title">Preferences</div>
+                            </div>
+                            <div class="widget-body">
+                                <!-- <div class="toggle-row">
+                  <span class="toggle-label">Order notifications</span>
+                  <div class="toggle-sw on" onclick="toggleSwitch(this)"><div class="toggle-thumb"></div></div>
+                </div> -->
+                                <div class="toggle-row">
+                                    <span class="toggle-label">Offer & promo emails</span>
+                                    <div class="toggle-sw on" onclick="toggleSwitch(this)">
+                                        <div class="toggle-thumb"></div>
+                                    </div>
+                                </div>
+                                <!-- <div class="toggle-row">
+                  <span class="toggle-label">SMS alerts</span>
+                  <div class="toggle-sw off" onclick="toggleSwitch(this)"><div class="toggle-thumb"></div></div>
+                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ════ ADDRESSES ════ -->
+            <div id="sec-addresses" class="tab-panel">
+                <div class="widget" style="max-width:680px">
+                    <div class="widget-head">
+                        <div class="wh-title">Saved Addresses</div>
+                        <button class="wh-action" onclick="showToast('📍 Opening add address form')">+ Add New</button>
+                    </div>
+                    <div class="widget-body">
+                        <div class="address-card default">
+                            <div class="ac-default-badge">Default</div>
+                            <div class="ac-name">Niyati Pathak</div>
+                            <div class="ac-address">203, Sai Krupa Apartments, Ring Road, Katargam<br>Ahmedabad, Gujarat
+                                — 395004</div>
+                            <div class="ac-phone">📞 +91 98765 43210</div>
+                            <div style="display:flex;gap:8px;margin-top:12px">
+                                <button class="btn-ghost" style="padding:7px 14px;font-size:.66rem"
+                                    onclick="showToast('✏️ Editing address')">Edit</button>
+                            </div>
+                        </div>
+                        <div class="address-card">
+                            <div class="ac-name">Niyati Pathak (Office)</div>
+                            <div class="ac-address">B-12, Swastik Business Park, Satellite<br>Ahmedabad, Gujarat —
+                                380015</div>
+                            <div class="ac-phone">📞 +91 98765 43210</div>
+                            <div style="display:flex;gap:8px;margin-top:12px">
+                                <button class="btn-ghost" style="padding:7px 14px;font-size:.66rem"
+                                    onclick="showToast('✅ Set as default')">Set Default</button>
+                                <button class="btn-ghost" style="padding:7px 14px;font-size:.66rem"
+                                    onclick="showToast('✏️ Editing')">Edit</button>
+                                <button class="btn-danger" style="padding:7px 14px;font-size:.66rem"
+                                    onclick="showToast('🗑 Removed')">Remove</button>
+                            </div>
+                        </div>
+                        <button class="ac-add-btn" onclick="showToast('📍 Add address form')">
+                            <span style="font-size:1.2rem;color:var(--navy)">+</span> Add a new address
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ════ LOYALTY ════ -->
+            <div id="sec-loyalty" class="tab-panel">
+                <div class="grid-2" style="align-items:start">
+                    <div class="widget">
+                        <div class="widget-head">
+                            <div class="wh-title">Points History</div>
+                        </div>
+                        <div class="widget-body">
+                            <div class="pts-row">
+                                <div class="pts-dot earn"></div>
+                                <div style="flex:1">
+                                    <div class="ai-text"><strong>+120 points</strong> earned — Order #PJ2021</div>
+                                    <div class="ai-time">Mar 10, 2026</div>
+                                </div>
+                                <div class="pts-amount earn">+120</div>
+                            </div>
+                            <div class="pts-row">
+                                <div class="pts-dot earn"></div>
+                                <div style="flex:1">
+                                    <div class="ai-text"><strong>+135 points</strong> earned — Order #PJ2019</div>
+                                    <div class="ai-time">Mar 2, 2026</div>
+                                </div>
+                                <div class="pts-amount earn">+135</div>
+                            </div>
+                            <div class="pts-row">
+                                <div class="pts-dot redeem"></div>
+                                <div style="flex:1">
+                                    <div class="ai-text"><strong>−100 points</strong> redeemed — Order #PJ2017</div>
+                                    <div class="ai-time">Feb 15, 2026</div>
+                                </div>
+                                <div class="pts-amount redeem">−100</div>
+                            </div>
+                            <div class="pts-row">
+                                <div class="pts-dot earn"></div>
+                                <div style="flex:1">
+                                    <div class="ai-text"><strong>+200 points</strong> signup bonus</div>
+                                    <div class="ai-time">Jan 8, 2024</div>
+                                </div>
+                                <div class="pts-amount earn">+200</div>
+                            </div>
+                            <div class="pts-row">
+                                <div class="pts-dot earn"></div>
+                                <div style="flex:1">
+                                    <div class="ai-text"><strong>+325 points</strong> earned — Orders #PJ2010–2014</div>
+                                    <div class="ai-time">Jan–Feb 2024</div>
+                                </div>
+                                <div class="pts-amount earn">+325</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex-col">
+                        <div class="widget">
+                            <div class="widget-body" style="padding:24px">
+                                <div
+                                    style="font-size:.56rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:5px">
+                                    Current Balance</div>
+                                <div
+                                    style="font-family:'Bebas Neue';font-size:3rem;color:var(--navy);letter-spacing:3px;line-height:1;margin-bottom:4px">
+                                    680 <span style="font-size:1.5rem;color:var(--navy-light)">pts</span></div>
+                                <div style="font-size:.7rem;color:var(--navy-light);margin-bottom:18px">≈ ₹68 off your
+                                    next order</div>
+                                <div
+                                    style="background:rgba(27,46,107,.1);border-radius:100px;height:8px;overflow:hidden;margin-bottom:8px">
+                                    <div
+                                        style="height:100%;background:linear-gradient(90deg,var(--navy),var(--gold));width:68%;border-radius:100px">
+                                    </div>
+                                </div>
+                                <div
+                                    style="display:flex;justify-content:space-between;font-size:.58rem;color:var(--navy-light);margin-bottom:16px">
+                                    <span>Silver (0)</span><span>680 / 1000 → Gold</span>
+                                </div>
+                                <button onclick="showToast('⭐ Points applied to cart!')" class="btn-primary"
+                                    style="width:100%;padding:12px">Redeem Points</button>
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <div class="widget-head">
+                                <div class="wh-title">Tier Benefits</div>
+                            </div>
+                            <div class="widget-body">
+                                <div style="display:flex;flex-direction:column;gap:9px">
+                                    <div
+                                        style="display:flex;align-items:center;gap:9px;font-size:.76rem;color:var(--navy-mid)">
+                                        <span style="color:var(--green);font-size:.9rem">✓</span> 10 pts per ₹100 spent
+                                    </div>
+                                    <div
+                                        style="display:flex;align-items:center;gap:9px;font-size:.76rem;color:var(--navy-mid)">
+                                        <span style="color:var(--green);font-size:.9rem">✓</span> Early access to offers
+                                    </div>
+                                    <div
+                                        style="display:flex;align-items:center;gap:9px;font-size:.76rem;color:var(--navy-light);opacity:.55">
+                                        <span style="font-size:.9rem">○</span> Free delivery (Gold only)</div>
+                                    <div
+                                        style="display:flex;align-items:center;gap:9px;font-size:.76rem;color:var(--navy-light);opacity:.55">
+                                        <span style="font-size:.9rem">○</span> 15 pts per ₹100 (Gold only)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ════ NOTIFICATIONS ════ -->
+            <div id="sec-notifications" class="tab-panel">
+                <div class="widget" style="max-width:680px">
+                    <div class="widget-head">
+                        <div class="wh-title">Notifications</div>
+                        <button class="wh-action" onclick="showToast('✅ All marked as read')">Mark All Read</button>
+                    </div>
+                    <div class="widget-body">
+                        <div class="notif-item">
+                            <div class="notif-icon"
+                                style="background:rgba(27,46,107,.08);border:1px solid rgba(27,46,107,.18)">📦</div>
+                            <div style="flex:1">
+                                <div class="notif-title">Order #PJ2024 shipped! <span class="notif-new-badge">New</span>
+                                </div>
+                                <div class="notif-body">Your Vedic High Oleic Oil 750ml is on its way. Expected
+                                    delivery: Mar 22, 2026.</div>
+                                <div class="notif-time">Today, 9:15 AM</div>
+                            </div>
+                        </div>
+                        <div class="notif-item">
+                            <div class="notif-icon"
+                                style="background:rgba(200,150,12,.1);border:1px solid rgba(200,150,12,.2)">⭐</div>
+                            <div style="flex:1">
+                                <div class="notif-title">You earned 120 loyalty points! <span
+                                        class="notif-new-badge">New</span></div>
+                                <div class="notif-body">Points from Order #PJ2021 have been credited. Your balance is
+                                    now 680 points.</div>
+                                <div class="notif-time">Mar 10, 2026</div>
+                            </div>
+                        </div>
+                        <div class="notif-item">
+                            <div class="notif-icon"
+                                style="background:rgba(139,26,26,.07);border:1px solid rgba(139,26,26,.15)">🎉</div>
+                            <div style="flex:1">
+                                <div class="notif-title read">Special offer: 15% off Peanut Butter</div>
+                                <div class="notif-body">Use code NIYATI15 for an extra 15% off all peanut butter
+                                    products. Valid till Mar 31.</div>
+                                <div class="notif-time">Mar 8, 2026</div>
+                            </div>
+                        </div>
+                        <div class="notif-item">
+                            <div class="notif-icon"
+                                style="background:rgba(46,125,50,.07);border:1px solid rgba(46,125,50,.15)">✅</div>
+                            <div style="flex:1">
+                                <div class="notif-title read">Order #PJ2019 delivered!</div>
+                                <div class="notif-body">Your Groundnut Oil 5L Can was delivered. Leave a review and earn
+                                    bonus points!</div>
+                                <div class="notif-time">Mar 4, 2026</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /content -->
+    </div><!-- /main -->
+
+    <button class="mobile-toggle" id="mobileToggle" onclick="toggleSidebar()">☰</button>
+    <div class="toast" id="toast"></div>
+    <script>
+        /* ── SECTION NAV ── */
+        const SECTIONS = [
+            'overview',
+            'orders',
+            'wishlist',
+            'cart',
+            'profile',
+            'addresses',
+            'loyalty',
+            'notifications'
+        ]
+        const TITLES = {
+            overview: 'Dashboard',
+            orders: 'My Orders',
+            wishlist: 'Wishlist',
+            cart: 'My Cart',
+            profile: 'My Profile',
+            addresses: 'My Addresses',
+            loyalty: 'Rewards & Points',
+            notifications: 'Notifications'
+        }
+
+        function switchSection(id, linkEl) {
+            SECTIONS.forEach(s => {
+                const el = document.getElementById('sec-' + s)
+                if (el) el.classList.toggle('on', s === id)
+            })
+            document.getElementById('pageTitle').textContent = TITLES[id] || 'Dashboard'
+            document.getElementById('pageBreadcrumb').textContent = TITLES[id]
+            document
+                .querySelectorAll('.sb-link')
+                .forEach(l => l.classList.remove('active'))
+            if (linkEl) linkEl.classList.add('active')
+            else {
+                document.querySelectorAll('.sb-link').forEach(l => {
+                    if (
+                        l.textContent
+                            .trim()
+                            .toLowerCase()
+                            .includes((TITLES[id] || '').toLowerCase().slice(0, 5))
+                    )
+                        l.classList.add('active')
+                })
+            }
+            if (window.innerWidth <= 900)
+                document.getElementById('sidebar').classList.remove('open')
+        }
+
+        /* ── ORDER TABS ── */
+        function orderTab(tab, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'))
+            if (btn) btn.classList.add('on')
+            showToast(`📦 Showing ${tab} orders`)
+        }
+
+        /* ── MOBILE SIDEBAR ── */
+        function toggleSidebar() {
+            const sb = document.getElementById('sidebar')
+            sb.classList.toggle('open')
+            document.getElementById('mobileToggle').textContent = sb.classList.contains(
+                'open'
+            )
+                ? '✕'
+                : '☰'
+        }
+
+        /* ── TOGGLE SWITCH ── */
+        function toggleSwitch(el) {
+            el.classList.toggle('on')
+            el.classList.toggle('off')
+            showToast(
+                el.classList.contains('on') ? '✅ Setting enabled' : '⭕ Setting disabled'
+            )
+        }
+
+        /* ── COUPON ── */
+        function applyCoupon() {
+            const val = document.getElementById('couponInput').value.trim().toUpperCase()
+            if (!val) {
+                showToast('⚠️ Enter a coupon code')
+                return
+            }
+            if (val === 'NIYATI15') showToast('🎉 Coupon applied! 15% off added')
+            else showToast('❌ Invalid coupon code')
+        }
+
+        /* ── TOAST ── */
+        let tt
+        function showToast(msg) {
+            const t = document.getElementById('toast')
+            t.innerHTML = msg
+            t.classList.add('vis')
+            clearTimeout(tt)
+            tt = setTimeout(() => t.classList.remove('vis'), 3000)
+        }
+
+        /* ── TOPBAR SCROLL SHADOW ── */
+        document.getElementById('mainContent').addEventListener('scroll', function () {
+            document
+                .getElementById('topbar')
+                .classList.toggle('scrolled', this.scrollTop > 10)
+        })
+
+        /* ── LOYALTY BAR ── */
+        setTimeout(() => {
+            const b = document.getElementById('loyaltyBar')
+            if (b) b.style.width = '68%'
+        }, 700)
+
+        /* ── GLOBAL SEARCH ── */
+        document.getElementById('globalSearch').addEventListener('input', function () {
+            if (this.value.length > 2) showToast(`🔍 Searching for "${this.value}"…`)
+        })
+
+        /* ── SPARKLINE TOOLTIPS ── */
+        document.querySelectorAll('.spark-bar').forEach(bar => {
+            bar.addEventListener('mouseenter', () => {
+                if (bar.title) showToast('📊 ' + bar.title)
+            })
+        })
+
+        /* ── STAGGER ANIMATIONS ── */
+        document.querySelectorAll('.stat-card, .widget').forEach((el, i) => {
+            el.style.animationDelay = 0.08 + i * 0.06 + 's'
+        })
+
+    </script>
+</body>
+
+</html>

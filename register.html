@@ -1,0 +1,2403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account — Peanutji · Pyar Jaisa Pure</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1B2E6B;
+            --navy-deep: #162460;
+            --navy-mid: #243685;
+            --navy-light: #2E448F;
+            --red: #8B1A1A;
+            --red-mid: #A93226;
+            --red-bright: #C0392B;
+            --gold: #C8960C;
+            --gold-light: #E0AE1A;
+            --gold-pale: #F5E6A0;
+            --gold-bright: #F0C030;
+            --cream: #F5F0E8;
+            --cream-deep: #EDE5D5;
+            --white: #FFFFFF;
+            --green: #2E7D32;
+            --green-l: #4CAF50;
+            --dark: #0D1A3A;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--navy);
+            cursor: none;
+            min-height: 100vh
+        }
+
+        /* ── CURSOR ── */
+        #cur {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--navy);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform .15s
+        }
+
+        #cur2 {
+            position: fixed;
+            width: 28px;
+            height: 28px;
+            border: 1.5px solid rgba(27, 46, 107, .45);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .18s, height .18s, border-color .2s
+        }
+
+        .hov #cur {
+            transform: translate(-50%, -50%) scale(0)
+        }
+
+        .hov #cur2 {
+            width: 46px;
+            height: 46px;
+            border-color: var(--navy)
+        }
+
+        /* ── GRAIN ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9000;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.018'/%3E%3C/svg%3E");
+            opacity: .55
+        }
+
+        /* ════════════════════════════════════
+   LAYOUT
+════════════════════════════════════ */
+        .page-layout {
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            min-height: 100vh
+        }
+
+        /* ════════════════════════════════════
+   LEFT SIDEBAR — sticky brand
+════════════════════════════════════ */
+        .sidebar {
+            background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 55%, var(--red) 100%);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 48px 44px
+        }
+
+        /* glow layers */
+        .sb-glow-1 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(200, 150, 12, .2), transparent 65%);
+            top: -150px;
+            right: -150px;
+            pointer-events: none
+        }
+
+        .sb-glow-2 {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 26, 26, .15), transparent 65%);
+            bottom: -80px;
+            left: -60px;
+            pointer-events: none
+        }
+
+        .sb-dotgrid {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, .1) 1px, transparent 1px);
+            background-size: 28px 28px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+            pointer-events: none
+        }
+
+        .sb-lines {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden
+        }
+
+        .sb-line {
+            position: absolute;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, .05), transparent);
+            width: 1px
+        }
+
+        .sb-line:nth-child(1) {
+            left: 25%;
+            height: 100%
+        }
+
+        .sb-line:nth-child(2) {
+            left: 60%;
+            height: 100%
+        }
+
+        .sb-line:nth-child(3) {
+            left: 85%;
+            height: 100%
+        }
+
+        /* floating emoji */
+        .sb-floats {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none
+        }
+
+        .sbf {
+            position: absolute;
+            opacity: .06;
+            animation: sbfloat ease-in-out infinite;
+            font-size: 3.5rem
+        }
+
+        .sbf:nth-child(1) {
+            top: 6%;
+            left: 5%;
+            font-size: 4.5rem;
+            animation-duration: 9s
+        }
+
+        .sbf:nth-child(2) {
+            top: 22%;
+            right: 4%;
+            font-size: 2.5rem;
+            animation-duration: 7s;
+            animation-delay: 2s
+        }
+
+        .sbf:nth-child(3) {
+            bottom: 22%;
+            left: 3%;
+            font-size: 3rem;
+            animation-duration: 8s;
+            animation-delay: 4s
+        }
+
+        .sbf:nth-child(4) {
+            bottom: 6%;
+            right: 7%;
+            font-size: 5rem;
+            animation-duration: 11s;
+            animation-delay: 1s
+        }
+
+        @keyframes sbfloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0)
+            }
+
+            50% {
+                transform: translateY(-18px) rotate(8deg)
+            }
+        }
+
+        .sb-content {
+            position: relative;
+            z-index: 2
+        }
+
+        /* Logo mark */
+        .sb-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 48px
+        }
+
+        .sb-logo-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--gold), var(--red-mid));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 6px 20px rgba(200, 150, 12, .3)
+        }
+
+        .sb-logo-text {
+            font-family: 'Playfair Display';
+            font-weight: 900;
+            font-size: 1.3rem;
+            color: white;
+            letter-spacing: -.02em
+        }
+
+        .sb-logo-text span {
+            color: var(--gold-light)
+        }
+
+        /* Central visual */
+        .sb-visual {
+            text-align: center;
+            margin-bottom: 40px
+        }
+
+        .sb-jar {
+            font-size: 5rem;
+            display: block;
+            margin-bottom: 20px;
+            animation: jarFloat 4s ease-in-out infinite;
+            filter: drop-shadow(0 12px 28px rgba(200, 150, 12, .25))
+        }
+
+        @keyframes jarFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1)
+            }
+
+            50% {
+                transform: translateY(-12px) scale(1.04)
+            }
+        }
+
+        .sb-tagline {
+            font-family: 'Cormorant Garamond';
+            font-size: 1.35rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, .45);
+            line-height: 1.55;
+            margin-bottom: 22px
+        }
+
+        .sb-headline {
+            font-family: 'Playfair Display';
+            font-size: 2.1rem;
+            font-weight: 900;
+            color: white;
+            line-height: .95;
+            letter-spacing: -.02em
+        }
+
+        .sb-headline em {
+            font-style: italic;
+            color: var(--gold-light)
+        }
+
+        /* Step indicator — vertical */
+        .steps-track {
+            margin-top: 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 0
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 14px 0;
+            position: relative
+        }
+
+        .step-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 40px;
+            width: 1px;
+            height: calc(100% - 10px);
+            background: rgba(255, 255, 255, .12)
+        }
+
+        .step-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255, 255, 255, .2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .68rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .4);
+            flex-shrink: 0;
+            transition: all .4s;
+            letter-spacing: .5px
+        }
+
+        .step-num.done {
+            background: var(--green-l);
+            border-color: var(--green-l);
+            color: white
+        }
+
+        .step-num.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--navy-deep);
+            box-shadow: 0 0 12px rgba(200, 150, 12, .5)
+        }
+
+        .step-info {
+            padding-top: 2px
+        }
+
+        .step-label {
+            font-size: .7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .35);
+            margin-bottom: 2px;
+            font-weight: 600
+        }
+
+        .step-label.active {
+            color: rgba(255, 255, 255, .75)
+        }
+
+        .step-label.done {
+            color: var(--green-l)
+        }
+
+        .step-desc {
+            font-size: .72rem;
+            color: rgba(255, 255, 255, .25);
+            line-height: 1.4
+        }
+
+        .step-desc.active {
+            color: rgba(255, 255, 255, .45)
+        }
+
+        /* Bottom cred strip */
+        .sb-creds {
+            position: relative;
+            z-index: 2
+        }
+
+        .sb-creds-inner {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 14px;
+            padding: 16px 18px;
+            display: flex;
+            gap: 18px;
+            justify-content: space-around
+        }
+
+        .sb-cred {
+            text-align: center
+        }
+
+        .sb-cred-num {
+            font-family: 'Bebas Neue';
+            font-size: 1.4rem;
+            color: var(--gold-light);
+            letter-spacing: 1px
+        }
+
+        .sb-cred-lbl {
+            font-size: .56rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .35);
+            margin-top: 1px
+        }
+
+        /* ════════════════════════════════════
+   RIGHT — MAIN FORM AREA
+════════════════════════════════════ */
+        .main-area {
+            overflow-y: auto;
+            padding: 0;
+            display: flex;
+            flex-direction: column
+        }
+
+        .main-area::-webkit-scrollbar {
+            width: 3px
+        }
+
+        .main-area::-webkit-scrollbar-thumb {
+            background: rgba(27, 46, 107, .2);
+            border-radius: 2px
+        }
+
+        /* top nav */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 56px 0;
+            flex-shrink: 0
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .68rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            text-decoration: none;
+            transition: color .25s;
+            padding: 7px 13px;
+            border-radius: 8px;
+            border: 1.5px solid rgba(27, 46, 107, .15)
+        }
+
+        .nav-back:hover {
+            color: var(--red-mid);
+            border-color: rgba(139, 26, 26, .3);
+            background: rgba(139, 26, 26, .04)
+        }
+
+        .nav-signin {
+            font-size: .78rem;
+            color: var(--navy-light)
+        }
+
+        .nav-signin a {
+            color: var(--red-mid);
+            font-weight: 700;
+            text-decoration: none;
+            transition: opacity .2s
+        }
+
+        .nav-signin a:hover {
+            opacity: .7
+        }
+
+        /* progress bar */
+        .progress-bar-wrap {
+            padding: 28px 56px 0
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px
+        }
+
+        .progress-lbl {
+            font-size: .58rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            font-weight: 600;
+            opacity: .5;
+            transition: all .3s
+        }
+
+        .progress-lbl.active {
+            color: var(--navy);
+            opacity: 1
+        }
+
+        .progress-lbl.done {
+            color: var(--green);
+            opacity: .8
+        }
+
+        .pbar {
+            height: 4px;
+            background: rgba(27, 46, 107, .12);
+            border-radius: 2px;
+            overflow: hidden
+        }
+
+        .pbar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--navy), var(--red-mid));
+            border-radius: 2px;
+            transition: width .5s cubic-bezier(.4, 0, .2, 1);
+            width: 33.33%
+        }
+
+        /* form container */
+        .form-container {
+            flex: 1;
+            padding: 36px 56px 64px;
+            max-width: 680px
+        }
+
+        /* step panel */
+        .step-panel {
+            display: none;
+            animation: stepIn .35s cubic-bezier(.4, 0, .2, 1) both
+        }
+
+        .step-panel.active {
+            display: block
+        }
+
+        @keyframes stepIn {
+            from {
+                opacity: 0;
+                transform: translateX(24px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0)
+            }
+        }
+
+        @keyframes stepOut {
+            from {
+                opacity: 1;
+                transform: translateX(0)
+            }
+
+            to {
+                opacity: 0;
+                transform: translateX(-24px)
+            }
+        }
+
+        /* step header */
+        .step-header {
+            margin-bottom: 32px
+        }
+
+        .step-eyebrow {
+            font-size: .58rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .step-eyebrow::before {
+            content: '';
+            width: 24px;
+            height: 1.5px;
+            background: var(--red);
+            opacity: .5
+        }
+
+        .step-title {
+            font-family: 'Playfair Display';
+            font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+            font-weight: 900;
+            color: var(--navy);
+            line-height: .95;
+            letter-spacing: -.02em;
+            margin-bottom: 8px
+        }
+
+        .step-title em {
+            font-style: italic;
+            color: var(--red-mid)
+        }
+
+        .step-sub {
+            font-size: .82rem;
+            color: var(--navy-light);
+            line-height: 1.6
+        }
+
+        /* field groups */
+        .fg {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 18px
+        }
+
+        .fg-label {
+            font-size: .58rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            font-weight: 600
+        }
+
+        .input-wrap {
+            position: relative
+        }
+
+        .fg-input {
+            width: 100%;
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 11px;
+            padding: 13px 16px;
+            font-family: 'DM Sans';
+            font-size: .88rem;
+            color: var(--navy);
+            outline: none;
+            transition: all .3s
+        }
+
+        .fg-input::placeholder {
+            color: rgba(27, 46, 107, .25)
+        }
+
+        .fg-input:focus {
+            border-color: rgba(27, 46, 107, .5);
+            background: rgba(27, 46, 107, .03);
+            box-shadow: 0 0 0 3px rgba(27, 46, 107, .08)
+        }
+
+        .fg-input.valid {
+            border-color: rgba(46, 125, 50, .4);
+            background: rgba(46, 125, 50, .03)
+        }
+
+        .fg-input.err {
+            border-color: rgba(192, 57, 43, .45);
+            background: rgba(192, 57, 43, .03)
+        }
+
+        .fg-input.has-icon {
+            padding-right: 46px
+        }
+
+        .input-ico {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: .95rem;
+            cursor: pointer;
+            opacity: .45;
+            transition: opacity .2s;
+            user-select: none
+        }
+
+        .input-ico:hover {
+            opacity: .85
+        }
+
+        .fg-err {
+            font-size: .62rem;
+            color: var(--red-bright);
+            display: none
+        }
+
+        .fg.show-err .fg-err {
+            display: block
+        }
+
+        .fg.show-err .fg-input {
+            border-color: rgba(192, 57, 43, .45)
+        }
+
+        .fg-hint {
+            font-size: .62rem;
+            color: var(--navy-light);
+            opacity: .65;
+            line-height: 1.5
+        }
+
+        /* row layout */
+        .fg-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px
+        }
+
+        .fg-row .fg {
+            margin-bottom: 0
+        }
+
+        .fg-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px
+        }
+
+        .fg-row-3 .fg {
+            margin-bottom: 0
+        }
+
+        /* phone+otp combo */
+        .phone-combo {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 11px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            transition: border-color .3s, box-shadow .3s;
+            margin-bottom: 18px
+        }
+
+        .phone-combo:focus-within {
+            border-color: rgba(27, 46, 107, .5);
+            box-shadow: 0 0 0 3px rgba(27, 46, 107, .08)
+        }
+
+        .phone-combo input {
+            border: none;
+            background: none;
+            padding: 13px 16px;
+            font-family: 'DM Sans';
+            font-size: .88rem;
+            color: var(--navy);
+            outline: none;
+            width: 100%
+        }
+
+        .phone-combo input::placeholder {
+            color: rgba(27, 46, 107, .25)
+        }
+
+        .phone-send-btn {
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            padding: 0 18px;
+            font-family: 'DM Sans';
+            font-size: .62rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: opacity .3s;
+            white-space: nowrap
+        }
+
+        .phone-send-btn:disabled {
+            opacity: .4;
+            cursor: not-allowed
+        }
+
+        .phone-send-btn:not(:disabled):hover {
+            opacity: .85
+        }
+
+        /* OTP boxes */
+        .otp-section {
+            display: none;
+            animation: stepIn .3s ease both
+        }
+
+        .otp-section.vis {
+            display: block
+        }
+
+        .otp-note {
+            font-size: .75rem;
+            color: var(--navy-mid);
+            margin-bottom: 12px;
+            line-height: 1.5
+        }
+
+        .otp-boxes {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px
+        }
+
+        .otp-box {
+            width: 52px;
+            height: 58px;
+            border-radius: 11px;
+            border: 1.5px solid rgba(27, 46, 107, .2);
+            background: white;
+            font-family: 'Bebas Neue';
+            font-size: 1.6rem;
+            text-align: center;
+            color: var(--navy);
+            outline: none;
+            transition: all .3s
+        }
+
+        .otp-box:focus {
+            border-color: var(--navy);
+            background: rgba(27, 46, 107, .05);
+            box-shadow: 0 0 0 3px rgba(27, 46, 107, .1)
+        }
+
+        .otp-box.filled {
+            border-color: rgba(46, 125, 50, .4);
+            background: rgba(46, 125, 50, .05);
+            color: var(--green)
+        }
+
+        .otp-resend {
+            font-size: .7rem;
+            color: var(--navy-light);
+            display: flex;
+            gap: 6px;
+            align-items: center
+        }
+
+        .otp-resend a {
+            color: var(--red-mid);
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none
+        }
+
+        .otp-resend a:hover {
+            opacity: .7
+        }
+
+        .otp-timer {
+            font-family: 'Bebas Neue';
+            letter-spacing: .5px
+        }
+
+        /* password strength */
+        .pw-strength {
+            margin-top: 8px;
+            display: none
+        }
+
+        .pw-strength.vis {
+            display: block
+        }
+
+        .pws-bars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 5px
+        }
+
+        .pws-bar {
+            flex: 1;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(27, 46, 107, .12);
+            transition: background .4s
+        }
+
+        .pws-label {
+            font-size: .6rem;
+            font-weight: 600
+        }
+
+        /* select styled */
+        .fg-select {
+            width: 100%;
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 11px;
+            padding: 13px 16px;
+            font-family: 'DM Sans';
+            font-size: .88rem;
+            color: var(--navy);
+            outline: none;
+            transition: all .3s;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%232E448F'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center
+        }
+
+        .fg-select:focus {
+            border-color: rgba(27, 46, 107, .5);
+            box-shadow: 0 0 0 3px rgba(27, 46, 107, .08)
+        }
+
+        /* checkbox */
+        .fg-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            cursor: pointer;
+            margin-bottom: 14px
+        }
+
+        .fg-check input[type=checkbox] {
+            display: none
+        }
+
+        .ckm {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            border: 1.5px solid rgba(27, 46, 107, .28);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .25s;
+            margin-top: 1px;
+            font-size: .75rem;
+            background: white
+        }
+
+        .fg-check input:checked~.ckm {
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            border-color: var(--navy);
+            color: white
+        }
+
+        .ck-lbl {
+            font-size: .78rem;
+            color: var(--navy-mid);
+            line-height: 1.5
+        }
+
+        .ck-lbl a {
+            color: var(--red-mid);
+            text-decoration: none;
+            font-weight: 600
+        }
+
+        .ck-lbl a:hover {
+            opacity: .7
+        }
+
+        /* radio cards */
+        .radio-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 18px
+        }
+
+        .radio-card {
+            cursor: pointer
+        }
+
+        .radio-card input {
+            display: none
+        }
+
+        .rc-inner {
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 11px;
+            padding: 14px 10px;
+            text-align: center;
+            transition: all .3s;
+            background: white
+        }
+
+        .radio-card input:checked~.rc-inner {
+            border-color: var(--navy);
+            background: rgba(27, 46, 107, .05);
+            box-shadow: 0 0 0 3px rgba(27, 46, 107, .08)
+        }
+
+        .rc-icon {
+            font-size: 1.6rem;
+            display: block;
+            margin-bottom: 6px
+        }
+
+        .rc-lbl {
+            font-size: .68rem;
+            font-weight: 600;
+            color: var(--navy-mid);
+            letter-spacing: .5px
+        }
+
+        .radio-card input:checked~.rc-inner .rc-lbl {
+            color: var(--navy)
+        }
+
+        /* image upload */
+        .img-upload {
+            border: 2px dashed rgba(27, 46, 107, .25);
+            border-radius: 14px;
+            padding: 32px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all .3s;
+            background: rgba(27, 46, 107, .02);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 18px
+        }
+
+        .img-upload:hover {
+            border-color: rgba(27, 46, 107, .5);
+            background: rgba(27, 46, 107, .05)
+        }
+
+        .img-upload input {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%
+        }
+
+        .iup-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 10px
+        }
+
+        .iup-title {
+            font-size: .82rem;
+            font-weight: 600;
+            color: var(--navy-mid);
+            margin-bottom: 4px
+        }
+
+        .iup-sub {
+            font-size: .68rem;
+            color: var(--navy-light)
+        }
+
+        .iup-preview {
+            display: none;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 10px;
+            border: 3px solid var(--navy);
+            box-shadow: 0 6px 20px rgba(27, 46, 107, .2)
+        }
+
+        /* divider */
+        .or-divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 20px 0;
+            color: var(--navy-light);
+            font-size: .68rem;
+            text-transform: uppercase;
+            letter-spacing: 2px
+        }
+
+        .or-divider::before,
+        .or-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(27, 46, 107, .1)
+        }
+
+        /* social */
+        .social-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 4px
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 12px 16px;
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .15);
+            border-radius: 11px;
+            font-family: 'DM Sans';
+            font-size: .76rem;
+            font-weight: 600;
+            color: var(--navy-mid);
+            cursor: pointer;
+            transition: all .3s
+        }
+
+        .social-btn:hover {
+            border-color: rgba(27, 46, 107, .35);
+            background: rgba(27, 46, 107, .04);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 14px rgba(27, 46, 107, .1)
+        }
+
+        /* nav buttons */
+        .step-nav {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px
+        }
+
+        .btn-back {
+            flex-shrink: 0;
+            padding: 14px 22px;
+            background: none;
+            border: 1.5px solid rgba(27, 46, 107, .25);
+            border-radius: 11px;
+            font-family: 'DM Sans';
+            font-size: .76rem;
+            font-weight: 600;
+            color: var(--navy-light);
+            cursor: pointer;
+            transition: all .3s;
+            letter-spacing: .5px
+        }
+
+        .btn-back:hover {
+            border-color: rgba(27, 46, 107, .5);
+            color: var(--navy-mid);
+            background: rgba(27, 46, 107, .04)
+        }
+
+        .btn-next {
+            flex: 1;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 11px;
+            font-family: 'DM Sans';
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .35s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 22px rgba(27, 46, 107, .28)
+        }
+
+        .btn-next::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .16), transparent);
+            transform: translateX(-100%);
+            transition: transform .55s
+        }
+
+        .btn-next:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--red-mid));
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(27, 46, 107, .38)
+        }
+
+        .btn-next:hover::before {
+            transform: translateX(100%)
+        }
+
+        .btn-next:active {
+            transform: translateY(0)
+        }
+
+        .btn-next.loading {
+            pointer-events: none;
+            opacity: .85
+        }
+
+        .btn-spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, .3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+            display: none
+        }
+
+        .btn-next.loading .btn-spinner {
+            display: block
+        }
+
+        .btn-next.loading .btn-text {
+            display: none
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        /* referral code */
+        .referral-wrap {
+            display: flex;
+            gap: 0;
+            border-radius: 11px;
+            overflow: hidden;
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            background: white;
+            margin-bottom: 18px;
+            transition: border-color .3s, box-shadow .3s
+        }
+
+        .referral-wrap:focus-within {
+            border-color: rgba(27, 46, 107, .5);
+            box-shadow: 0 0 0 3px rgba(27, 46, 107, .08)
+        }
+
+        .referral-wrap input {
+            flex: 1;
+            border: none;
+            background: none;
+            padding: 13px 16px;
+            font-family: 'DM Sans';
+            font-size: .88rem;
+            color: var(--navy);
+            outline: none
+        }
+
+        .referral-wrap input::placeholder {
+            color: rgba(27, 46, 107, .25)
+        }
+
+        .referral-apply {
+            background: rgba(27, 46, 107, .08);
+            color: var(--navy);
+            border: none;
+            padding: 0 18px;
+            font-family: 'DM Sans';
+            font-size: .66rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+            border-left: 1.5px solid rgba(27, 46, 107, .15)
+        }
+
+        .referral-apply:hover {
+            background: rgba(27, 46, 107, .18)
+        }
+
+        /* tag pills (interests) */
+        .tag-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px
+        }
+
+        .tag-pill {
+            padding: 7px 14px;
+            border: 1.5px solid rgba(27, 46, 107, .18);
+            border-radius: 100px;
+            background: white;
+            font-family: 'DM Sans';
+            font-size: .72rem;
+            font-weight: 500;
+            color: var(--navy-light);
+            cursor: pointer;
+            transition: all .25s;
+            user-select: none
+        }
+
+        .tag-pill:hover {
+            border-color: rgba(27, 46, 107, .4);
+            color: var(--navy-mid)
+        }
+
+        .tag-pill.on {
+            background: rgba(27, 46, 107, .08);
+            border-color: rgba(27, 46, 107, .4);
+            color: var(--navy);
+            font-weight: 700
+        }
+
+        /* success */
+        .success-state {
+            display: none;
+            text-align: center;
+            padding: 40px 20px
+        }
+
+        .success-state.vis {
+            display: block;
+            animation: stepIn .5s cubic-bezier(.34, 1.56, .64, 1) both
+        }
+
+        .ss-confetti {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 6px;
+            animation: popIn .6s cubic-bezier(.34, 1.56, .64, 1) both
+        }
+
+        .ss-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 32px rgba(27, 46, 107, .3);
+            animation: popIn .7s .2s cubic-bezier(.34, 1.56, .64, 1) both;
+            opacity: 0
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0) rotate(-15deg);
+                opacity: 0
+            }
+
+            to {
+                transform: scale(1) rotate(0);
+                opacity: 1
+            }
+        }
+
+        .ss-title {
+            font-family: 'Playfair Display';
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--navy);
+            margin-bottom: 8px
+        }
+
+        .ss-title em {
+            font-style: italic;
+            color: var(--red-mid)
+        }
+
+        .ss-sub {
+            font-size: .84rem;
+            color: var(--navy-mid);
+            line-height: 1.75;
+            margin-bottom: 28px;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .ss-perks {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 28px
+        }
+
+        .ss-perk {
+            background: white;
+            border: 1.5px solid rgba(27, 46, 107, .12);
+            border-radius: 12px;
+            padding: 16px 10px;
+            text-align: center
+        }
+
+        .ss-perk-icon {
+            font-size: 1.6rem;
+            display: block;
+            margin-bottom: 6px
+        }
+
+        .ss-perk-lbl {
+            font-size: .66rem;
+            letter-spacing: .5px;
+            color: var(--navy-mid);
+            font-weight: 600;
+            line-height: 1.3
+        }
+
+        .ss-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--navy), var(--red));
+            color: white;
+            border: none;
+            border-radius: 11px;
+            padding: 14px 32px;
+            font-family: 'DM Sans';
+            font-size: .76rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s;
+            box-shadow: 0 6px 20px rgba(27, 46, 107, .3)
+        }
+
+        .ss-btn:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--red-mid));
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(27, 46, 107, .38)
+        }
+
+        /* section divider */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 24px 0 20px
+        }
+
+        .sd-line {
+            flex: 1;
+            height: 1px;
+            background: rgba(27, 46, 107, .08)
+        }
+
+        .sd-label {
+            font-size: .58rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            opacity: .6;
+            white-space: nowrap
+        }
+
+        /* info card */
+        .info-card {
+            background: linear-gradient(135deg, rgba(27, 46, 107, .05), rgba(200, 150, 12, .04));
+            border: 1.5px solid rgba(27, 46, 107, .14);
+            border-radius: 12px;
+            padding: 16px 18px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            margin-bottom: 18px
+        }
+
+        .ic-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 1px
+        }
+
+        .ic-text {
+            font-size: .76rem;
+            color: var(--navy-mid);
+            line-height: 1.6
+        }
+
+        .ic-text strong {
+            color: var(--navy);
+            display: block;
+            margin-bottom: 3px;
+            font-size: .78rem
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: var(--dark);
+            border: 1.5px solid rgba(200, 150, 12, .3);
+            border-radius: 11px;
+            padding: 11px 22px;
+            font-size: .76rem;
+            color: var(--gold-light);
+            z-index: 9999;
+            opacity: 0;
+            transition: all .35s;
+            pointer-events: none;
+            white-space: nowrap;
+            box-shadow: 0 16px 40px rgba(13, 26, 58, .28)
+        }
+
+        .toast.vis {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0)
+        }
+
+        /* ── RESPONSIVE ── */
+        @media(max-width:960px) {
+            .page-layout {
+                grid-template-columns: 1fr
+            }
+
+            .sidebar {
+                display: none
+            }
+
+            .main-area {
+                min-height: 100vh
+            }
+
+            .form-container {
+                padding: 28px 32px 56px;
+                max-width: 100%
+            }
+
+            .top-nav {
+                padding: 20px 32px 0
+            }
+
+            .progress-bar-wrap {
+                padding: 20px 32px 0
+            }
+        }
+
+        @media(max-width:560px) {
+
+            .fg-row,
+            .fg-row-3 {
+                grid-template-columns: 1fr
+            }
+
+            .radio-cards {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .ss-perks {
+                grid-template-columns: 1fr
+            }
+
+            .form-container {
+                padding: 20px 20px 48px
+            }
+
+            .top-nav {
+                padding: 16px 20px 0
+            }
+
+            .progress-bar-wrap {
+                padding: 16px 20px 0
+            }
+
+            .otp-box {
+                width: 42px;
+                height: 50px;
+                font-size: 1.3rem
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cur"></div>
+    <div id="cur2"></div>
+
+    <div class="page-layout">
+
+        <!-- ══════════════════════════
+       SIDEBAR
+  ══════════════════════════ -->
+        <aside class="sidebar">
+            <div class="sb-glow-1"></div>
+            <div class="sb-glow-2"></div>
+            <div class="sb-dotgrid"></div>
+            <div class="sb-lines">
+                <div class="sb-line"></div>
+                <div class="sb-line"></div>
+                <div class="sb-line"></div>
+            </div>
+            <div class="sb-floats">
+                <span class="sbf">🥜</span><span class="sbf">🫙</span>
+                <span class="sbf">🧈</span><span class="sbf">✨</span>
+            </div>
+
+            <div class="sb-content">
+                <div class="sb-logo">
+                    <div class="sb-logo-icon">🥜</div>
+                    <div class="sb-logo-text">Peanut<span>ji</span></div>
+                </div>
+
+                <div class="sb-visual">
+                    <span class="sb-jar">🫙</span>
+                    <div class="sb-tagline">Pyar Jaisa Pure</div>
+                    <div class="sb-headline">Pure <em>Gold</em><br>in Every Drop</div>
+                </div>
+
+                <!-- Vertical steps -->
+                <div class="steps-track" id="sidebarSteps">
+                    <div class="step-item">
+                        <div class="step-num active" id="ss1">01</div>
+                        <div class="step-info">
+                            <div class="step-label active" id="sl1">Personal Details</div>
+                            <div class="step-desc active" id="sd1">Your name &amp; email</div>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num" id="ss2">02</div>
+                        <div class="step-info">
+                            <div class="step-label" id="sl2">Contact &amp; Verify</div>
+                            <div class="step-desc" id="sd2">Phone &amp; OTP verification</div>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num" id="ss3">03</div>
+                        <div class="step-info">
+                            <div class="step-label" id="sl3">Your Preferences</div>
+                            <div class="step-desc" id="sd3">Personalise your experience</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sb-creds">
+                <div class="sb-creds-inner">
+                    <div class="sb-cred">
+                        <div class="sb-cred-num">50K+</div>
+                        <div class="sb-cred-lbl">Happy Families</div>
+                    </div>
+                    <div class="sb-cred">
+                        <div class="sb-cred-num">25+</div>
+                        <div class="sb-cred-lbl">Countries</div>
+                    </div>
+                    <div class="sb-cred">
+                        <div class="sb-cred-num">🏆 6</div>
+                        <div class="sb-cred-lbl">Certifications</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ══════════════════════════
+       MAIN AREA
+  ══════════════════════════ -->
+        <main class="main-area">
+            <!-- Top nav -->
+            <div class="top-nav">
+                <a href="login.html" class="nav-back">← Back to Login</a>
+                <div class="nav-signin">Already have an account? <a href="login.html">Sign In →</a></div>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="progress-bar-wrap">
+                <div class="progress-labels">
+                    <span class="progress-lbl active" id="pl1">Step 1 — Personal</span>
+                    <span class="progress-lbl" id="pl2">Step 2 — Contact</span>
+                    <span class="progress-lbl" id="pl3">Step 3 — Preferences</span>
+                </div>
+                <div class="pbar">
+                    <div class="pbar-fill" id="pbarFill"></div>
+                </div>
+            </div>
+
+            <!-- Form area -->
+            <div class="form-container">
+
+                <!-- ─── STEP 1: PERSONAL DETAILS ─── -->
+                <div class="step-panel active" id="step1">
+                    <div class="step-header">
+                        <div class="step-eyebrow">Step 1 of 3 &nbsp;·&nbsp; Let's get started</div>
+                        <div class="step-title">Tell Us <em>About<br>Yourself</em></div>
+                        <div class="step-sub">We'd love to know you. Fill in your basic details to create your Peanutji
+                            account.
+                        </div>
+                    </div>
+
+                    <!-- Profile pic -->
+                    <div class="img-upload" id="imgUploadWrap">
+                        <input type="file" accept="image/*" id="avatarInput" onchange="previewAvatar(this)">
+                        <img class="iup-preview" id="avatarPreview" src="" alt="preview">
+                        <span class="iup-icon" id="imgIcon">📸</span>
+                        <div class="iup-title" id="imgTitle">Upload Profile Photo</div>
+                        <div class="iup-sub">Optional · JPG, PNG · Max 5MB</div>
+                    </div>
+
+                    <!-- Names -->
+                    <div class="fg-row">
+                        <div class="fg" id="fg-fname">
+                            <div class="fg-label">First Name *</div>
+                            <input class="fg-input" id="fname" placeholder="Niyati"
+                                oninput="validateName('fname','fg-fname')">
+                            <div class="fg-err">First name is required</div>
+                        </div>
+                        <div class="fg" id="fg-lname">
+                            <div class="fg-label">Last Name *</div>
+                            <input class="fg-input" id="lname" placeholder="Pathak"
+                                oninput="validateName('lname','fg-lname')">
+                            <div class="fg-err">Last name is required</div>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="fg" id="fg-email">
+                        <div class="fg-label">Email Address *</div>
+                        <div class="input-wrap">
+                            <input class="fg-input has-icon" id="email" type="email" placeholder="you@example.com"
+                                oninput="validateEmail()">
+                            <span class="input-ico" id="emailIco"></span>
+                        </div>
+                        <div class="fg-err">Please enter a valid email address</div>
+                    </div>
+
+                    <!-- DOB + Gender -->
+                    <div class="fg-row">
+                        <div class="fg">
+                            <div class="fg-label">Date of Birth</div>
+                            <input class="fg-input" id="dob" type="date" max="2008-01-01">
+                        </div>
+                        <div class="fg">
+                            <div class="fg-label">Gender</div>
+                            <select class="fg-select" id="gender">
+                                <option value="" disabled selected>Select…</option>
+                                <option>Female</option>
+                                <option>Male</option>
+                                <option>Non-binary</option>
+                                <option>Prefer not to say</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="fg" id="fg-pwd">
+                        <div class="fg-label">Password *</div>
+                        <div class="input-wrap">
+                            <input class="fg-input has-icon" id="pwd" type="password"
+                                placeholder="Create a strong password" oninput="checkStrength(this)">
+                            <span class="input-ico" onclick="togglePwd('pwd',this)">👁</span>
+                        </div>
+                        <div class="pw-strength" id="pwStrength">
+                            <div class="pws-bars">
+                                <div class="pws-bar" id="psb0"></div>
+                                <div class="pws-bar" id="psb1"></div>
+                                <div class="pws-bar" id="psb2"></div>
+                                <div class="pws-bar" id="psb3"></div>
+                            </div>
+                            <div class="pws-label" id="pwsLabel"></div>
+                        </div>
+                        <div class="fg-err">Password must be at least 8 characters</div>
+                        <div class="fg-hint">Use uppercase, numbers &amp; symbols for a stronger password</div>
+                    </div>
+
+                    <!-- Confirm pwd -->
+                    <div class="fg" id="fg-cpwd">
+                        <div class="fg-label">Confirm Password *</div>
+                        <div class="input-wrap">
+                            <input class="fg-input has-icon" id="cpwd" type="password"
+                                placeholder="Re-enter your password" oninput="validateCpwd()">
+                            <span class="input-ico" id="cpwdIco"></span>
+                        </div>
+                        <div class="fg-err">Passwords do not match</div>
+                    </div>
+
+                    <!-- Quick social signup option -->
+                    <div class="or-divider">or sign up with</div>
+                    <div class="social-row">
+                        <button class="social-btn" onclick="socialSignup('Google')">🌐 Google</button>
+                        <button class="social-btn" onclick="socialSignup('Facebook')">📘 Facebook</button>
+                    </div>
+
+                    <div class="step-nav">
+                        <button class="btn-next" onclick="goStep2()">
+                            <span class="btn-text">Continue →</span>
+                            <div class="btn-spinner"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ─── STEP 2: CONTACT & VERIFY ─── -->
+                <div class="step-panel" id="step2">
+                    <div class="step-header">
+                        <div class="step-eyebrow">Step 2 of 3 &nbsp;·&nbsp; Contact details</div>
+                        <div class="step-title">Contact &amp; <em>Verify</em></div>
+                        <div class="step-sub">Add your phone number — we'll verify it with a quick OTP. Your address
+                            helps us
+                            deliver faster.</div>
+                    </div>
+
+                    <div class="info-card">
+                        <span class="ic-icon">🔒</span>
+                        <div class="ic-text"><strong>Why we need your phone</strong>Mobile verification keeps your
+                            account secure
+                            and ensures delivery updates reach you.</div>
+                    </div>
+
+                    <!-- Phone + OTP -->
+                    <div class="fg-label"
+                        style="font-size:.58rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--brown-light);font-weight:600;margin-bottom:8px">
+                        Mobile Number *</div>
+                    <div class="phone-combo" id="phoneCombine">
+                        <input type="tel" id="regPhone" placeholder="+91 98765 43210" oninput="onPhoneInput()">
+                        <button class="phone-send-btn" id="phoneSendBtn" onclick="sendPhoneOtp()" disabled>Send
+                            OTP</button>
+                    </div>
+
+                    <div class="otp-section" id="otpSec">
+                        <div class="otp-note">📱 Enter the 6-digit code sent to your number</div>
+                        <div class="otp-boxes">
+                            <input class="otp-box" maxlength="1" oninput="obInput(this,0)" onkeydown="obKey(this,0)">
+                            <input class="otp-box" maxlength="1" oninput="obInput(this,1)" onkeydown="obKey(this,1)">
+                            <input class="otp-box" maxlength="1" oninput="obInput(this,2)" onkeydown="obKey(this,2)">
+                            <input class="otp-box" maxlength="1" oninput="obInput(this,3)" onkeydown="obKey(this,3)">
+                            <input class="otp-box" maxlength="1" oninput="obInput(this,4)" onkeydown="obKey(this,4)">
+                            <input class="otp-box" maxlength="1" oninput="obInput(this,5)" onkeydown="obKey(this,5)">
+                        </div>
+                        <div class="otp-resend">Didn't receive? <a onclick="resendOtp()">Resend <span class="otp-timer"
+                                    id="otpTimerEl">(30s)</span></a></div>
+                    </div>
+
+                    <div class="section-divider">
+                        <div class="sd-line"></div>
+                        <div class="sd-label">Delivery Address</div>
+                        <div class="sd-line"></div>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="fg">
+                        <div class="fg-label">Street / Building / Area</div>
+                        <input class="fg-input" id="addr-street" placeholder="B-12, Vastrapur Lake Road, Vastrapur">
+                    </div>
+                    <div class="fg-row">
+                        <div class="fg">
+                            <div class="fg-label">City</div>
+                            <input class="fg-input" id="addr-city" placeholder="Ahmedabad">
+                        </div>
+                        <div class="fg">
+                            <div class="fg-label">State</div>
+                            <select class="fg-select" id="addr-state">
+                                <option value="" disabled selected>Select state…</option>
+                                <option>Gujarat</option>
+                                <option>Maharashtra</option>
+                                <option>Rajasthan</option>
+                                <option>Delhi</option>
+                                <option>Tamil Nadu</option>
+                                <option>Karnataka</option>
+                                <option>West Bengal</option>
+                                <option>Telangana</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="fg-row">
+                        <div class="fg">
+                            <div class="fg-label">PIN Code</div>
+                            <input class="fg-input" id="addr-pin" placeholder="380015" maxlength="6"
+                                oninput="this.value=this.value.replace(/\D/g,'')">
+                        </div>
+                        <div class="fg">
+                            <div class="fg-label">Landmark (optional)</div>
+                            <input class="fg-input" id="addr-landmark" placeholder="Near SBI Bank">
+                        </div>
+                    </div>
+
+                    <!-- Referral -->
+                    <div class="section-divider">
+                        <div class="sd-line"></div>
+                        <div class="sd-label">Referral (optional)</div>
+                        <div class="sd-line"></div>
+                    </div>
+                    <div class="referral-wrap">
+                        <input type="text" id="refCode" placeholder="Enter referral code e.g. PURE50">
+                        <button class="referral-apply" onclick="applyReferral()">Apply</button>
+                    </div>
+
+                    <div class="step-nav">
+                        <button class="btn-back" onclick="goStep(1)">← Back</button>
+                        <button class="btn-next" onclick="goStep3()">
+                            <span class="btn-text">Continue →</span>
+                            <div class="btn-spinner"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ─── STEP 3: PREFERENCES ─── -->
+                <div class="step-panel" id="step3">
+                    <div class="step-header">
+                        <div class="step-eyebrow">Step 3 of 3 &nbsp;·&nbsp; Almost there!</div>
+                        <div class="step-title">Your <em>Preferences</em></div>
+                        <div class="step-sub">Help us personalise your Peanutji experience — products, updates &amp;
+                            more, tailored
+                            just for you.</div>
+                    </div>
+
+                    <!-- Account type -->
+                    <div class="fg-label"
+                        style="font-size:.58rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--brown-light);font-weight:600;margin-bottom:10px">
+                        I'm signing up as</div>
+                    <div class="radio-cards">
+                        <label class="radio-card">
+                            <input type="radio" name="acType" value="individual" checked>
+                            <div class="rc-inner"><span class="rc-icon">🏠</span>
+                                <div class="rc-lbl">Individual /<br>Family</div>
+                            </div>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="acType" value="business">
+                            <div class="rc-inner"><span class="rc-icon">🏪</span>
+                                <div class="rc-lbl">Small<br>Business</div>
+                            </div>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="acType" value="wholesale">
+                            <div class="rc-inner"><span class="rc-icon">🏭</span>
+                                <div class="rc-lbl">Wholesale /<br>Distributor</div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Interests -->
+                    <div class="fg-label"
+                        style="font-size:.58rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--brown-light);font-weight:600;margin-bottom:10px;margin-top:6px">
+                        Products I'm Interested In</div>
+                    <div class="tag-grid" id="tagGrid">
+                        <div class="tag-pill on" onclick="toggleTag(this)">🫙 Groundnut Oil</div>
+                        <div class="tag-pill on" onclick="toggleTag(this)">🥜 Peanut Butter</div>
+                        <div class="tag-pill" onclick="toggleTag(this)">🧈 Cold-Pressed Oil</div>
+                        <div class="tag-pill" onclick="toggleTag(this)">🌾 Organic Range</div>
+                        <div class="tag-pill" onclick="toggleTag(this)">🎁 Gift Hampers</div>
+                        <div class="tag-pill" onclick="toggleTag(this)">📦 Bulk Packs</div>
+                        <div class="tag-pill" onclick="toggleTag(this)">🍫 Choco Spread</div>
+                        <div class="tag-pill" onclick="toggleTag(this)">💪 Protein Range</div>
+                    </div>
+
+                    <!-- How did you hear -->
+                    <div class="fg" style="margin-top:6px">
+                        <div class="fg-label">How did you hear about us?</div>
+                        <select class="fg-select" id="hearAbout">
+                            <option value="" disabled selected>Select…</option>
+                            <option>Instagram / Facebook</option>
+                            <option>Friend / Family referral</option>
+                            <option>Google Search</option>
+                            <option>YouTube</option>
+                            <option>TV / Newspaper Ad</option>
+                            <option>WhatsApp</option>
+                            <option>Supermarket / Offline store</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Communication preferences -->
+                    <div class="section-divider">
+                        <div class="sd-line"></div>
+                        <div class="sd-label">Communication</div>
+                        <div class="sd-line"></div>
+                    </div>
+                    <label class="fg-check">
+                        <input type="checkbox" id="pref-whatsapp" checked>
+                        <div class="ckm">✓</div>
+                        <span class="ck-lbl">Send me order updates &amp; offers on <strong>WhatsApp</strong></span>
+                    </label>
+                    <label class="fg-check">
+                        <input type="checkbox" id="pref-email" checked>
+                        <div class="ckm">✓</div>
+                        <span class="ck-lbl">Send me exclusive deals, recipes &amp; newsletters via
+                            <strong>Email</strong></span>
+                    </label>
+                    <label class="fg-check">
+                        <input type="checkbox" id="pref-sms">
+                        <div class="ckm">✓</div>
+                        <span class="ck-lbl">Send me <strong>SMS</strong> notifications for deliveries</span>
+                    </label>
+
+                    <!-- T&C -->
+                    <div class="section-divider">
+                        <div class="sd-line"></div>
+                        <div class="sd-line"></div>
+                    </div>
+                    <label class="fg-check" id="fg-terms">
+                        <input type="checkbox" id="terms">
+                        <div class="ckm">✓</div>
+                        <span class="ck-lbl">I agree to Peanutji's <a href="#">Terms of Service</a> and <a
+                                href="#">Privacy
+                                Policy</a>. I confirm I am at least 18 years old.</span>
+                    </label>
+
+                    <div class="step-nav">
+                        <button class="btn-back" onclick="goStep(2)">← Back</button>
+                        <button class="btn-next" id="createBtn" onclick="createAccount()">
+                            <span class="btn-text">Create Account 🎉</span>
+                            <div class="btn-spinner"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ─── SUCCESS ─── -->
+                <div class="success-state" id="successState">
+                    <span class="ss-confetti">🎊</span>
+                    <div class="ss-avatar" id="ssAvatar">🥜</div>
+                    <div class="ss-title">Welcome to <em>Peanutji!</em></div>
+                    <p class="ss-sub" id="ssMsg">Your account is ready. Start exploring pure, natural goodness crafted
+                        with love.
+                    </p>
+                    <div class="ss-perks">
+                        <div class="ss-perk"><span class="ss-perk-icon">🎁</span>
+                            <div class="ss-perk-lbl">₹100 Welcome Credit</div>
+                        </div>
+                        <div class="ss-perk"><span class="ss-perk-icon">🚚</span>
+                            <div class="ss-perk-lbl">Free First Delivery</div>
+                        </div>
+                        <div class="ss-perk"><span class="ss-perk-icon">⭐</span>
+                            <div class="ss-perk-lbl">Loyalty Points Active</div>
+                        </div>
+                    </div>
+                    <button class="ss-btn" onclick="window.location='dashboard.html'">Go to My Account →</button>
+                </div>
+
+            </div><!-- /form-container -->
+        </main>
+
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <script>
+        /* ── CURSOR ── */
+        const cur = document.getElementById('cur'),
+            cur2 = document.getElementById('cur2')
+        let mx = 0,
+            my = 0,
+            fx = 0,
+            fy = 0
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX
+            my = e.clientY
+            cur.style.left = mx + 'px'
+            cur.style.top = my + 'px'
+        })
+            ; (function loop() {
+                fx += (mx - fx) * 0.12
+                fy += (my - fy) * 0.12
+                cur2.style.left = fx + 'px'
+                cur2.style.top = fy + 'px'
+                requestAnimationFrame(loop)
+            })()
+        document
+            .querySelectorAll(
+                'a,button,input,select,.tag-pill,.radio-card,.img-upload,.fg-check,.otp-box'
+            )
+            .forEach(el => {
+                el.addEventListener('mouseenter', () => document.body.classList.add('hov'))
+                el.addEventListener('mouseleave', () =>
+                    document.body.classList.remove('hov')
+                )
+            })
+
+        /* ── TOAST ── */
+        let tt
+        function toast(msg) {
+            const t = document.getElementById('toast')
+            t.innerHTML = msg
+            t.classList.add('vis')
+            clearTimeout(tt)
+            tt = setTimeout(() => t.classList.remove('vis'), 3200)
+        }
+
+        /* ── TOGGLE PWD ── */
+        function togglePwd(id, ico) {
+            const i = document.getElementById(id)
+            const s = i.type === 'password'
+            i.type = s ? 'text' : 'password'
+            ico.textContent = s ? '🙈' : '👁'
+        }
+
+        /* ── AVATAR PREVIEW ── */
+        function previewAvatar(inp) {
+            const file = inp.files[0]
+            if (!file) return
+            const reader = new FileReader()
+            reader.onload = e => {
+                const preview = document.getElementById('avatarPreview')
+                preview.src = e.target.result
+                preview.style.display = 'block'
+                document.getElementById('imgIcon').style.display = 'none'
+                document.getElementById('imgTitle').textContent = 'Tap to change photo'
+            }
+            reader.readAsDataURL(file)
+        }
+
+        /* ── VALIDATION ── */
+        function validateName(id, fgId) {
+            const v = document.getElementById(id).value.trim()
+            const ok = v.length > 0
+            document.getElementById(id).classList.toggle('valid', ok)
+            document.getElementById(id).classList.toggle('err', !ok && v !== '')
+            document
+                .getElementById(fgId)
+                .classList.toggle(
+                    'show-err',
+                    !ok && document.getElementById(id).value !== ''
+                )
+            return ok
+        }
+        function validateEmail() {
+            const v = document.getElementById('email').value.trim()
+            const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+            document.getElementById('email').classList.toggle('valid', ok)
+            document.getElementById('email').classList.toggle('err', !ok && v.length > 2)
+            document
+                .getElementById('fg-email')
+                .classList.toggle('show-err', !ok && v.length > 2)
+            document.getElementById('emailIco').textContent = ok
+                ? '✅'
+                : v.length > 3
+                    ? '❌'
+                    : ''
+            return ok
+        }
+        function checkStrength(input) {
+            const v = input.value
+            const ps = document.getElementById('pwStrength')
+            ps.classList.toggle('vis', v.length > 0)
+            let s = 0
+            if (v.length >= 8) s++
+            if (/[A-Z]/.test(v)) s++
+            if (/[0-9]/.test(v)) s++
+            if (/[^A-Za-z0-9]/.test(v)) s++
+            const colors = ['#E84E0F', '#FF8C00', '#FFC200', '#8BC34A', '#4CAF50']
+            const labels = ['Too short', 'Weak', 'Fair', 'Good', 'Strong ✓']
+            for (let i = 0; i < 4; i++) {
+                const bar = document.getElementById('psb' + i)
+                bar.style.background =
+                    i < s ? colors[Math.min(s, 4)] : 'rgba(245,130,10,.12)'
+            }
+            const lbl = document.getElementById('pwsLabel')
+            lbl.textContent = labels[Math.min(s, 4)]
+            lbl.style.color = colors[Math.min(s, 4)]
+            input.classList.toggle('valid', s >= 3)
+            input.classList.toggle('err', s < 2 && v.length >= 8)
+        }
+        function validateCpwd() {
+            const p = document.getElementById('pwd').value
+            const c = document.getElementById('cpwd').value
+            const ok = p === c && c.length > 0
+            document.getElementById('cpwd').classList.toggle('valid', ok)
+            document.getElementById('cpwd').classList.toggle('err', !ok && c.length > 0)
+            document
+                .getElementById('fg-cpwd')
+                .classList.toggle('show-err', !ok && c.length > 0)
+            document.getElementById('cpwdIco').textContent =
+                c.length > 0 ? (ok ? '✅' : '❌') : ''
+            return ok
+        }
+
+        /* ── STEP NAVIGATION ── */
+        let currentStep = 1
+        const stepTitles = [
+            {
+                eyebrow: "Step 1 of 3 · Let's get started",
+                title: 'Tell Us <em>About<br>Yourself</em>'
+            },
+            {
+                eyebrow: 'Step 2 of 3 · Contact details',
+                title: 'Contact &amp; <em>Verify</em>'
+            },
+            { eyebrow: 'Step 3 of 3 · Almost there!', title: 'Your <em>Preferences</em>' }
+        ]
+        function updateSidebarSteps(s) {
+            for (let i = 1; i <= 3; i++) {
+                const num = document.getElementById('ss' + i)
+                const lbl = document.getElementById('sl' + i)
+                const desc = document.getElementById('sd' + i)
+                if (i < s) {
+                    num.classList.add('done')
+                    num.classList.remove('active')
+                    num.textContent = '✓'
+                    lbl.classList.add('done')
+                    lbl.classList.remove('active')
+                    desc.classList.remove('active')
+                } else if (i === s) {
+                    num.classList.remove('done')
+                    num.classList.add('active')
+                    num.textContent = '0' + i
+                    lbl.classList.add('active')
+                    lbl.classList.remove('done')
+                    desc.classList.add('active')
+                } else {
+                    num.classList.remove('done', 'active')
+                    num.textContent = '0' + i
+                    lbl.classList.remove('active', 'done')
+                    desc.classList.remove('active')
+                }
+            }
+        }
+        function updateProgressBar(s) {
+            const w = { 1: '33.33%', 2: '66.66%', 3: '100%' }
+            document.getElementById('pbarFill').style.width = w[s]
+            for (let i = 1; i <= 3; i++) {
+                const lbl = document.getElementById('pl' + i)
+                lbl.classList.remove('active', 'done')
+                if (i === s) lbl.classList.add('active')
+                else if (i < s) lbl.classList.add('done')
+            }
+        }
+        function goStep(n) {
+            document.getElementById('step' + currentStep).classList.remove('active')
+            document.getElementById('step' + n).classList.add('active')
+            currentStep = n
+            updateSidebarSteps(n)
+            updateProgressBar(n)
+            document.querySelector('.main-area').scrollTo({ top: 0, behavior: 'smooth' })
+        }
+
+        /* ── STEP 1 → 2 ── */
+        function goStep2() {
+            const fn = validateName('fname', 'fg-fname')
+            const ln = validateName('lname', 'fg-lname')
+            const em = validateEmail()
+            const pw = document.getElementById('pwd').value
+            const cp = validateCpwd()
+            if (!fn || !ln) {
+                toast('⚠️ Please enter your full name')
+                return
+            }
+            if (!em) {
+                toast('⚠️ Please enter a valid email')
+                return
+            }
+            if (pw.length < 8) {
+                document.getElementById('fg-pwd').classList.add('show-err')
+                toast('⚠️ Password must be at least 8 characters')
+                return
+            }
+            if (!cp) {
+                toast('⚠️ Passwords do not match')
+                return
+            }
+            goStep(2)
+        }
+
+        /* ── OTP FLOW ── */
+        let otpInterval = null,
+            otpSecs = 30,
+            phoneVerified = false
+        function onPhoneInput() {
+            const v = document.getElementById('regPhone').value.replace(/\D/g, '')
+            document.getElementById('phoneSendBtn').disabled = v.length < 10
+        }
+        function sendPhoneOtp() {
+            const btn = document.getElementById('phoneSendBtn')
+            btn.disabled = true
+            btn.textContent = 'Sending…'
+            setTimeout(() => {
+                btn.textContent = 'Resend'
+                document.getElementById('otpSec').classList.add('vis')
+                document.querySelector('.otp-box').focus()
+                toast('📱 OTP sent to your number!')
+                startOtpTimer()
+            }, 1000)
+        }
+        function startOtpTimer() {
+            otpSecs = 30
+            clearInterval(otpInterval)
+            otpInterval = setInterval(() => {
+                otpSecs--
+                document.getElementById('otpTimerEl').textContent = '(' + otpSecs + 's)'
+                if (otpSecs <= 0) {
+                    clearInterval(otpInterval)
+                    document.getElementById('otpTimerEl').textContent = ''
+                }
+            }, 1000)
+        }
+        function resendOtp() {
+            if (otpSecs > 0) return
+            document.querySelectorAll('.otp-box').forEach(b => {
+                b.value = ''
+                b.classList.remove('filled')
+            })
+            document.querySelector('.otp-box').focus()
+            toast('📱 OTP resent!')
+            startOtpTimer()
+        }
+        function obInput(el, idx) {
+            el.classList.toggle('filled', el.value.length > 0)
+            if (el.value.length > 0) {
+                const boxes = document.querySelectorAll('.otp-box')
+                if (idx < 5) boxes[idx + 1].focus()
+                else {
+                    const code = [...boxes].map(b => b.value).join('')
+                    if (code.length === 6) {
+                        phoneVerified = true
+                        toast('✅ Phone number verified!')
+                    }
+                }
+            }
+        }
+        function obKey(el, idx) {
+            if (event.key === 'Backspace' && el.value === '' && idx > 0)
+                document.querySelectorAll('.otp-box')[idx - 1].focus()
+        }
+
+        /* ── STEP 2 → 3 ── */
+        function goStep3() {
+            goStep(3)
+        }
+
+        /* ── TAG TOGGLE ── */
+        function toggleTag(el) {
+            el.classList.toggle('on')
+        }
+
+        /* ── APPLY REFERRAL ── */
+        function applyReferral() {
+            const v = document.getElementById('refCode').value.trim()
+            if (!v) {
+                toast('⚠️ Enter a referral code first')
+                return
+            }
+            toast('🎉 Referral code applied! ₹50 discount added.')
+        }
+
+        /* ── CREATE ACCOUNT ── */
+        function createAccount() {
+            const terms = document.getElementById('terms').checked
+            if (!terms) {
+                toast('⚠️ Please accept our Terms of Service')
+                return
+            }
+            const btn = document.getElementById('createBtn')
+            btn.classList.add('loading')
+            setTimeout(() => {
+                btn.classList.remove('loading')
+                const name = document.getElementById('fname').value.trim() || 'Friend'
+                // Update success avatar if photo uploaded
+                const preview = document.getElementById('avatarPreview')
+                if (preview.style.display === 'block') {
+                    document.getElementById('ssAvatar').innerHTML =
+                        '<img src="' +
+                        preview.src +
+                        '" style="width:100%;height:100%;border-radius:50%;object-fit:cover">'
+                }
+                document.getElementById('ssMsg').textContent =
+                    'Welcome, ' +
+                    name +
+                    '! Your Peanutji account is ready. Start exploring pure, natural goodness crafted with love. 🥜✨'
+                // Hide all steps, show success
+                for (let i = 1; i <= 3; i++)
+                    document.getElementById('step' + i).classList.remove('active')
+                document.getElementById('successState').classList.add('vis')
+                document.getElementById('pbarFill').style.width = '100%'
+                updateSidebarSteps(4)
+                    ;['pl1', 'pl2', 'pl3'].forEach(id =>
+                        document.getElementById(id).classList.add('done')
+                    )
+                toast('🎉 Account created! Welcome to Peanutji!')
+            }, 2000)
+        }
+
+        /* ── SOCIAL ── */
+        function socialSignup(p) {
+            toast('🌐 Redirecting to ' + p + '…')
+        }
+
+    </script>
+</body>
+
+</html>
