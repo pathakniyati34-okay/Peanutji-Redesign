@@ -53,7 +53,8 @@
         }
 
         /* ══ NAV — identical to home.css ══ */
-        nav {
+        /* ══ NAV ══ */
+            nav {
             position: fixed;
             top: 0;
             width: 100%;
@@ -105,7 +106,7 @@
         }
 
         .nav-links>li>a,
-        .nav-ddt {
+        .nav-dropdown-toggle {
             display: flex;
             align-items: center;
             gap: 5px;
@@ -127,7 +128,7 @@
         }
 
         .nav-links>li>a:hover,
-        .nav-ddt:hover {
+        .nav-dropdown-toggle:hover {
             color: var(--navy);
             background: rgba(27, 46, 107, .07)
         }
@@ -145,31 +146,26 @@
             transition: transform .3s
         }
 
-        .nav-links>li>a:hover::after,
-        .nav-links>li>a.active::after {
+        .nav-links>li>a:hover::after {
             transform: scaleX(1)
         }
 
-        .nav-links>li>a.active {
-            color: var(--navy)
-        }
-
-        .ch {
+        .nav-dropdown-toggle .chevron {
             font-size: .6rem;
             transition: transform .3s;
             color: var(--red);
             margin-top: 1px
         }
 
-        .nav-links>li.ddo .ch {
+        .nav-links>li.open .chevron {
             transform: rotate(180deg)
         }
 
-        .nav-drop {
+        .nav-dropdown {
             position: absolute;
             top: calc(100% + 10px);
             left: 50%;
-            transform: translateX(-50%) translateY(-8px);
+            transform: translateX(-50%);
             background: white;
             border: 1px solid rgba(27, 46, 107, .12);
             border-radius: 16px;
@@ -179,11 +175,12 @@
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
+            transform: translateX(-50%) translateY(-8px);
             transition: opacity .25s ease, transform .25s ease, visibility .25s;
             z-index: 300
         }
 
-        .nav-drop::before {
+        .nav-dropdown::before {
             content: '';
             position: absolute;
             top: -6px;
@@ -196,14 +193,15 @@
             transform: translateX(-50%) rotate(45deg)
         }
 
-        .nav-links>li.ddo .nav-drop {
+        .nav-links>li.open .nav-dropdown,
+        .nav-links>li:focus-within .nav-dropdown {
             opacity: 1;
             visibility: visible;
             pointer-events: all;
             transform: translateX(-50%) translateY(0)
         }
 
-        .nav-drop a {
+        .nav-dropdown a {
             display: flex;
             align-items: center;
             gap: 12px;
@@ -217,13 +215,13 @@
             white-space: nowrap
         }
 
-        .nav-drop a:hover {
+        .nav-dropdown a:hover {
             background: linear-gradient(90deg, rgba(27, 46, 107, .07), rgba(27, 46, 107, .02));
             color: var(--navy);
             transform: translateX(3px)
         }
 
-        .nav-drop a .ddi {
+        .nav-dropdown a .dd-icon {
             width: 36px;
             height: 36px;
             border-radius: 9px;
@@ -235,43 +233,56 @@
             transition: transform .2s
         }
 
-        .nav-drop a:hover .ddi {
+        .nav-dropdown a:hover .dd-icon {
             transform: scale(1.1)
         }
 
-        .nav-drop .ddn {
+        .nav-dropdown a .dd-icon.oil-icon {
+            background: linear-gradient(135deg, #EDE5D5, rgba(200, 150, 12, .25))
+        }
+
+        .nav-dropdown a .dd-icon.butter-icon {
+            background: linear-gradient(135deg, #E0D5C5, rgba(139, 26, 26, .15))
+        }
+
+        .nav-dropdown a .dd-icon.peanut-icon {
+            background: linear-gradient(135deg, #DDE5F5, rgba(27, 46, 107, .12))
+        }
+
+        .nav-dropdown a .dd-name {
             font-weight: 600;
             color: var(--navy);
             font-size: .82rem;
             line-height: 1.2
         }
 
-        .nav-drop .dds {
+        .nav-dropdown a .dd-sub {
             font-size: .68rem;
             color: var(--navy-light);
             margin-top: 1px
         }
 
-        .dd-div {
+        .dd-divider {
             height: 1px;
             background: rgba(27, 46, 107, .1);
             margin: 6px 8px
         }
 
-        .nav-drop a.vd-link {
+        .nav-dropdown a.dd-vedic {
             background: linear-gradient(90deg, rgba(200, 150, 12, .1), rgba(27, 46, 107, .05));
             border: 1px solid rgba(200, 150, 12, .2)
         }
 
-        .nav-drop a.vd-link .ddn {
+        .nav-dropdown a.dd-vedic .dd-name {
             color: var(--red)
         }
 
-        .nav-drop a.vd-link:hover {
-            background: linear-gradient(90deg, rgba(200, 150, 12, .2), rgba(27, 46, 107, .1))
+        .nav-dropdown a.dd-vedic:hover {
+            background: linear-gradient(90deg, rgba(200, 150, 12, .2), rgba(27, 46, 107, .1));
+            transform: translateX(3px)
         }
 
-        .nav-r {
+        .nav-cta-wrap {
             flex-shrink: 0;
             display: flex;
             align-items: center;
@@ -303,7 +314,40 @@
             box-shadow: 0 8px 22px rgba(27, 46, 107, .4)
         }
 
-        .nav-mob-btn {
+        .nav-city-badge {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            background: rgba(27, 46, 107, .08);
+            border: 1px solid rgba(27, 46, 107, .2);
+            border-radius: 100px;
+            padding: 5px 12px;
+            font-size: .65rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--navy-light);
+            cursor: pointer;
+            transition: all .3s;
+            white-space: nowrap
+        }
+
+        .nav-city-badge.vis {
+            display: flex
+        }
+
+        .nav-city-badge:hover {
+            background: rgba(27, 46, 107, .15);
+            color: var(--navy)
+        }
+
+        .nav-city-badge .ncb-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--red-mid);
+            border-radius: 50%
+        }
+
+        .nav-mobile-toggle {
             display: none;
             flex-direction: column;
             gap: 5px;
@@ -313,7 +357,7 @@
             padding: 6px
         }
 
-        .nav-mob-btn span {
+        .nav-mobile-toggle span {
             display: block;
             width: 22px;
             height: 2px;
@@ -322,7 +366,7 @@
             transition: all .3s
         }
 
-        .mob-menu {
+        .mobile-menu {
             display: none;
             position: fixed;
             top: 68px;
@@ -340,7 +384,7 @@
             transition: transform .35s cubic-bezier(.4, 0, .2, 1)
         }
 
-        .mob-menu.open {
+        .mobile-menu.open {
             transform: translateX(0)
         }
 
@@ -362,13 +406,13 @@
             color: var(--navy)
         }
 
-        .mm-ico {
+        .mm-link .mm-icon {
             font-size: 1.3rem;
             width: 32px;
             text-align: center
         }
 
-        .mm-sec {
+        .mm-section-label {
             font-size: .6rem;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -377,7 +421,7 @@
             font-weight: 600
         }
 
-        .mm-div {
+        .mm-divider {
             height: 1px;
             background: rgba(27, 46, 107, .12);
             margin: 8px 0
@@ -403,7 +447,8 @@
         }
 
         .mm-cta:hover {
-            background: linear-gradient(135deg, var(--navy-mid), var(--navy))
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            color: white
         }
 
         /* ══ PAGE HERO — matches home hero aesthetic ══ */
@@ -3644,77 +3689,111 @@
         <a href="index.html" class="nav-logo">PEANUT<span>JI</span></a>
         <ul class="nav-links" id="navLinks">
             <li id="ddLi">
-                <button class="nav-ddt" onclick="toggleDd()" aria-expanded="false">
+                <button class="nav-dropdown-toggle" onclick="toggleDropdown()" aria-expanded="false"
+                    aria-haspopup="true">
                     Our Products
-                    <svg class="ch" viewBox="0 0 10 6" fill="none" width="10" height="6">
+                    <svg class="chevron" viewBox="0 0 10 6" fill="none" width="10" height="6">
                         <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
                 </button>
-                <div class="nav-drop" id="navDrop">
-                    <a href="#" class="vd-link">
-                        <div class="ddi"
-                            style="background:linear-gradient(135deg,rgba(255,194,0,.2),rgba(245,130,10,.1))">✨</div>
-                        <div>
-                            <div class="ddn">Vedic High Oleic Oil</div>
-                            <div class="dds">India's First · 77%+ MUFA</div>
+                <div class="nav-dropdown" id="navDropdown" role="menu">
+                    <!-- <a href="" class="dd-vedic" role="menuitem"> -->
+                    <!-- <div class="dd-icon"
+                            style="background:linear-gradient(135deg,rgba(200,150,12,.18),rgba(139,26,26,.08))">✨
+                        </div> -->
+                    <!-- <div class="dd-text"> -->
+                    <!-- <div class="dd-name">Vedic High Oleic Oil</div>
+                            <div class="dd-sub">India's First · 77%+ MUFA</div> -->
+                    <!-- </div> -->
+                    <!-- </a> -->
+                    <!-- <div class="dd-divider"></div> -->
+                    <a href="groundnutoil.html" role="menuitem">
+                        <div class="dd-icon oil-icon">🫙</div>
+                        <div class="dd-text">
+                            <div class="dd-name">Groundnut Oil</div>
+                            <div class="dd-sub">1L to 15Kg · Double Filtered</div>
                         </div>
                     </a>
-                    <div class="dd-div"></div>
-                    <a href="groundnutoil.html">
-                        <div class="ddi" style="background:linear-gradient(135deg,#FFF3CC,rgba(255,194,0,.3))">🫙</div>
-                        <div>
-                            <div class="ddn">Groundnut Oil</div>
-                            <div class="dds">1L to 15Kg · Double Filtered</div>
+                    <!-- <a href="" role="menuitem">
+                        <div class="dd-icon butter-icon">🧈</div>
+                        <div class="dd-text">
+                            <div class="dd-name">Peanut Butter</div>
+                            <div class="dd-sub">Classic & Choco · Creamy & Crunchy</div>
+                        </div>
+                    </a> -->
+                    <!-- <a href="" role="menuitem">
+                        <div class="dd-icon peanut-icon">🥜</div>
+                        <div class="dd-text">
+                            <div class="dd-name">Peanuts</div>
+                            <div class="dd-sub">Gold · Platinum · Roasted</div>
+                        </div>
+                    </a> -->
+                </div>
+            </li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+            <!-- <li><a href="recipes.html">Recipes</a></li> -->
+            <!-- <li><a href="checkout.html">Checkout</a></li> -->
+        </ul>
+        <ul class="nav-links" id="navLinks">
+
+
+            <!-- <li><a href="checkout.html">Checkout</a></li> -->
+        </ul>
+        <ul class="nav-links" id="navLinks">
+            <li id="ddLi">
+                <button class="nav-dropdown-toggle" onclick="toggleDropdown()" aria-expanded="false"
+                    aria-haspopup="true">
+                    My Account
+                    <svg class="chevron" viewBox="0 0 10 6" fill="none" width="10" height="6">
+                        <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <div class="nav-dropdown" id="navDropdown" role="menu">
+                    <a href="dashboard.html" role="menuitem">
+                        <div class="dd-text">
+                            <div class="dd-name">My Dashboard</div>
+                            <div class="dd-sub"></div>
                         </div>
                     </a>
-                    <a href="#">
-                        <div class="ddi" style="background:linear-gradient(135deg,#FFE8CC,rgba(245,130,10,.2))">🧈</div>
-                        <div>
-                            <div class="ddn">Peanut Butter</div>
-                            <div class="dds">Classic & Choco · Creamy & Crunchy</div>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="ddi" style="background:linear-gradient(135deg,#FFF0D0,rgba(212,98,10,.15))">🥜</div>
-                        <div>
-                            <div class="ddn">Peanuts</div>
-                            <div class="dds">Gold · Platinum · Roasted</div>
+                    <a href="" role="menuitem">
+                        <div class="dd-text">
+                            <div class="dd-name">Log Out</div>
+                            <div class="dd-sub"></div>
                         </div>
                     </a>
                 </div>
             </li>
-            <li><a href="blogs.html">Blogs</a></li>
-            <li><a href="aboutus.html">About Us</a></li>
-            <li><a href="dashboard.html">My Account</a></li>
-            <li><a href="contactus.html" class="active">Contact Us</a></li>
-            <li><a href="checkout.html">Checkout</a></li>
+
         </ul>
-        <div class="nav-r">
-            <button class="nav-mob-btn" id="mobBtn"
-                onclick="toggleMobNav()"><span></span><span></span><span></span></button>
-            <a href="index.html#products" class="nav-cta">Shop Now →</a>
+        <div class="nav-cta-wrap">
+            <div class="nav-city-badge" id="navCityBadge" onclick="reopenCity()">
+                <div class="ncb-dot"></div><span id="navCityText">📍 Select City</span>
+            </div>
+            <button class="nav-mobile-toggle" id="mobileToggle" onclick="toggleMobile()"
+                aria-label="Menu"><span></span><span></span><span></span></button>
+            <a href="login.html" class="nav-cta">Log In</a>
         </div>
     </nav>
 
     <!-- MOBILE MENU -->
-    <div class="mob-menu" id="mobMenu">
-        <div class="mm-sec">Our Products</div>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mm-section-label">Our Products</div>
         <a href="#" class="mm-link"
-            style="background:rgba(245,130,10,.07);border:1px solid rgba(245,130,10,.15);border-radius:12px">
-            <span class="mm-ico">✨</span> Vedic High Oleic Oil
-        </a>
-        <a href="groundnutoil.html" class="mm-link"><span class="mm-ico">🫙</span> Groundnut Oil</a>
-        <a href="#" class="mm-link"><span class="mm-ico">🧈</span> Peanut Butter</a>
-        <a href="#" class="mm-link"><span class="mm-ico">🥜</span> Peanuts</a>
-        <div class="mm-div"></div>
-        <div class="mm-sec">More</div>
-        <a href="blogs.html" class="mm-link"><span class="mm-ico">📖</span> Blogs</a>
-        <a href="aboutus.html" class="mm-link"><span class="mm-ico">🏭</span> About Us</a>
-        <a href="dashboard.html" class="mm-link"><span class="mm-ico">👤</span> My Account</a>
-        <a href="contactus.html" class="mm-link" style="color:var(--orange)"><span class="mm-ico">✉️</span> Contact
-            Us</a>
-        <a href="index.html#products" class="mm-cta">🛒 Shop Now</a>
+            style="background:rgba(27,46,107,.06);border:1px solid rgba(27,46,107,.12);border-radius:12px"><span
+                class="mm-icon">✨</span> Vedic High Oleic Oil</a>
+        <a href="groundnutoil.html" class="mm-link"><span class="mm-icon">🫙</span> Groundnut Oil</a>
+        <a href="#products" class="mm-link" onclick="closeMobile()"><span class="mm-icon">🧈</span> Peanut Butter</a>
+        <a href="#products" class="mm-link" onclick="closeMobile()"><span class="mm-icon">🥜</span> Peanuts</a>
+        <div class="mm-divider"></div>
+        <div class="mm-section-label">More</div>
+        <a href="blogs.html" class="mm-link"><span class="mm-icon">📖</span> Blogs</a>
+        <a href="aboutus.html" class="mm-link"><span class="mm-icon">🏭</span> About Us</a>
+        <a href="dashboard.html" class="mm-link"><span class="mm-icon">👤</span> My Account</a>
+        <a href="#products" class="mm-cta" onclick="closeMobile()">🛒 Shop Now</a>
     </div>
 
     <!-- ═══════════════════════════

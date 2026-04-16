@@ -47,7 +47,7 @@
         }
 
         /* ══ NAV ══ */
-        nav {
+            nav {
             position: fixed;
             top: 0;
             width: 100%;
@@ -143,14 +143,6 @@
             transform: scaleX(1)
         }
 
-        .nav-links>li>a.active {
-            color: var(--navy)
-        }
-
-        .nav-links>li>a.active::after {
-            transform: scaleX(1)
-        }
-
         .nav-dropdown-toggle .chevron {
             font-size: .6rem;
             transition: transform .3s;
@@ -172,7 +164,7 @@
             border-radius: 16px;
             padding: 8px;
             min-width: 220px;
-            box-shadow: 0 20px 50px rgba(13, 26, 58, .12), 0 4px 12px rgba(13, 26, 58, .06);
+            box-shadow: 0 20px 50px rgba(13, 26, 58, .14), 0 4px 12px rgba(13, 26, 58, .06);
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
@@ -194,7 +186,8 @@
             transform: translateX(-50%) rotate(45deg)
         }
 
-        .nav-links>li.open .nav-dropdown {
+        .nav-links>li.open .nav-dropdown,
+        .nav-links>li:focus-within .nav-dropdown {
             opacity: 1;
             visibility: visible;
             pointer-events: all;
@@ -242,7 +235,7 @@
         }
 
         .nav-dropdown a .dd-icon.butter-icon {
-            background: linear-gradient(135deg, #E8D5D5, rgba(139, 26, 26, .15))
+            background: linear-gradient(135deg, #E0D5C5, rgba(139, 26, 26, .15))
         }
 
         .nav-dropdown a .dd-icon.peanut-icon {
@@ -450,7 +443,6 @@
             background: linear-gradient(135deg, var(--navy-mid), var(--navy));
             color: white
         }
-
         /* ══ PERSONA BANNER ══ */
         .persona-banner {
             background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 50%, var(--navy-mid) 100%);
@@ -3115,16 +3107,16 @@
                     </svg>
                 </button>
                 <div class="nav-dropdown" id="navDropdown" role="menu">
-                    <a href="#" class="dd-vedic" role="menuitem">
-                        <div class="dd-icon"
-                            style="background:linear-gradient(135deg,rgba(200,150,12,.18),rgba(27,46,107,.08))">✨
-                        </div>
-                        <div class="dd-text">
-                            <div class="dd-name">Vedic High Oleic Oil</div>
-                            <div class="dd-sub">India's First · 77%+ MUFA</div>
-                        </div>
-                    </a>
-                    <div class="dd-divider"></div>
+                    <!-- <a href="" class="dd-vedic" role="menuitem"> -->
+                        <!-- <div class="dd-icon"
+                            style="background:linear-gradient(135deg,rgba(200,150,12,.18),rgba(139,26,26,.08))">✨
+                        </div> -->
+                        <!-- <div class="dd-text"> -->
+                            <!-- <div class="dd-name">Vedic High Oleic Oil</div>
+                            <div class="dd-sub">India's First · 77%+ MUFA</div> -->
+                        <!-- </div> -->
+                    <!-- </a> -->
+                    <!-- <div class="dd-divider"></div> -->
                     <a href="groundnutoil.html" role="menuitem">
                         <div class="dd-icon oil-icon">🫙</div>
                         <div class="dd-text">
@@ -3132,27 +3124,59 @@
                             <div class="dd-sub">1L to 15Kg · Double Filtered</div>
                         </div>
                     </a>
-                    <a href="#" role="menuitem">
+                    <!-- <a href="" role="menuitem">
                         <div class="dd-icon butter-icon">🧈</div>
                         <div class="dd-text">
                             <div class="dd-name">Peanut Butter</div>
                             <div class="dd-sub">Classic & Choco · Creamy & Crunchy</div>
                         </div>
-                    </a>
-                    <a href="#" role="menuitem">
+                    </a> -->
+                    <!-- <a href="" role="menuitem">
                         <div class="dd-icon peanut-icon">🥜</div>
                         <div class="dd-text">
                             <div class="dd-name">Peanuts</div>
                             <div class="dd-sub">Gold · Platinum · Roasted</div>
                         </div>
+                    </a> -->
+                </div>
+            </li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+            <!-- <li><a href="recipes.html">Recipes</a></li> -->
+            <!-- <li><a href="checkout.html">Checkout</a></li> -->
+        </ul>
+        <ul class="nav-links" id="navLinks">
+
+
+            <!-- <li><a href="checkout.html">Checkout</a></li> -->
+        </ul>
+        <ul class="nav-links" id="navLinks">
+            <li id="ddLi">
+                <button class="nav-dropdown-toggle" onclick="toggleDropdown()" aria-expanded="false"
+                    aria-haspopup="true">
+                    My Account
+                    <svg class="chevron" viewBox="0 0 10 6" fill="none" width="10" height="6">
+                        <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <div class="nav-dropdown" id="navDropdown" role="menu">
+                    <a href="dashboard.html" role="menuitem">
+                        <div class="dd-text">
+                            <div class="dd-name">My Dashboard</div>
+                            <div class="dd-sub"></div>
+                        </div>
+                    </a>
+                    <a href="" role="menuitem">
+                        <div class="dd-text">
+                            <div class="dd-name">Log Out</div>
+                            <div class="dd-sub"></div>
+                        </div>
                     </a>
                 </div>
             </li>
-            <li><a href="blogs.html">Blogs</a></li>
-            <li><a href="aboutus.html">About Us</a></li>
-            <li><a href="dashboard.html">My Account</a></li>
-            <li><a href="contactus.html">Contact Us</a></li>
-            <li><a href="checkout.html">Checkout</a></li>
+
         </ul>
         <div class="nav-cta-wrap">
             <div class="nav-city-badge" id="navCityBadge" onclick="reopenCity()">
@@ -3160,7 +3184,7 @@
             </div>
             <button class="nav-mobile-toggle" id="mobileToggle" onclick="toggleMobile()"
                 aria-label="Menu"><span></span><span></span><span></span></button>
-            <a href="index.html#products" class="nav-cta">Shop Now →</a>
+            <a href="login.html" class="nav-cta">Log In</a>
         </div>
     </nav>
 
@@ -3170,16 +3194,15 @@
         <a href="#" class="mm-link"
             style="background:rgba(27,46,107,.06);border:1px solid rgba(27,46,107,.12);border-radius:12px"><span
                 class="mm-icon">✨</span> Vedic High Oleic Oil</a>
-        <a href="groundnutoil.html" class="mm-link" style="color:var(--navy);font-weight:700"><span
-                class="mm-icon">🫙</span> Groundnut Oil</a>
-        <a href="#" class="mm-link"><span class="mm-icon">🧈</span> Peanut Butter</a>
-        <a href="#" class="mm-link"><span class="mm-icon">🥜</span> Peanuts</a>
+        <a href="groundnutoil.html" class="mm-link"><span class="mm-icon">🫙</span> Groundnut Oil</a>
+        <a href="#products" class="mm-link" onclick="closeMobile()"><span class="mm-icon">🧈</span> Peanut Butter</a>
+        <a href="#products" class="mm-link" onclick="closeMobile()"><span class="mm-icon">🥜</span> Peanuts</a>
         <div class="mm-divider"></div>
         <div class="mm-section-label">More</div>
         <a href="blogs.html" class="mm-link"><span class="mm-icon">📖</span> Blogs</a>
         <a href="aboutus.html" class="mm-link"><span class="mm-icon">🏭</span> About Us</a>
         <a href="dashboard.html" class="mm-link"><span class="mm-icon">👤</span> My Account</a>
-        <a href="index.html#products" class="mm-cta" onclick="closeMobile()">🛒 Shop Now</a>
+        <a href="#products" class="mm-cta" onclick="closeMobile()">🛒 Shop Now</a>
     </div>
 
     <!-- PERSONA BANNER -->

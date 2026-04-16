@@ -105,7 +105,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 600;
+            z-index: 200;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -193,13 +193,8 @@
             transition: transform .3s
         }
 
-        .nav-links>li>a:hover::after,
-        .nav-links>li>a.active::after {
+        .nav-links>li>a:hover::after {
             transform: scaleX(1)
-        }
-
-        .nav-links>li>a.active {
-            color: var(--navy)
         }
 
         .nav-dropdown-toggle .chevron {
@@ -217,17 +212,18 @@
             position: absolute;
             top: calc(100% + 10px);
             left: 50%;
-            transform: translateX(-50%) translateY(-8px);
+            transform: translateX(-50%);
             background: white;
             border: 1px solid rgba(27, 46, 107, .12);
             border-radius: 16px;
             padding: 8px;
             min-width: 220px;
-            box-shadow: 0 20px 50px rgba(13, 26, 58, .12);
+            box-shadow: 0 20px 50px rgba(13, 26, 58, .14), 0 4px 12px rgba(13, 26, 58, .06);
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
-            transition: opacity .25s, transform .25s, visibility .25s;
+            transform: translateX(-50%) translateY(-8px);
+            transition: opacity .25s ease, transform .25s ease, visibility .25s;
             z-index: 300
         }
 
@@ -244,7 +240,8 @@
             transform: translateX(-50%) rotate(45deg)
         }
 
-        .nav-links>li.open .nav-dropdown {
+        .nav-links>li.open .nav-dropdown,
+        .nav-links>li:focus-within .nav-dropdown {
             opacity: 1;
             visibility: visible;
             pointer-events: all;
@@ -266,7 +263,7 @@
         }
 
         .nav-dropdown a:hover {
-            background: rgba(27, 46, 107, .07);
+            background: linear-gradient(90deg, rgba(27, 46, 107, .07), rgba(27, 46, 107, .02));
             color: var(--navy);
             transform: translateX(3px)
         }
@@ -292,7 +289,7 @@
         }
 
         .nav-dropdown a .dd-icon.butter-icon {
-            background: linear-gradient(135deg, #E8D5D5, rgba(139, 26, 26, .15))
+            background: linear-gradient(135deg, #E0D5C5, rgba(139, 26, 26, .15))
         }
 
         .nav-dropdown a .dd-icon.peanut-icon {
@@ -325,6 +322,11 @@
 
         .nav-dropdown a.dd-vedic .dd-name {
             color: var(--red)
+        }
+
+        .nav-dropdown a.dd-vedic:hover {
+            background: linear-gradient(90deg, rgba(200, 150, 12, .2), rgba(27, 46, 107, .1));
+            transform: translateX(3px)
         }
 
         .nav-cta-wrap {
@@ -378,6 +380,11 @@
 
         .nav-city-badge.vis {
             display: flex
+        }
+
+        .nav-city-badge:hover {
+            background: rgba(27, 46, 107, .15);
+            color: var(--navy)
         }
 
         .nav-city-badge .ncb-dot {
@@ -482,7 +489,13 @@
             font-size: .82rem;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            transition: all .3s
+            transition: all .3s;
+            box-shadow: 0 6px 18px rgba(27, 46, 107, .3)
+        }
+
+        .mm-cta:hover {
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            color: white
         }
 
         /* ══ HERO ══ */
@@ -2928,64 +2941,98 @@
     </div>
 
     <!-- ══ NAV ══ -->
+    <!-- NAV -->
     <nav id="mainNav">
         <a href="index.html" class="nav-logo">PEANUT<span>JI</span></a>
         <ul class="nav-links" id="navLinks">
             <li id="ddLi">
-                <button class="nav-dropdown-toggle" onclick="toggleDropdown()" aria-expanded="false">
+                <button class="nav-dropdown-toggle" onclick="toggleDropdown()" aria-expanded="false"
+                    aria-haspopup="true">
                     Our Products
                     <svg class="chevron" viewBox="0 0 10 6" fill="none" width="10" height="6">
                         <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
                 </button>
-                <div class="nav-dropdown" id="navDropdown">
-                    <a href="#" class="dd-vedic">
-                        <div class="dd-icon"
-                            style="background:linear-gradient(135deg,rgba(200,150,12,.18),rgba(27,46,107,.08))">✨
-                        </div>
-                        <div class="dd-text">
-                            <div class="dd-name">Vedic High Oleic Oil</div>
-                            <div class="dd-sub">India's First · 77%+ MUFA</div>
-                        </div>
-                    </a>
-                    <div class="dd-divider"></div>
-                    <a href="groundnutoil.html">
+                <div class="nav-dropdown" id="navDropdown" role="menu">
+                    <!-- <a href="" class="dd-vedic" role="menuitem"> -->
+                    <!-- <div class="dd-icon"
+                            style="background:linear-gradient(135deg,rgba(200,150,12,.18),rgba(139,26,26,.08))">✨
+                        </div> -->
+                    <!-- <div class="dd-text"> -->
+                    <!-- <div class="dd-name">Vedic High Oleic Oil</div>
+                            <div class="dd-sub">India's First · 77%+ MUFA</div> -->
+                    <!-- </div> -->
+                    <!-- </a> -->
+                    <!-- <div class="dd-divider"></div> -->
+                    <a href="groundnutoil.html" role="menuitem">
                         <div class="dd-icon oil-icon">🫙</div>
                         <div class="dd-text">
                             <div class="dd-name">Groundnut Oil</div>
                             <div class="dd-sub">1L to 15Kg · Double Filtered</div>
                         </div>
                     </a>
-                    <a href="#">
+                    <!-- <a href="" role="menuitem">
                         <div class="dd-icon butter-icon">🧈</div>
                         <div class="dd-text">
                             <div class="dd-name">Peanut Butter</div>
                             <div class="dd-sub">Classic & Choco · Creamy & Crunchy</div>
                         </div>
-                    </a>
-                    <a href="#">
+                    </a> -->
+                    <!-- <a href="" role="menuitem">
                         <div class="dd-icon peanut-icon">🥜</div>
                         <div class="dd-text">
                             <div class="dd-name">Peanuts</div>
                             <div class="dd-sub">Gold · Platinum · Roasted</div>
                         </div>
+                    </a> -->
+                </div>
+            </li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+            <!-- <li><a href="recipes.html">Recipes</a></li> -->
+            <!-- <li><a href="checkout.html">Checkout</a></li> -->
+        </ul>
+        <ul class="nav-links" id="navLinks">
+
+
+            <!-- <li><a href="checkout.html">Checkout</a></li> -->
+        </ul>
+        <ul class="nav-links" id="navLinks">
+            <li id="ddLi">
+                <button class="nav-dropdown-toggle" onclick="toggleDropdown()" aria-expanded="false"
+                    aria-haspopup="true">
+                    My Account
+                    <svg class="chevron" viewBox="0 0 10 6" fill="none" width="10" height="6">
+                        <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <div class="nav-dropdown" id="navDropdown" role="menu">
+                    <a href="dashboard.html" role="menuitem">
+                        <div class="dd-text">
+                            <div class="dd-name">My Dashboard</div>
+                            <div class="dd-sub"></div>
+                        </div>
+                    </a>
+                    <a href="" role="menuitem">
+                        <div class="dd-text">
+                            <div class="dd-name">Log Out</div>
+                            <div class="dd-sub"></div>
+                        </div>
                     </a>
                 </div>
             </li>
-            <li><a href="blogs.html" class="active">Blogs</a></li>
-            <li><a href="aboutus.html">About Us</a></li>
-            <li><a href="dashboard.html">My Account</a></li>
-            <li><a href="contactus.html">Contact Us</a></li>
-            <li><a href="checkout.html">Checkout</a></li>
+
         </ul>
         <div class="nav-cta-wrap">
-            <div class="nav-city-badge" id="navCityBadge">
+            <div class="nav-city-badge" id="navCityBadge" onclick="reopenCity()">
                 <div class="ncb-dot"></div><span id="navCityText">📍 Select City</span>
             </div>
-            <button class="nav-mobile-toggle" id="mobileToggle"
-                onclick="toggleMobile()"><span></span><span></span><span></span></button>
-            <a href="index.html#products" class="nav-cta">Shop Now →</a>
+            <button class="nav-mobile-toggle" id="mobileToggle" onclick="toggleMobile()"
+                aria-label="Menu"><span></span><span></span><span></span></button>
+            <a href="login.html" class="nav-cta">Log In</a>
         </div>
     </nav>
 
@@ -2996,15 +3043,14 @@
             style="background:rgba(27,46,107,.06);border:1px solid rgba(27,46,107,.12);border-radius:12px"><span
                 class="mm-icon">✨</span> Vedic High Oleic Oil</a>
         <a href="groundnutoil.html" class="mm-link"><span class="mm-icon">🫙</span> Groundnut Oil</a>
-        <a href="#" class="mm-link"><span class="mm-icon">🧈</span> Peanut Butter</a>
-        <a href="#" class="mm-link"><span class="mm-icon">🥜</span> Peanuts</a>
+        <a href="#products" class="mm-link" onclick="closeMobile()"><span class="mm-icon">🧈</span> Peanut Butter</a>
+        <a href="#products" class="mm-link" onclick="closeMobile()"><span class="mm-icon">🥜</span> Peanuts</a>
         <div class="mm-divider"></div>
         <div class="mm-section-label">More</div>
-        <a href="blogs.html" class="mm-link" style="color:var(--navy);font-weight:700"><span class="mm-icon">📖</span>
-            Blogs</a>
+        <a href="blogs.html" class="mm-link"><span class="mm-icon">📖</span> Blogs</a>
         <a href="aboutus.html" class="mm-link"><span class="mm-icon">🏭</span> About Us</a>
         <a href="dashboard.html" class="mm-link"><span class="mm-icon">👤</span> My Account</a>
-        <a href="index.html#products" class="mm-cta">🛒 Shop Now</a>
+        <a href="#products" class="mm-cta" onclick="closeMobile()">🛒 Shop Now</a>
     </div>
 
     <!-- ══ HERO ══ -->
@@ -4130,8 +4176,8 @@
             const mlb = document.getElementById('modalListenBtn')
             if (mlb) {
                 mlb.innerHTML = `<svg viewBox="0 0 10 12" fill="currentColor">${isPlaying
-                        ? '<rect x="0" y="0" width="3.5" height="12"/><rect x="6.5" y="0" width="3.5" height="12"/>'
-                        : '<polygon points="0,0 10,6 0,12"/>'
+                    ? '<rect x="0" y="0" width="3.5" height="12"/><rect x="6.5" y="0" width="3.5" height="12"/>'
+                    : '<polygon points="0,0 10,6 0,12"/>'
                     }</svg> ${isPlaying ? 'Pause' : 'Play Article'}`
                 mlb.classList.toggle('playing', isPlaying)
             }
@@ -4139,8 +4185,8 @@
                 const lb = document.getElementById(`lb-${activeBtnId}`)
                 if (lb) {
                     lb.innerHTML = `<svg viewBox="0 0 10 12" fill="currentColor">${isPlaying
-                            ? '<rect x="0" y="0" width="3.5" height="12"/><rect x="6.5" y="0" width="3.5" height="12"/>'
-                            : '<polygon points="0,0 10,6 0,12"/>'
+                        ? '<rect x="0" y="0" width="3.5" height="12"/><rect x="6.5" y="0" width="3.5" height="12"/>'
+                        : '<polygon points="0,0 10,6 0,12"/>'
                         }</svg> ${isPlaying ? 'Pause' : 'Listen'}`
                     lb.classList.toggle('playing', isPlaying)
                 }
