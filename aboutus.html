@@ -1078,12 +1078,25 @@
 
         .founders-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 28px;
             margin-top: 60px;
-            max-width: 1200px;
+            max-width: 1300px;
             margin-left: auto;
             margin-right: auto
+        }
+
+        .founders-grid .founder-card:nth-child(n+4) {
+            grid-column: auto;
+        }
+
+        /* Bottom row: 2 cards centered */
+        .founders-row-bottom {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            max-width: 900px;
+            margin: 28px auto 0;
         }
 
         .founder-card {
@@ -2008,194 +2021,272 @@
             color: var(--red-mid)
         }
 
-        /* ══ JOURNEY SECTION ══ */
         .journey-section {
-            padding: 120px 80px;
+            padding: 100px 40px 120px;
             background: linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
             position: relative;
-            overflow: hidden
+            overflow: hidden;
         }
 
         .journey-section::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at 50% 30%, rgba(27, 46, 107, .05), transparent 60%)
+            background: radial-gradient(ellipse at 50% 30%, rgba(27, 46, 107, .05), transparent 60%);
+            pointer-events: none;
         }
 
-        .journey-header {
-            text-align: center;
-            margin-bottom: 100px
-        }
-
-        .twirl-wrap {
+        .rm-wrap {
+            max-width: 900px;
+            margin: 0 auto;
             position: relative;
-            max-width: 1000px;
-            margin: 0 auto
+            z-index: 1;
         }
 
-        #twirlSvg {
+        .rm-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .rm-timeline {
+            position: relative;
+        }
+
+        /* The straight colored spine */
+        .rm-spine {
             position: absolute;
             left: 50%;
             top: 0;
+            bottom: 0;
+            width: 4px;
             transform: translateX(-50%);
-            pointer-events: none;
-            overflow: visible;
-            z-index: 1
+            background: linear-gradient(to bottom, #1B2E6B 0%, #8B1A1A 55%, #C8960C 100%);
+            border-radius: 2px;
+            z-index: 0;
         }
 
-        .twirl-row {
+        .rm-row {
             display: grid;
-            grid-template-columns: 1fr 120px 1fr;
+            grid-template-columns: 1fr 72px 1fr;
             align-items: center;
+            margin-bottom: 36px;
             position: relative;
-            z-index: 2;
-            min-height: 200px
+            z-index: 1;
         }
 
-        .twirl-content {
-            padding: 30px 36px
-        }
-
-        .twirl-content.left {
-            text-align: right
-        }
-
-        .twirl-content.right {
-            text-align: left
-        }
-
-        .twirl-node-col {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            height: 100%
-        }
-
-        .twirl-node {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: white;
-            border: 3px solid var(--navy);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            position: relative;
-            z-index: 3;
-            transition: all .4s;
-            box-shadow: 0 8px 30px rgba(27, 46, 107, .2), 0 0 0 8px rgba(27, 46, 107, .06);
-            cursor: default;
-            flex-shrink: 0
-        }
-
-        .twirl-row:hover .twirl-node {
-            background: linear-gradient(135deg, var(--navy), var(--red));
-            box-shadow: 0 12px 40px rgba(27, 46, 107, .4), 0 0 0 12px rgba(27, 46, 107, .1);
-            transform: scale(1.15)
-        }
-
-        .twirl-node-year {
-            font-family: 'Bebas Neue';
-            font-size: .8rem;
-            letter-spacing: 2px;
-            color: var(--navy-light);
-            margin-top: 8px
-        }
-
-        .twirl-card {
+        /* Cards */
+        .rm-card {
             background: white;
             border: 1.5px solid rgba(27, 46, 107, .1);
             border-radius: 18px;
-            padding: 24px 26px;
-            transition: all .4s;
-            position: relative;
-            overflow: hidden
+            padding: 22px 26px;
+            transition: border-color .3s, box-shadow .3s, transform .3s;
+            cursor: default;
         }
 
-        .twirl-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 17px;
-            background: linear-gradient(135deg, rgba(27, 46, 107, .04), transparent);
-            opacity: 0;
-            transition: opacity .4s
-        }
-
-        .twirl-row:hover .twirl-card {
+        .rm-card:hover {
             border-color: rgba(27, 46, 107, .25);
-            box-shadow: 0 20px 55px rgba(13, 26, 58, .1);
-            transform: translateY(-3px)
+            box-shadow: 0 16px 48px rgba(13, 26, 58, .1);
+            transform: translateY(-3px);
         }
 
-        .twirl-row:hover .twirl-card::before {
-            opacity: 1
-        }
-
-        .tc-tag {
-            font-size: .55rem;
-            letter-spacing: 3.5px;
+        .rm-card-tag {
+            font-size: .58rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--red);
-            margin-bottom: 8px;
             font-weight: 600;
+            margin-bottom: 7px;
             display: flex;
             align-items: center;
-            gap: 8px
+            gap: 8px;
         }
 
-        .twirl-content.left .tc-tag {
-            justify-content: flex-end
-        }
-
-        .tc-tag::before {
+        .rm-card-tag::before {
             content: '';
+            display: inline-block;
             width: 14px;
             height: 1.5px;
             background: var(--red-mid);
-            flex-shrink: 0
+            flex-shrink: 0;
         }
 
-        .twirl-content.left .tc-tag::before {
-            order: 2
-        }
-
-        .twirl-card-title {
-            font-family: 'Playfair Display';
+        .rm-card-title {
+            font-family: 'Playfair Display', serif;
             font-size: 1.05rem;
             font-weight: 700;
             color: var(--navy);
+            margin-bottom: 8px;
             line-height: 1.25;
-            margin-bottom: 9px
         }
 
-        .twirl-card-desc {
+        .rm-card-desc {
             font-size: .78rem;
             color: var(--navy-light);
             line-height: 1.7;
-            opacity: .8
+            margin-bottom: 12px;
+            opacity: .85;
         }
 
-        .twirl-highlight {
+        .rm-card-pill {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            background: rgba(27, 46, 107, .07);
-            border: 1px solid rgba(27, 46, 107, .18);
+            gap: 5px;
+            background: rgba(27, 46, 107, .06);
+            border: 1px solid rgba(27, 46, 107, .15);
             border-radius: 100px;
             padding: 4px 12px;
             font-size: .6rem;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: var(--navy);
-            margin-top: 12px
+            color: var(--navy-light);
         }
 
-        .twirl-empty {
-            padding: 30px 36px
+        /* Left-aligned card (text right) */
+        .rm-row[data-side="left"] .rm-card {
+            text-align: right;
+        }
+
+        .rm-row[data-side="left"] .rm-card-tag {
+            justify-content: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .rm-row[data-side="left"] .rm-card-pill {
+            margin-left: auto;
+        }
+
+        /* Right-aligned card */
+        .rm-row[data-side="right"] .rm-card {
+            text-align: left;
+        }
+
+        /* Node column (center) */
+        .rm-node-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 7px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .rm-node {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--cream);
+            border: 3px solid #1B2E6B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 18px rgba(27, 46, 107, .18), 0 0 0 7px rgba(27, 46, 107, .07);
+            transition: transform .35s cubic-bezier(.34, 1.56, .64, 1), box-shadow .35s;
+            cursor: default;
+        }
+
+        .rm-row:hover .rm-node {
+            transform: scale(1.15);
+            box-shadow: 0 10px 34px rgba(27, 46, 107, .35), 0 0 0 12px rgba(27, 46, 107, .1);
+        }
+
+        .rm-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: .85rem;
+            letter-spacing: 2.5px;
+            color: var(--navy-light);
+        }
+
+        /* Node border color progression along the gradient */
+        .rm-row:nth-child(1) .rm-node {
+            border-color: #1B2E6B;
+            box-shadow: 0 4px 18px rgba(27, 46, 107, .18), 0 0 0 7px rgba(27, 46, 107, .07);
+        }
+
+        .rm-row:nth-child(2) .rm-node {
+            border-color: #2E448F;
+            box-shadow: 0 4px 18px rgba(46, 68, 143, .18), 0 0 0 7px rgba(46, 68, 143, .07);
+        }
+
+        .rm-row:nth-child(3) .rm-node {
+            border-color: #6B3A1A;
+            box-shadow: 0 4px 18px rgba(107, 58, 26, .18), 0 0 0 7px rgba(107, 58, 26, .07);
+        }
+
+        .rm-row:nth-child(4) .rm-node {
+            border-color: #8B1A1A;
+            box-shadow: 0 4px 18px rgba(139, 26, 26, .18), 0 0 0 7px rgba(139, 26, 26, .07);
+        }
+
+        .rm-row:nth-child(5) .rm-node {
+            border-color: #A93226;
+            box-shadow: 0 4px 18px rgba(169, 50, 38, .18), 0 0 0 7px rgba(169, 50, 38, .07);
+        }
+
+        .rm-row:nth-child(6) .rm-node {
+            border-color: #B87010;
+            box-shadow: 0 4px 18px rgba(184, 112, 16, .18), 0 0 0 7px rgba(184, 112, 16, .07);
+        }
+
+        .rm-row:nth-child(7) .rm-node {
+            border-color: #C8960C;
+            box-shadow: 0 4px 18px rgba(200, 150, 12, .25), 0 0 0 7px rgba(200, 150, 12, .1);
+        }
+
+        .rm-row:nth-child(8) .rm-node {
+            border-color: #C8960C;
+            box-shadow: 0 6px 22px rgba(200, 150, 12, .35), 0 0 0 10px rgba(200, 150, 12, .12);
+        }
+
+        /* Last card gets gold accent */
+        .rm-row:last-child .rm-card {
+            border-color: rgba(200, 150, 12, .3);
+            background: linear-gradient(135deg, rgba(27, 46, 107, .02), rgba(200, 150, 12, .03));
+        }
+
+        /* Responsive */
+        @media(max-width: 760px) {
+            .rm-row {
+                grid-template-columns: 56px 1fr;
+                gap: 0;
+            }
+
+            .rm-row[data-side="left"] .rm-card,
+            .rm-row[data-side="right"] .rm-card {
+                grid-column: 2;
+                text-align: left;
+            }
+
+            .rm-row[data-side="left"] .rm-card-tag {
+                justify-content: flex-start;
+                flex-direction: row;
+            }
+
+            .rm-row[data-side="left"] .rm-card-tag::before {
+                order: 0;
+            }
+
+            .rm-row[data-side="left"] .rm-card-pill {
+                margin-left: 0;
+            }
+
+            .rm-node-col {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            .rm-empty {
+                display: none;
+            }
+
+            .rm-spine {
+                left: 28px;
+            }
+
+            .journey-section {
+                padding: 70px 20px 80px;
+            }
         }
 
         /* ══ IMPACT ══ */
@@ -2892,7 +2983,7 @@
     </nav>
 
     <!-- MOBILE MENU -->
-     <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu" id="mobileMenu">
         <div class="mm-section-label">Our Products</div>
         <a href="groundnutoil.html" class="mm-link"><span class="mm-icon">🫙</span> Groundnut Oil</a>
         <div class="mm-divider"></div>
@@ -3032,6 +3123,7 @@
                 <div class="section-tag">Leadership</div>
                 <h2 class="section-title">The <em>Minds</em> Behind<br>the Mission</h2>
             </div>
+            <!-- TOP ROW: 3 cards -->
             <div class="founders-grid">
                 <div class="founder-card reveal-left">
                     <div class="fc-top">
@@ -3047,19 +3139,16 @@
                         <div class="fc-name">Rajesh Fishfa</div>
                         <div class="fc-title">Visionary · Agri Entrepreneur · Gujarat Native</div>
                         <div class="fc-quote">"The peanut is the most honest crop in the world. It asks for nothing but
-                            red soil,
-                            hard work, and sunlight. We owe it the same honesty in return."</div>
+                            red soil, hard work, and sunlight. We owe it the same honesty in return."</div>
                         <div class="fc-bio">Rajesh grew up watching his grandfather press oil in a wooden ghani in rural
-                            Rajkot.
-                            With a background in agricultural sciences and two decades in the food trade, he transformed
-                            a small
-                            cold-press unit into a globally certified production facility.</div>
+                            Rajkot. With a background in agricultural sciences and two decades in the food trade, he
+                            transformed a small cold-press unit into a globally certified production facility.</div>
                         <div class="fc-tags"><span class="fc-tag">Agri Science</span><span class="fc-tag">Food
                                 Safety</span><span class="fc-tag">Export Markets</span><span class="fc-tag">Vedic
                                 Nutrition</span></div>
                     </div>
                 </div>
-                <div class="founder-card reveal-right">
+                <div class="founder-card reveal">
                     <div class="fc-top">
                         <div class="fc-bg"
                             style="background:linear-gradient(145deg,rgba(30,107,58,.15),rgba(30,107,58,.06))"></div>
@@ -3073,60 +3162,89 @@
                         <div class="fc-name">Manish Fishfa</div>
                         <div class="fc-title">Operations Architect · Quality Champion · Export Strategist</div>
                         <div class="fc-quote">"Quality is not a department. It's a decision you make before the seed
-                            goes into the
-                            ground — and you keep making it, every single day."</div>
+                            goes into the ground — and you keep making it, every single day."</div>
                         <div class="fc-bio">Manish designed the 20-stage AI-sorting quality control system, led the EU
-                            certification
-                            process, and opened distribution networks across Europe, the Middle East, and Southeast
-                            Asia.</div>
+                            certification process, and opened distribution networks across Europe, the Middle East, and
+                            Southeast Asia.</div>
                         <div class="fc-tags"><span class="fc-tag">QC Systems</span><span class="fc-tag">International
                                 Trade</span><span class="fc-tag">HEPA Technology</span><span class="fc-tag">EU
                                 Compliance</span></div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TEAM -->
-    <section class="team-section">
-        <div class="reveal">
-            <div class="section-tag" style="justify-content:center">The Team</div>
-            <h2 class="section-title" style="text-align:center">People Who Make <em>Pure</em> Possible</h2>
-        </div>
-        <div class="team-grid">
-            <div class="team-card reveal">
-                <div class="tc-avatar" style="background:linear-gradient(135deg,var(--navy),var(--navy-mid))">P</div>
-                <div class="tc-name">Priya Desai</div>
-                <div class="tc-role">Head of R&D</div>
-                <div class="tc-desc">Led development of India's first High Oleic groundnut variety for Peanutji Vedic.
-                    MSc Food
-                    Science, NDRI Karnal.</div>
-            </div>
-            <div class="team-card reveal">
-                <div class="tc-avatar" style="background:linear-gradient(135deg,var(--navy-mid),var(--navy-light))">V
+                <div class="founder-card reveal-right">
+                    <div class="fc-top">
+                        <div class="fc-bg"
+                            style="background:linear-gradient(145deg,rgba(200,150,12,.15),rgba(200,150,12,.06))"></div>
+                        <div class="fc-glow"
+                            style="background:radial-gradient(circle,rgba(200,150,12,.2),transparent 65%)"></div>
+                        <div class="fc-avatar" style="background:linear-gradient(135deg,var(--gold),var(--red))">P</div>
+                        <span class="fc-badge" style="background:var(--gold);color:var(--dark)">Co-Founder & CMO</span>
+                    </div>
+                    <div class="fc-body">
+                        <div class="fc-role">Co-Founder & Chief Marketing</div>
+                        <div class="fc-name">Priya Fishfa</div>
+                        <div class="fc-title">Brand Architect · Digital Strategist · Consumer Voice</div>
+                        <div class="fc-quote">"The best marketing is a product so honest, customers become your
+                            storytellers. We didn't build a brand — we earned one."</div>
+                        <div class="fc-bio">Priya led Peanutji's transformation from a regional label to a globally
+                            recognised brand, pioneering its D2C digital strategy and building consumer trust across
+                            25+ export markets.</div>
+                        <div class="fc-tags"><span class="fc-tag">Brand Strategy</span><span class="fc-tag">D2C
+                                Growth</span><span class="fc-tag">Digital Marketing</span><span class="fc-tag">Consumer
+                                Insights</span></div>
+                    </div>
                 </div>
-                <div class="tc-name">Viral Shah</div>
-                <div class="tc-role">Export Director</div>
-                <div class="tc-desc">Manages distribution relationships across 25+ countries. 15 years in FMCG export
-                    from
-                    Gujarat.</div>
             </div>
-            <div class="team-card reveal">
-                <div class="tc-avatar" style="background:linear-gradient(135deg,var(--red),var(--red-mid))">S</div>
-                <div class="tc-name">Sunita Patel</div>
-                <div class="tc-role">Quality Assurance Head</div>
-                <div class="tc-desc">Oversees the 20-stage AI sorting process and all FSSAI, ISO, and EU compliance at
-                    the
-                    Rajkot facility.</div>
-            </div>
-            <div class="team-card reveal">
-                <div class="tc-avatar" style="background:linear-gradient(135deg,#1E6B3A,#124225)">A</div>
-                <div class="tc-name">Anil Mehta</div>
-                <div class="tc-role">Farm Relations</div>
-                <div class="tc-desc">Manages direct relationships with 200+ G-20 peanut farmers across Saurashtra and
-                    Kutch
-                    districts.</div>
+
+            <!-- BOTTOM ROW: 2 cards centered -->
+            <div class="founders-row-bottom">
+                <div class="founder-card reveal-left">
+                    <div class="fc-top">
+                        <div class="fc-bg"
+                            style="background:linear-gradient(145deg,rgba(139,26,26,.15),rgba(139,26,26,.06))"></div>
+                        <div class="fc-glow"
+                            style="background:radial-gradient(circle,rgba(139,26,26,.18),transparent 65%)"></div>
+                        <div class="fc-avatar" style="background:linear-gradient(135deg,var(--red),var(--navy))">A</div>
+                        <span class="fc-badge" style="background:var(--red-mid)">Head of R&D</span>
+                    </div>
+                    <div class="fc-body">
+                        <div class="fc-role">Research & Development Lead</div>
+                        <div class="fc-name">Arjun Mehta</div>
+                        <div class="fc-title">Food Scientist · Vedic Nutrition Expert · Innovation Head</div>
+                        <div class="fc-quote">"Every formula we create must pass one test before any other: would a
+                            grandmother approve of the ingredients?"</div>
+                        <div class="fc-bio">Arjun spearheaded the development of India's first 77%+ MUFA Vedic High
+                            Oleic groundnut oil, combining ancient nutritional wisdom with cutting-edge food science
+                            and ISO-certified lab protocols.</div>
+                        <div class="fc-tags"><span class="fc-tag">Food Science</span><span class="fc-tag">MUFA
+                                Research</span><span class="fc-tag">ISO Labs</span><span class="fc-tag">Vedic
+                                Nutrition</span></div>
+                    </div>
+                </div>
+                <div class="founder-card reveal-right">
+                    <div class="fc-top">
+                        <div class="fc-bg"
+                            style="background:linear-gradient(145deg,rgba(27,46,107,.12),rgba(200,150,12,.08))"></div>
+                        <div class="fc-glow"
+                            style="background:radial-gradient(circle,rgba(27,46,107,.18),transparent 65%)"></div>
+                        <div class="fc-avatar" style="background:linear-gradient(135deg,var(--navy-mid),var(--green))">S
+                        </div>
+                        <span class="fc-badge">Head of Supply Chain</span>
+                    </div>
+                    <div class="fc-body">
+                        <div class="fc-role">Supply Chain & Logistics Head</div>
+                        <div class="fc-name">Suresh Patel</div>
+                        <div class="fc-title">Agri Procurement · Farmer Relations · Export Logistics</div>
+                        <div class="fc-quote">"A fair supply chain isn't charity — it's the only sustainable way to
+                            guarantee quality at the source, every harvest, every time."</div>
+                        <div class="fc-bio">Suresh manages direct relationships with 200+ partner farmers across
+                            Saurashtra and Kutch, ensuring traceable, fair-priced procurement that flows seamlessly
+                            into Peanutji's certified export pipeline.</div>
+                        <div class="fc-tags"><span class="fc-tag">Procurement</span><span class="fc-tag">Farmer
+                                Partnerships</span><span class="fc-tag">Export Ops</span><span class="fc-tag">Saurashtra
+                                Network</span></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -3155,155 +3273,154 @@
 
 
     <!-- JOURNEY SECTION -->
-    <section class="journey-section" id="journey">
-        <div class="journey-header reveal">
+    <div class="rm-wrap">
+
+        <div class="rm-header reveal">
             <div class="section-tag" style="justify-content:center">The Journey</div>
             <h2 class="section-title" style="text-align:center">A Decade of <em>Pure Purpose</em></h2>
-            <p style="font-size:.9rem;color:var(--navy-light);margin-top:16px;opacity:.7">From a single cold-press unit
-                in Rajkot to 25+ countries worldwide.</p>
+            <p style="font-size:.9rem;color:var(--navy-light);margin-top:16px;opacity:.7">
+                From a single cold-press unit in Rajkot to 25+ countries worldwide.
+            </p>
         </div>
-        <div class="twirl-wrap" id="twirlWrap">
-            <svg id="twirlSvg" width="220" height="100"></svg>
 
-            <div class="twirl-row reveal" data-side="left">
-                <div class="twirl-content left">
-                    <div class="twirl-card">
-                        <div class="tc-tag">The Beginning</div>
-                        <div class="twirl-card-title">Two Brothers, One Cold Press</div>
-                        <div class="twirl-card-desc">Rajesh and Manish Fishfa register Fishfa Agri World Pvt. Ltd. in
-                            Rajkot. A single cold-press unit, 2 employees, and one rule: no chemicals. Ever.</div>
-                        <div class="twirl-highlight">🏭 Rajkot, Gujarat</div>
-                    </div>
+        <div class="rm-timeline">
+
+            <!-- Straight colored spine -->
+            <div class="rm-spine"></div>
+
+            <!-- 2014 -->
+            <div class="rm-row reveal" data-side="left">
+                <div class="rm-card">
+                    <div class="rm-card-tag">The Beginning</div>
+                    <div class="rm-card-title">Two Brothers, One Cold Press</div>
+                    <div class="rm-card-desc">Rajesh and Manish Fishfa register Fishfa Agri World Pvt. Ltd. in Rajkot. A
+                        single cold-press unit, 2 employees, and one rule: no chemicals. Ever.</div>
+                    <div class="rm-card-pill">🏭 Rajkot, Gujarat</div>
                 </div>
-                <div class="twirl-node-col">
-                    <div class="twirl-node">🌱</div>
-                    <div class="twirl-node-year">2014</div>
+                <div class="rm-node-col">
+                    <div class="rm-node">🌱</div>
+                    <div class="rm-year">2014</div>
                 </div>
-                <div class="twirl-empty"></div>
+                <div class="rm-empty"></div>
             </div>
 
-            <div class="twirl-row reveal" data-side="right">
-                <div class="twirl-empty"></div>
-                <div class="twirl-node-col">
-                    <div class="twirl-node">🏆</div>
-                    <div class="twirl-node-year">2016</div>
+            <!-- 2016 -->
+            <div class="rm-row reveal" data-side="right">
+                <div class="rm-empty"></div>
+                <div class="rm-node-col">
+                    <div class="rm-node">🏆</div>
+                    <div class="rm-year">2016</div>
                 </div>
-                <div class="twirl-content right">
-                    <div class="twirl-card">
-                        <div class="tc-tag">First Certification</div>
-                        <div class="twirl-card-title">FSSAI & APEDA Certified</div>
-                        <div class="twirl-card-desc">Achieved FSSAI food safety certification and APEDA export
-                            clearance. First shipment of groundnut oil sent to Middle East — 5 tonnes.</div>
-                        <div class="twirl-highlight">🌍 First Export</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="twirl-row reveal" data-side="left">
-                <div class="twirl-content left">
-                    <div class="twirl-card">
-                        <div class="tc-tag">Global Standards</div>
-                        <div class="twirl-card-title">EU & US FDA Registration</div>
-                        <div class="twirl-card-desc">Manish leads a 14-month compliance journey. Peanutji becomes one of
-                            very few Indian groundnut brands with simultaneous US FDA registration and EU food safety
-                            clearance.</div>
-                        <div class="twirl-highlight">🇺🇸🇪🇺 Dual Certification</div>
-                    </div>
-                </div>
-                <div class="twirl-node-col">
-                    <div class="twirl-node">🎯</div>
-                    <div class="twirl-node-year">2018</div>
-                </div>
-                <div class="twirl-empty"></div>
-            </div>
-
-            <div class="twirl-row reveal" data-side="right">
-                <div class="twirl-empty"></div>
-                <div class="twirl-node-col">
-                    <div class="twirl-node">🧈</div>
-                    <div class="twirl-node-year">2019</div>
-                </div>
-                <div class="twirl-content right">
-                    <div class="twirl-card">
-                        <div class="tc-tag">New Category</div>
-                        <div class="twirl-card-title">Peanut Butter Launch</div>
-                        <div class="twirl-card-desc">Classic Creamy and Crunchy variants launched — no palm oil, no
-                            artificial flavours. Within 6 months, reaches 3 states.</div>
-                        <div class="twirl-highlight">🥜 4 Variants Launched</div>
-                    </div>
+                <div class="rm-card">
+                    <div class="rm-card-tag">First Certification</div>
+                    <div class="rm-card-title">FSSAI & APEDA Certified</div>
+                    <div class="rm-card-desc">Achieved FSSAI food safety certification and APEDA export clearance. First
+                        shipment of groundnut oil sent to the Middle East — 5 tonnes.</div>
+                    <div class="rm-card-pill">🌍 First Export</div>
                 </div>
             </div>
 
-            <div class="twirl-row reveal" data-side="left">
-                <div class="twirl-content left">
-                    <div class="twirl-card">
-                        <div class="tc-tag">The Pandemic Pivot</div>
-                        <div class="twirl-card-title">D2C & Amazon India Launch</div>
-                        <div class="twirl-card-desc">COVID-19 forces a pivot to direct consumer sales. Revenue doubles
-                            despite global supply chain disruption as health-conscious buying fuels rapid growth.</div>
-                        <div class="twirl-highlight">📦 Online First</div>
+            <!-- 2018 -->
+            <div class="rm-row reveal" data-side="left">
+                <div class="rm-card">
+                    <div class="rm-card-tag">Global Standards</div>
+                    <div class="rm-card-title">EU & US FDA Registration</div>
+                    <div class="rm-card-desc">Manish leads a 14-month compliance journey. Peanutji becomes one of very
+                        few Indian groundnut brands with simultaneous US FDA registration and EU food safety clearance.
                     </div>
+                    <div class="rm-card-pill">🇺🇸🇪🇺 Dual Certification</div>
                 </div>
-                <div class="twirl-node-col">
-                    <div class="twirl-node">💪</div>
-                    <div class="twirl-node-year">2020</div>
+                <div class="rm-node-col">
+                    <div class="rm-node">🎯</div>
+                    <div class="rm-year">2018</div>
                 </div>
-                <div class="twirl-empty"></div>
+                <div class="rm-empty"></div>
             </div>
 
-            <div class="twirl-row reveal" data-side="right">
-                <div class="twirl-empty"></div>
-                <div class="twirl-node-col">
-                    <div class="twirl-node">🏭</div>
-                    <div class="twirl-node-year">2022</div>
+            <!-- 2019 -->
+            <div class="rm-row reveal" data-side="right">
+                <div class="rm-empty"></div>
+                <div class="rm-node-col">
+                    <div class="rm-node">🧈</div>
+                    <div class="rm-year">2019</div>
                 </div>
-                <div class="twirl-content right">
-                    <div class="twirl-card">
-                        <div class="tc-tag">World-Class Facility</div>
-                        <div class="twirl-card-title">HEPA-Filtered Factory Opens</div>
-                        <div class="twirl-card-desc">New 40,000 sq ft EU-standard facility launches with
-                            positive-pressure HEPA filtration and zero human contact during production.</div>
-                        <div class="twirl-highlight">🔬 6 Certifications Total</div>
-                    </div>
+                <div class="rm-card">
+                    <div class="rm-card-tag">New Category</div>
+                    <div class="rm-card-title">Peanut Butter Launch</div>
+                    <div class="rm-card-desc">Classic Creamy and Crunchy variants launched — no palm oil, no artificial
+                        flavours. Within 6 months, reaches 3 states.</div>
+                    <div class="rm-card-pill">🥜 4 Variants Launched</div>
                 </div>
             </div>
 
-            <div class="twirl-row reveal" data-side="left">
-                <div class="twirl-content left">
-                    <div class="twirl-card">
-                        <div class="tc-tag">India's First</div>
-                        <div class="twirl-card-title">Vedic High Oleic Oil Launched</div>
-                        <div class="twirl-card-desc">Peanutji Vedic — India's first 77%+ MUFA groundnut oil — launches
-                            to national acclaim and media coverage.</div>
-                        <div class="twirl-highlight">✨ Historic Innovation</div>
-                    </div>
+            <!-- 2020 -->
+            <div class="rm-row reveal" data-side="left">
+                <div class="rm-card">
+                    <div class="rm-card-tag">The Pandemic Pivot</div>
+                    <div class="rm-card-title">D2C & Amazon India Launch</div>
+                    <div class="rm-card-desc">COVID-19 forces a pivot to direct consumer sales. Revenue doubles despite
+                        global supply chain disruption as health-conscious buying fuels rapid growth.</div>
+                    <div class="rm-card-pill">📦 Online First</div>
                 </div>
-                <div class="twirl-node-col">
-                    <div class="twirl-node">✨</div>
-                    <div class="twirl-node-year">2024</div>
+                <div class="rm-node-col">
+                    <div class="rm-node">💪</div>
+                    <div class="rm-year">2020</div>
                 </div>
-                <div class="twirl-empty"></div>
+                <div class="rm-empty"></div>
             </div>
 
-            <div class="twirl-row reveal" data-side="right">
-                <div class="twirl-empty"></div>
-                <div class="twirl-node-col">
-                    <div class="twirl-node">🌍</div>
-                    <div class="twirl-node-year">2026</div>
+            <!-- 2022 -->
+            <div class="rm-row reveal" data-side="right">
+                <div class="rm-empty"></div>
+                <div class="rm-node-col">
+                    <div class="rm-node">🏭</div>
+                    <div class="rm-year">2022</div>
                 </div>
-                <div class="twirl-content right">
-                    <div class="twirl-card"
-                        style="border-color:rgba(27,46,107,.25);background:linear-gradient(135deg,rgba(27,46,107,.04),rgba(200,150,12,.02))">
-                        <div class="tc-tag">Today & Beyond</div>
-                        <div class="twirl-card-title">25 Countries. Next: The World.</div>
-                        <div class="twirl-card-desc">Peanutji now exports to 25+ countries across Europe, Middle East,
-                            Southeast Asia & North America. 5 Indian cities. The mission: pure, honest food for every
-                            kitchen on earth.</div>
-                        <div class="twirl-highlight">🚀 Still Growing</div>
-                    </div>
+                <div class="rm-card">
+                    <div class="rm-card-tag">World-Class Facility</div>
+                    <div class="rm-card-title">HEPA-Filtered Factory Opens</div>
+                    <div class="rm-card-desc">New 40,000 sq ft EU-standard facility launches with positive-pressure HEPA
+                        filtration and zero human contact during production.</div>
+                    <div class="rm-card-pill">🔬 6 Certifications Total</div>
                 </div>
             </div>
-        </div>
+
+            <!-- 2024 -->
+            <div class="rm-row reveal" data-side="left">
+                <div class="rm-card">
+                    <div class="rm-card-tag">India's First</div>
+                    <div class="rm-card-title">Vedic High Oleic Oil Launched</div>
+                    <div class="rm-card-desc">Peanutji Vedic — India's first 77%+ MUFA groundnut oil — launches to
+                        national acclaim and media coverage across the country.</div>
+                    <div class="rm-card-pill">✨ Historic Innovation</div>
+                </div>
+                <div class="rm-node-col">
+                    <div class="rm-node">✨</div>
+                    <div class="rm-year">2024</div>
+                </div>
+                <div class="rm-empty"></div>
+            </div>
+
+            <!-- 2026 -->
+            <div class="rm-row reveal" data-side="right">
+                <div class="rm-empty"></div>
+                <div class="rm-node-col">
+                    <div class="rm-node">🌍</div>
+                    <div class="rm-year">2026</div>
+                </div>
+                <div class="rm-card">
+                    <div class="rm-card-tag">Today & Beyond</div>
+                    <div class="rm-card-title">25 Countries. Next: The World.</div>
+                    <div class="rm-card-desc">Peanutji now exports to 25+ countries across Europe, Middle East,
+                        Southeast Asia & North America. 5 Indian cities. The mission: pure, honest food for every
+                        kitchen on earth.</div>
+                    <div class="rm-card-pill">🚀 Still Growing</div>
+                </div>
+            </div>
+
+        </div><!-- /.rm-timeline -->
+    </div><!-- /.rm-wrap -->
+
     </section>
 
     <!-- IMPACT -->
@@ -3620,23 +3737,9 @@
                 rowRect.top - wrapRect.top + nodeEl.offsetTop + nodeEl.offsetHeight / 2
             )
         })
-        const cx = 110,
-            amp = 55
-        let pathD = ''
-        const sides = rows.map(r => r.dataset.side)
-        nodeYs.forEach((y, i) => {
-            if (i === 0) {
-                pathD += `M ${cx} 0 L ${cx} ${y}`
-            } else {
-                const prevY = nodeYs[i - 1]
-                const midY = (prevY + y) / 2
-                const swingX = sides[i] === 'right' ? cx + amp : cx - amp
-                pathD += ` C ${swingX} ${prevY + 40}, ${swingX} ${midY}, ${cx} ${midY}`
-                pathD += ` C ${cx - (swingX - cx)} ${midY}, ${cx - (swingX - cx)} ${y - 40
-                    }, ${cx} ${y}`
-            }
-        })
-        pathD += ` L ${cx} ${totalH}`
+        const cx = 110
+        /* Straight vertical line through all nodes */
+        let pathD = `M ${cx} 0 L ${cx} ${totalH}`
         svg.innerHTML = ''
         const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs')
         defs.innerHTML = `
@@ -3853,21 +3956,18 @@
                 if (!ctx) return
                 ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-                /* Draw soft path lines between consecutive steps */
+                /* Draw straight path lines between consecutive steps */
                 if (pathPoints.length > 1) {
                     ctx.beginPath()
                     pathPoints.forEach((p, i) => {
                         if (i === 0) ctx.moveTo(p.x, p.y)
-                        else {
-                            const prev = pathPoints[i - 1]
-                            const mx = (prev.x + p.x) / 2,
-                                my = (prev.y + p.y) / 2
-                            ctx.quadraticCurveTo(prev.x, prev.y, mx, my)
-                        }
+                        else ctx.lineTo(p.x, p.y)
                     })
-                    ctx.strokeStyle = 'rgba(27,46,107,0.06)'
+                    ctx.strokeStyle = 'rgba(27,46,107,0.12)'
                     ctx.lineWidth = 2
+                    ctx.setLineDash([6, 4])
                     ctx.stroke()
+                    ctx.setLineDash([])
                 }
 
                 /* Update + draw particles */
@@ -3879,14 +3979,10 @@
                     const target = pathPoints[p.targetIdx]
                     const prev = pathPoints[p.targetIdx - 1] || pathPoints[0]
                     p.progress = Math.min(1, p.progress + p.speed)
-                    /* Bezier interpolation */
+                    /* Straight line interpolation */
                     const t = p.progress
-                    const midX = (prev.x + target.x) / 2,
-                        midY = (prev.y + target.y) / 2
-                    p.x =
-                        prev.x * (1 - t) * (1 - t) + midX * 2 * (1 - t) * t + target.x * t * t
-                    p.y =
-                        prev.y * (1 - t) * (1 - t) + midY * 2 * (1 - t) * t + target.y * t * t
+                    p.x = prev.x + (target.x - prev.x) * t
+                    p.y = prev.y + (target.y - prev.y) * t
                     if (p.progress >= 1) {
                         p.targetIdx++
                         p.progress = 0
