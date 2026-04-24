@@ -2908,392 +2908,7 @@
             }
         }
 
-        /* ══ CAREERS SECTION ══ */
-        .careers-section {
-            max-width: 1260px;
-            margin: 0 auto;
-            padding: 0 60px 80px
-        }
-
-        .careers-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 36px;
-            gap: 32px;
-            flex-wrap: wrap
-        }
-
-        .careers-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: .64rem;
-            letter-spacing: 3.5px;
-            text-transform: uppercase;
-            color: var(--red);
-            font-weight: 700;
-            margin-bottom: 12px
-        }
-
-        .hiring-pulse {
-            width: 9px;
-            height: 9px;
-            background: var(--red-bright);
-            border-radius: 50%;
-            flex-shrink: 0;
-            animation: pulseDot 1.2s ease-in-out infinite
-        }
-
-        .hiring-badge {
-            background: linear-gradient(135deg, var(--red), var(--red-mid));
-            color: white;
-            font-size: .52rem;
-            letter-spacing: 2px;
-            padding: 3px 10px;
-            border-radius: 100px;
-            animation: hiringFlash 1.8s ease-in-out infinite;
-            font-weight: 700
-        }
-
-        .careers-title {
-            font-family: 'Playfair Display';
-            font-size: clamp(2rem, 3.5vw, 2.8rem);
-            font-weight: 900;
-            color: var(--navy);
-            line-height: 1.05;
-            margin-bottom: 10px
-        }
-
-        .careers-title em {
-            font-style: italic;
-            color: var(--red-mid)
-        }
-
-        .careers-sub {
-            font-size: .84rem;
-            color: var(--navy-light);
-            line-height: 1.75;
-            max-width: 520px
-        }
-
-        .careers-stats {
-            display: flex;
-            align-items: center;
-            gap: 0;
-            background: white;
-            border: 1.5px solid rgba(27, 46, 107, .1);
-            border-radius: 16px;
-            padding: 22px 28px;
-            flex-shrink: 0;
-            box-shadow: 0 4px 20px rgba(13, 26, 58, .06);
-            align-self: center
-        }
-
-        .cs-stat {
-            text-align: center;
-            padding: 0 22px
-        }
-
-        .cs-num {
-            font-family: 'Bebas Neue';
-            font-size: 2rem;
-            letter-spacing: 2px;
-            color: var(--navy);
-            line-height: 1
-        }
-
-        .cs-lbl {
-            font-size: .6rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--navy-light);
-            margin-top: 3px
-        }
-
-        .cs-div {
-            width: 1px;
-            height: 36px;
-            background: rgba(27, 46, 107, .12)
-        }
-
-        /* ══ JOB CARDS ══ */
-        .job-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-            margin-bottom: 22px
-        }
-
-        .job-card {
-            background: white;
-            border: 1.5px solid rgba(27, 46, 107, .1);
-            border-radius: 18px;
-            padding: 26px 24px;
-            cursor: pointer;
-            transition: all .35s;
-            position: relative;
-            overflow: hidden
-        }
-
-        .job-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--navy), var(--red));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform .4s ease
-        }
-
-        .job-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 22px 56px rgba(13, 26, 58, .1), 0 0 0 2px rgba(27, 46, 107, .12)
-        }
-
-        .job-card:hover::before {
-            transform: scaleX(1)
-        }
-
-        .job-card.featured {
-            border-color: rgba(200, 150, 12, .3);
-            background: linear-gradient(160deg, white 70%, rgba(200, 150, 12, .04))
-        }
-
-        .job-card.featured::before {
-            background: linear-gradient(90deg, var(--gold), var(--red-mid))
-        }
-
-        .jc-featured-ribbon {
-            position: absolute;
-            top: 16px;
-            right: -22px;
-            background: linear-gradient(135deg, var(--gold), var(--red-mid));
-            color: white;
-            font-size: .5rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 5px 32px;
-            transform: rotate(42deg);
-            box-shadow: 0 2px 10px rgba(200, 150, 12, .4)
-        }
-
-        .jc-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px
-        }
-
-        .jc-dept {
-            font-size: .56rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--navy-light);
-            font-weight: 600
-        }
-
-        .jc-hot {
-            font-size: .62rem;
-            font-weight: 700;
-            letter-spacing: .5px;
-            color: var(--red-bright)
-        }
-
-        .jc-new {
-            font-size: .62rem;
-            font-weight: 700;
-            color: var(--green)
-        }
-
-        .jc-role {
-            font-family: 'Playfair Display';
-            font-size: 1.22rem;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 6px;
-            line-height: 1.15
-        }
-
-        .jc-loc {
-            font-size: .73rem;
-            color: var(--navy-light);
-            margin-bottom: 12px
-        }
-
-        .jc-type-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 12px
-        }
-
-        .jc-badge {
-            font-size: .58rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 4px 10px;
-            border-radius: 100px;
-            font-family: 'DM Sans'
-        }
-
-        .jc-badge.full {
-            background: rgba(27, 46, 107, .08);
-            color: var(--navy-mid)
-        }
-
-        .jc-badge.onsite {
-            background: rgba(139, 26, 26, .07);
-            color: var(--red)
-        }
-
-        .jc-badge.remote {
-            background: rgba(46, 125, 50, .08);
-            color: var(--green)
-        }
-
-        .jc-badge.exp {
-            background: rgba(200, 150, 12, .1);
-            color: #8B6500
-        }
-
-        .jc-desc {
-            font-size: .76rem;
-            color: var(--navy-light);
-            line-height: 1.7;
-            margin-bottom: 14px
-        }
-
-        .jc-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-bottom: 18px
-        }
-
-        .jc-skills span {
-            background: rgba(27, 46, 107, .05);
-            border: 1px solid rgba(27, 46, 107, .1);
-            color: var(--navy-light);
-            font-size: .6rem;
-            padding: 3px 9px;
-            border-radius: 6px;
-            font-family: 'DM Sans';
-            font-weight: 500
-        }
-
-        .jc-apply-btn {
-            width: 100%;
-            padding: 11px;
-            background: linear-gradient(135deg, var(--navy), var(--red));
-            color: white;
-            border: none;
-            border-radius: 9px;
-            font-family: 'DM Sans';
-            font-size: .68rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all .3s;
-            box-shadow: 0 4px 14px rgba(27, 46, 107, .22)
-        }
-
-        .jc-apply-btn:hover {
-            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
-            transform: translateY(-1px);
-            box-shadow: 0 8px 20px rgba(27, 46, 107, .3)
-        }
-
-        .job-card.featured .jc-apply-btn {
-            background: linear-gradient(135deg, var(--gold), var(--red-mid))
-        }
-
-        .job-card.featured .jc-apply-btn:hover {
-            background: linear-gradient(135deg, var(--gold-light), var(--gold));
-            color: var(--navy-deep)
-        }
-
-        .careers-general-cta {
-            text-align: center;
-            padding: 16px;
-            border: 1.5px dashed rgba(27, 46, 107, .18);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            background: rgba(27, 46, 107, .02)
-        }
-
-        .careers-general-cta span {
-            font-size: .8rem;
-            color: var(--navy-light)
-        }
-
-        .careers-general-cta button {
-            background: none;
-            border: none;
-            color: var(--red-mid);
-            font-family: 'DM Sans';
-            font-size: .8rem;
-            font-weight: 700;
-            cursor: pointer;
-            letter-spacing: .5px;
-            transition: color .25s;
-            text-decoration: underline;
-            text-underline-offset: 3px
-        }
-
-        .careers-general-cta button:hover {
-            color: var(--red)
-        }
-
-        /* ══ APPLY MODAL OVERLAY ══ */
-        .apply-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 8000;
-            background: rgba(13, 26, 58, .55);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity .35s ease, visibility .35s
-        }
-
-        .apply-overlay.open {
-            opacity: 1;
-            visibility: visible
-        }
-
-        .apply-modal {
-            background: white;
-            border-radius: 22px;
-            width: 100%;
-            max-width: 620px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 32px 80px rgba(13, 26, 58, .22);
-            transform: translateY(28px) scale(.97);
-            transition: transform .4s cubic-bezier(.34, 1.56, .64, 1);
-            scrollbar-width: thin;
-            scrollbar-color: rgba(27, 46, 107, .2) transparent
-        }
-
-        .apply-overlay.open .apply-modal {
-            transform: translateY(0) scale(1)
-        }
-
+        
         /* Modal header */
         .am-header {
             background: linear-gradient(135deg, var(--navy-deep), var(--navy));
@@ -3631,50 +3246,7 @@
             background: rgba(27, 46, 107, .05)
         }
 
-        /* ══ RESPONSIVE ══ */
-        @media(max-width:1100px) {
-            .careers-section {
-                padding-left: 36px;
-                padding-right: 36px
-            }
-
-            .job-cards-grid {
-                grid-template-columns: repeat(2, 1fr)
-            }
-        }
-
-        @media(max-width:768px) {
-            .careers-section {
-                padding-left: 20px;
-                padding-right: 20px
-            }
-
-            .job-cards-grid {
-                grid-template-columns: 1fr
-            }
-
-            .careers-header {
-                flex-direction: column
-            }
-
-            .careers-stats {
-                width: 100%;
-                justify-content: center
-            }
-
-            .am-form-grid {
-                grid-template-columns: 1fr
-            }
-
-            .am-form {
-                padding: 22px 20px 24px
-            }
-
-            .careers-general-cta {
-                flex-direction: column;
-                gap: 8px
-            }
-        }
+       
     </style>
 </head>
 
@@ -3733,9 +3305,9 @@
             </li>
             <li><a href="aboutus.html">About Us</a></li>
             <li><a href="blogs.html">Blogs</a></li>
-            <li><a href="contactus.html">Contact Us</a></li>
             <li><a href="career_page.html">Careers</a></li>
             <li><a href="export_products.html">Export</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
             <!-- <li><a href="recipes.html">Recipes</a></li> -->
             <!-- <li><a href="checkout.html">Checkout</a></li> -->
         </ul>
@@ -4099,8 +3671,8 @@
     <!-- ═══════════════════════════════════════════════════════
      GPS OUTLET FINDER
   ═══════════════════════════════════════════════════════ -->
-    <div class="gps-section reveal" id="gpsSection">
-        <div class="gps-header">
+    <!-- <div class="gps-section reveal" id="gpsSection"> -->
+        <!-- <div class="gps-header">
             <div>
                 <div class="gps-eyebrow">📡 Smart Store Locator</div>
                 <div class="gps-title">Find Your Nearest <em>Peanutji Outlet</em></div>
@@ -4112,12 +3684,12 @@
                     <span id="gpsBtnLabel">Detect My Location</span>
                 </button>
             </div>
-        </div>
+        </div> -->
 
         <!-- RADAR + SORTED NEAREST -->
-        <div class="radar-wrap" id="radarWrap">
+        <!-- <div class="radar-wrap" id="radarWrap"> -->
             <!-- Radar SVG -->
-            <div class="radar-canvas-area">
+            <!-- <div class="radar-canvas-area">
                 <div class="radar-label-row">
                     <div class="radar-label">Proximity Radar</div>
                 </div>
@@ -4164,37 +3736,37 @@
                         }
                     }
                 </style>
-            </div>
+            </div> -->
 
             <!-- Nearest outlet big card + sorted list -->
-            <div class="radar-info-col">
+            <!-- <div class="radar-info-col">
                 <div class="nearest-label">🏆 Nearest Outlet</div>
                 <div class="nearest-card" id="nearestCard">
                     <!-- Verified badge -->
-                    <div class="nc-verified">✔ Peanutji Authorized Seller</div>
-                    <div class="nc-city" id="ncCity">—</div>
+                    <!-- <div class="nc-verified">✔ Peanutji Authorized Seller</div>
+                    <div class="nc-city" id="ncCity">—</div> -->
                     <!-- Store name — NEW -->
-                    <div class="nc-store-name" id="ncStoreName">—</div>
+                    <!-- <div class="nc-store-name" id="ncStoreName">—</div>
                     <div class="nc-dist" id="ncDist">Calculating…</div>
-                    <div class="nc-addr" id="ncAddr">—</div>
+                    <div class="nc-addr" id="ncAddr">—</div> -->
                     <!-- Store note hint — NEW -->
-                    <div class="nc-note" id="ncNote">—</div>
+                    <!-- <div class="nc-note" id="ncNote">—</div> -->
                     <!-- Products available — NEW -->
-                    <div class="nc-products-label">Products available here</div>
+                    <!-- <div class="nc-products-label">Products available here</div>
                     <div class="nc-product-tags" id="ncProductTags"></div>
                     <div class="nc-phone" id="ncPhone">—</div>
                     <div class="nc-actions">
                         <button class="nc-btn-dir" id="ncDirBtn">Get Directions →</button>
                         <button class="nc-btn-call" id="ncCallBtn">📞 Call Now</button>
-                    </div>
-                </div>
+                    </div> -->
+                <!-- </div>
                 <div class="sorted-label">All outlets by distance</div>
-                <div class="all-outlets-sorted" id="sortedOutlets"></div>
-            </div>
-        </div>
+                <div class="all-outlets-sorted" id="sortedOutlets"></div> -->
+            <!-- </div>  -->
+        <!-- </div> -->
 
         <!-- SEARCH + FILTER -->
-        <div class="outlet-search-row">
+        <!-- <div class="outlet-search-row">
             <input class="outlet-search" type="text"
                 placeholder="🔍  Search city or store name — Rajkot, Mumbai, CG Road…" id="outletSearchInput"
                 oninput="filterOutlets(this.value)">
@@ -4203,218 +3775,22 @@
                 <button class="ofc" data-filter="factory" onclick="filterChip(this)">Factory</button>
                 <button class="ofc" data-filter="retail" onclick="filterChip(this)">Retail</button>
             </div>
-        </div>
+        </div> -->
 
         <!-- OUTLET CARDS GRID -->
-        <div class="outlet-cards-grid" id="outletCardsGrid">
+        <!-- <div class="outlet-cards-grid" id="outletCardsGrid">
             <div class="no-results" id="noResults">
                 <span class="no-results-icon">🔍</span>
                 <div class="no-results-text">No outlets found</div>
                 <div class="no-results-sub">Try a different city or store name</div>
             </div>
-        </div>
+        </div> -->
     </div>
-    <div class="careers-section reveal" id="careersSection">
-
-        <!-- Header -->
-        <div class="careers-header">
-            <div>
-                <div class="careers-eyebrow">
-                    <span class="hiring-pulse"></span>
-                    We're Hiring
-                    <span class="hiring-badge">OPEN POSITIONS</span>
-                </div>
-                <div class="careers-title">Grow With <em>Peanutji</em></div>
-                <div class="careers-sub">Join the team behind India's most loved groundnut brand. We're building
-                    something
-                    special — and we want passionate people by our side.</div>
-            </div>
-            <div class="careers-stats">
-                <div class="cs-stat">
-                    <div class="cs-num">12+</div>
-                    <div class="cs-lbl">Team Members</div>
-                </div>
-                <div class="cs-div"></div>
-                <div class="cs-stat">
-                    <div class="cs-num">5</div>
-                    <div class="cs-lbl">Cities</div>
-                </div>
-                <div class="cs-div"></div>
-                <div class="cs-stat">
-                    <div class="cs-num">3</div>
-                    <div class="cs-lbl">Open Roles</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Job Cards -->
-        <div class="job-cards-grid" id="jobCardsGrid">
-
-            <div class="job-card" onclick="openApply('Sales Executive — Gujarat Region','Sales','Rajkot / Ahmedabad')">
-                <div class="jc-top">
-                    <div class="jc-dept">Sales</div>
-                    <div class="jc-hot">🔥 Urgent</div>
-                </div>
-                <div class="jc-role">Sales Executive</div>
-                <div class="jc-loc">📍 Gujarat Region — Rajkot / Ahmedabad</div>
-                <div class="jc-type-row">
-                    <span class="jc-badge full">Full-time</span>
-                    <span class="jc-badge onsite">On-site</span>
-                    <span class="jc-badge exp">1–3 yrs exp</span>
-                </div>
-                <div class="jc-desc">Drive B2B and retail sales for our groundnut oil and peanut product portfolio
-                    across Gujarat.
-                    Strong communication and field sales experience preferred.</div>
-                <div class="jc-skills">
-                    <span>B2B Sales</span><span>FMCG</span><span>Distribution</span><span>Gujarati fluency</span>
-                </div>
-                <button class="jc-apply-btn">Apply Now →</button>
-            </div>
-
-            <div class="job-card featured"
-                onclick="openApply('Digital Marketing Manager','Marketing','Remote / Rajkot')">
-                <div class="jc-featured-ribbon">Featured</div>
-                <div class="jc-top">
-                    <div class="jc-dept">Marketing</div>
-                    <div class="jc-hot">⭐ Featured</div>
-                </div>
-                <div class="jc-role">Digital Marketing Manager</div>
-                <div class="jc-loc">📍 Remote / Rajkot</div>
-                <div class="jc-type-row">
-                    <span class="jc-badge full">Full-time</span>
-                    <span class="jc-badge remote">Remote OK</span>
-                    <span class="jc-badge exp">2–5 yrs exp</span>
-                </div>
-                <div class="jc-desc">Own our digital presence across Instagram, YouTube, Amazon & D2C. Build campaigns
-                    that
-                    celebrate India's love for peanuts. Creative thinkers with data instincts welcome.</div>
-                <div class="jc-skills">
-                    <span>Meta Ads</span><span>SEO</span><span>Content Strategy</span><span>Amazon Seller</span>
-                </div>
-                <button class="jc-apply-btn">Apply Now →</button>
-            </div>
-
-            <div class="job-card" onclick="openApply('Production Supervisor','Operations','Rajkot Factory')">
-                <div class="jc-top">
-                    <div class="jc-dept">Operations</div>
-                    <div class="jc-new">New</div>
-                </div>
-                <div class="jc-role">Production Supervisor</div>
-                <div class="jc-loc">📍 Rajkot Factory (GIDC)</div>
-                <div class="jc-type-row">
-                    <span class="jc-badge full">Full-time</span>
-                    <span class="jc-badge onsite">On-site</span>
-                    <span class="jc-badge exp">3–6 yrs exp</span>
-                </div>
-                <div class="jc-desc">Oversee daily oil extraction and packaging operations at our GIDC plant. Ensure
-                    quality,
-                    safety, and production targets are consistently met.</div>
-                <div class="jc-skills">
-                    <span>Food Manufacturing</span><span>QC</span><span>Team Leadership</span><span>FSSAI</span>
-                </div>
-                <button class="jc-apply-btn">Apply Now →</button>
-            </div>
-
-        </div>
-
-        <!-- General application nudge -->
-        <div class="careers-general-cta">
-            <span>Don't see your role?</span>
-            <button onclick="openApply('General Application','Open','Any')">Send a General Application →</button>
-        </div>
-
-    </div>
-
+  
     <!-- ═══════════════════════════════════════════════════════
      APPLY MODAL
 ═══════════════════════════════════════════════════════ -->
-    <div class="apply-overlay" id="applyOverlay" onclick="closeApplyModal(event)">
-        <div class="apply-modal" id="applyModal">
-
-            <!-- Modal header -->
-            <div class="am-header">
-                <div class="am-pretitle" id="amDept">Sales</div>
-                <div class="am-title" id="amRole">Sales Executive</div>
-                <div class="am-loc" id="amLoc">📍 Rajkot / Ahmedabad</div>
-                <button class="am-close" onclick="closeApply()">✕</button>
-            </div>
-
-            <!-- Modal form -->
-            <div class="am-form" id="amForm">
-                <div class="am-form-grid">
-                    <div class="am-fg">
-                        <label class="am-label">Full Name <span class="am-req">*</span></label>
-                        <input class="am-input" id="am-name" placeholder="Priya Sharma" oninput="amValidate()">
-                    </div>
-                    <div class="am-fg">
-                        <label class="am-label">Email Address <span class="am-req">*</span></label>
-                        <input class="am-input" id="am-email" type="email" placeholder="priya@example.com"
-                            oninput="amValidate()">
-                    </div>
-                    <div class="am-fg">
-                        <label class="am-label">Phone Number <span class="am-req">*</span></label>
-                        <input class="am-input" id="am-phone" placeholder="+91 98765 43210" oninput="amValidate()">
-                    </div>
-                    <div class="am-fg">
-                        <label class="am-label">Current City</label>
-                        <input class="am-input" id="am-city" placeholder="Rajkot">
-                    </div>
-                    <div class="am-fg am-full">
-                        <label class="am-label">Years of Experience <span class="am-req">*</span></label>
-                        <select class="am-select" id="am-exp" onchange="amValidate()">
-                            <option value="">Select…</option>
-                            <option>Fresher (0 yrs)</option>
-                            <option>1–2 years</option>
-                            <option>2–5 years</option>
-                            <option>5–10 years</option>
-                            <option>10+ years</option>
-                        </select>
-                    </div>
-                    <div class="am-fg am-full">
-                        <label class="am-label">Why do you want to join Peanutji?</label>
-                        <textarea class="am-textarea" id="am-why"
-                            placeholder="Tell us a little about yourself and why you'd love working with us…"
-                            maxlength="500" oninput="amCharCount(this)"></textarea>
-                        <div class="am-char" id="amChar">0 / 500</div>
-                    </div>
-                    <div class="am-fg am-full">
-                        <label class="am-label">LinkedIn / Portfolio URL</label>
-                        <input class="am-input" id="am-link" placeholder="https://linkedin.com/in/yourname">
-                    </div>
-                </div>
-
-                <!-- Resume upload -->
-                <div class="am-resume-drop" id="amResumeDrop"
-                    ondragover="event.preventDefault();this.classList.add('drag')"
-                    ondragleave="this.classList.remove('drag')" ondrop="amHandleDrop(event)">
-                    <input type="file" id="amFileInput" accept=".pdf,.doc,.docx" onchange="amHandleFile(this.files[0])">
-                    <div class="am-resume-icon">📄</div>
-                    <div class="am-resume-text">
-                        <strong>Upload Resume / CV</strong>
-                        <span>or drag &amp; drop</span>
-                    </div>
-                    <div class="am-resume-sub">PDF · DOC · DOCX — max 5MB</div>
-                    <div class="am-resume-chosen" id="amFileChosen" style="display:none"></div>
-                </div>
-
-                <button class="am-submit" id="amSubmitBtn" onclick="amSubmit()" disabled>
-                    <span class="am-btn-text">Submit Application →</span>
-                    <div class="am-spinner"></div>
-                </button>
-            </div>
-
-            <!-- Success state -->
-            <div class="am-success" id="amSuccess" style="display:none">
-                <div class="am-success-icon">🎉</div>
-                <div class="am-success-title">Application <em>Received!</em></div>
-                <div class="am-success-sub">Thank you for your interest in joining Peanutji. Our HR team will review
-                    your application and reach out within 5–7 business days.</div>
-                <div class="am-success-ref" id="amRef">APP #PJ00000</div>
-                <button class="am-success-close" onclick="closeApply()">Close</button>
-            </div>
-
-        </div>
-    </div>
+   
 
 
     <!-- DISTRIBUTOR STRIP -->
@@ -5507,11 +4883,6 @@
             if (e.key === 'Escape') closeApply()
         })
 
-        // Add cursor hover for career cards
-        document.querySelectorAll('.job-card,.jc-apply-btn').forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('hov'))
-            el.addEventListener('mouseleave', () => document.body.classList.remove('hov'))
-        })
 
     </script>
 </body>
