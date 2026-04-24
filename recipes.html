@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recipes — Peanutji</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --navy: #1B2E6B;
@@ -24,8 +27,16 @@
       --dark: #0D1A3A;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--cream);
@@ -34,401 +45,401 @@
     }
 
     nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 200;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 52px;
-            height: 68px;
-            background: rgba(245, 240, 232, .97);
-            backdrop-filter: blur(18px);
-            border-bottom: 2px solid rgba(27, 46, 107, .12);
-            transition: all .3s
-        }
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 52px;
+      height: 68px;
+      background: rgba(245, 240, 232, .97);
+      backdrop-filter: blur(18px);
+      border-bottom: 2px solid rgba(27, 46, 107, .12);
+      transition: all .3s
+    }
 
-        nav.scrolled {
-            box-shadow: 0 4px 24px rgba(13, 26, 58, .12)
-        }
+    nav.scrolled {
+      box-shadow: 0 4px 24px rgba(13, 26, 58, .12)
+    }
 
-        .nav-logo {
-            font-family: 'Bebas Neue';
-            font-size: 1.9rem;
-            letter-spacing: 5px;
-            color: var(--navy);
-            text-decoration: none;
-            transition: letter-spacing .3s;
-            flex-shrink: 0
-        }
+    .nav-logo {
+      font-family: 'Bebas Neue';
+      font-size: 1.9rem;
+      letter-spacing: 5px;
+      color: var(--navy);
+      text-decoration: none;
+      transition: letter-spacing .3s;
+      flex-shrink: 0
+    }
 
-        .nav-logo:hover {
-            letter-spacing: 6px
-        }
+    .nav-logo:hover {
+      letter-spacing: 6px
+    }
 
-        .nav-logo span {
-            color: var(--red-mid)
-        }
+    .nav-logo span {
+      color: var(--red-mid)
+    }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            list-style: none;
-            margin: 0 auto;
-            padding: 0 20px
-        }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+      margin: 0 auto;
+      padding: 0 20px
+    }
 
-        .nav-links>li {
-            position: relative
-        }
+    .nav-links>li {
+      position: relative
+    }
 
-        .nav-links>li>a,
-        .nav-dropdown-toggle {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: .78rem;
-            font-weight: 600;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            color: var(--navy-light);
-            text-decoration: none;
-            padding: 8px 13px;
-            border-radius: 6px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            font-family: 'DM Sans';
-            position: relative;
-            white-space: nowrap;
-            transition: color .25s, background .25s
-        }
+    .nav-links>li>a,
+    .nav-dropdown-toggle {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--navy-light);
+      text-decoration: none;
+      padding: 8px 13px;
+      border-radius: 6px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'DM Sans';
+      position: relative;
+      white-space: nowrap;
+      transition: color .25s, background .25s
+    }
 
-        .nav-links>li>a:hover,
-        .nav-dropdown-toggle:hover {
-            color: var(--navy);
-            background: rgba(27, 46, 107, .07)
-        }
+    .nav-links>li>a:hover,
+    .nav-dropdown-toggle:hover {
+      color: var(--navy);
+      background: rgba(27, 46, 107, .07)
+    }
 
-        .nav-links>li>a::after {
-            content: '';
-            position: absolute;
-            bottom: 4px;
-            left: 13px;
-            right: 13px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--navy), var(--gold));
-            transform: scaleX(0);
-            transform-origin: center;
-            transition: transform .3s
-        }
+    .nav-links>li>a::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 13px;
+      right: 13px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--navy), var(--gold));
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform .3s
+    }
 
-        .nav-links>li>a:hover::after {
-            transform: scaleX(1)
-        }
+    .nav-links>li>a:hover::after {
+      transform: scaleX(1)
+    }
 
-        .nav-dropdown-toggle .chevron {
-            font-size: .6rem;
-            transition: transform .3s;
-            color: var(--red);
-            margin-top: 1px
-        }
+    .nav-dropdown-toggle .chevron {
+      font-size: .6rem;
+      transition: transform .3s;
+      color: var(--red);
+      margin-top: 1px
+    }
 
-        .nav-links>li.open .chevron {
-            transform: rotate(180deg)
-        }
+    .nav-links>li.open .chevron {
+      transform: rotate(180deg)
+    }
 
-        .nav-dropdown {
-            position: absolute;
-            top: calc(100% + 10px);
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            border: 1px solid rgba(27, 46, 107, .12);
-            border-radius: 16px;
-            padding: 8px;
-            min-width: 220px;
-            box-shadow: 0 20px 50px rgba(13, 26, 58, .14), 0 4px 12px rgba(13, 26, 58, .06);
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transform: translateX(-50%) translateY(-8px);
-            transition: opacity .25s ease, transform .25s ease, visibility .25s;
-            z-index: 300
-        }
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border: 1px solid rgba(27, 46, 107, .12);
+      border-radius: 16px;
+      padding: 8px;
+      min-width: 220px;
+      box-shadow: 0 20px 50px rgba(13, 26, 58, .14), 0 4px 12px rgba(13, 26, 58, .06);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(-8px);
+      transition: opacity .25s ease, transform .25s ease, visibility .25s;
+      z-index: 300
+    }
 
-        .nav-dropdown::before {
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: 50%;
-            width: 12px;
-            height: 12px;
-            background: white;
-            border-left: 1px solid rgba(27, 46, 107, .12);
-            border-top: 1px solid rgba(27, 46, 107, .12);
-            transform: translateX(-50%) rotate(45deg)
-        }
+    .nav-dropdown::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-left: 1px solid rgba(27, 46, 107, .12);
+      border-top: 1px solid rgba(27, 46, 107, .12);
+      transform: translateX(-50%) rotate(45deg)
+    }
 
-        .nav-links>li.open .nav-dropdown,
-        .nav-links>li:focus-within .nav-dropdown {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: all;
-            transform: translateX(-50%) translateY(0)
-        }
+    .nav-links>li.open .nav-dropdown,
+    .nav-links>li:focus-within .nav-dropdown {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+      transform: translateX(-50%) translateY(0)
+    }
 
-        .nav-dropdown a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 11px 14px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: .82rem;
-            font-weight: 500;
-            color: var(--navy-light);
-            transition: all .2s;
-            white-space: nowrap
-        }
+    .nav-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--navy-light);
+      transition: all .2s;
+      white-space: nowrap
+    }
 
-        .nav-dropdown a:hover {
-            background: linear-gradient(90deg, rgba(27, 46, 107, .07), rgba(27, 46, 107, .02));
-            color: var(--navy);
-            transform: translateX(3px)
-        }
+    .nav-dropdown a:hover {
+      background: linear-gradient(90deg, rgba(27, 46, 107, .07), rgba(27, 46, 107, .02));
+      color: var(--navy);
+      transform: translateX(3px)
+    }
 
-        .nav-dropdown a .dd-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 9px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            transition: transform .2s
-        }
+    .nav-dropdown a .dd-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      transition: transform .2s
+    }
 
-        .nav-dropdown a:hover .dd-icon {
-            transform: scale(1.1)
-        }
+    .nav-dropdown a:hover .dd-icon {
+      transform: scale(1.1)
+    }
 
-        .nav-dropdown a .dd-icon.oil-icon {
-            background: linear-gradient(135deg, #EDE5D5, rgba(200, 150, 12, .25))
-        }
+    .nav-dropdown a .dd-icon.oil-icon {
+      background: linear-gradient(135deg, #EDE5D5, rgba(200, 150, 12, .25))
+    }
 
-        .nav-dropdown a .dd-icon.butter-icon {
-            background: linear-gradient(135deg, #E0D5C5, rgba(139, 26, 26, .15))
-        }
+    .nav-dropdown a .dd-icon.butter-icon {
+      background: linear-gradient(135deg, #E0D5C5, rgba(139, 26, 26, .15))
+    }
 
-        .nav-dropdown a .dd-icon.peanut-icon {
-            background: linear-gradient(135deg, #DDE5F5, rgba(27, 46, 107, .12))
-        }
+    .nav-dropdown a .dd-icon.peanut-icon {
+      background: linear-gradient(135deg, #DDE5F5, rgba(27, 46, 107, .12))
+    }
 
-        .nav-dropdown a .dd-name {
-            font-weight: 600;
-            color: var(--navy);
-            font-size: .82rem;
-            line-height: 1.2
-        }
+    .nav-dropdown a .dd-name {
+      font-weight: 600;
+      color: var(--navy);
+      font-size: .82rem;
+      line-height: 1.2
+    }
 
-        .nav-dropdown a .dd-sub {
-            font-size: .68rem;
-            color: var(--navy-light);
-            margin-top: 1px
-        }
+    .nav-dropdown a .dd-sub {
+      font-size: .68rem;
+      color: var(--navy-light);
+      margin-top: 1px
+    }
 
-        .dd-divider {
-            height: 1px;
-            background: rgba(27, 46, 107, .1);
-            margin: 6px 8px
-        }
+    .dd-divider {
+      height: 1px;
+      background: rgba(27, 46, 107, .1);
+      margin: 6px 8px
+    }
 
-        .nav-dropdown a.dd-vedic {
-            background: linear-gradient(90deg, rgba(200, 150, 12, .1), rgba(27, 46, 107, .05));
-            border: 1px solid rgba(200, 150, 12, .2)
-        }
+    .nav-dropdown a.dd-vedic {
+      background: linear-gradient(90deg, rgba(200, 150, 12, .1), rgba(27, 46, 107, .05));
+      border: 1px solid rgba(200, 150, 12, .2)
+    }
 
-        .nav-dropdown a.dd-vedic .dd-name {
-            color: var(--red)
-        }
+    .nav-dropdown a.dd-vedic .dd-name {
+      color: var(--red)
+    }
 
-        .nav-dropdown a.dd-vedic:hover {
-            background: linear-gradient(90deg, rgba(200, 150, 12, .2), rgba(27, 46, 107, .1));
-            transform: translateX(3px)
-        }
+    .nav-dropdown a.dd-vedic:hover {
+      background: linear-gradient(90deg, rgba(200, 150, 12, .2), rgba(27, 46, 107, .1));
+      transform: translateX(3px)
+    }
 
-        .nav-cta-wrap {
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            gap: 10px
-        }
+    .nav-cta-wrap {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
 
-        .nav-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            background: linear-gradient(135deg, var(--navy), var(--red));
-            color: white;
-            padding: 10px 22px;
-            border-radius: 6px;
-            font-family: 'DM Sans';
-            font-size: .74rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: all .3s;
-            white-space: nowrap;
-            box-shadow: 0 4px 14px rgba(27, 46, 107, .3)
-        }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: linear-gradient(135deg, var(--navy), var(--red));
+      color: white;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-family: 'DM Sans';
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all .3s;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(27, 46, 107, .3)
+    }
 
-        .nav-cta:hover {
-            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
-            transform: translateY(-1px);
-            box-shadow: 0 8px 22px rgba(27, 46, 107, .4)
-        }
+    .nav-cta:hover {
+      background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(27, 46, 107, .4)
+    }
 
-        .nav-city-badge {
-            display: none;
-            align-items: center;
-            gap: 6px;
-            background: rgba(27, 46, 107, .08);
-            border: 1px solid rgba(27, 46, 107, .2);
-            border-radius: 100px;
-            padding: 5px 12px;
-            font-size: .65rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--navy-light);
-            cursor: pointer;
-            transition: all .3s;
-            white-space: nowrap
-        }
+    .nav-city-badge {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      background: rgba(27, 46, 107, .08);
+      border: 1px solid rgba(27, 46, 107, .2);
+      border-radius: 100px;
+      padding: 5px 12px;
+      font-size: .65rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--navy-light);
+      cursor: pointer;
+      transition: all .3s;
+      white-space: nowrap
+    }
 
-        .nav-city-badge.vis {
-            display: flex
-        }
+    .nav-city-badge.vis {
+      display: flex
+    }
 
-        .nav-city-badge:hover {
-            background: rgba(27, 46, 107, .15);
-            color: var(--navy)
-        }
+    .nav-city-badge:hover {
+      background: rgba(27, 46, 107, .15);
+      color: var(--navy)
+    }
 
-        .nav-city-badge .ncb-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--red-mid);
-            border-radius: 50%
-        }
+    .nav-city-badge .ncb-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--red-mid);
+      border-radius: 50%
+    }
 
-        .nav-mobile-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 6px
-        }
+    .nav-mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px
+    }
 
-        .nav-mobile-toggle span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: var(--navy);
-            border-radius: 2px;
-            transition: all .3s
-        }
+    .nav-mobile-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: all .3s
+    }
 
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 68px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(245, 240, 232, .98);
-            backdrop-filter: blur(20px);
-            z-index: 150;
-            overflow-y: auto;
-            padding: 24px 24px 40px;
-            flex-direction: column;
-            gap: 6px;
-            transform: translateX(-100%);
-            transition: transform .35s cubic-bezier(.4, 0, .2, 1)
-        }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(245, 240, 232, .98);
+      backdrop-filter: blur(20px);
+      z-index: 150;
+      overflow-y: auto;
+      padding: 24px 24px 40px;
+      flex-direction: column;
+      gap: 6px;
+      transform: translateX(-100%);
+      transition: transform .35s cubic-bezier(.4, 0, .2, 1)
+    }
 
-        .mobile-menu.open {
-            transform: translateX(0)
-        }
+    .mobile-menu.open {
+      transform: translateX(0)
+    }
 
-        .mm-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 16px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-size: .9rem;
-            font-weight: 600;
-            color: var(--navy-light);
-            transition: all .2s
-        }
+    .mm-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--navy-light);
+      transition: all .2s
+    }
 
-        .mm-link:hover {
-            background: rgba(27, 46, 107, .07);
-            color: var(--navy)
-        }
+    .mm-link:hover {
+      background: rgba(27, 46, 107, .07);
+      color: var(--navy)
+    }
 
-        .mm-link .mm-icon {
-            font-size: 1.3rem;
-            width: 32px;
-            text-align: center
-        }
+    .mm-link .mm-icon {
+      font-size: 1.3rem;
+      width: 32px;
+      text-align: center
+    }
 
-        .mm-section-label {
-            font-size: .6rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--red);
-            padding: 16px 16px 6px;
-            font-weight: 600
-        }
+    .mm-section-label {
+      font-size: .6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--red);
+      padding: 16px 16px 6px;
+      font-weight: 600
+    }
 
-        .mm-divider {
-            height: 1px;
-            background: rgba(27, 46, 107, .12);
-            margin: 8px 0
-        }
+    .mm-divider {
+      height: 1px;
+      background: rgba(27, 46, 107, .12);
+      margin: 8px 0
+    }
 
-        .mm-cta {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: linear-gradient(135deg, var(--navy), var(--red));
-            color: white;
-            padding: 15px;
-            border-radius: 12px;
-            margin-top: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: .82rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            transition: all .3s;
-            box-shadow: 0 6px 18px rgba(27, 46, 107, .3)
-        }
+    .mm-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--navy), var(--red));
+      color: white;
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .82rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: all .3s;
+      box-shadow: 0 6px 18px rgba(27, 46, 107, .3)
+    }
 
-        .mm-cta:hover {
-            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
-            color: white
-        }
+    .mm-cta:hover {
+      background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+      color: white
+    }
 
     /* ══ HERO ══ */
     .hero {
@@ -440,15 +451,17 @@
       align-items: flex-end;
       padding: 140px 80px 70px;
     }
+
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 80% 20%, rgba(200,150,12,.22), transparent 55%),
-        radial-gradient(ellipse at 10% 80%, rgba(139,26,26,.18), transparent 50%);
+        radial-gradient(ellipse at 80% 20%, rgba(200, 150, 12, .22), transparent 55%),
+        radial-gradient(ellipse at 10% 80%, rgba(139, 26, 26, .18), transparent 50%);
       pointer-events: none;
     }
+
     .hero-grain {
       position: absolute;
       inset: 0;
@@ -456,6 +469,7 @@
       pointer-events: none;
       opacity: .5;
     }
+
     .hero-deco {
       position: absolute;
       right: -60px;
@@ -467,11 +481,25 @@
       line-height: 1;
       animation: float 8s ease-in-out infinite;
     }
+
     @keyframes float {
-      0%,100% { transform: translateY(-50%) rotate(-5deg); }
-      50% { transform: translateY(-53%) rotate(2deg); }
+
+      0%,
+      100% {
+        transform: translateY(-50%) rotate(-5deg);
+      }
+
+      50% {
+        transform: translateY(-53%) rotate(2deg);
+      }
     }
-    .hero-content { position: relative; z-index: 2; max-width: 820px; }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+    }
+
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
@@ -483,6 +511,7 @@
       font-weight: 600;
       margin-bottom: 20px;
     }
+
     .hero-eyebrow::before {
       content: '';
       width: 28px;
@@ -490,6 +519,7 @@
       background: var(--gold);
       opacity: .6;
     }
+
     .hero-title {
       font-family: 'Playfair Display';
       font-size: clamp(3rem, 6vw, 5.2rem);
@@ -498,30 +528,41 @@
       line-height: 1.04;
       margin-bottom: 20px;
     }
-    .hero-title em { color: var(--gold-light); font-style: italic; }
+
+    .hero-title em {
+      color: var(--gold-light);
+      font-style: italic;
+    }
+
     .hero-sub {
       font-size: 1rem;
-      color: rgba(255,255,255,.55);
+      color: rgba(255, 255, 255, .55);
       line-height: 1.8;
       max-width: 520px;
       margin-bottom: 36px;
     }
+
     .hero-stats {
       display: flex;
       gap: 48px;
     }
+
     .hstat-num {
       font-family: 'Bebas Neue';
       font-size: 2.4rem;
       color: var(--gold-light);
       line-height: 1;
     }
-    .hstat-num span { color: var(--red-mid); }
+
+    .hstat-num span {
+      color: var(--red-mid);
+    }
+
     .hstat-label {
       font-size: .65rem;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: rgba(255,255,255,.4);
+      color: rgba(255, 255, 255, .4);
       margin-top: 4px;
     }
 
@@ -534,12 +575,14 @@
       border-top: 3px solid var(--red);
       border-bottom: 3px solid var(--gold);
     }
+
     .marquee-track {
       display: flex;
       gap: 56px;
       animation: marquee 28s linear infinite;
       white-space: nowrap;
     }
+
     .marquee-item {
       font-family: 'Bebas Neue';
       font-size: 1rem;
@@ -549,10 +592,19 @@
       align-items: center;
       gap: 18px;
     }
-    .marquee-item span { color: rgba(255,255,255,.18); }
+
+    .marquee-item span {
+      color: rgba(255, 255, 255, .18);
+    }
+
     @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
     }
 
     /* ══ FILTER BAR ══ */
@@ -562,12 +614,18 @@
       font-weight: 900;
       color: var(--navy);
     }
-    .filter-heading em { color: var(--red-mid); font-style: italic; }
+
+    .filter-heading em {
+      color: var(--red-mid);
+      font-style: italic;
+    }
+
     .filter-pills {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
     }
+
     .filter-pill {
       padding: 8px 20px;
       border-radius: 100px;
@@ -580,18 +638,21 @@
       transition: all .3s;
       background: white;
       color: var(--navy-light);
-      box-shadow: 0 2px 8px rgba(13,26,58,.06);
+      box-shadow: 0 2px 8px rgba(13, 26, 58, .06);
     }
-    .filter-pill.active, .filter-pill:hover {
+
+    .filter-pill.active,
+    .filter-pill:hover {
       background: linear-gradient(135deg, var(--navy), var(--red));
       color: white;
-      box-shadow: 0 6px 16px rgba(27,46,107,.3);
+      box-shadow: 0 6px 16px rgba(27, 46, 107, .3);
     }
 
     /* ══ FEATURED VIDEO ══ */
     .featured-section {
       padding: 44px 80px 0;
     }
+
     .featured-label {
       font-size: .62rem;
       letter-spacing: 4px;
@@ -603,6 +664,7 @@
       gap: 12px;
       margin-bottom: 20px;
     }
+
     .featured-label::after {
       content: '';
       flex: 1;
@@ -610,21 +672,24 @@
       height: 2px;
       background: linear-gradient(90deg, var(--red), transparent);
     }
+
     .featured-card {
       border-radius: 26px;
       overflow: hidden;
       background: var(--dark);
       display: grid;
       grid-template-columns: 1fr 1fr;
-      box-shadow: 0 40px 100px rgba(13,26,58,.22);
+      box-shadow: 0 40px 100px rgba(13, 26, 58, .22);
       min-height: 420px;
       position: relative;
     }
+
     .featured-video-wrap {
       position: relative;
       overflow: hidden;
       background: #000;
     }
+
     .featured-video-wrap iframe {
       width: 100%;
       height: 100%;
@@ -632,17 +697,22 @@
       display: block;
       border: none;
     }
+
     .featured-video-wrap .play-overlay {
       position: absolute;
       inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(13,26,58,.35);
+      background: rgba(13, 26, 58, .35);
       cursor: pointer;
       transition: background .3s;
     }
-    .featured-video-wrap:hover .play-overlay { background: rgba(13,26,58,.15); }
+
+    .featured-video-wrap:hover .play-overlay {
+      background: rgba(13, 26, 58, .15);
+    }
+
     .featured-info {
       padding: 52px 48px;
       background: linear-gradient(135deg, var(--navy-deep), var(--navy));
@@ -652,19 +722,25 @@
       position: relative;
       overflow: hidden;
     }
+
     .featured-info::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 80% 20%, rgba(200,150,12,.18), transparent 55%);
+      background: radial-gradient(ellipse at 80% 20%, rgba(200, 150, 12, .18), transparent 55%);
     }
-    .featured-info > * { position: relative; z-index: 1; }
+
+    .featured-info>* {
+      position: relative;
+      z-index: 1;
+    }
+
     .fi-tag {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(200,150,12,.15);
-      border: 1px solid rgba(200,150,12,.3);
+      background: rgba(200, 150, 12, .15);
+      border: 1px solid rgba(200, 150, 12, .3);
       border-radius: 100px;
       padding: 5px 14px;
       font-size: .62rem;
@@ -675,6 +751,7 @@
       margin-bottom: 18px;
       width: fit-content;
     }
+
     .fi-title {
       font-family: 'Playfair Display';
       font-size: 2.2rem;
@@ -683,50 +760,65 @@
       line-height: 1.1;
       margin-bottom: 14px;
     }
+
     .fi-desc {
       font-size: .88rem;
-      color: rgba(255,255,255,.55);
+      color: rgba(255, 255, 255, .55);
       line-height: 1.78;
       margin-bottom: 28px;
     }
+
     .fi-meta {
       display: flex;
       gap: 24px;
       margin-bottom: 32px;
     }
+
     .fi-meta-item {
       display: flex;
       align-items: center;
       gap: 8px;
     }
+
     .fi-meta-icon {
       width: 34px;
       height: 34px;
       border-radius: 8px;
-      background: rgba(255,255,255,.1);
+      background: rgba(255, 255, 255, .1);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1rem;
     }
-    .fi-meta-text { font-size: .76rem; color: rgba(255,255,255,.55); }
-    .fi-meta-val { font-weight: 600; color: rgba(255,255,255,.9); }
+
+    .fi-meta-text {
+      font-size: .76rem;
+      color: rgba(255, 255, 255, .55);
+    }
+
+    .fi-meta-val {
+      font-weight: 600;
+      color: rgba(255, 255, 255, .9);
+    }
+
     .fi-tags {
       display: flex;
       gap: 7px;
       flex-wrap: wrap;
       margin-bottom: 28px;
     }
+
     .fi-badge {
       font-size: .6rem;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       padding: 4px 10px;
       border-radius: 100px;
-      border: 1px solid rgba(200,150,12,.3);
+      border: 1px solid rgba(200, 150, 12, .3);
       color: var(--gold-light);
-      background: rgba(200,150,12,.1);
+      background: rgba(200, 150, 12, .1);
     }
+
     .fi-watch-btn {
       display: inline-flex;
       align-items: center;
@@ -743,44 +835,54 @@
       cursor: pointer;
       border: none;
       transition: all .3s;
-      box-shadow: 0 8px 24px rgba(200,150,12,.3);
+      box-shadow: 0 8px 24px rgba(200, 150, 12, .3);
       width: fit-content;
     }
-    .fi-watch-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(200,150,12,.4); }
+
+    .fi-watch-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(200, 150, 12, .4);
+    }
 
     /* ══ VIDEO GRID ══ */
     .recipes-section {
       padding: 56px 80px 100px;
     }
+
     .recipes-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 28px;
     }
+
     .recipe-card {
       background: white;
       border-radius: 20px;
       overflow: hidden;
-      border: 1px solid rgba(27,46,107,.07);
+      border: 1px solid rgba(27, 46, 107, .07);
       transition: all .35s;
       cursor: pointer;
     }
+
     .recipe-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 28px 70px rgba(13,26,58,.15), 0 0 0 2px rgba(27,46,107,.1);
+      box-shadow: 0 28px 70px rgba(13, 26, 58, .15), 0 0 0 2px rgba(27, 46, 107, .1);
     }
+
     .recipe-video-wrap {
       position: relative;
       aspect-ratio: 16/9;
       background: var(--dark);
       overflow: hidden;
     }
+
     .recipe-video-wrap iframe {
       width: 100%;
       height: 100%;
       display: block;
       border: none;
     }
+
     .recipe-thumb {
       width: 100%;
       height: 100%;
@@ -788,31 +890,46 @@
       display: block;
       transition: transform .5s;
     }
-    .recipe-card:hover .recipe-thumb { transform: scale(1.05); }
+
+    .recipe-card:hover .recipe-thumb {
+      transform: scale(1.05);
+    }
+
     .rv-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(13,26,58,.3);
+      background: rgba(13, 26, 58, .3);
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
       transition: opacity .3s;
     }
-    .recipe-card:hover .rv-overlay { opacity: 1; }
+
+    .recipe-card:hover .rv-overlay {
+      opacity: 1;
+    }
+
     .play-btn-large {
       width: 64px;
       height: 64px;
       border-radius: 50%;
-      background: rgba(255,255,255,.92);
+      background: rgba(255, 255, 255, .92);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 24px rgba(0,0,0,.3);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .3);
       transition: transform .3s;
     }
-    .recipe-card:hover .play-btn-large { transform: scale(1.12); }
-    .play-btn-large svg { margin-left: 4px; }
+
+    .recipe-card:hover .play-btn-large {
+      transform: scale(1.12);
+    }
+
+    .play-btn-large svg {
+      margin-left: 4px;
+    }
+
     .play-btn-sm {
       position: absolute;
       bottom: 12px;
@@ -820,7 +937,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255,255,255,.92);
+      background: rgba(255, 255, 255, .92);
       border-radius: 100px;
       padding: 6px 12px 6px 8px;
       font-size: .65rem;
@@ -828,9 +945,13 @@
       letter-spacing: 1px;
       text-transform: uppercase;
       color: var(--navy);
-      box-shadow: 0 3px 12px rgba(0,0,0,.2);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, .2);
     }
-    .play-btn-sm svg { flex-shrink: 0; }
+
+    .play-btn-sm svg {
+      flex-shrink: 0;
+    }
+
     .rv-badge {
       position: absolute;
       top: 12px;
@@ -842,23 +963,38 @@
       letter-spacing: 1px;
       text-transform: uppercase;
     }
-    .rv-badge.new { background: linear-gradient(135deg, #27AE60, #1E8449); color: white; }
-    .rv-badge.popular { background: linear-gradient(135deg, var(--gold), var(--red-mid)); color: white; }
-    .rv-badge.trending { background: linear-gradient(135deg, var(--red), var(--red-mid)); color: white; }
+
+    .rv-badge.new {
+      background: linear-gradient(135deg, #27AE60, #1E8449);
+      color: white;
+    }
+
+    .rv-badge.popular {
+      background: linear-gradient(135deg, var(--gold), var(--red-mid));
+      color: white;
+    }
+
+    .rv-badge.trending {
+      background: linear-gradient(135deg, var(--red), var(--red-mid));
+      color: white;
+    }
+
     .rv-duration {
       position: absolute;
       bottom: 12px;
       right: 12px;
-      background: rgba(13,26,58,.75);
+      background: rgba(13, 26, 58, .75);
       color: white;
       font-size: .65rem;
       font-weight: 600;
       padding: 3px 8px;
       border-radius: 5px;
     }
+
     .recipe-body {
       padding: 20px 22px 24px;
     }
+
     .recipe-cat {
       font-size: .6rem;
       letter-spacing: 3px;
@@ -867,6 +1003,7 @@
       font-weight: 600;
       margin-bottom: 8px;
     }
+
     .recipe-title {
       font-family: 'Playfair Display';
       font-size: 1.12rem;
@@ -875,6 +1012,7 @@
       margin-bottom: 8px;
       line-height: 1.3;
     }
+
     .recipe-desc {
       font-size: .78rem;
       color: var(--navy-light);
@@ -882,12 +1020,14 @@
       margin-bottom: 16px;
       opacity: .75;
     }
+
     .recipe-meta {
       display: flex;
       align-items: center;
       gap: 16px;
       margin-bottom: 16px;
     }
+
     .rm-item {
       display: flex;
       align-items: center;
@@ -895,14 +1035,20 @@
       font-size: .72rem;
       color: var(--navy-light);
     }
-    .rm-item strong { color: var(--navy); font-weight: 600; }
+
+    .rm-item strong {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
     .recipe-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-top: 1px solid rgba(27,46,107,.08);
+      border-top: 1px solid rgba(27, 46, 107, .08);
       padding-top: 14px;
     }
+
     .recipe-product {
       display: flex;
       align-items: center;
@@ -910,9 +1056,10 @@
       font-size: .72rem;
       color: var(--navy-light);
     }
+
     .rp-chip {
-      background: rgba(200,150,12,.1);
-      border: 1px solid rgba(200,150,12,.25);
+      background: rgba(200, 150, 12, .1);
+      border: 1px solid rgba(200, 150, 12, .25);
       border-radius: 100px;
       padding: 3px 9px;
       font-size: .6rem;
@@ -921,6 +1068,7 @@
       letter-spacing: 1px;
       text-transform: uppercase;
     }
+
     .watch-link {
       display: inline-flex;
       align-items: center;
@@ -933,16 +1081,25 @@
       text-decoration: none;
       transition: color .25s;
     }
-    .watch-link:hover { color: var(--red-mid); }
-    .watch-link svg { transition: transform .3s; }
-    .watch-link:hover svg { transform: translateX(3px); }
+
+    .watch-link:hover {
+      color: var(--red-mid);
+    }
+
+    .watch-link svg {
+      transition: transform .3s;
+    }
+
+    .watch-link:hover svg {
+      transform: translateX(3px);
+    }
 
     /* ══ VIDEO MODAL ══ */
     .modal-overlay {
       position: fixed;
       inset: 0;
       z-index: 9000;
-      background: rgba(13,26,58,.85);
+      background: rgba(13, 26, 58, .85);
       backdrop-filter: blur(12px);
       display: flex;
       align-items: center;
@@ -951,41 +1108,49 @@
       pointer-events: none;
       transition: opacity .3s;
     }
+
     .modal-overlay.open {
       opacity: 1;
       pointer-events: all;
     }
+
     .modal-inner {
       width: min(960px, 92vw);
       background: var(--dark);
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 60px 120px rgba(0,0,0,.5);
+      box-shadow: 0 60px 120px rgba(0, 0, 0, .5);
       transform: scale(.95);
-      transition: transform .35s cubic-bezier(.34,1.3,.64,1);
+      transition: transform .35s cubic-bezier(.34, 1.3, .64, 1);
     }
-    .modal-overlay.open .modal-inner { transform: scale(1); }
+
+    .modal-overlay.open .modal-inner {
+      transform: scale(1);
+    }
+
     .modal-header {
       background: linear-gradient(135deg, var(--navy-deep), var(--navy));
       padding: 18px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 2px solid rgba(200,150,12,.2);
+      border-bottom: 2px solid rgba(200, 150, 12, .2);
     }
+
     .modal-title {
       font-family: 'Playfair Display';
       font-size: 1.1rem;
       font-weight: 700;
       color: white;
     }
+
     .modal-close {
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: rgba(255,255,255,.1);
-      border: 1px solid rgba(255,255,255,.15);
-      color: rgba(255,255,255,.7);
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .15);
+      color: rgba(255, 255, 255, .7);
       font-size: 1rem;
       cursor: pointer;
       display: flex;
@@ -993,12 +1158,19 @@
       justify-content: center;
       transition: all .25s;
     }
-    .modal-close:hover { background: var(--red-mid); color: white; transform: rotate(90deg); }
+
+    .modal-close:hover {
+      background: var(--red-mid);
+      color: white;
+      transform: rotate(90deg);
+    }
+
     .modal-video {
       position: relative;
       aspect-ratio: 16/9;
       background: #000;
     }
+
     .modal-video iframe {
       width: 100%;
       height: 100%;
@@ -1014,13 +1186,19 @@
       position: relative;
       overflow: hidden;
     }
+
     .newsletter::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 50% 50%, rgba(200,150,12,.15), transparent 60%);
+      background: radial-gradient(ellipse at 50% 50%, rgba(200, 150, 12, .15), transparent 60%);
     }
-    .newsletter > * { position: relative; z-index: 1; }
+
+    .newsletter>* {
+      position: relative;
+      z-index: 1;
+    }
+
     .nl-eyebrow {
       font-size: .65rem;
       letter-spacing: 5px;
@@ -1029,6 +1207,7 @@
       font-weight: 600;
       margin-bottom: 16px;
     }
+
     .nl-title {
       font-family: 'Playfair Display';
       font-size: clamp(1.8rem, 3.5vw, 2.8rem);
@@ -1037,12 +1216,18 @@
       margin-bottom: 14px;
       line-height: 1.1;
     }
-    .nl-title em { color: var(--gold-light); font-style: italic; }
+
+    .nl-title em {
+      color: var(--gold-light);
+      font-style: italic;
+    }
+
     .nl-sub {
       font-size: .9rem;
-      color: rgba(255,255,255,.5);
+      color: rgba(255, 255, 255, .5);
       margin-bottom: 36px;
     }
+
     .nl-form {
       display: flex;
       gap: 0;
@@ -1050,8 +1235,9 @@
       margin: 0 auto;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0,0,0,.3);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, .3);
     }
+
     .nl-input {
       flex: 1;
       padding: 16px 22px;
@@ -1062,7 +1248,11 @@
       border: none;
       outline: none;
     }
-    .nl-input::placeholder { color: rgba(27,46,107,.35); }
+
+    .nl-input::placeholder {
+      color: rgba(27, 46, 107, .35);
+    }
+
     .nl-btn {
       background: linear-gradient(135deg, var(--gold), var(--red-mid));
       color: white;
@@ -1077,38 +1267,204 @@
       transition: all .3s;
       white-space: nowrap;
     }
-    .nl-btn:hover { background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: var(--navy-deep); }
+
+    .nl-btn:hover {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: var(--navy-deep);
+    }
 
     /* ══ FOOTER ══ */
     footer {
       background: var(--dark);
       color: white;
-      padding: 56px 80px 36px;
-      position: relative;
+      padding: 76px 60px 36px;
+      position: relative
     }
+
     footer::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 4px;
-      background: linear-gradient(90deg, var(--red), var(--gold), var(--navy));
+      background: linear-gradient(90deg, var(--red), var(--gold), var(--navy))
     }
-    .footer-bottom {
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 56px;
+      margin-bottom: 56px
+    }
+
+    .footer-brand .logo {
+      font-family: 'Bebas Neue';
+      font-size: 1.9rem;
+      letter-spacing: 4px;
+      color: white;
+      margin-bottom: 14px
+    }
+
+    .footer-brand .logo span {
+      color: var(--red-mid)
+    }
+
+    .footer-brand p {
+      font-size: .84rem;
+      color: rgba(255, 255, 255, .45);
+      line-height: 1.75;
+      max-width: 275px;
+      margin-bottom: 24px
+    }
+
+    .stores {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 24px
+    }
+
+    .store-btn {
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 7px;
+      padding: 7px 14px;
+      font-size: .75rem;
+      letter-spacing: .8px;
+      color: rgba(255, 255, 255, .75);
+      text-decoration: none;
+      transition: all .3s
+    }
+
+    .store-btn:hover {
+      background: linear-gradient(135deg, var(--navy-mid), var(--red));
+      color: white;
+      border-color: var(--navy-mid)
+    }
+
+    /* Social media links */
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap
+    }
+
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid rgba(255,255,255,.07);
-      padding-top: 24px;
-      margin-top: 24px;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: rgba(255, 255, 255, .06);
+      color: rgba(255, 255, 255, .6);
+      text-decoration: none;
+      transition: all .3s;
+      flex-shrink: 0
     }
-    .footer-bottom p { font-size: .75rem; color: rgba(255,255,255,.25); }
-    .footer-tagline { font-family: 'Playfair Display'; font-size: .95rem; font-style: italic; color: var(--gold); }
-    .footer-brand-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; flex-wrap: wrap; gap: 20px; }
-    .f-logo { font-family: 'Bebas Neue'; font-size: 1.8rem; letter-spacing: 4px; color: white; text-decoration: none; }
-    .f-logo span { color: var(--red-mid); }
-    .f-links { display: flex; gap: 24px; flex-wrap: wrap; }
-    .f-links a { font-size: .78rem; color: rgba(255,255,255,.4); text-decoration: none; transition: color .3s; }
-    .f-links a:hover { color: var(--gold-light); }
+
+    .social-btn:hover {
+      transform: translateY(-3px);
+      color: white
+    }
+
+    .social-btn.instagram:hover {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      border-color: transparent
+    }
+
+    .social-btn.facebook:hover {
+      background: #1877f2;
+      border-color: transparent
+    }
+
+    .social-btn.youtube:hover {
+      background: #ff0000;
+      border-color: transparent
+    }
+
+    .social-btn.linkedin:hover {
+      background: #0a66c2;
+      border-color: transparent
+    }
+
+    .social-btn.whatsapp:hover {
+      background: #25d366;
+      border-color: transparent
+    }
+
+    .social-btn.twitter:hover {
+      background: #000;
+      border-color: transparent
+    }
+
+    .social-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor
+    }
+
+    .footer-col h4 {
+      font-size: .62rem;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px
+    }
+
+    .footer-col ul {
+      list-style: none
+    }
+
+    .footer-col li {
+      margin-bottom: 9px
+    }
+
+    .footer-col a {
+      font-size: .82rem;
+      color: rgba(255, 255, 255, .42);
+      text-decoration: none;
+      transition: color .3s
+    }
+
+    .footer-col a:hover {
+      color: var(--gold-light)
+    }
+
+    .footer-outlets li {
+      font-size: .79rem;
+      color: rgba(255, 255, 255, .42);
+      margin-bottom: 7px;
+      display: flex;
+      justify-content: space-between
+    }
+
+    .footer-outlets .city {
+      color: rgba(255, 255, 255, .75);
+      font-weight: 500
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, .07);
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .footer-bottom p {
+      font-size: .75rem;
+      color: rgba(255, 255, 255, .25)
+    }
+
+    .footer-tagline {
+      font-family: 'Playfair Display';
+      font-size: .95rem;
+      font-style: italic;
+      color: var(--gold)
+    }
 
     /* ══ SEARCH BAR ══ */
     .filter-top-row {
@@ -1119,12 +1475,14 @@
       flex-wrap: wrap;
       margin-bottom: 20px;
     }
+
     .search-wrap {
       position: relative;
       display: flex;
       align-items: center;
       width: min(400px, 100%);
     }
+
     .search-ico {
       position: absolute;
       left: 14px;
@@ -1134,10 +1492,11 @@
       pointer-events: none;
       opacity: .6;
     }
+
     .search-input {
       width: 100%;
       padding: 11px 42px 11px 42px;
-      border: 2px solid rgba(27,46,107,.18);
+      border: 2px solid rgba(27, 46, 107, .18);
       border-radius: 100px;
       font-family: 'DM Sans';
       font-size: .85rem;
@@ -1145,20 +1504,25 @@
       background: white;
       outline: none;
       transition: border-color .3s, box-shadow .3s;
-      box-shadow: 0 2px 10px rgba(13,26,58,.05);
+      box-shadow: 0 2px 10px rgba(13, 26, 58, .05);
     }
+
     .search-input:focus {
       border-color: var(--navy);
-      box-shadow: 0 0 0 4px rgba(27,46,107,.08), 0 4px 16px rgba(13,26,58,.1);
+      box-shadow: 0 0 0 4px rgba(27, 46, 107, .08), 0 4px 16px rgba(13, 26, 58, .1);
     }
-    .search-input::placeholder { color: rgba(27,46,107,.3); }
+
+    .search-input::placeholder {
+      color: rgba(27, 46, 107, .3);
+    }
+
     .search-clear {
       position: absolute;
       right: 12px;
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background: rgba(27,46,107,.12);
+      background: rgba(27, 46, 107, .12);
       border: none;
       color: var(--navy-light);
       font-size: .75rem;
@@ -1168,7 +1532,11 @@
       justify-content: center;
       transition: all .25s;
     }
-    .search-clear:hover { background: var(--red-mid); color: white; }
+
+    .search-clear:hover {
+      background: var(--red-mid);
+      color: white;
+    }
 
     /* ══ FILTER BOTTOM ROW ══ */
     .filter-bottom-row {
@@ -1178,17 +1546,22 @@
       gap: 16px;
       flex-wrap: wrap;
     }
+
     .results-count {
       font-size: .76rem;
       color: var(--navy-light);
       white-space: nowrap;
       opacity: .75;
     }
-    .results-count strong { color: var(--navy); font-weight: 700; }
+
+    .results-count strong {
+      color: var(--navy);
+      font-weight: 700;
+    }
 
     /* ══ HIGHLIGHT ══ */
     mark {
-      background: rgba(200,150,12,.25);
+      background: rgba(200, 150, 12, .25);
       color: var(--navy);
       border-radius: 3px;
       padding: 0 2px;
@@ -1203,7 +1576,13 @@
       padding: 80px 24px;
       text-align: center;
     }
-    .empty-icon { font-size: 4rem; margin-bottom: 20px; opacity: .5; }
+
+    .empty-icon {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      opacity: .5;
+    }
+
     .empty-title {
       font-family: 'Playfair Display';
       font-size: 1.6rem;
@@ -1211,7 +1590,14 @@
       color: var(--navy);
       margin-bottom: 8px;
     }
-    .empty-sub { font-size: .88rem; color: var(--navy-light); margin-bottom: 28px; opacity: .7; }
+
+    .empty-sub {
+      font-size: .88rem;
+      color: var(--navy-light);
+      margin-bottom: 28px;
+      opacity: .7;
+    }
+
     .empty-reset {
       padding: 11px 26px;
       background: linear-gradient(135deg, var(--navy), var(--red));
@@ -1225,9 +1611,13 @@
       text-transform: uppercase;
       cursor: pointer;
       transition: all .3s;
-      box-shadow: 0 6px 18px rgba(27,46,107,.25);
+      box-shadow: 0 6px 18px rgba(27, 46, 107, .25);
     }
-    .empty-reset:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(27,46,107,.35); }
+
+    .empty-reset:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(27, 46, 107, .35);
+    }
 
     /* ══ PAGINATION ══ */
     .pagination {
@@ -1238,11 +1628,12 @@
       margin-top: 56px;
       flex-wrap: wrap;
     }
+
     .pag-btn {
       width: 40px;
       height: 40px;
       border-radius: 10px;
-      border: 2px solid rgba(27,46,107,.15);
+      border: 2px solid rgba(27, 46, 107, .15);
       background: white;
       color: var(--navy-light);
       font-family: 'DM Sans';
@@ -1253,24 +1644,34 @@
       align-items: center;
       justify-content: center;
       transition: all .25s;
-      box-shadow: 0 2px 8px rgba(13,26,58,.05);
+      box-shadow: 0 2px 8px rgba(13, 26, 58, .05);
     }
+
     .pag-btn:hover:not(.disabled):not(.active) {
       border-color: var(--navy);
       color: var(--navy);
-      background: rgba(27,46,107,.05);
+      background: rgba(27, 46, 107, .05);
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(27,46,107,.12);
+      box-shadow: 0 6px 16px rgba(27, 46, 107, .12);
     }
+
     .pag-btn.active {
       background: linear-gradient(135deg, var(--navy), var(--red));
       border-color: transparent;
       color: white;
-      box-shadow: 0 6px 18px rgba(27,46,107,.3);
+      box-shadow: 0 6px 18px rgba(27, 46, 107, .3);
       transform: translateY(-2px);
     }
-    .pag-btn.pag-arrow { width: 40px; }
-    .pag-btn.disabled { opacity: .3; cursor: not-allowed; }
+
+    .pag-btn.pag-arrow {
+      width: 40px;
+    }
+
+    .pag-btn.disabled {
+      opacity: .3;
+      cursor: not-allowed;
+    }
+
     .pag-dots {
       width: 40px;
       height: 40px;
@@ -1287,149 +1688,223 @@
       background: var(--cream);
       padding: 56px 80px 28px;
     }
+
     .reveal {
       opacity: 0;
       transform: translateY(32px);
       transition: opacity .7s ease, transform .7s ease;
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* ══ RESPONSIVE ══ */
     @media(max-width: 960px) {
-      nav { padding: 0 24px; }
-      .hero { padding: 120px 32px 60px; }
-      .filter-section, .featured-section, .recipes-section, .newsletter { padding-left: 32px; padding-right: 32px; }
-      .featured-card { grid-template-columns: 1fr; }
-      .featured-video-wrap iframe { min-height: 260px; }
-      .recipes-grid { grid-template-columns: 1fr 1fr; }
-      .nav-links { display: none; }
-      .filter-top-row { flex-direction: column; align-items: flex-start; }
-      .search-wrap { width: 100%; }
+      nav {
+        padding: 0 24px;
+      }
+
+      .hero {
+        padding: 120px 32px 60px;
+      }
+
+      .filter-section,
+      .featured-section,
+      .recipes-section,
+      .newsletter {
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+
+      .featured-card {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-video-wrap iframe {
+        min-height: 260px;
+      }
+
+      .recipes-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .filter-top-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .search-wrap {
+        width: 100%;
+      }
     }
+
     @media(max-width: 640px) {
-      .hero { padding: 110px 22px 50px; }
-      .hero-stats { gap: 28px; }
-      .filter-section, .featured-section, .recipes-section, .newsletter, footer { padding-left: 22px; padding-right: 22px; }
-      .recipes-grid { grid-template-columns: 1fr; }
-      .nl-form { flex-direction: column; border-radius: 10px; }
-      .nl-btn { border-radius: 0 0 10px 10px; padding: 14px; }
-      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
-      .filter-bottom-row { flex-direction: column; align-items: flex-start; }
-      .pag-btn { width: 36px; height: 36px; font-size: .78rem; }
+      .hero {
+        padding: 110px 22px 50px;
+      }
+
+      .hero-stats {
+        gap: 28px;
+      }
+
+      .filter-section,
+      .featured-section,
+      .recipes-section,
+      .newsletter,
+      footer {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .recipes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nl-form {
+        flex-direction: column;
+        border-radius: 10px;
+      }
+
+      .nl-btn {
+        border-radius: 0 0 10px 10px;
+        padding: 14px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .filter-bottom-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .pag-btn {
+        width: 36px;
+        height: 36px;
+        font-size: .78rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- NAV -->
   <nav id="mainNav">
-        <a href="index.html" class="nav-logo">PEANUT<span>JI</span></a>
-        <ul class="nav-links" id="navLinks">
-            <li id="ddLi">
-                <button class="nav-dropdown-toggle" onclick="toggleDropdown()" aria-expanded="false"
-                    aria-haspopup="true">
-                    Our Products
-                    <svg class="chevron" viewBox="0 0 10 6" fill="none" width="10" height="6">
-                        <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </button>
-                <div class="nav-dropdown" id="navDropdown" role="menu">
-                    <!-- <a href="" class="dd-vedic" role="menuitem"> -->
-                        <!-- <div class="dd-icon"
+    <a href="index.html" class="nav-logo">PEANUT<span>JI</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li id="ddLi">
+        <button class="nav-dropdown-toggle" onclick="toggleDropdown()" aria-expanded="false" aria-haspopup="true">
+          Our Products
+          <svg class="chevron" viewBox="0 0 10 6" fill="none" width="10" height="6">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+        <div class="nav-dropdown" id="navDropdown" role="menu">
+          <!-- <a href="" class="dd-vedic" role="menuitem"> -->
+          <!-- <div class="dd-icon"
                             style="background:linear-gradient(135deg,rgba(200,150,12,.18),rgba(139,26,26,.08))">✨
                         </div> -->
-                        <!-- <div class="dd-text"> -->
-                            <!-- <div class="dd-name">Vedic High Oleic Oil</div>
+          <!-- <div class="dd-text"> -->
+          <!-- <div class="dd-name">Vedic High Oleic Oil</div>
                             <div class="dd-sub">India's First · 77%+ MUFA</div> -->
-                        <!-- </div> -->
-                    <!-- </a> -->
-                    <!-- <div class="dd-divider"></div> -->
-                    <a href="groundnutoil.html" role="menuitem">
-                        <div class="dd-icon oil-icon">🫙</div>
-                        <div class="dd-text">
-                            <div class="dd-name">Groundnut Oil</div>
-                            <div class="dd-sub">1L to 15Kg · Double Filtered</div>
-                        </div>
-                    </a>
-                    <!-- <a href="" role="menuitem">
+          <!-- </div> -->
+          <!-- </a> -->
+          <!-- <div class="dd-divider"></div> -->
+          <a href="groundnutoil.html" role="menuitem">
+            <div class="dd-icon oil-icon">🫙</div>
+            <div class="dd-text">
+              <div class="dd-name">Groundnut Oil</div>
+              <div class="dd-sub">1L to 15Kg · Double Filtered</div>
+            </div>
+          </a>
+          <!-- <a href="" role="menuitem">
                         <div class="dd-icon butter-icon">🧈</div>
                         <div class="dd-text">
                             <div class="dd-name">Peanut Butter</div>
                             <div class="dd-sub">Classic & Choco · Creamy & Crunchy</div>
                         </div>
                     </a> -->
-                    <!-- <a href="" role="menuitem">
+          <!-- <a href="" role="menuitem">
                         <div class="dd-icon peanut-icon">🥜</div>
                         <div class="dd-text">
                             <div class="dd-name">Peanuts</div>
                             <div class="dd-sub">Gold · Platinum · Roasted</div>
                         </div>
                     </a> -->
-                </div>
-            </li>
-            <li><a href="aboutus.html">About Us</a></li>
-            <li><a href="blogs.html">Blogs</a></li>
-            <li><a href="contactus.html">Contact Us</a></li>
-            <!-- <li><a href="recipes.html">Recipes</a></li> -->
-            <!-- <li><a href="checkout.html">Checkout</a></li> -->
-        </ul>
-        <ul class="nav-links" id="navLinks">
-
-
-            <!-- <li><a href="checkout.html">Checkout</a></li> -->
-        </ul>
-        <ul class="nav-links" id="navLinks">
-            <li id="ddLi">
-                <button class="nav-dropdown-toggle" onclick="toggleDropdown()" aria-expanded="false"
-                    aria-haspopup="true">
-                    My Account
-                    <svg class="chevron" viewBox="0 0 10 6" fill="none" width="10" height="6">
-                        <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </button>
-                <div class="nav-dropdown" id="navDropdown" role="menu">
-                    <a href="dashboard.html" role="menuitem">
-                        <div class="dd-text">
-                            <div class="dd-name">My Dashboard</div>
-                            <div class="dd-sub"></div>
-                        </div>
-                    </a>
-                    <a href="" role="menuitem">
-                        <div class="dd-text">
-                            <div class="dd-name">Log Out</div>
-                            <div class="dd-sub"></div>
-                        </div>
-                    </a>
-                </div>
-            </li>
-
-        </ul>
-        <div class="nav-cta-wrap">
-            <div class="nav-city-badge" id="navCityBadge" onclick="reopenCity()">
-                <div class="ncb-dot"></div><span id="navCityText">📍 Select City</span>
-            </div>
-            <button class="nav-mobile-toggle" id="mobileToggle" onclick="toggleMobile()"
-                aria-label="Menu"><span></span><span></span><span></span></button>
-            <a href="login.html" class="nav-cta">Log In</a>
         </div>
-    </nav>
+      </li>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="blogs.html">Blogs</a></li>
+      <li><a href="contactus.html">Contact Us</a></li>
+      <!-- <li><a href="recipes.html">Recipes</a></li> -->
+      <!-- <li><a href="checkout.html">Checkout</a></li> -->
+    </ul>
+    <ul class="nav-links" id="navLinks">
 
-    <!-- MOBILE MENU -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mm-section-label">Our Products</div>
-        <a href="groundnutoil.html" class="mm-link"><span class="mm-icon">🫙</span> Groundnut Oil</a>
-        <div class="mm-divider"></div>
-        <a href="aboutus.html" class="mm-link"><span class="mm-icon">🏭</span> About Us</a>
-        <a href="blogs.html" class="mm-link"><span class="mm-icon">📖</span> Blogs</a>
-        <a href="contactus.html" class="mm-link">
-            <span class="mm-icon">📞</span> Contact Us
-        </a>
-        <a href="#" class="mm-link"><span class="mm-icon">👤</span>My Account</a>
 
-        <a href="#products" class="mm-cta" onclick="closeMobile()">🛒 Shop Now</a>
+      <!-- <li><a href="checkout.html">Checkout</a></li> -->
+    </ul>
+    <ul class="nav-links" id="navLinks">
+      <li id="ddLi">
+        <button class="nav-dropdown-toggle" onclick="toggleDropdown()" aria-expanded="false" aria-haspopup="true">
+          My Account
+          <svg class="chevron" viewBox="0 0 10 6" fill="none" width="10" height="6">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+        <div class="nav-dropdown" id="navDropdown" role="menu">
+          <a href="dashboard.html" role="menuitem">
+            <div class="dd-text">
+              <div class="dd-name">My Dashboard</div>
+              <div class="dd-sub"></div>
+            </div>
+          </a>
+          <a href="" role="menuitem">
+            <div class="dd-text">
+              <div class="dd-name">Log Out</div>
+              <div class="dd-sub"></div>
+            </div>
+          </a>
+        </div>
+      </li>
+
+    </ul>
+    <div class="nav-cta-wrap">
+      <div class="nav-city-badge" id="navCityBadge" onclick="reopenCity()">
+        <div class="ncb-dot"></div><span id="navCityText">📍 Select City</span>
+      </div>
+      <button class="nav-mobile-toggle" id="mobileToggle" onclick="toggleMobile()"
+        aria-label="Menu"><span></span><span></span><span></span></button>
+      <!-- <a href="login.html" class="nav-cta">Log In</a> -->
     </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mm-section-label">Our Products</div>
+    <a href="groundnutoil.html" class="mm-link"><span class="mm-icon">🫙</span> Groundnut Oil</a>
+    <div class="mm-divider"></div>
+    <a href="aboutus.html" class="mm-link"><span class="mm-icon">🏭</span> About Us</a>
+    <a href="blogs.html" class="mm-link"><span class="mm-icon">📖</span> Blogs</a>
+    <a href="contactus.html" class="mm-link">
+      <span class="mm-icon">📞</span> Contact Us
+    </a>
+    <a href="#" class="mm-link"><span class="mm-icon">👤</span>My Account</a>
+
+    <a href="#products" class="mm-cta" onclick="closeMobile()">🛒 Shop Now</a>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -1438,7 +1913,8 @@
     <div class="hero-content">
       <div class="hero-eyebrow">Pure Recipes · Made with Peanutji</div>
       <h1 class="hero-title">Cook with<br><em>Nature's Finest</em></h1>
-      <p class="hero-sub">From quick weeknight dinners to festive feasts — every recipe crafted to celebrate the pure, rich flavour of Peanutji groundnut oil, peanut butter & peanuts.</p>
+      <p class="hero-sub">From quick weeknight dinners to festive feasts — every recipe crafted to celebrate the pure,
+        rich flavour of Peanutji groundnut oil, peanut butter & peanuts.</p>
       <div class="hero-stats">
         <div>
           <div class="hstat-num">40<span>+</span></div>
@@ -1484,9 +1960,14 @@
       <div class="filter-heading">All <em>Recipes</em></div>
       <div class="search-wrap">
         <span class="search-ico">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
         </span>
-        <input class="search-input" id="searchInput" type="text" placeholder="Search recipes, ingredients…" oninput="onSearch()" autocomplete="off">
+        <input class="search-input" id="searchInput" type="text" placeholder="Search recipes, ingredients…"
+          oninput="onSearch()" autocomplete="off">
         <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
       </div>
     </div>
@@ -1508,9 +1989,7 @@
     <div class="featured-label">Featured This Week</div>
     <div class="featured-card">
       <div class="featured-video-wrap">
-        <iframe
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
-          title="Peanutji Featured Recipe"
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1" title="Peanutji Featured Recipe"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>
@@ -1518,19 +1997,29 @@
       <div class="featured-info">
         <div class="fi-tag">✨ Featured Recipe</div>
         <div class="fi-title">Peanutji Peanut<br>Butter Chocolate<br>Lava Cake</div>
-        <div class="fi-desc">A show-stopping dessert that combines our Choco Creamy Peanut Butter with dark chocolate — rich, indulgent, and ready in under 30 minutes.</div>
+        <div class="fi-desc">A show-stopping dessert that combines our Choco Creamy Peanut Butter with dark chocolate —
+          rich, indulgent, and ready in under 30 minutes.</div>
         <div class="fi-meta">
           <div class="fi-meta-item">
             <div class="fi-meta-icon">⏱️</div>
-            <div><div class="fi-meta-val">28 min</div><div class="fi-meta-text">Total Time</div></div>
+            <div>
+              <div class="fi-meta-val">28 min</div>
+              <div class="fi-meta-text">Total Time</div>
+            </div>
           </div>
           <div class="fi-meta-item">
             <div class="fi-meta-icon">👥</div>
-            <div><div class="fi-meta-val">4 servings</div><div class="fi-meta-text">Serves</div></div>
+            <div>
+              <div class="fi-meta-val">4 servings</div>
+              <div class="fi-meta-text">Serves</div>
+            </div>
           </div>
           <div class="fi-meta-item">
             <div class="fi-meta-icon">🔥</div>
-            <div><div class="fi-meta-val">Easy</div><div class="fi-meta-text">Difficulty</div></div>
+            <div>
+              <div class="fi-meta-val">Easy</div>
+              <div class="fi-meta-text">Difficulty</div>
+            </div>
           </div>
         </div>
         <div class="fi-tags">
@@ -1587,9 +2076,7 @@
         <button class="modal-close" onclick="closeModalDirect()">✕</button>
       </div>
       <div class="modal-video">
-        <iframe id="modalIframe"
-          src=""
-          title="Recipe Video"
+        <iframe id="modalIframe" src="" title="Recipe Video"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>
@@ -1600,24 +2087,24 @@
   <script>
     // ══ RECIPE DATA ══
     const RECIPES = [
-      { id:1,  title:'Crispy Aloo Fry in Peanutji Oil',             cat:'oil quick',        catLabel:'Groundnut Oil · Snack',          time:'15 min', serves:'2 servings', diff:'Easy',   chip:'Groundnut Oil',   badge:'popular', dur:'12:34', vid:'dQw4w9WgXcQ', desc:'The secret to perfect crispy potatoes? High-smoke-point Peanutji groundnut oil that keeps every bite golden.' },
-      { id:2,  title:'Peanut Butter Banana Protein Smoothie',       cat:'butter',           catLabel:'Peanut Butter · Fitness',        time:'5 min',  serves:'1 serving',  diff:'Easy',   chip:'Classic Creamy',  badge:'new',     dur:'6:48',  vid:'dQw4w9WgXcQ', desc:'Fuel your morning with Classic Creamy Peanutji Peanut Butter blended into this thick, protein-packed smoothie.' },
-      { id:3,  title:'Spicy Masala Roasted Peanuts',                cat:'peanut quick',     catLabel:'Peanuts · Snack',                time:'10 min', serves:'4 servings', diff:'Easy',   chip:'Platinum Peanuts',badge:'trending',dur:'9:15',  vid:'dQw4w9WgXcQ', desc:'Turn Peanutji Platinum peanuts into the ultimate chaat-time snack with this easy, 10-minute masala roast.' },
-      { id:4,  title:'High-MUFA Veggie Stir Fry with Vedic Oil',    cat:'vedic oil',        catLabel:'Vedic Oil · Heart Healthy',      time:'18 min', serves:'3 servings', diff:'Medium', chip:'Vedic Oil',       badge:'new',     dur:'14:02', vid:'dQw4w9WgXcQ', desc:'Experience the subtle nuttiness and superior stability of Peanutji Vedic High Oleic Oil in this vibrant stir fry.' },
-      { id:5,  title:'5 Peanut Butter Toast Ideas for Busy Mornings',cat:'butter quick',    catLabel:'Peanut Butter · Breakfast',      time:'5 min',  serves:'1 serving',  diff:'Easy',   chip:'Choco Creamy',    badge:'popular', dur:'7:30',  vid:'dQw4w9WgXcQ', desc:'From classic PB & banana to choco-drizzle avocado — five irresistible ways to start your day with Peanutji.' },
-      { id:6,  title:'Traditional Dal Dhokli with Pure Groundnut Oil',cat:'oil',            catLabel:'Groundnut Oil · Gujarati',       time:'35 min', serves:'4 servings', diff:'Medium', chip:'Groundnut Oil',   badge:'',        dur:'22:10', vid:'dQw4w9WgXcQ', desc:'The authentic Gujarati comfort dish — our double-filtered groundnut oil gives the tadka that deep, irreplaceable aroma.' },
-      { id:7,  title:'Peanut Chikki — The Perfect Festive Bite',    cat:'butter peanut',    catLabel:'Peanuts · Festive',              time:'20 min', serves:'8 servings', diff:'Easy',   chip:'Gold Peanuts',    badge:'trending',dur:'11:25', vid:'dQw4w9WgXcQ', desc:'Celebrate Makar Sankranti with crunchy peanut chikki made from Peanutji Gold peanuts and jaggery.' },
-      { id:8,  title:'No-Bake Peanut Butter Energy Balls',          cat:'butter quick',     catLabel:'Peanut Butter · Gym Snack',      time:'15 min', serves:'20 balls',   diff:'Easy',   chip:'Classic Crunchy', badge:'new',     dur:'8:05',  vid:'dQw4w9WgXcQ', desc:'Prep 20 protein-packed energy balls in 15 minutes — perfect pre-workout fuel with Peanutji Classic Crunchy.' },
-      { id:9,  title:'Smoky Paneer Tikka with Peanutji Vedic Oil',  cat:'oil vedic',        catLabel:'Vedic Oil · Party Starter',      time:'40 min', serves:'4 servings', diff:'Medium', chip:'Vedic Oil',       badge:'popular', dur:'16:48', vid:'dQw4w9WgXcQ', desc:"Marinated paneer, grilled to smoky perfection — Vedic Oil's high stability means no burning, just pure flavour." },
-      { id:10, title:'Groundnut Oil Poha — Quick Breakfast',        cat:'oil quick',        catLabel:'Groundnut Oil · Breakfast',      time:'12 min', serves:'2 servings', diff:'Easy',   chip:'Groundnut Oil',   badge:'popular', dur:'10:22', vid:'dQw4w9WgXcQ', desc:'Fluffy, aromatic poha cooked in Peanutji groundnut oil with mustard seeds, curry leaves, and a squeeze of lemon.' },
-      { id:11, title:'Peanut Butter Overnight Oats',                cat:'butter quick',     catLabel:'Peanut Butter · Meal Prep',      time:'5 min',  serves:'1 serving',  diff:'Easy',   chip:'Classic Creamy',  badge:'new',     dur:'5:18',  vid:'dQw4w9WgXcQ', desc:'Layer oats, Peanutji peanut butter, banana, and chia seeds the night before for the easiest, most filling breakfast.' },
-      { id:12, title:'Peanut Chutney for Idli & Dosa',              cat:'peanut oil',       catLabel:'Peanuts · South Indian',         time:'8 min',  serves:'6 servings', diff:'Easy',   chip:'Gold Peanuts',    badge:'trending',dur:'7:55',  vid:'dQw4w9WgXcQ', desc:'A creamy, nutty chutney using Peanutji Gold peanuts — the ultimate companion for your idli and dosa.' },
-      { id:13, title:'Vedic Oil Salad Dressing — Heart-Healthy',    cat:'vedic quick',      catLabel:'Vedic Oil · Salads',             time:'3 min',  serves:'4 servings', diff:'Easy',   chip:'Vedic Oil',       badge:'new',     dur:'4:40',  vid:'dQw4w9WgXcQ', desc:"Whisk Peanutji Vedic Oil with lemon, honey, and mustard for the most heart-healthy, delicious salad dressing." },
-      { id:14, title:'Peanut Butter Chocolate Protein Bars',        cat:'butter',           catLabel:'Peanut Butter · Fitness',        time:'25 min', serves:'12 bars',    diff:'Easy',   chip:'Choco Creamy',    badge:'popular', dur:'13:12', vid:'dQw4w9WgXcQ', desc:'Homemade protein bars packed with Peanutji Choco Creamy — no preservatives, pure fuel for your training.' },
-      { id:15, title:'Gujarati Undhiyu in Groundnut Oil',           cat:'oil',              catLabel:'Groundnut Oil · Gujarati',       time:'60 min', serves:'6 servings', diff:'Hard',   chip:'Groundnut Oil',   badge:'',        dur:'28:35', vid:'dQw4w9WgXcQ', desc:'The legendary winter dish of Gujarat — slow-cooked mixed vegetables in fragrant Peanutji groundnut oil and spices.' },
-      { id:16, title:'Peanut Satay Skewers with Dipping Sauce',     cat:'peanut butter',    catLabel:'Peanut Butter · Party',          time:'30 min', serves:'4 servings', diff:'Medium', chip:'Classic Crunchy', badge:'trending',dur:'17:08', vid:'dQw4w9WgXcQ', desc:'Grilled chicken or tofu skewers with a rich Peanutji peanut butter satay sauce — a crowd-pleaser every time.' },
-      { id:17, title:'Vedic Oil Tadka Dal — Everyday Protein',      cat:'vedic oil',        catLabel:'Vedic Oil · Everyday',           time:'25 min', serves:'4 servings', diff:'Easy',   chip:'Vedic Oil',       badge:'',        dur:'15:30', vid:'dQw4w9WgXcQ', desc:'The simplest dal elevated — Peanutji Vedic Oil tadka with cumin, garlic, and dried chillies over yellow dal.' },
-      { id:18, title:'Peanut Butter Banana Pancakes',               cat:'butter quick',     catLabel:'Peanut Butter · Breakfast',      time:'15 min', serves:'2 servings', diff:'Easy',   chip:'Classic Creamy',  badge:'new',     dur:'9:44',  vid:'dQw4w9WgXcQ', desc:'Fluffy, golden pancakes made with Peanutji Classic Creamy — a Sunday morning ritual the whole family loves.' },
+      { id: 1, title: 'Crispy Aloo Fry in Peanutji Oil', cat: 'oil quick', catLabel: 'Groundnut Oil · Snack', time: '15 min', serves: '2 servings', diff: 'Easy', chip: 'Groundnut Oil', badge: 'popular', dur: '12:34', vid: 'dQw4w9WgXcQ', desc: 'The secret to perfect crispy potatoes? High-smoke-point Peanutji groundnut oil that keeps every bite golden.' },
+      { id: 2, title: 'Peanut Butter Banana Protein Smoothie', cat: 'butter', catLabel: 'Peanut Butter · Fitness', time: '5 min', serves: '1 serving', diff: 'Easy', chip: 'Classic Creamy', badge: 'new', dur: '6:48', vid: 'dQw4w9WgXcQ', desc: 'Fuel your morning with Classic Creamy Peanutji Peanut Butter blended into this thick, protein-packed smoothie.' },
+      { id: 3, title: 'Spicy Masala Roasted Peanuts', cat: 'peanut quick', catLabel: 'Peanuts · Snack', time: '10 min', serves: '4 servings', diff: 'Easy', chip: 'Platinum Peanuts', badge: 'trending', dur: '9:15', vid: 'dQw4w9WgXcQ', desc: 'Turn Peanutji Platinum peanuts into the ultimate chaat-time snack with this easy, 10-minute masala roast.' },
+      { id: 4, title: 'High-MUFA Veggie Stir Fry with Vedic Oil', cat: 'vedic oil', catLabel: 'Vedic Oil · Heart Healthy', time: '18 min', serves: '3 servings', diff: 'Medium', chip: 'Vedic Oil', badge: 'new', dur: '14:02', vid: 'dQw4w9WgXcQ', desc: 'Experience the subtle nuttiness and superior stability of Peanutji Vedic High Oleic Oil in this vibrant stir fry.' },
+      { id: 5, title: '5 Peanut Butter Toast Ideas for Busy Mornings', cat: 'butter quick', catLabel: 'Peanut Butter · Breakfast', time: '5 min', serves: '1 serving', diff: 'Easy', chip: 'Choco Creamy', badge: 'popular', dur: '7:30', vid: 'dQw4w9WgXcQ', desc: 'From classic PB & banana to choco-drizzle avocado — five irresistible ways to start your day with Peanutji.' },
+      { id: 6, title: 'Traditional Dal Dhokli with Pure Groundnut Oil', cat: 'oil', catLabel: 'Groundnut Oil · Gujarati', time: '35 min', serves: '4 servings', diff: 'Medium', chip: 'Groundnut Oil', badge: '', dur: '22:10', vid: 'dQw4w9WgXcQ', desc: 'The authentic Gujarati comfort dish — our double-filtered groundnut oil gives the tadka that deep, irreplaceable aroma.' },
+      { id: 7, title: 'Peanut Chikki — The Perfect Festive Bite', cat: 'butter peanut', catLabel: 'Peanuts · Festive', time: '20 min', serves: '8 servings', diff: 'Easy', chip: 'Gold Peanuts', badge: 'trending', dur: '11:25', vid: 'dQw4w9WgXcQ', desc: 'Celebrate Makar Sankranti with crunchy peanut chikki made from Peanutji Gold peanuts and jaggery.' },
+      { id: 8, title: 'No-Bake Peanut Butter Energy Balls', cat: 'butter quick', catLabel: 'Peanut Butter · Gym Snack', time: '15 min', serves: '20 balls', diff: 'Easy', chip: 'Classic Crunchy', badge: 'new', dur: '8:05', vid: 'dQw4w9WgXcQ', desc: 'Prep 20 protein-packed energy balls in 15 minutes — perfect pre-workout fuel with Peanutji Classic Crunchy.' },
+      { id: 9, title: 'Smoky Paneer Tikka with Peanutji Vedic Oil', cat: 'oil vedic', catLabel: 'Vedic Oil · Party Starter', time: '40 min', serves: '4 servings', diff: 'Medium', chip: 'Vedic Oil', badge: 'popular', dur: '16:48', vid: 'dQw4w9WgXcQ', desc: "Marinated paneer, grilled to smoky perfection — Vedic Oil's high stability means no burning, just pure flavour." },
+      { id: 10, title: 'Groundnut Oil Poha — Quick Breakfast', cat: 'oil quick', catLabel: 'Groundnut Oil · Breakfast', time: '12 min', serves: '2 servings', diff: 'Easy', chip: 'Groundnut Oil', badge: 'popular', dur: '10:22', vid: 'dQw4w9WgXcQ', desc: 'Fluffy, aromatic poha cooked in Peanutji groundnut oil with mustard seeds, curry leaves, and a squeeze of lemon.' },
+      { id: 11, title: 'Peanut Butter Overnight Oats', cat: 'butter quick', catLabel: 'Peanut Butter · Meal Prep', time: '5 min', serves: '1 serving', diff: 'Easy', chip: 'Classic Creamy', badge: 'new', dur: '5:18', vid: 'dQw4w9WgXcQ', desc: 'Layer oats, Peanutji peanut butter, banana, and chia seeds the night before for the easiest, most filling breakfast.' },
+      { id: 12, title: 'Peanut Chutney for Idli & Dosa', cat: 'peanut oil', catLabel: 'Peanuts · South Indian', time: '8 min', serves: '6 servings', diff: 'Easy', chip: 'Gold Peanuts', badge: 'trending', dur: '7:55', vid: 'dQw4w9WgXcQ', desc: 'A creamy, nutty chutney using Peanutji Gold peanuts — the ultimate companion for your idli and dosa.' },
+      { id: 13, title: 'Vedic Oil Salad Dressing — Heart-Healthy', cat: 'vedic quick', catLabel: 'Vedic Oil · Salads', time: '3 min', serves: '4 servings', diff: 'Easy', chip: 'Vedic Oil', badge: 'new', dur: '4:40', vid: 'dQw4w9WgXcQ', desc: "Whisk Peanutji Vedic Oil with lemon, honey, and mustard for the most heart-healthy, delicious salad dressing." },
+      { id: 14, title: 'Peanut Butter Chocolate Protein Bars', cat: 'butter', catLabel: 'Peanut Butter · Fitness', time: '25 min', serves: '12 bars', diff: 'Easy', chip: 'Choco Creamy', badge: 'popular', dur: '13:12', vid: 'dQw4w9WgXcQ', desc: 'Homemade protein bars packed with Peanutji Choco Creamy — no preservatives, pure fuel for your training.' },
+      { id: 15, title: 'Gujarati Undhiyu in Groundnut Oil', cat: 'oil', catLabel: 'Groundnut Oil · Gujarati', time: '60 min', serves: '6 servings', diff: 'Hard', chip: 'Groundnut Oil', badge: '', dur: '28:35', vid: 'dQw4w9WgXcQ', desc: 'The legendary winter dish of Gujarat — slow-cooked mixed vegetables in fragrant Peanutji groundnut oil and spices.' },
+      { id: 16, title: 'Peanut Satay Skewers with Dipping Sauce', cat: 'peanut butter', catLabel: 'Peanut Butter · Party', time: '30 min', serves: '4 servings', diff: 'Medium', chip: 'Classic Crunchy', badge: 'trending', dur: '17:08', vid: 'dQw4w9WgXcQ', desc: 'Grilled chicken or tofu skewers with a rich Peanutji peanut butter satay sauce — a crowd-pleaser every time.' },
+      { id: 17, title: 'Vedic Oil Tadka Dal — Everyday Protein', cat: 'vedic oil', catLabel: 'Vedic Oil · Everyday', time: '25 min', serves: '4 servings', diff: 'Easy', chip: 'Vedic Oil', badge: '', dur: '15:30', vid: 'dQw4w9WgXcQ', desc: 'The simplest dal elevated — Peanutji Vedic Oil tadka with cumin, garlic, and dried chillies over yellow dal.' },
+      { id: 18, title: 'Peanut Butter Banana Pancakes', cat: 'butter quick', catLabel: 'Peanut Butter · Breakfast', time: '15 min', serves: '2 servings', diff: 'Easy', chip: 'Classic Creamy', badge: 'new', dur: '9:44', vid: 'dQw4w9WgXcQ', desc: 'Fluffy, golden pancakes made with Peanutji Classic Creamy — a Sunday morning ritual the whole family loves.' },
     ];
 
     const ITEMS_PER_PAGE = 6;
@@ -1643,7 +2130,7 @@
     // ── RENDER CARD ──
     function renderCard(r, query) {
       return `
-        <div class="recipe-card" onclick="openModal('${r.title.replace(/'/g,"\\'")}', '${r.vid}')">
+        <div class="recipe-card" onclick="openModal('${r.title.replace(/'/g, "\\'")}', '${r.vid}')">
           <div class="recipe-video-wrap">
             <img class="recipe-thumb" src="https://img.youtube.com/vi/${r.vid}/maxresdefault.jpg" alt="${r.title}" loading="lazy">
             <div class="rv-overlay">
@@ -1679,7 +2166,7 @@
 
       let html = '';
       // Prev
-      html += `<button class="pag-btn pag-arrow${page===1?' disabled':''}" onclick="goPage(${page-1})" ${page===1?'disabled':''}>
+      html += `<button class="pag-btn pag-arrow${page === 1 ? ' disabled' : ''}" onclick="goPage(${page - 1})" ${page === 1 ? 'disabled' : ''}>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
       </button>`;
 
@@ -1689,11 +2176,11 @@
           if (i === 3 || i === totalPages - 2) html += `<span class="pag-dots">…</span>`;
           continue;
         }
-        html += `<button class="pag-btn${i===page?' active':''}" onclick="goPage(${i})">${i}</button>`;
+        html += `<button class="pag-btn${i === page ? ' active' : ''}" onclick="goPage(${i})">${i}</button>`;
       }
 
       // Next
-      html += `<button class="pag-btn pag-arrow${page===totalPages?' disabled':''}" onclick="goPage(${page+1})" ${page===totalPages?'disabled':''}>
+      html += `<button class="pag-btn pag-arrow${page === totalPages ? ' disabled' : ''}" onclick="goPage(${page + 1})" ${page === totalPages ? 'disabled' : ''}>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
       </button>`;
 
@@ -1828,4 +2315,5 @@
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>
+
 </html>

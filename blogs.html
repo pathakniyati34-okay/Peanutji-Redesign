@@ -1421,21 +1421,30 @@
         }
 
         .art-modal {
-            position: fixed;
-            top: 68px;
-            right: -100%;
-            width: min(660px, 95vw);
-            height: calc(100vh - 68px);
-            background: var(--cream);
-            border-left: 2px solid rgba(27, 46, 107, .15);
-            z-index: 750;
-            transition: right .45s cubic-bezier(.34, 1.1, .64, 1);
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            box-shadow: -20px 0 80px rgba(13, 26, 58, .15)
-        }
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    width: min(660px, 95vw);
+    max-height: calc(100vh - 100px);
+    background: var(--cream);
+    border: 2px solid rgba(27, 46, 107, .15);
+    border-radius: 20px;
+    z-index: 750;
+    transition: transform .45s cubic-bezier(.34, 1.1, .64, 1), opacity .35s ease;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 40px 100px rgba(13, 26, 58, .25);
+    opacity: 0;
+    pointer-events: none;
+}
 
+.art-modal.vis {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    pointer-events: all;
+}
         .art-modal.vis {
             right: 0
         }
@@ -2991,6 +3000,8 @@
             <li><a href="aboutus.html">About Us</a></li>
             <li><a href="blogs.html">Blogs</a></li>
             <li><a href="contactus.html">Contact Us</a></li>
+            <li><a href="career_page.html">Careers</a></li>
+            <li><a href="export_products.html">Export</a></li>
             <!-- <li><a href="recipes.html">Recipes</a></li> -->
             <!-- <li><a href="checkout.html">Checkout</a></li> -->
         </ul>
@@ -3032,7 +3043,7 @@
             </div>
             <button class="nav-mobile-toggle" id="mobileToggle" onclick="toggleMobile()"
                 aria-label="Menu"><span></span><span></span><span></span></button>
-            <a href="login.html" class="nav-cta">Log In</a>
+            <!-- <a href="login.html" class="nav-cta">Log In</a> -->
         </div>
     </nav>
 
